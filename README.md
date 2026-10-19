@@ -1,8 +1,8 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 02 implements
-the PostgreSQL database foundation. Authentication, document ingestion, AI research,
-chunks, embeddings, conversations, citations, and evaluations are planned.
+EvidenceAI is a document intelligence and research platform. Milestone 03 adds secure registration, authentication,
+database-backed browser sessions, logout, and current-user identity to the existing
+PostgreSQL foundation. Document ingestion and AI research are planned.
 
 ## Development
 
@@ -48,3 +48,25 @@ with schema migrations. Test configuration can use `Settings(_env_file=None, ...
 
 [Architecture](docs/architecture.md) and [database design](docs/database-design.md)
 cover settings, relationships, deletion policy, security, and current limitations.
+
+## Authentication
+
+See [security](docs/security.md) for API contracts, environment settings, browser
+integration, deployment requirements, and session lifecycle. No frontend files changed.
+For local HTTP, explicitly set `AUTH_ALLOW_INSECURE_HTTP=true` in `apps/api/.env`
+and `TRUSTED_FRONTEND_ORIGINS=["http://localhost:3000"]`. Without the opt-in,
+cookies are Secure and writes require HTTPS even in development.
+Run local Uvicorn with `--no-proxy-headers` so untrusted forwarding headers cannot
+change the client IP used for rate limiting.
+
+Next.js on `http://localhost:3000` calls `http://localhost:8000/api/v1/auth/...`
+with `credentials: "include"`. Every POST requires `Content-Type: application/json`,
+`X-CSRF-Protection: 1`, and the browser's trusted Origin. Use `localhost` consistently
+for both services. Cookies are host scoped, so use dedicated development hosts and
+trusted services. Production requires HTTPS and an explicit HTTPS origin allowlist.
+
+Migration `a31f8c9d204e` adds two auth tables and a normalized unique email index.
+It refuses conflicting legacy identities; resolve those explicitly before rerunning.
+It does not rewrite existing users. Review it before `python -m alembic upgrade head`.
+The original migration is unchanged. Tests use TestClient and real PostgreSQL with
+rollback isolation; no records are deleted or tables reset.

@@ -3,4 +3,7 @@ from app.models.workspace import Workspace
 from app.models.workspace_member import WorkspaceMember
 from app.models.document import Document
 
-__all__ = ["User", "Workspace", "WorkspaceMember", "Document"]
+from app.models.auth_session import AuthSession
+from app.models.auth_rate_limit import AuthRateLimit
+
+__all__ = ["User", "Workspace", "WorkspaceMember", "Document", "AuthSession", "AuthRateLimit"]

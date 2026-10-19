@@ -13,3 +13,19 @@ def health_check():
         "status": "healthy",
         "version": "1.0.0"
     }
+
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from app.api.routes.auth import router as auth_router
+from app.core.browser_security import BrowserSecurityMiddleware
+
+app.include_router(auth_router)
+app.add_middleware(BrowserSecurityMiddleware)
+
+
+@app.exception_handler(RequestValidationError)
+async def safe_validation_error(request, exc):
+    # FastAPI's default validation response can echo plaintext password inputs.
+    errors = [{"loc": error["loc"], "msg": error["msg"], "type": error["type"]}
+              for error in exc.errors()]
+    return JSONResponse(status_code=422, content={"detail": errors})

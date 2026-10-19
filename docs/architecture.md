@@ -2,7 +2,7 @@
 
 The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
-17 and Alembic. pgvector is installed but unused. Authentication, tenant authorization,
+17 and Alembic. pgvector is installed but unused. Tenant authorization,
 CRUD, storage, chunks, embeddings, conversations, citations, and evaluations are planned.
 
 ## Configuration and connections
@@ -43,8 +43,8 @@ skipping them. Commands are in the root README.
 Backend `.env` is ignored and the example contains placeholders. The existing Compose
 password is for local development only; provision secret management, least-privilege
 credentials and TLS for deployment. Do not expose ORM objects directly as API responses.
-No authentication or upload routes exist. Nullable password_hash is reserved for future
-secure authentication. Document contents belong in separate private storage.
+Authentication is implemented in Milestone 03; upload routes remain planned.
+Nullable password_hash supports legacy users; passwordless records cannot log in. Document contents belong in separate private storage.
 
 Python 3.14.6 and the pinned dependencies passed the suite; pip check found no broken
 requirements. Installed Starlette 1.9.0 TestClient source and package metadata recommend
@@ -52,5 +52,30 @@ httpx2>=2.0.0 and emit a deprecation warning for the current httpx transport. Th
 test passes with that warning visible. Dependencies were preserved; validate a transport
 upgrade separately. No warnings are filtered.
 
-Next milestone: atomic workspace services, normalized identities, authorization-aware
+Next milestone: atomic workspace services, authorization-aware
 CRUD and owner-membership enforcement, followed by authenticated upload/storage.
+
+## Milestone 03 authentication
+
+Routes in `app/api/routes/auth.py` expose `/api/v1/auth/register`, `/login`, `/logout`,
+and `/me`. Pydantic request/response schemas are in `app/schemas/auth.py`.
+`app/services/auth_service.py` owns registration, credential verification, rate limits,
+and session lookup. `app/core/security.py` owns Argon2id and random-token primitives.
+`app/core/browser_security.py` applies trusted-Origin checks, custom-header CSRF,
+credentialed CORS and no-store responses. Settings remain lazy so health checks
+need neither database settings nor connectivity.
+
+The reusable `get_current_user` FastAPI dependency rejects missing, invalid, expired,
+revoked sessions and inactive accounts. It returns a User for application services;
+only explicit safe schemas cross the API boundary. Future state-changing API routes
+inherit the browser middleware and must declare this dependency for authentication.
+CSRF checks alone do not authorize users or workspace access.
+
+Login creates a fresh opaque 256-bit token and stores its SHA-256 digest with user ID,
+creation time and absolute expiry. The browser receives the raw token only through
+an HTTP-only host cookie; JavaScript receives safe user fields. `/me` updates last use
+without extending expiry. Logout timestamps revocation and expires the same cookie.
+Other devices remain signed in. Authentication attempts are counted atomically in
+PostgreSQL and committed before credential handling so failures consume the budget.
+Each subsequent write commits explicitly; IntegrityError causes registration rollback.
+See [security](security.md) for browser and deployment contracts.
