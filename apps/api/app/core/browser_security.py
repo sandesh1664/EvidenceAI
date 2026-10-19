@@ -37,4 +37,24 @@ class BrowserSecurityMiddleware:
             if message["type"] == "http.response.start":
                 message.setdefault("headers", []).append((b"cache-control", b"no-store"))
             await send(message)
+        upload = scope["method"] == "POST" and scope["path"].rstrip("/").endswith("/documents")
+        if upload:
+            from starlette.exceptions import HTTPException
+            maximum = settings.document_upload_max_bytes + 65536  # bounded multipart envelope
+            try:
+                if int(headers.get("content-length", "0")) > maximum:
+                    return await JSONResponse({"detail": "Upload body exceeds byte limit"}, status_code=413)(scope, receive, send)
+            except ValueError:
+                return await JSONResponse({"detail": "Invalid Content-Length"}, status_code=400)(scope, receive, send)
+            received = 0
+            original_receive = receive
+            async def limited_receive():
+                nonlocal received
+                message = await original_receive()
+                if message["type"] == "http.request":
+                    received += len(message.get("body", b""))
+                    if received > maximum:
+                        raise HTTPException(413, "Upload body exceeds byte limit")
+                return message
+            receive = limited_receive
         await self.app(scope, receive, secure_send)

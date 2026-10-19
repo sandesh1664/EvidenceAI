@@ -18,10 +18,12 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from app.api.routes.auth import router as auth_router
 from app.core.browser_security import BrowserSecurityMiddleware
+from app.api.routes.documents import router as documents_router
 from app.api.routes.workspaces import router as workspaces_router
 from app.api.routes.workspace_members import router as workspace_members_router
 
 app.include_router(auth_router)
+app.include_router(documents_router)
 app.include_router(workspaces_router)
 app.include_router(workspace_members_router)
 app.add_middleware(BrowserSecurityMiddleware)

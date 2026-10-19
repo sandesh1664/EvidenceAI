@@ -76,7 +76,7 @@ cannot change ownership through workspace PATCH.
 
 Deletion removes only an otherwise empty workspace and its mandatory owner membership,
 atomically. It does not delete users, documents, or other members. Remove other memberships
-through the membership API first; document cleanup is outside this milestone. Existing
+through the membership API first; delete documents through the document API below. Existing
 RESTRICT foreign keys remain in place. Any failure restores the owner membership.
 
 ## Membership endpoints
@@ -166,9 +166,75 @@ python -m pip check
 git diff --check
 ```
 
-Current migration remains `a31f8c9d204e`; Milestone 04 changes no schema or applied
-migration. Tests authenticate real session cookies and use isolated PostgreSQL data.
+Current migration is `c52d8e7a901b`; Milestone 05 adds ingestion metadata without changing
+previously applied migrations. Tests authenticate real session cookies and use isolated PostgreSQL data.
 Concurrency tests require CREATE SCHEMA permission and use only uniquely named,
 disposable test schemas; they verify actual row-lock contention via pg_blocking_pids.
 Public application records and Docker volumes are not reset. No independent production
 security audit is implied by passing automated tests.
+
+## Document API (Milestone 05)
+
+All paths below start `/api/v1/workspaces/{workspace_id}/documents`. Every endpoint
+requires session authentication and membership. UUIDs are validated; missing/inaccessible
+workspaces both return 404 Workspace not found. A document UUID belonging to a different
+accessible workspace returns 404 Document not found. Owners/admins may mutate; members
+may only read. POST/DELETE require the same trusted Origin/custom CSRF header as other
+cookie-authenticated writes. Browser calls include credentials.
+
+| Method/path | Request | Success | Additional failures |
+| --- | --- | --- | --- |
+| POST / | multipart/form-data, exactly one `file` part | 202 document metadata with pending status | 400 malformed/multiple parts; 413 size/body limit; 415 unsupported extension; 422 unsafe filename, mismatched content/MIME, malformed/encrypted PDF or UTF-8; 409 duplicate; 503 storage unavailable |
+| GET / | limit (1–100, default 50), offset (>=0, default 0) | 200 metadata array, ordered by created_at/id | 422 invalid pagination |
+| GET /{document_id} | None | 200 metadata/status | 404 inaccessible/missing document |
+| GET /{document_id}/download | None | 200 streamed original attachment | 404 inaccessible/missing document; 503 original unavailable/unsafe storage object |
+| DELETE /{document_id} | None | 204 empty; metadata/chunks/job removed, durable file cleanup queued | 403 member; 409 legacy unmanaged storage or integrity conflict |
+| POST /{document_id}/retry | No body | 202 metadata, same UUID, pending status | 403 member; 409 not failed or total attempt limit reached |
+
+Upload accepts .pdf, .txt and .md (case-insensitive) up to 20971520 bytes by default.
+application/octet-stream is permitted only if actual content validates; Markdown also
+accepts text/plain. Extension/content/MIME disagreements return 422. Text is UTF-8 only
+(optional BOM); encrypted PDFs are unsupported. Valid empty/image-only PDFs are accepted
+structurally then fail extraction with empty/OCR-not-supported status. A structural
+validation timeout returns 422. The whole multipart envelope is capped at the file limit
+plus 65536 bytes. Content-Length is not trusted as the sole limit.
+
+Safe metadata response (no storage key, path or extracted text):
+
+```json
+{
+  "id": "f61f6a5b-ec19-4d4d-a451-6c8e716b5bb3",
+  "workspace_id": "ef5b5597-39c0-4bac-8fe7-5df7e1740404",
+  "uploaded_by": "dd030a35-aab4-47be-908a-350717c68eb9",
+  "original_filename": "research.pdf",
+  "mime_type": "application/pdf",
+  "file_size": 12345,
+  "checksum_sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "processing_status": "pending",
+  "processing_error": null,
+  "processing_attempts": 0,
+  "last_processed_at": null,
+  "created_at": "2026-10-19T08:00:00Z",
+  "updated_at": "2026-10-19T08:00:00Z"
+}
+```
+
+Status is pending/processing/completed/failed. last_processed_at records the most recent
+attempt start; attempts count automatic, recovered and manual attempts together. Error
+strings are safe fixed messages, not parser exception details. 202 does not imply
+successful extraction. Poll metadata to observe completion/failure. Legacy metadata can
+have null MIME/size. Download always uses application/octet-stream, attachment disposition,
+nosniff and no-store; it does not execute or inline-render original content.
+
+Duplicates mean identical SHA-256 bytes in one workspace regardless of filename; they
+return 409 without another file/job. The same content in another accessible workspace
+is permitted. Manual retry is allowed only when failed with fewer than the configured
+3 total attempts. It preserves identity, resets queued state and never appends duplicate
+chunks. Pending, running, completed and exhausted documents return 409. Some permanent
+failures (e.g. OCR unsupported) will fail again unless capabilities/configuration change.
+
+Delete removes metadata, chunks and queue row transactionally, fencing active workers.
+Disk cleanup is eventual and persistent; subsequent metadata/downloads return 404 even
+while storage is unavailable. In-flight authorized streams may finish. No user records
+are removed. See [document processing](document-processing.md) for worker operations,
+parser/source limits, crash recovery and storage consistency details.

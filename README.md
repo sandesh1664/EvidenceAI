@@ -1,7 +1,9 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 04 adds authenticated workspace management and role-based membership
-authorization to the existing database-backed authentication system. Document ingestion and AI research are planned.
+EvidenceAI is a document intelligence and research platform. Milestone 05 adds secure
+PDF, UTF-8 text and Markdown ingestion, private storage, background extraction and
+source-aware chunks to the existing authentication and workspace system. Embeddings
+and AI answer generation remain planned.
 
 ## Development
 
@@ -83,8 +85,43 @@ Creation and transfer preserve exactly one matching owner membership in a transa
 An empty workspace can be deleted with its mandatory owner membership; other members
 or any documents cause 409. No users or documents are cascade-deleted.
 
-Milestone 04 needs no schema migration: the current head remains `a31f8c9d204e`.
+Milestone 04 needed no schema migration; Milestone 05 advances the head to `c52d8e7a901b`.
 Run `python -m pytest -q`, `python -m alembic current`, `python -m alembic check`,
 `python -m pip check`, and `git diff --check` to verify. Authenticated TestClient tests
 cover tenant isolation, roles, CSRF, rollback, and actual PostgreSQL lock contention.
-The frontend, uploads, invitations, and AI features are outside this milestone.
+The frontend, invitations and AI features remain outside the current milestone.
+
+## Document ingestion
+
+See [document processing](docs/document-processing.md) for storage, parser limits,
+queue recovery, deletion/cleanup, source metadata, retry policy and operations.
+Owners/admins can upload, retry and delete documents; every workspace member can
+list, view metadata and download originals. All API requests reuse session auth;
+POST/DELETE still require trusted Origin and `X-CSRF-Protection: 1`.
+
+```sh
+cd apps/api
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+# Review c52d8e7a901b before applying it:
+python -m alembic upgrade head
+python -m app.document_worker          # separate long-running worker
+# Other operational commands:
+python -m app.document_worker --once   # at most one cleanup and one processing job
+python -m app.document_worker --status
+```
+
+The durable queue uses PostgreSQL, so metadata and job publication share a transaction.
+No Redis or Compose change is required; PostgreSQL port 5433 and its volume are unchanged.
+API and workers must share the same private storage directory, defaulting to
+`<project>/storage/documents`. Optional DOCUMENT_STORAGE_ROOT must be absolute and
+outside the frontend. Originals are not publicly served. Local files/directories use
+0600/0700. Defaults: 20 MiB/file, 500 PDF pages, 2 million extracted characters,
+1600-character chunks with 200 overlap, 3 total processing attempts. Uploads return
+202 pending; full extraction happens only in the separate worker. Processing and
+cleanup stop when no worker is running; start and monitor it separately from Uvicorn.
+
+Verification uses `python -m pytest -q`, `python -m alembic current`,
+`python -m alembic check`, `python -m pip check`, and `git diff --check`.
+Tests isolate storage and queues; real concurrency uses disposable database schemas.
+No existing records, frontend files, applied migrations, or Docker volumes are reset.

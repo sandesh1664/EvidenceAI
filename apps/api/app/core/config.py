@@ -22,6 +22,33 @@ class Settings(BaseSettings):
     auth_rate_limit: int = Field(default=20, ge=1, le=10000)
     auth_rate_window_seconds: int = Field(default=300, ge=1, le=86400)
 
+    document_storage_root: Path = BACKEND_ROOT.parents[1] / "storage" / "documents"
+    document_upload_max_bytes: int = Field(default=20 * 1024 * 1024, ge=1, le=100 * 1024 * 1024)
+    document_chunk_size: int = Field(default=1600, ge=64, le=10000)
+    document_chunk_overlap: int = Field(default=200, ge=0)
+    document_max_chunks: int = Field(default=10000, ge=1, le=50000)
+    document_max_pages: int = Field(default=500, ge=1, le=5000)
+    document_max_text_chars: int = Field(default=2000000, ge=1, le=10000000)
+    document_validation_timeout: int = Field(default=5, ge=1, le=30)
+    document_processing_timeout: int = Field(default=30, ge=1, le=300)
+    document_parser_memory_mb: int = Field(default=512, ge=128, le=2048)
+    document_max_attempts: int = Field(default=3, ge=1, le=10)
+    document_job_lease_seconds: int = Field(default=120, ge=30, le=3600)
+
+    @model_validator(mode="after")
+    def validate_document_limits(self):
+        if self.document_chunk_overlap >= self.document_chunk_size:
+            raise ValueError("Document overlap must be smaller than chunk size")
+        if self.document_job_lease_seconds < self.document_processing_timeout + 15:
+            raise ValueError("Document job lease must exceed processing timeout by at least 15 seconds")
+        if not self.document_storage_root.is_absolute():
+            raise ValueError("Document storage root must be absolute")
+        root = self.document_storage_root.resolve()
+        web = BACKEND_ROOT.parent / "web"
+        if root == web or web in root.parents or root == Path("/"):
+            raise ValueError("Document storage must be private and outside the frontend")
+        return self
+
     @property
     def secure_cookies(self) -> bool:
         return not self.auth_allow_insecure_http

@@ -60,3 +60,23 @@ def require_manageable_member(actor: WorkspaceMember, target: WorkspaceMember):
         raise HTTPException(409, "Use ownership transfer to change the owner")
     if actor.role == "admin" and target.role != "member":
         raise HTTPException(403, "Admins can only change or remove ordinary members")
+
+
+def document_workspace_access(db: Session, workspace_id: UUID, actor_id: UUID, *, write=False, lock=False):
+    workspace, member = workspace_access(db, workspace_id, actor_id, lock=lock)
+    if write:
+        require_manager(workspace, member)
+        require_consistent_ownership(db, workspace)
+    return workspace, member
+
+
+def document_access(db: Session, workspace_id: UUID, document_id: UUID, actor_id: UUID, *, write=False):
+    from app.models import Document
+    document_workspace_access(db, workspace_id, actor_id, write=write, lock=write)
+    statement = select(Document).where(Document.id == document_id, Document.workspace_id == workspace_id)
+    if write:
+        statement = statement.with_for_update()
+    document = db.scalar(statement.execution_options(populate_existing=True))
+    if document is None:
+        raise HTTPException(404, "Document not found")
+    return document

@@ -7,10 +7,13 @@
 | auth_rate_limits | Shared authentication attempt counters | Composite PK (hashed action/client key, window start); atomic attempt increments |
 | workspaces | Name, description, required owner | UUID PK; indexed owner FK to users |
 | workspace_members | Membership, role, joined timestamp | UUID PK; unique (workspace_id, user_id); user index; owner/admin/member check |
-| documents | File/storage metadata and processing state | UUID PK; indexed workspace/uploader FKs; status, checksum and size checks |
+| documents | Original metadata and processing lifecycle | UUID PK; indexed workspace/uploader FKs; unique workspace/checksum; unique id/workspace; status/size/checksum/attempt checks |
+| document_chunks | Extracted source text and references | UUID PK; composite document/workspace FK; workspace FK; unique document/index; offset/page/text checks |
+| document_jobs | Durable processing queue, one row per document | Document FK/PK; queued/running/done/failed state; availability and expiring lease |
+| storage_cleanup | Upload reservations and eventual file cleanup | Opaque storage key PK; availability index; attempt count and safe error |
 
 Users have owned workspaces, memberships, and uploaded documents. Workspaces have
-memberships and documents. All relationships are explicitly paired. All foreign keys
+memberships and documents. Existing ORM relationships are explicitly paired. All foreign keys
 use ON DELETE RESTRICT. Accounts with referencing records and workspaces with members
 or documents cannot be deleted directly. The workspace deletion service explicitly
 removes only the mandatory owner membership before deleting an otherwise empty workspace,
@@ -40,8 +43,8 @@ An owner role grants no owner authority unless its user also matches owner_id.
 Legacy inconsistent records fail closed for mutation and require explicit operator
 resolution; none are silently repaired. Direct SQL/ORM callers must maintain these
 invariants and lock ordering themselves because no cross-row trigger was added.
-Membership authorizes workspace access; future document/upload services must also
-apply tenant checks before exposing document metadata or content.
+Membership authorizes workspace access. Document services apply workspace checks before
+exposing metadata or originals; worker operations run as trusted backend jobs.
 
 ## Fields and timestamps
 
@@ -71,7 +74,7 @@ SELECT version_num FROM alembic_version;
 SELECT extname, extversion FROM pg_extension;
 ```
 
-Expect six application tables plus alembic_version. From apps/api, run
+Expect nine application tables plus alembic_version. From apps/api, run
 `python -m alembic current`, `python -m alembic heads`, and `python -m alembic check`.
 See the root README for migration and test commands.
 
@@ -96,7 +99,7 @@ sessions need a separately operated retention job; none deletes rows in this mil
 
 ## Workspace transactions (Milestone 04)
 
-No schema change or migration is required; head remains `a31f8c9d204e`. Existing users,
+Milestone 04 required no schema change; Milestone 05 advances to `c52d8e7a901b`. Existing users,
 documents, migrations, Docker volumes and pgvector are preserved.
 
 Creation inserts workspace plus its sole owner membership in a single transaction.
@@ -119,3 +122,40 @@ tests require committed data visible across independent connections, so they use
 named `test_workspace_<UUID>` schemas with test-only tables and finally cleanup. They
 never create/drop/reset public application tables. The test role needs CREATE SCHEMA;
 production runtime accounts need no additional schema privileges for these APIs.
+
+## Document ingestion migration (Milestone 05)
+
+`c52d8e7a901b` follows `a31f8c9d204e`. The migration adds processing_attempts (nonnegative,
+NOT NULL, default 0) and nullable last_processed_at to documents, plus document_chunks,
+document_jobs and storage_cleanup. Existing document identities and original fields
+are untouched. A preflight refuses duplicate (workspace_id,checksum_sha256) records
+without deleting/merging anything. A unique constraint then enforces the same-workspace
+byte-identity duplicate policy under races. Applied earlier migrations are unchanged.
+
+Chunks reference documents through (document_id,workspace_id), backed by a matching
+unique constraint on documents. This rejects a valid document UUID paired with another
+workspace. A separate workspace FK and unique (document_id,chunk_index) enforce context
+and order. All FKs retain RESTRICT. Text is untrusted private source data. Character
+start/end are zero-based and end-exclusive within the normalized page/text; page numbers
+are one-based and null for text/Markdown. Section/source references and timezone-aware
+creation/update timestamps preserve provenance.
+
+Job states are queued, running, done and failed. A job's document FK is also its primary
+key, preventing duplicate jobs. Pending documents have queued jobs, processing has a
+running lease, completed has done, and terminal failures have failed. Claim timestamps
+and deadlines use PostgreSQL clock_timestamp. Attempt increments commit before work;
+chunk replacement and state completion commit together, guarded by the lease token.
+A worker crash leaves a recoverable lease, not an invisible in-memory task. Existing
+legacy documents are not automatically queued by the migration.
+
+Storage cleanup has no workspace/document FK intentionally: the file cleanup intent
+must survive removal of both records. For uploads it begins as a one-hour reservation;
+publication deletes it atomically with metadata/job insertion. For deletion it is due
+immediately. Cleanup checks for any live document storage reference before unlinking,
+and removes missing files idempotently. Failures retain the intent with a safe error
+and capped exponential backoff. No automatic retention purges completed/failed job rows;
+those remain until authorized document deletion.
+
+Review migration/SQL before upgrade. Downgrade destroys ingestion metadata/chunks and
+must not be run on a populated deployment. No original fields or records are deleted
+by upgrade, and pgvector and the PostgreSQL Docker volume/port remain unchanged.

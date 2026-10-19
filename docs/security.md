@@ -184,8 +184,8 @@ HTTPS requirements unchanged. CORS explicitly includes PATCH/DELETE for authoriz
 frontend preflights. CSRF is not an authorization substitute; all routes also authenticate
 and check workspace role on the backend.
 
-No invitations, public join links, upload APIs or document access APIs are added. Future
-document endpoints need equivalent workspace checks. An already authorized read can
+No invitations or public join links are added. Milestone 05 document endpoints use the
+workspace checks described below. An already authorized read can
 finish while a concurrent membership removal commits. Per-workspace mutation locks
 serialize writes and can become a contention point for very active workspaces. Deadlock,
 serialization and lock-unavailable errors return generic retryable 409 conflicts; there
@@ -193,3 +193,54 @@ is no automatic retry of non-idempotent operations. Configure deployment request
 lock timeouts as appropriate. No independent production security audit has been performed.
 
 See [API specification](api-specification.md) for contracts and consistent error responses.
+
+## Document ingestion security (Milestone 05)
+
+Owner/admin: upload, list, metadata, download, retry and delete. Member: list, metadata
+and download only. Non-member: no document access. Every endpoint reuses authenticated
+current-user resolution. Central document helpers check membership and scope lookups by
+both document and workspace UUID. Upload role is checked before reading the form and
+again under the workspace lock before publication. Missing/inaccessible workspaces have
+identical 404 responses. No API exposes raw storage keys/paths or extracted chunk text. Arbitrary legacy processing
+error strings are redacted in responses without rewriting their stored values.
+
+Raw request bodies are capped before multipart spooling, even without Content-Length.
+Exactly one file field is accepted. File copying enforces the configured 20 MiB default
+independently of headers. Safe filenames reject separators, traversal sequences, colons,
+control/format characters, leading/trailing whitespace and overlong names. Storage paths
+use opaque server keys only. Extension, signature/UTF-8 validation and declared MIME
+compatibility are checked; application/octet-stream is allowed when content validates.
+All encrypted PDFs are rejected. Deep extraction errors become safe failed statuses.
+
+Originals reside in a private non-frontend directory with 0700 directories and 0600 files.
+Descriptor-relative no-follow operations prevent symlink traversal; hardlinked/nonregular
+objects are rejected. Originals publish atomically; partial uploads have eager cleanup
+and durable crash-recovery reservations. Downloads open only after authorization, stream
+from a pinned descriptor, force attachment/application/octet-stream and nosniff, and use
+no-store. New downloads return 404 after metadata deletion; already authorized in-flight
+downloads can complete while asynchronous disk cleanup runs.
+
+Untrusted PDF parsing uses pypdf in isolated child processes, with structural validation
+bounded separately from extraction. Page/stream/decompression/text/output budgets,
+CPU and wall timeouts, descriptor limits and RSS monitoring reduce resource exhaustion.
+Linux additionally enforces address-space limits; macOS RSS monitoring is sampled and
+can overshoot between samples. Python socket creation and external JBIG2 tools are disabled;
+no network fetch, attachment/script/macro execution or external-link following occurs.
+Deploy production parsers in a process/container with hard memory and egress controls
+for stronger isolation; this implementation is not a complete OS sandbox or malware scan.
+Original PDFs can retain active content; downloads are attachments and opening them is
+outside server processing. Never embed uploaded PDF/Markdown as trusted HTML.
+
+Extracted text, headings, source references and originals are private untrusted content.
+Future retrieval/AI/UI code must treat instructions within documents as data and escape
+rendered text. Do not log request bodies, extracted text, filenames, paths or parser
+exceptions. Workers log only fixed operational messages and return fixed failure strings.
+This milestone performs no embeddings, prompt execution or AI generation.
+
+PostgreSQL queue claims use row locks, bounded total attempts and expiring unique leases.
+Finalization is fenced and atomic, preventing stale/duplicate jobs from publishing chunks.
+Deletion invalidates an active worker's document/job before scheduling durable file cleanup.
+A DB/storage dual-write cannot be fully atomic; cleanup intents, idempotent deletion and
+live-reference checks handle partial failures. Physical deletion requires the worker and
+working storage. Monitoring must alert on pending cleanup, old queued/running jobs and
+terminal failures. No independent production security audit has been performed.

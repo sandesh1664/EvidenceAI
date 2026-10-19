@@ -3,8 +3,8 @@
 The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
 17 and Alembic. pgvector is installed but unused. Workspace management and membership-based tenant
-access are implemented. Uploads, storage, chunks, embeddings, conversations, citations,
-and evaluations remain planned.
+access are implemented. Document upload, private storage, extraction and chunks are implemented in Milestone 05.
+Embeddings, conversations, citations and evaluations remain planned.
 
 ## Configuration and connections
 
@@ -44,7 +44,7 @@ skipping them. Commands are in the root README.
 Backend `.env` is ignored and the example contains placeholders. The existing Compose
 password is for local development only; provision secret management, least-privilege
 credentials and TLS for deployment. Do not expose ORM objects directly as API responses.
-Authentication is implemented in Milestone 03; upload routes remain planned.
+Authentication is implemented in Milestone 03; document ingestion is implemented in Milestone 05.
 Nullable password_hash supports legacy users; passwordless records cannot log in. Document contents belong in separate private storage.
 
 Python 3.14.6 and the pinned dependencies passed the suite; pip check found no broken
@@ -53,7 +53,7 @@ httpx2>=2.0.0 and emit a deprecation warning for the current httpx transport. Th
 test passes with that warning visible. Dependencies were preserved; validate a transport
 upgrade separately. No warnings are filtered.
 
-Next milestone: authenticated upload/storage with document-level workspace checks.
+Future work: embeddings and retrieval using authorized document chunks.
 
 ## Milestone 03 authentication
 
@@ -116,7 +116,7 @@ lifecycle. Services reject inconsistent legacy owner memberships without repairi
 No Milestone 04 migration is needed. Application services maintain the cross-row owner
 invariant; existing unique membership, role checks and RESTRICT FKs remain authoritative
 within their scope. Direct SQL/ORM tools must honor the same protocol; no trigger grants
-arbitrary writes the service guarantees. No frontend, upload, or AI code changed.
+arbitrary writes the service guarantees. No frontend or AI code changed.
 
 Concurrency tests use independent connections and authenticated TestClient requests.
 Each test creates only a unique disposable schema, seeds test users/sessions/workspace,
@@ -126,3 +126,64 @@ public data is untouched. Other new and existing tests retain rollback isolation
 Use a dedicated CI database whose role can create test schemas.
 
 Reference: [PostgreSQL 17 row locking](https://www.postgresql.org/docs/17/explicit-locking.html).
+
+## Milestone 05 document ingestion
+
+`app/api/routes/documents.py` exposes authenticated workspace-scoped upload, list,
+metadata, download, retry and delete endpoints. `document_workspace_access` and
+`document_access` in core/authorization.py reuse workspace access policy. API lookups
+scope document UUID and workspace UUID together; missing/inaccessible workspaces use
+the same 404. Members are read-only; owners/admins can mutate. Mutation locks retain
+the established workspace-first order and recheck current role. Safe response schemas
+exclude storage keys, filesystem paths and extracted content.
+
+The ASGI browser middleware caps the raw multipart body before spooling, including
+chunked requests. The upload route accepts exactly one file, authorizes before parsing,
+and closes multipart files on all paths. Storage streams in bounded blocks with an
+independent exact per-file cap. Text is checked for UTF-8/binary content; PDFs get
+bounded subprocess structural/encryption validation. Full page text extraction is
+never performed by the request handler. 202 means persisted and queued, not completed.
+
+`DocumentStorage` is a protocol with stage/open/promote/delete operations. The local
+implementation uses private, flat, opaque server-generated keys and descriptor-relative
+operations with O_NOFOLLOW. It refuses symlink path components and non-regular/hardlinked
+objects. Originals publish atomically using link/unlink after fsync. A future S3 adapter
+must provide equivalent staging/publish/delete behavior and a seekable private stream
+(or temporary file) to the parser. API and worker instances must share storage.
+
+A committed storage_cleanup reservation precedes file creation. Publishing metadata and
+its document_jobs row removes the reservation in the same transaction. A failed upload
+cleans up eagerly when possible; crashes/unavailable storage leave a durable cleanup
+intent. Final publication locks the reservation and verifies the original still exists,
+so cleanup of an abandoned upload cannot publish metadata referencing a missing file.
+Ambiguous commit recovery checks live metadata before unlinking anything.
+
+The separate `python -m app.document_worker` process polls PostgreSQL. This milestone
+uses a PostgreSQL queue instead of Redis: enqueueing is atomic with document creation,
+and there is no broker dual-write gap or new deployment service. Claim uses Document
+row FOR UPDATE SKIP LOCKED followed by its job lock. API retry/delete and worker finalization
+use the same document-before-job order. Each claim commits a unique expiring lease and
+increments attempts, then parses outside a DB transaction. Finalization verifies the
+lease, unexpired deadline, document ID and workspace, replaces chunks, and updates status
+in one transaction. Stale or deleted jobs cannot publish. Expired claims are recoverable;
+attempts and automatic transient-error retries are bounded.
+
+`document_parser_child.py` runs with Python isolated mode, a restricted environment,
+CPU/output/descriptor limits and parser-specific budgets. A supervisor enforces wall time
+and samples RSS; Linux also enforces RLIMIT_AS, while macOS uses the RSS supervisor because
+RLIMIT_AS is unsupported. Child stderr is discarded and errors use fixed safe messages.
+The parser makes no network calls and disables Python sockets and external JBIG2 tools.
+No scripts, attachments, macros or links are executed. This is not a full OS sandbox.
+
+Chunking is deterministic over normalized per-page/plain text with Markdown heading
+boundaries. Chunks carry document/workspace identity, sequential index, source reference,
+page/section and exact character offsets into normalized source text. UUID5 IDs plus
+unique document/index and a composite document/workspace FK prevent duplicates and
+misattribution. No embeddings or chunk-content API are added.
+
+Deleting a document atomically removes chunks, job and metadata and records a storage
+cleanup intent. It immediately invalidates future metadata/download access. File deletion
+is eventual, idempotent and retried with capped backoff until storage is available.
+In-flight authorized streams can finish. Cleanup does not depend on the workspace FK,
+so an otherwise empty workspace can subsequently be deleted. See
+[document processing](document-processing.md) for limits and operational details.
