@@ -30,3 +30,34 @@ docker build --progress=plain -f infra/monitoring/grafana-rebuild/opentsdb.Docke
 Keep experiments separate from performance measurements. See
 [12.2 assessment](../../../docs/security-remediation-12-2.md) for actual outcomes,
 limitations, catalog/source evidence and release blockers.
+
+## 12.3 verification additions
+
+The core recipe now requires successful zero-fuzz dry-run **and actual** patching,
+checks resolved kin-openapi/jsonschema versions, and records compiler, Go build
+metadata, source archive/patch/module/binary SHA-256s in
+`/usr/share/grafana/evidenceai-build.txt`. Its embedded commit identifies the
+actual tag source, with an explicit experimental branch, rather than implying
+parity with the vendor's unavailable patched commit. The recorded metadata is
+local build evidence, **not** a vendor signature or independently verified
+attestation. The dependency patch is unchanged.
+
+`stackdriver.Dockerfile` installs the complete checksum-pinned official signed
+Cloud Monitoring 12.6.3 plugin. Build against the pinned original image, or use
+`--build-arg BASE_IMAGE=evidenceai-grafana:experimental-m123` to combine it with
+the patched core. Actual ARM64 scans found all six Cloud Monitoring high findings
+still present in the newer executable: plugin-only image 61 high; combined image
+56 high. No unsigned-plugin setting or plugin removal is used. AMD64 checksums
+are recorded for reproducibility but AMD64 builds/acceptance are NOT VERIFIED.
+
+```sh
+docker build --progress=plain -t evidenceai-grafana:experimental-m123 infra/monitoring/grafana-rebuild
+docker build --progress=plain -f infra/monitoring/grafana-rebuild/stackdriver.Dockerfile -t evidenceai-grafana:plugins-m123 infra/monitoring/grafana-rebuild
+docker build --progress=plain -f infra/monitoring/grafana-rebuild/stackdriver.Dockerfile --build-arg BASE_IMAGE=evidenceai-grafana:experimental-m123 -t evidenceai-grafana:combined-m123 infra/monitoring/grafana-rebuild
+```
+
+All 12.3 candidates remain unapproved and unselected. The isolated transition
+fixture exercises restart, selected-to-custom upgrade and rollback with a
+persistent synthetic dashboard; it does not authorize production downgrade or
+establish complete source/vendor security parity. See the
+[12.3 report](../../../docs/security-remediation-12-3.md) for final results.

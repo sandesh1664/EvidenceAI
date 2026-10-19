@@ -1,58 +1,51 @@
-# Production release acceptance — Security Remediation 12.2
+# Production release acceptance — Security Remediation 12.3
 
-**FAIL / NO-GO — production release BLOCKED.** Baseline
-`0f58dcf0b0a5777acd48da738bd1aa460a9bc0ab`; clean on initial inspection. This report
-supersedes the M12/12.1 release decision for the present working tree. New changes
-remain uncommitted. Local execution: 2026-10-19 UTC / October 20 Dubai at completion.
+**FAIL / NO-GO — production release BLOCKED.** Date: **2026-10-20, Asia/Dubai**.
+Clean starting revision: `5d4571d87b0ab866f0942c4a52bdd0cad89e264c`.
+12.3 changes remain uncommitted. This supersedes the earlier working-tree decision;
+earlier reports remain historical evidence, not current verification.
 
-| Criterion | Classification | Evidence / practical limit |
+| Criterion | Result | Actual evidence / limitation |
 | --- | --- | --- |
-| Selected runtime container policy | **FAIL** | 61 high / 0 critical / 12 distinct advisories, all Grafana; supporting-image gate exits 1. Seven other images have zero high/critical/secret findings. |
-| Experimental core remediation | **FAIL** | Built in 322.33s, five findings removed, 56 high remain; local functionality passes, patched vendor-source parity NOT VERIFIED; image not selected. |
-| Official compatible OpenTSDB update | **FAIL** | Rebuilt complete image with 13.0.5 still has 61 high; image not selected. |
-| Local identity/application controls | **PASS** | Generic registration, proof generation/expiry/single-use/replay/binding, duplicate safety, CSRF and rate limiting preserved; synthetic TLS SMTP delivery works. |
-| Real-provider SMTP and inbox acceptance | **NOT VERIFIED** | No real credentials/provider/inbox tested; operator procedure prepared. |
-| Backend/frontend/types/lint/build | **PASS** | 653 backend, 53 frontend; lint/types/build passed. Initial standalone build-lock collision retained; sequential retry passed. |
-| Chromium / Firefox / WebKit | **PASS** | 18 local browser cases, six per engine. |
-| Python and runtime npm audits | **PASS** | 44 Python dependencies and runtime npm clean. |
-| Development dependency audit | **FAIL** | Five high lint-chain nodes from one braces advisory; latest compatible 3.0.3 remains affected. |
-| Grafana operational acceptance | **PASS** | Selected and experimental core images: startup/health, admin auth, anonymous/signup denied, dashboard provisioning, datasource health, two Grafana-proxied Prometheus targets up, internal-only network and no published port. Functional pass is not security acceptance. |
-| Local bounded synthetic performance | **PASS** | 334 requests, zero failures, p50 9ms / p95 39ms / p99 58ms; five users, 30s, tiny corpus, fake/mock providers. |
-| Local encrypted recovery | **PASS** | 22 documents/files, checksums, Alembic `91e2b6d8c410`, pgvector 0.8.7, session/fresh login, original download and pending-job recovery; 45.687s restored-app recovery. |
-| Existing development data and Compose | **PASS** | All sixteen existing public-table counts and ordered row hashes unchanged; revision unchanged; development Compose unchanged. |
-| Local CI/CD and migration guards | **PASS** | Actionlint, 26 deployment guard tests, Alembic current/check, fail-closed container gate and dirty-source packaging refusal. |
-| Hosted CI/CD and repository protections | **NOT VERIFIED** | No workflow dispatch, SSH operation, branch/environment policy verification or public deployment. |
-| Hosted model/representative capacity/production RTO/RPO | **NOT VERIFIED** | Offline providers and same-host synthetic fixture only. |
-| Hosted staging, public TLS/DNS, offsite restore, key escrow and alerts | **NOT VERIFIED** | Explicit checklist prepared; no authorized hosted environment was available/exercised. |
-| Current-schema rollback to an accepted predecessor | **NOT VERIFIED** | No accepted prior artifact or hosted rehearsal; historical M11 rollback does not prove compatibility with current schema. |
-| Intended AMD64 and independent whole-image reproducibility | **NOT VERIFIED** | Local tests are ARM64; pinned inputs do not establish independent whole-image reproducibility. |
+| Selected runtime container policy | **FAIL** | Grafana 13.2.4 retains **61 high / 0 critical**, 12 distinct blocking advisories; seven other runtime images pass. Selected production pin unchanged. |
+| Maintained upstream replacements | **FAIL** | Full scans: 13.2.4-distroless 61 high, 13.1.8 15, 13.0.11 10, 12.4.13 5; all zero critical/secrets, all security-rejected and unselected. Full replacement operational compatibility NOT VERIFIED. |
+| Core rebuild security | **FAIL** | Build/patch/provenance and functionality verified; **56 high remain**, matching the previous experiment. Removes five selected-image occurrences, not five additional 12.3 fixes. |
+| Current signed plugin upgrade | **FAIL** | Cloud Monitoring 12.6.3 verified ZIP/actual binary still has all six highs; plugin-only 61, combined core/plugin 56. Both unselected. |
+| Build/source evidence | **PASS** for recorded scope | Actual zero-fuzz patching, resolved modules, pinned Go 1.27.2, source/patch/module/binary checksums; source commit reported verified by GitHub; frontend and original plugins byte-identical. Independent artifact attestation and patched vendor-source parity remain NOT VERIFIED. |
+| Grafana local monitoring | **PASS** | Startup/health, admin auth, anonymous denial/signup disabled, provisioning, all thirteen plugin signatures, actual Prometheus queries, internal-only network/no published port and reverse-proxy route denial. Combined image also passes. |
+| Local Grafana restart/upgrade/rollback | **PASS** | Same owned synthetic Grafana data: selected restart -> custom core -> selected; dashboard version/state, auth, provisioning and queries preserved. Not production/cross-version rollback authorization. |
+| Backend/frontend/types/lint/build | **PASS** | 653 backend, 53 frontend; TypeScript, lint, production build; 26 deployment guard tests. |
+| Chromium/Firefox/WebKit | **PASS** | 18 browser cases, six per engine. |
+| Python / runtime npm audit | **PASS** | 44 Python dependencies and runtime npm clean. |
+| Development dependency audit | **FAIL** | Five high lint-chain nodes remain from braces advisory. |
+| Local synthetic load/recovery | **PASS** | 334 requests/zero failures; p95 31ms/p99 87ms. Encrypted restore of 23 documents/originals, session/login/downloads/pending work; restored-app recovery 45.690s. Same-host offline providers only. |
+| Existing records/revision/Compose | **PASS** | All sixteen original public-table counts and full-row hashes unchanged; Alembic head `91e2b6d8c410`, no drift; migrations and dev Compose unchanged. |
+| Local workflow/release controls | **PASS** | Actionlint and deployment regressions; strict container rejection and dirty-source packaging refusal preserved. |
+| Patched vendor-source parity / independent reproducibility / AMD64 | **NOT VERIFIED** | Vendor embedded source SHA still unavailable (HTTP422); actual custom source is traceable but not proven vendor-equivalent; local builds/tests ARM64. |
+| Real SMTP inbox delivery | **NOT VERIFIED** | Synthetic TLS SMTP passed; no provider credentials, actual internet message or inbox receipt used. |
+| Hosted TLS/ingress/staging/CI/CD | **NOT VERIFIED** | No public infrastructure, DNS changes, approved-host rollout, exact-SHA hosted workflow execution or protection/approval verification. |
+| Hosted offsite recovery/production RTO/RPO/rollback | **NOT VERIFIED** | No independent-host restore, key-escrow receipt, accepted predecessor or production transition. |
+| Hosted AI/external datasource semantics and long soak | **NOT VERIFIED** | Fake/mock AI; Prometheus functional, all external provider queries not exercised. |
 
-PASS applies only to the stated observed scope. FAIL and NOT VERIFIED never become
-passes through local functional success. The unchanged formal gate evaluates
-[release-result.json](evidence/m122/release-result.json) and returns **exit 1 /
-BLOCKED**, with container security, hosted AI, hosted CI/CD and production
-environment criteria unmet. No exception has been approved or self-issued.
+The unchanged [formal gate](../infra/scripts/verify_release.py) returns **exit 1 /
+BLOCKED** for [machine-readable criteria](evidence/m123/release-result.json):
+container security, hosted AI, hosted CI/CD and production environment remain unmet.
+No exception was self-approved. No advisory suppression, ignored-unfixed setting,
+severity threshold change, plugin removal or unsigned-plugin bypass was used.
+No experimental/older upstream image was promoted.
 
-The selected Grafana image remains
-`grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f`.
-The experimental image's smaller count is not represented as the selected
-production result. All thirteen vulnerable datasource executables remain intact;
-no scan suppression, severity downgrade, ignored-unfixed flag, unsigned-plugin
-allowance or release-gate change was introduced.
-
-Review the [formal 12.2 assessment](security-remediation-12-2.md),
-[complete vulnerability inventory](security-remediation-12-2-inventory.json),
-[verification and exact commands](security-remediation-12-2-verification.md),
-[implementation source manifest](evidence/m122/source-manifest.json),
-[evidence checksums](evidence/m122/evidence-sha256.json),
+Review the [formal assessment](security-remediation-12-3.md),
+[complete normalized inventory](security-remediation-12-3-inventory.json),
+[executed verification and commands](security-remediation-12-3-verification.md),
+[source manifest](evidence/m123/source-manifest.json),
+[evidence checksums](evidence/m123/evidence-sha256.json),
 [release checklist](release-checklist.md) and
-[hosted staging / real SMTP procedure](hosted-staging-acceptance.md).
-Earlier M12 and 12.1 measurements remain historical evidence, not current passes.
+[concrete hosted/SMTP procedures](hosted-staging-acceptance.md).
 
-Before a later release, obtain complete supported Grafana/plugin fixes, scan/test
-the final artifacts on the intended architecture, complete authorized SMTP and
-hosted operational acceptance, review protected exact-SHA CI and recovery/
-rollback evidence, deliberately commit/review final source, and obtain named
-release-authority approval. No source commit, push, public deployment, DNS change,
-purchase, real external email, development data reset or Docker-volume deletion
-was performed as part of 12.2.
+Security/infrastructure owners must obtain a fully acceptable source-matched
+artifact and repeat security and operational acceptance. SRE/identity/repository
+owners must complete separately authorized hosted mail, TLS, CI/CD, recovery and
+rollback evidence. Release authority must review the final exact source/artifact
+manifest before any promotion. No commit, push, development data reset, volume
+removal, public deployment, infrastructure purchase, DNS change, production
+credential access or actual internet email was performed in 12.3.

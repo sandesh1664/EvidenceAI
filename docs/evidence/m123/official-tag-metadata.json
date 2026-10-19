@@ -1,0 +1,189 @@
+{
+  "url": "https://hub.docker.com/v2/repositories/grafana/grafana/tags?page_size=100&ordering=last_updated",
+  "tags": [
+    {
+      "images": [
+        {
+          "architecture": "amd64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:7b22f3edf947329d75eba7a62d9f6ea1ac1e786736813ef7a98cfb275a52e49b",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 482587117,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:10:48.058999507Z",
+          "last_pushed": "2026-10-13T10:17:25.801382797Z"
+        },
+        {
+          "architecture": "arm64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:15254b507dd6da013d57af4fc7e902721110b70d37282ab9ae866290803bd752",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 445123088,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:05:13.09007714Z",
+          "last_pushed": "2026-10-13T10:17:16.372563668Z"
+        },
+        {
+          "architecture": "arm",
+          "features": "",
+          "variant": "v7",
+          "digest": "sha256:6641a556c000663bd3d3b7a334b4c228e6d9be17c69f3ffbe63667ab73a77d4a",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 443797963,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:09:20.57944601Z",
+          "last_pushed": "2026-10-13T10:17:25.986793099Z"
+        }
+      ],
+      "last_updated": "2026-10-13T10:17:27.330576Z",
+      "name": "13.2.4",
+      "digest": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f"
+    },
+    {
+      "images": [
+        {
+          "architecture": "amd64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:350e317d65c316756df5c26dcfd8e2aa0e43a541bf5202e7eebf2943e7d42390",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 464065377,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:03:16.644917428Z",
+          "last_pushed": "2026-10-13T10:14:54.811881622Z"
+        },
+        {
+          "architecture": "arm64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:64dc24be9648cce6eeb2ad12bc91d79cafa71b5e76eb608c640afc798c578d9a",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 434932085,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:07:22.108688598Z",
+          "last_pushed": "2026-10-13T10:14:55.571540129Z"
+        },
+        {
+          "architecture": "arm",
+          "features": "",
+          "variant": "v7",
+          "digest": "sha256:83ed259233233cf5583914bd9eabe3c5ce8b6e872b290daba8b23db67eb4c167",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 435078695,
+          "status": "active",
+          "last_pulled": "2026-10-19T19:43:45.889303286Z",
+          "last_pushed": "2026-10-13T10:14:55.873899663Z"
+        }
+      ],
+      "last_updated": "2026-10-13T10:14:59.10891Z",
+      "name": "13.2.4-distroless",
+      "digest": "sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35"
+    },
+    {
+      "images": [
+        {
+          "architecture": "amd64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:14dbfe535b8fde58078a56e0fb12f3e64c2aed87e27020ff9748e080223917e3",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 383183085,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:13:32.32430051Z",
+          "last_pushed": "2026-10-13T10:13:10.343386717Z"
+        },
+        {
+          "architecture": "arm64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:357f74aee6ce1367a0e62ccb40af2041272d107efab959b20b40a059d3efb17a",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 357577912,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:09:56.531163096Z",
+          "last_pushed": "2026-10-13T10:13:10.244492302Z"
+        },
+        {
+          "architecture": "arm",
+          "features": "",
+          "variant": "v7",
+          "digest": "sha256:ac095ddc3c887b465e5d290e076a1fe28c2f2a18e2b0649285e0bed84dde06d6",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 351124844,
+          "status": "active",
+          "last_pulled": "2026-10-19T19:55:06.495751825Z",
+          "last_pushed": "2026-10-13T10:13:11.341159146Z"
+        }
+      ],
+      "last_updated": "2026-10-13T10:13:12.157734Z",
+      "name": "13.1.8",
+      "digest": "sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f"
+    },
+    {
+      "images": [
+        {
+          "architecture": "amd64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:f9452baa61968e54fafaaab493a2f97724b66def07a61659897566c6f085b80f",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 298168671,
+          "status": "active",
+          "last_pulled": "2026-10-19T20:14:01.241505296Z",
+          "last_pushed": "2026-10-13T10:09:19.901694638Z"
+        },
+        {
+          "architecture": "arm64",
+          "features": "",
+          "variant": null,
+          "digest": "sha256:04ddb75abcf1584ac60149bf75a40b4d0a8dbe40bbdcf0b5c10a1ad6c0562634",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 274967424,
+          "status": "active",
+          "last_pulled": "2026-10-19T19:56:07.811625787Z",
+          "last_pushed": "2026-10-13T10:09:19.331910557Z"
+        },
+        {
+          "architecture": "arm",
+          "features": "",
+          "variant": "v7",
+          "digest": "sha256:3e88438b6f16db1a197bd5fd6b227ddb7c0dfa8e14dd81ce612d249a87b61258",
+          "os": "linux",
+          "os_features": "",
+          "os_version": null,
+          "size": 267643644,
+          "status": "active",
+          "last_pulled": "2026-10-19T19:59:14.229059152Z",
+          "last_pushed": "2026-10-13T10:09:06.708890013Z"
+        }
+      ],
+      "last_updated": "2026-10-13T10:11:25.957605Z",
+      "name": "12.4.13",
+      "digest": "sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+    }
+  ]
+}

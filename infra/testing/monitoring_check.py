@@ -20,7 +20,8 @@ def verify(password):
         with urllib.request.urlopen(request, timeout=15) as response:
             return json.load(response)
 
-    assert get('/api/health', False)['database'] == 'ok'
+    health = get('/api/health', False)
+    assert health['database'] == 'ok'
     try:
         get('/api/search', False)
     except urllib.error.HTTPError as error:
@@ -42,10 +43,19 @@ def verify(password):
     assert query['status'] == 'success'
     targets = query['data']['result']
     assert len(targets) == 2 and all(row['value'][1] == '1' for row in targets)
+    plugins = {plugin['id']: plugin for plugin in get('/api/plugins')}
+    expected = {'elasticsearch', 'grafana-postgresql-datasource',
+                'grafana-pyroscope-datasource', 'influxdb', 'jaeger', 'loki',
+                'mssql', 'mysql', 'opentsdb', 'prometheus', 'stackdriver', 'tempo', 'zipkin'}
+    assert expected <= plugins.keys(), 'An expected bundled datasource is missing'
+    assert all(plugins[name].get('signature') == 'valid' for name in expected), 'Plugin signature invalid'
     print(json.dumps({'health': 'PASS', 'anonymous_denied': 'PASS',
                       'admin_authentication': 'PASS', 'signup_disabled': 'PASS',
                       'dashboard_provisioning': 'PASS', 'datasource_health': 'PASS',
-                      'prometheus_query_targets_up': len(targets)}))
+                      'prometheus_query_targets_up': len(targets),
+                      'grafana_version': health.get('version'), 'grafana_commit': health.get('commit'),
+                      'bundled_plugin_signatures': 'PASS',
+                      'bundled_plugin_versions': {name: plugins[name]['info']['version'] for name in sorted(expected)}}))
 
 
 if __name__ == '__main__':

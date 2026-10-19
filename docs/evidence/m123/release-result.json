@@ -1,0 +1,39 @@
+{
+  "baseline": "5d4571d87b0ab866f0942c4a52bdd0cad89e264c",
+  "implementation_fingerprint_sha256": "d14c0e6841fac9e13c31a0090cf7c5b4d8d163d9db745673e194215ce54f8b48",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "PASS",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "selected_runtime_findings": {
+    "HIGH": 61,
+    "CRITICAL": 0,
+    "unique_advisories": 12
+  },
+  "candidate_high_counts": {
+    "core": 56,
+    "plugins": 61,
+    "combined": 56,
+    "upstream-distroless": 61,
+    "upstream-131": 15,
+    "upstream-130": 10,
+    "upstream-124": 5
+  },
+  "selected_grafana_changed": false,
+  "approved_exceptions": [],
+  "vendor_source_parity": "NOT VERIFIED",
+  "hosted_staging": "NOT VERIFIED",
+  "real_smtp_delivery": "NOT VERIFIED",
+  "hosted_recovery": "NOT VERIFIED",
+  "committed": false,
+  "pushed": false,
+  "public_deployment": false,
+  "production_credentials_accessed": false
+}

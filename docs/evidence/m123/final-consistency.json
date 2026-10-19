@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "normalized_counts_match_reports_and_gates": true,
+  "backend_xml_pass": 653,
+  "grafana_transitions_and_signatures_pass": true,
+  "all_report_links_resolve": true,
+  "implementation_fingerprint_matches": true,
+  "development_preservation_pass": true,
+  "release_gate": "BLOCKED / exit 1"
+}

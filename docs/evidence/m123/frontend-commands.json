@@ -1,0 +1,56 @@
+[
+  {
+    "name": "unit",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "seconds": 2.29
+  },
+  {
+    "name": "lint",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 1.978
+  },
+  {
+    "name": "types",
+    "cwd": "apps/web",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.976
+  },
+  {
+    "name": "build",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "seconds": 9.559
+  },
+  {
+    "name": "browser",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "test:e2e"
+    ],
+    "exit_code": 0,
+    "seconds": 75.656
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "ref": "refs/tags/v13.2.4",
+  "node_id": "MDM6UmVmMTUxMTE4MjE6cmVmcy90YWdzL3YxMy4yLjQ=",
+  "url": "https://api.github.com/repos/grafana/grafana/git/refs/tags/v13.2.4",
+  "object": {
+    "sha": "6259becc8e86265fdf35a73e08eef5bd92b5cd73",
+    "type": "tag",
+    "url": "https://api.github.com/repos/grafana/grafana/git/tags/6259becc8e86265fdf35a73e08eef5bd92b5cd73"
+  }
+}

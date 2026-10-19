@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "public_tables_compared": 16,
+  "all_original_counts_and_ordered_row_hashes_equal": true,
+  "revision_before": "91e2b6d8c410",
+  "revision_after": "91e2b6d8c410",
+  "development_compose_unchanged": true,
+  "migrations_unchanged": true,
+  "method": "Private deterministic full-row SHA256/count snapshots of sixteen original public tables; no original row values or customer files published."
+}

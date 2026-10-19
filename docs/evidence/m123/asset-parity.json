@@ -1,0 +1,26 @@
+{
+  "selected": {
+    "frontend": {
+      "files": 11864,
+      "manifest_sha256": "59b59c5b3bae8742ba8374836817be7fdb666a785beae857b811ddf8f826f429"
+    },
+    "plugins": {
+      "files": 686,
+      "manifest_sha256": "700f88abe7862c77b8e4e627a830a47c5a7a2148a88dfab84ce876348b8e3028"
+    },
+    "binary_sha256": "dd65d7a2c6e743e3c9cd207e5ce9105998cc09952e54649afd93cf2b0096ce09"
+  },
+  "core": {
+    "frontend": {
+      "files": 11864,
+      "manifest_sha256": "59b59c5b3bae8742ba8374836817be7fdb666a785beae857b811ddf8f826f429"
+    },
+    "plugins": {
+      "files": 686,
+      "manifest_sha256": "700f88abe7862c77b8e4e627a830a47c5a7a2148a88dfab84ce876348b8e3028"
+    },
+    "binary_sha256": "6bbc97a9202c3257ee1e794cf66f3b04c020c294acca3474a5f3d76bc4e6381f"
+  },
+  "frontend_and_all_bundled_plugins_identical": true,
+  "provenance_records_actual_binary": true
+}

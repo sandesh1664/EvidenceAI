@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "command": [
+    "docker",
+    "build",
+    "--progress=plain",
+    "-t",
+    "evidenceai-grafana:experimental-m123",
+    "infra/monitoring/grafana-rebuild"
+  ],
+  "elapsed_seconds": 32.579
+}

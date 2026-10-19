@@ -1,0 +1,122 @@
+{
+  "official_version": {
+    "version": "12.6.3",
+    "url": "https://github.com/grafana/grafana-cloudmonitoring-datasource",
+    "commit": "625b5111655a1cce7e2b88d346f7b73a07eec310",
+    "createdAt": "2026-10-14T17:24:32.000Z",
+    "packages": {
+      "darwin-amd64": {
+        "md5": "813eabe748ffaaaf7a5279e86d15be8f",
+        "sha256": "50edf77fa67a7ee96c57b9354b523d6845c99f389dc02bb0baefa13a8545b187",
+        "packageName": "darwin-amd64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=darwin&arch=amd64"
+      },
+      "darwin-arm64": {
+        "md5": "0ac676a3c120e2291f6e1f01a31f29b5",
+        "sha256": "7691f4764427cf47cbf13e6dbaa53ef269ef4c617dd0509f890d05e6db348163",
+        "packageName": "darwin-arm64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=darwin&arch=arm64"
+      },
+      "linux-amd64": {
+        "md5": "6f70d112bde4339a9d7c52733e432188",
+        "sha256": "3288d1bb06330449e7335346667ea7c74e5367c0d32390396c93ee54c89900cb",
+        "packageName": "linux-amd64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=amd64"
+      },
+      "linux-arm": {
+        "md5": "8c4f4c6aec298144b8cbc4ccd8da167a",
+        "sha256": "3b1b61f93d3f7d37cee32739725f8309ce45da0a0d9c076913d93226088f98ad",
+        "packageName": "linux-arm",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=arm"
+      },
+      "linux-arm64": {
+        "md5": "7d427c36b885740bdfd0fca968135a0a",
+        "sha256": "5ac8bf252f415b5709c3e9f315919e1bdf152b70ee5b69c83bd9f1a1d41db0bd",
+        "packageName": "linux-arm64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=arm64"
+      },
+      "linux-s390x": {
+        "md5": "e3b4a8fa082dd43584dbe4ad1fa24f52",
+        "sha256": "4345b5bdf9fdf5cc20c8f5792f7ade24e2c2160b6fb5005e94f3c2b248ab5724",
+        "packageName": "linux-s390x",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=s390x"
+      },
+      "windows-amd64": {
+        "md5": "1d87801ff47a2d00b2e7c2a4e5eb7966",
+        "sha256": "34f6de48f016af1c668e7f3b37849e74d7b29e4e91d7bdbb3fef2caa80a06181",
+        "packageName": "windows-amd64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=windows&arch=amd64"
+      },
+      "windows-arm64": {
+        "md5": "b7b1a276ea25986c71d5fc348af722ec",
+        "sha256": "854b35bcf16dff2bd0fa948f90588ef3ce4dfc48470c41e4d7d2b7087ddf0383",
+        "packageName": "windows-arm64",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download?os=windows&arch=arm64"
+      },
+      "any": {
+        "md5": "788a70b54149a5a7cbd657ea402e363f",
+        "sha256": "040b0daefc797f7420c0a3003716c860b2ed958287df38aa59ba1a4eaf181939",
+        "packageName": "any",
+        "downloadUrl": "/api/plugins/stackdriver/versions/12.6.3/download"
+      }
+    },
+    "grafanaDependency": ">=12.3.0-0"
+  },
+  "sha256_verified": "5ac8bf252f415b5709c3e9f315919e1bdf152b70ee5b69c83bd9f1a1d41db0bd",
+  "plugin_metadata": {
+    "type": "datasource",
+    "name": "Google Cloud Monitoring",
+    "id": "stackdriver",
+    "category": "cloud",
+    "metrics": true,
+    "alerting": true,
+    "annotations": true,
+    "logs": true,
+    "backend": true,
+    "includes": [],
+    "queryOptions": {
+      "maxDataPoints": true,
+      "cacheTimeout": true
+    },
+    "executable": "gpx_grafana_cloudmonitoring_datasource",
+    "info": {
+      "updated": "2026-10-14",
+      "description": "Data source for Google's monitoring service (formerly named Stackdriver)",
+      "version": "12.6.3",
+      "logos": {
+        "small": "img/cloud_monitoring_logo.svg",
+        "large": "img/cloud_monitoring_logo.svg"
+      },
+      "author": {
+        "name": "Grafana Labs",
+        "url": "https://grafana.com"
+      },
+      "keywords": [
+        "gcp",
+        "gcm",
+        "google",
+        "cloud",
+        "stackdriver",
+        "datasource"
+      ],
+      "links": [
+        {
+          "name": "Raise issue",
+          "url": "https://github.com/grafana/grafana-cloudmonitoring-datasource/issues/new"
+        },
+        {
+          "name": "Documentation",
+          "url": "https://grafana.com/docs/grafana/latest/datasources/google-cloud-monitoring/"
+        }
+      ]
+    },
+    "dependencies": {
+      "grafanaDependency": ">=12.3.0-0",
+      "plugins": []
+    },
+    "buildMode": "production"
+  },
+  "linux_binaries": [
+    "stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64"
+  ]
+}

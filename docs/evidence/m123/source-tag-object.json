@@ -1,0 +1,24 @@
+{
+  "node_id": "TA_kwDOAOaWjdoAKDYyNTliZWNjOGU4NjI2NWZkZjM1YTczZTA4ZWVmNWJkOTJiNWNkNzM",
+  "sha": "6259becc8e86265fdf35a73e08eef5bd92b5cd73",
+  "url": "https://api.github.com/repos/grafana/grafana/git/tags/6259becc8e86265fdf35a73e08eef5bd92b5cd73",
+  "tagger": {
+    "name": "grafana-writer[bot]",
+    "email": "292009011+grafana-writer[bot]@users.noreply.github.com",
+    "date": "2026-10-13T11:39:42Z"
+  },
+  "object": {
+    "sha": "af4a33e3786594ad72f72d97e6744010330c2977",
+    "type": "commit",
+    "url": "https://api.github.com/repos/grafana/grafana/git/commits/af4a33e3786594ad72f72d97e6744010330c2977"
+  },
+  "tag": "v13.2.4",
+  "message": "v13.2.4",
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

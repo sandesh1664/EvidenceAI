@@ -222,6 +222,39 @@ volumes: !reset {{}}
             report['grafana']['container_health']='PASS'
             report['grafana']['image']=container['Config']['Image']
             report['grafana']['image_id']=container['Image']
+            transition_image=os.environ.get('EVIDENCEAI_GRAFANA_TRANSITION_IMAGE')
+            if transition_image:
+                # Only this owned fixture's Grafana bind directory persists across
+                # transitions. Never downgrade a production Grafana database.
+                state_script=(ROOT/'infra/testing/grafana_fixture_state.py').read_text()
+                def monitoring(command_to_use):
+                    checked=json.loads(run(command_to_use+['exec','-T','api','python','-c',monitoring_script],
+                        env=env,input=(private/'grafana_password').read_text(),stdout=subprocess.PIPE,text=True))
+                    state=json.loads(run(command_to_use+['exec','-T','api','python','-c',state_script],env=env,
+                        input=json.dumps({'password':(private/'grafana_password').read_text(),'action':'verify'}),
+                        stdout=subprocess.PIPE,text=True))
+                    return {'monitoring':checked,'state':state}
+                run(command+['exec','-T','api','python','-c',state_script],env=env,
+                    input=json.dumps({'password':(private/'grafana_password').read_text(),'action':'create'}),
+                    stdout=subprocess.PIPE,text=True)
+                compose('stop','grafana')
+                stopped=json.loads(run(['docker','inspect','--format','{{json .State}}',grafana_id],stdout=subprocess.PIPE,text=True))
+                assert not stopped['OOMKilled'] and stopped['ExitCode'] in (0,143)
+                compose('up','-d','--no-deps','--wait','grafana')
+                transitions={'graceful_stop':{'exit_code':stopped['ExitCode'],'oom_killed':stopped['OOMKilled']},
+                    'restart':monitoring(command)}
+                transition=directory/'grafana-transition.yml'
+                transition.write_text('services:\n  grafana:\n    image: '+json.dumps(transition_image)+'\n')
+                upgrade_command=command+['-f',str(transition)]
+                run(upgrade_command+['up','-d','--no-deps','--wait','grafana'],env=env)
+                transitions['upgrade']=monitoring(upgrade_command)
+                compose('up','-d','--no-deps','--wait','grafana')
+                transitions['rollback']=monitoring(command)
+                assert transitions['upgrade']['monitoring']['grafana_commit']!=transitions['rollback']['monitoring']['grafana_commit']
+                report['grafana_transitions']=transitions
+            assert request('/grafana/api/health')[0]==404
+            assert request('/metrics')[0]==404
+            report['public_monitoring_routes']='denied through loopback TLS proxy'
             if M12:
                 import acceptance
                 acceptance.OUT=ROOT/'infra/runtime'/EVIDENCE_TAG

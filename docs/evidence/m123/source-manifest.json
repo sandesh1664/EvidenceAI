@@ -1,0 +1,15 @@
+{
+  "baseline": "5d4571d87b0ab866f0942c4a52bdd0cad89e264c",
+  "head": "5d4571d87b0ab866f0942c4a52bdd0cad89e264c",
+  "working_tree_uncommitted": true,
+  "implementation_file_sha256": {
+    "infra/monitoring/grafana-rebuild/Dockerfile": "f6daf5bc44acc05cbe686c15e1b34c460393b5f185eaa919c0a7147ba252432d",
+    "infra/monitoring/grafana-rebuild/README.md": "a08a5e52b8765964e4914d5c39b831fc5346e1014952ddd6f8da5692dcfc58b3",
+    "infra/monitoring/grafana-rebuild/stackdriver.Dockerfile": "84b4cac685546854a765dd4fa9f2f7c11dc0fdc20a14caac8f5dcbe23ffa3cf1",
+    "infra/scripts/smoke.py": "d21f4da215f0592d8f5905a1f7346bf7c4ef05ab85db5e32b81c5574849b4310",
+    "infra/testing/grafana_fixture_state.py": "ebab888492605e7ae2d6103ccad3c28b6d9f0633f1d8377e8e4ef5c50cc40876",
+    "infra/testing/monitoring_check.py": "1a5625e7eb09fe9e8fd8eecaf3411467aaa19009d73f6fbc8996dcf89b7397e8"
+  },
+  "note": "Application code, migrations, production/dev Compose and security gates unchanged. Docs/evidence integrity indexed separately.",
+  "implementation_fingerprint_sha256": "d14c0e6841fac9e13c31a0090cf7c5b4d8d163d9db745673e194215ce54f8b48"
+}

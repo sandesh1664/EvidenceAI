@@ -1,0 +1,103 @@
+{
+  "core": {
+    "reference": "evidenceai-grafana:experimental-m123",
+    "exit_code": 1,
+    "high_critical_occurrences": 56,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "plugins": {
+    "reference": "evidenceai-grafana:plugins-m123",
+    "exit_code": 1,
+    "high_critical_occurrences": 61,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "combined": {
+    "reference": "evidenceai-grafana:combined-m123",
+    "exit_code": 1,
+    "high_critical_occurrences": 56,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "upstream-distroless": {
+    "reference": "grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35",
+    "exit_code": 1,
+    "high_critical_occurrences": 61,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "upstream-131": {
+    "reference": "grafana/grafana@sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f",
+    "exit_code": 1,
+    "high_critical_occurrences": 15,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "upstream-130": {
+    "reference": "grafana/grafana@sha256:2abd2114bb65e4d6f0614206b7c882c1e7c6a992827ba08396aa5afc23ca07f5",
+    "exit_code": 1,
+    "high_critical_occurrences": 10,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "upstream-124": {
+    "reference": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+    "exit_code": 1,
+    "high_critical_occurrences": 5,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "application": {
+    "api": {
+      "reference": "evidenceai-api:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "web": {
+      "reference": "evidenceai-web:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "backup": {
+      "reference": "evidenceai-backup:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "proxy": {
+      "reference": "evidenceai-proxy:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    }
+  },
+  "support": {
+    "database": {
+      "reference": "evidenceai-database:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "prometheus": {
+      "reference": "evidenceai-prometheus:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "exporter": {
+      "reference": "evidenceai-exporter:m121",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0
+    },
+    "grafana": {
+      "reference": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+      "high": 61,
+      "critical": 0,
+      "secrets": 0
+    }
+  }
+}

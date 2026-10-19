@@ -1,0 +1,35 @@
+[
+  {
+    "name": "upstream-distroless",
+    "tag": "13.2.4-distroless",
+    "reference": "grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35",
+    "updated": "2026-10-13T10:14:59.10891Z",
+    "platforms": [
+      "amd64",
+      "arm64",
+      "arm"
+    ]
+  },
+  {
+    "name": "upstream-131",
+    "tag": "13.1.8",
+    "reference": "grafana/grafana@sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f",
+    "updated": "2026-10-13T10:13:12.157734Z",
+    "platforms": [
+      "amd64",
+      "arm64",
+      "arm"
+    ]
+  },
+  {
+    "name": "upstream-124",
+    "tag": "12.4.13",
+    "reference": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+    "updated": "2026-10-13T10:11:25.957605Z",
+    "platforms": [
+      "amd64",
+      "arm64",
+      "arm"
+    ]
+  }
+]

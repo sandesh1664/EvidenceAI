@@ -1,0 +1,711 @@
+{
+  "regression_environment": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/evidenceai-m12-browsers",
+    "EVIDENCEAI_TIMING_REPORT": "/Users/redmug/EvidenceAI/docs/evidence/m123/registration-timing.json"
+  },
+  "commands": [
+    {
+      "name": "pytest",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=/Users/redmug/EvidenceAI/docs/evidence/m123/backend.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 33.348
+    },
+    {
+      "name": "alembic-current",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "current"
+      ],
+      "exit_code": 0,
+      "seconds": 0.503
+    },
+    {
+      "name": "alembic-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.417
+    },
+    {
+      "name": "pip-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.171
+    },
+    {
+      "name": "unit",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "seconds": 2.29
+    },
+    {
+      "name": "lint",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "seconds": 1.978
+    },
+    {
+      "name": "types",
+      "cwd": "apps/web",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "seconds": 0.976
+    },
+    {
+      "name": "build",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 9.559
+    },
+    {
+      "name": "browser",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "test:e2e"
+      ],
+      "exit_code": 0,
+      "seconds": 75.656
+    },
+    {
+      "name": "python-audit",
+      "cwd": "apps/api",
+      "command": [
+        "/tmp/evidenceai-m11-audit-venv/bin/python",
+        "-m",
+        "pip_audit",
+        "-r",
+        "requirements.txt",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "seconds": 30.582
+    },
+    {
+      "name": "npm-runtime",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.661
+    },
+    {
+      "name": "npm-all",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exit_code": 1,
+      "seconds": 2.2
+    },
+    {
+      "name": "actionlint",
+      "cwd": ".",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "-v",
+        "/Users/redmug/EvidenceAI/.github/workflows:/work:ro",
+        "-w",
+        "/work",
+        "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+        "-color",
+        "ci.yml",
+        "deploy.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.234
+    },
+    {
+      "exit_code": 0,
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "-t",
+        "evidenceai-grafana:experimental-m123",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "elapsed_seconds": 32.579
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--support-only",
+        "--directory",
+        "infra/runtime/m123/support"
+      ],
+      "exit_code": 1
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--directory",
+        "infra/runtime/m123/application"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_deployment.py"
+      ],
+      "exit_code": 0,
+      "result": "26 passed"
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "-f",
+        "infra/monitoring/grafana-rebuild/stackdriver.Dockerfile",
+        "-t",
+        "evidenceai-grafana:plugins-m123",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "-f",
+        "infra/monitoring/grafana-rebuild/stackdriver.Dockerfile",
+        "--build-arg",
+        "BASE_IMAGE=evidenceai-grafana:experimental-m123",
+        "-t",
+        "evidenceai-grafana:combined-m123",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": ".",
+      "environment": {
+        "EVIDENCEAI_ACCEPTANCE": "1",
+        "EVIDENCEAI_EVIDENCE_TAG": "m123",
+        "EVIDENCEAI_GRAFANA_TRANSITION_IMAGE": "evidenceai-grafana:experimental-m123"
+      },
+      "command": [
+        "python3",
+        "infra/scripts/smoke.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": ".",
+      "environment": {
+        "EVIDENCEAI_EVIDENCE_TAG": "m123-signed",
+        "EVIDENCEAI_GRAFANA_IMAGE": "evidenceai-grafana:combined-m123"
+      },
+      "command": [
+        "python3",
+        "infra/scripts/smoke.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python3",
+        "docs/evidence/m123/generate_inventory.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "evidenceai-grafana:experimental-m123",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/core/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 6.052
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/core/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/core:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.255
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "core",
+        "--reference",
+        "evidenceai-grafana:experimental-m123"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 56,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "evidenceai-grafana:plugins-m123",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/plugins/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 3.467
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/plugins/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/plugins:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 1.345
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "plugins",
+        "--reference",
+        "evidenceai-grafana:plugins-m123"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 61,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "evidenceai-grafana:combined-m123",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/combined/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 3.867
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/combined/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/combined:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 1.715
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "combined",
+        "--reference",
+        "evidenceai-grafana:combined-m123"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 56,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35"
+      ],
+      "exit_code": 0,
+      "seconds": 8.841
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-distroless/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 3.145
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-distroless/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-distroless:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 2.163
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "upstream-distroless",
+        "--reference",
+        "grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 61,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f"
+      ],
+      "exit_code": 0,
+      "seconds": 11.53
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-131/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 2.672
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-131/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-131:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.223
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "upstream-131",
+        "--reference",
+        "grafana/grafana@sha256:1a8e58976a6cd349d1ffdd27a14b92053816c7c60e6b7e157013e9bf0b9cec5f"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 15,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:2abd2114bb65e4d6f0614206b7c882c1e7c6a992827ba08396aa5afc23ca07f5"
+      ],
+      "exit_code": 0,
+      "seconds": 9.832
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:2abd2114bb65e4d6f0614206b7c882c1e7c6a992827ba08396aa5afc23ca07f5",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-130/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 2.253
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-130/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-130:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.336
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "upstream-130",
+        "--reference",
+        "grafana/grafana@sha256:2abd2114bb65e4d6f0614206b7c882c1e7c6a992827ba08396aa5afc23ca07f5"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 10,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "exit_code": 0,
+      "seconds": 9.168
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-124/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 3.012
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-124/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/upstream-124:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m123/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 5.456
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m123/scan_candidate.py",
+        "--name",
+        "upstream-124",
+        "--reference",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 5,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python3",
+        "infra/scripts/release_manifest.py",
+        "--output",
+        "infra/runtime/m123/manifest.json"
+      ],
+      "exit_code": 1,
+      "result": "Release packaging requires a clean committed source tree"
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python3",
+        "infra/scripts/verify_release.py",
+        "docs/evidence/m123/release-result.json"
+      ],
+      "exit_code": 1,
+      "result": {
+        "release": "BLOCKED",
+        "unmet_criteria": [
+          "container_security",
+          "ai_security",
+          "ci_cd",
+          "production_environment"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1265 @@
+{
+  "scope": "local isolated staging, private CA; not public TLS or production acceptance",
+  "project": "evidenceai-staging-smoke0046b49a55",
+  "compose_validation": "staging and production; production was not started",
+  "registration": "Uniform 202, pre-verification login refused, real TLS SMTP fixture delivery and browser-bound verification passed",
+  "embedding_rag": "fake/mock indexed retrieval and cited answer passed",
+  "https_cookie_csrf_routing_storage_worker": "passed",
+  "api_uid": "10001",
+  "worker_uid": "10001",
+  "web_uid": "10001",
+  "database_role": "non-superuser; no create database or roles",
+  "read_only_root": "enforced",
+  "prometheus_targets": "API and worker exporter up",
+  "grafana": {
+    "health": "PASS",
+    "anonymous_denied": "PASS",
+    "admin_authentication": "PASS",
+    "signup_disabled": "PASS",
+    "dashboard_provisioning": "PASS",
+    "datasource_health": "PASS",
+    "prometheus_query_targets_up": 2,
+    "grafana_version": "13.2.4",
+    "grafana_commit": "0e79aef9d91abf3bdadae9af15763029072fb45b",
+    "bundled_plugin_signatures": "PASS",
+    "bundled_plugin_versions": {
+      "elasticsearch": "12.9.2",
+      "grafana-postgresql-datasource": "13.0.4",
+      "grafana-pyroscope-datasource": "13.0.7",
+      "influxdb": "13.1.7",
+      "jaeger": "13.0.5",
+      "loki": "13.2.2",
+      "mssql": "13.0.7",
+      "mysql": "13.1.4",
+      "opentsdb": "13.0.4",
+      "prometheus": "13.2.3",
+      "stackdriver": "12.6.2",
+      "tempo": "13.2.4",
+      "zipkin": "12.4.9"
+    },
+    "internal_only_network": "PASS",
+    "container_health": "PASS",
+    "image": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+    "image_id": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f"
+  },
+  "grafana_transitions": {
+    "graceful_stop": {
+      "exit_code": 0,
+      "oom_killed": false
+    },
+    "restart": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "13.2.4",
+        "grafana_commit": "0e79aef9d91abf3bdadae9af15763029072fb45b",
+        "bundled_plugin_signatures": "PASS",
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.9.2",
+          "grafana-postgresql-datasource": "13.0.4",
+          "grafana-pyroscope-datasource": "13.0.7",
+          "influxdb": "13.1.7",
+          "jaeger": "13.0.5",
+          "loki": "13.2.2",
+          "mssql": "13.0.7",
+          "mysql": "13.1.4",
+          "opentsdb": "13.0.4",
+          "prometheus": "13.2.3",
+          "stackdriver": "12.6.2",
+          "tempo": "13.2.4",
+          "zipkin": "12.4.9"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    },
+    "upgrade": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "13.2.4",
+        "grafana_commit": "af4a33e3786594ad72f72d97e6744010330c2977",
+        "bundled_plugin_signatures": "PASS",
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.9.2",
+          "grafana-postgresql-datasource": "13.0.4",
+          "grafana-pyroscope-datasource": "13.0.7",
+          "influxdb": "13.1.7",
+          "jaeger": "13.0.5",
+          "loki": "13.2.2",
+          "mssql": "13.0.7",
+          "mysql": "13.1.4",
+          "opentsdb": "13.0.4",
+          "prometheus": "13.2.3",
+          "stackdriver": "12.6.2",
+          "tempo": "13.2.4",
+          "zipkin": "12.4.9"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    },
+    "rollback": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "13.2.4",
+        "grafana_commit": "0e79aef9d91abf3bdadae9af15763029072fb45b",
+        "bundled_plugin_signatures": "PASS",
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.9.2",
+          "grafana-postgresql-datasource": "13.0.4",
+          "grafana-pyroscope-datasource": "13.0.7",
+          "influxdb": "13.1.7",
+          "jaeger": "13.0.5",
+          "loki": "13.2.2",
+          "mssql": "13.0.7",
+          "mysql": "13.1.4",
+          "opentsdb": "13.0.4",
+          "prometheus": "13.2.3",
+          "stackdriver": "12.6.2",
+          "tempo": "13.2.4",
+          "zipkin": "12.4.9"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    }
+  },
+  "public_monitoring_routes": "denied through loopback TLS proxy",
+  "load": {
+    "scope": "Disposable local TLS staging; synthetic tiny corpus, fake embeddings and mock LLM",
+    "thresholds": {
+      "scope": "Proposed local acceptance, five users for 30 seconds; fake embeddings/mock LLM; no production capacity assertion",
+      "users": 5,
+      "duration_seconds": 30,
+      "aggregate_error_ratio_max": 0.01,
+      "p95_ms_max": 2000,
+      "p99_ms_max": 5000,
+      "minimum_requests": 100,
+      "queue_drain_seconds_max": 60,
+      "recovery_seconds_max": 120
+    },
+    "checks": {
+      "error_ratio": true,
+      "p95": true,
+      "p99": true,
+      "sample_count": true,
+      "runner_exit": true,
+      "queue_drained": true,
+      "no_failed_jobs": true
+    },
+    "status": "PASS",
+    "elapsed_seconds": 31.341,
+    "queue_drain_seconds": 1.05,
+    "host": {
+      "platform": "Darwin",
+      "architecture": "arm64",
+      "docker_cpus": 10,
+      "docker_memory_bytes": 8319504384
+    },
+    "database_before": {
+      "connections": 9,
+      "max_connections": "80",
+      "database_io": {
+        "blks_read": 423,
+        "blks_hit": 46626,
+        "tup_returned": 25000,
+        "tup_fetched": 20981,
+        "temp_files": 0,
+        "temp_bytes": 0
+      },
+      "pending_document_jobs": 0,
+      "pending_embedding_jobs": 0,
+      "failed_document_jobs": 0,
+      "failed_embedding_jobs": 0
+    },
+    "database_after": {
+      "connections": 10,
+      "max_connections": "80",
+      "database_io": {
+        "blks_read": 437,
+        "blks_hit": 73410,
+        "tup_returned": 56477,
+        "tup_fetched": 45491,
+        "temp_files": 0,
+        "temp_bytes": 0
+      },
+      "pending_document_jobs": 0,
+      "pending_embedding_jobs": 0,
+      "failed_document_jobs": 0,
+      "failed_embedding_jobs": 0
+    },
+    "database_drained": {
+      "connections": 10,
+      "max_connections": "80",
+      "database_io": {
+        "blks_read": 437,
+        "blks_hit": 74553,
+        "tup_returned": 57210,
+        "tup_fetched": 46134,
+        "temp_files": 0,
+        "temp_bytes": 0
+      },
+      "pending_document_jobs": 0,
+      "pending_embedding_jobs": 0,
+      "failed_document_jobs": 0,
+      "failed_embedding_jobs": 0
+    },
+    "stats": [
+      {
+        "Type": "POST",
+        "Name": "authentication/login",
+        "Request Count": 5,
+        "Failure Count": 0,
+        "Min Response Time": 85.33012500265613,
+        "Max Response Time": 96.01591699902201,
+        "Average Response Time": 91.1234166007489,
+        "Requests/s": 0.1699245163631931,
+        "50%": 93,
+        "95%": 96,
+        "99%": 96
+      },
+      {
+        "Type": "GET",
+        "Name": "authentication/me",
+        "Request Count": 62,
+        "Failure Count": 0,
+        "Min Response Time": 3.5124999994877726,
+        "Max Response Time": 16.705750000255648,
+        "Average Response Time": 8.386745968070294,
+        "Requests/s": 2.1070640029035945,
+        "50%": 8,
+        "95%": 15,
+        "99%": 17
+      },
+      {
+        "Type": "POST",
+        "Name": "vector/search",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 6.832083003246225,
+        "Max Response Time": 26.97687500040047,
+        "Average Response Time": 13.390585526251112,
+        "Requests/s": 1.2914263243602675,
+        "50%": 13,
+        "95%": 22,
+        "99%": 27
+      },
+      {
+        "Type": "POST",
+        "Name": "document/upload",
+        "Request Count": 21,
+        "Failure Count": 0,
+        "Min Response Time": 11.663792000035755,
+        "Max Response Time": 36.14595799444942,
+        "Average Response Time": 22.690722141608905,
+        "Requests/s": 0.713682968725411,
+        "50%": 20,
+        "95%": 33,
+        "99%": 36
+      },
+      {
+        "Type": "GET",
+        "Name": "workspace/list",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 3.7428750001708977,
+        "Max Response Time": 23.000875000434462,
+        "Average Response Time": 10.191046079470604,
+        "Requests/s": 1.2914263243602675,
+        "50%": 10,
+        "95%": 18,
+        "99%": 23
+      },
+      {
+        "Type": "POST",
+        "Name": "workspace/create",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 4.019457999675069,
+        "Max Response Time": 16.965916998742614,
+        "Average Response Time": 7.664402421046122,
+        "Requests/s": 1.2914263243602675,
+        "50%": 8,
+        "95%": 13,
+        "99%": 17
+      },
+      {
+        "Type": "GET",
+        "Name": "workspace/read",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 3.125041999737732,
+        "Max Response Time": 13.379208001424558,
+        "Average Response Time": 6.272016368663906,
+        "Requests/s": 1.2914263243602675,
+        "50%": 6,
+        "95%": 12,
+        "99%": 13
+      },
+      {
+        "Type": "PATCH",
+        "Name": "workspace/update",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 4.386042004625779,
+        "Max Response Time": 27.00820899917744,
+        "Average Response Time": 8.013226000146364,
+        "Requests/s": 1.2914263243602675,
+        "50%": 8,
+        "95%": 12,
+        "99%": 27
+      },
+      {
+        "Type": "DELETE",
+        "Name": "workspace/delete",
+        "Request Count": 38,
+        "Failure Count": 0,
+        "Min Response Time": 4.727040999568999,
+        "Max Response Time": 10.497834002308082,
+        "Average Response Time": 6.871324631662757,
+        "Requests/s": 1.2914263243602675,
+        "50%": 7,
+        "95%": 10,
+        "99%": 10
+      },
+      {
+        "Type": "POST",
+        "Name": "rag/mock-answer",
+        "Request Count": 18,
+        "Failure Count": 0,
+        "Min Response Time": 12.113083997974172,
+        "Max Response Time": 36.790584003028926,
+        "Average Response Time": 22.860551110271544,
+        "Requests/s": 0.6117282589074952,
+        "50%": 22,
+        "95%": 37,
+        "99%": 37
+      },
+      {
+        "Type": "",
+        "Name": "Aggregated",
+        "Request Count": 334,
+        "Failure Count": 0,
+        "Min Response Time": 3.125041999737732,
+        "Max Response Time": 96.01591699902201,
+        "Average Response Time": 11.541584601850092,
+        "Requests/s": 11.3509576930613,
+        "50%": 8,
+        "95%": 31,
+        "99%": 87
+      }
+    ],
+    "resource_samples": [
+      {
+        "elapsed_seconds": 2.08,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "15.50%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.20%",
+            "MemUsage": "104.4MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "528kB / 272kB",
+            "PIDs": "7"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "2.22%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.18%",
+            "MemUsage": "83.74MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "796kB / 570kB",
+            "PIDs": "10"
+          },
+          {
+            "BlockIO": "1.35GB / 161MB",
+            "CPUPerc": "0.74%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "86.57%",
+            "MemUsage": "332.4MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "8.97kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.02%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.25%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.18%",
+            "MemUsage": "108.5MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "163kB / 15.4kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "0.41%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.27%",
+            "MemUsage": "16.05MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "111kB / 139kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "9.91%",
+            "MemUsage": "50.74MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.45kB / 27.6kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "8.58%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.45%",
+            "MemUsage": "76.32MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "475kB / 666kB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.28%",
+            "MemUsage": "6.578MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "4.72kB / 15.7kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 9,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 48821,
+            "tup_returned": 26209,
+            "tup_fetched": 22162,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 6.86,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "8.15%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.18%",
+            "MemUsage": "104.2MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "779kB / 557kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "3.72%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.18%",
+            "MemUsage": "83.75MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "1.07MB / 810kB",
+            "PIDs": "10"
+          },
+          {
+            "BlockIO": "1.35GB / 161MB",
+            "CPUPerc": "0.85%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "88.48%",
+            "MemUsage": "339.8MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.01kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.02%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.29%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.26%",
+            "MemUsage": "108.9MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "164kB / 15.5kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "1.04%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.36%",
+            "MemUsage": "16.29MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "191kB / 237kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.57%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "9.89%",
+            "MemUsage": "50.66MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "16.42%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.52%",
+            "MemUsage": "76.98MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "520kB / 725kB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.28%",
+            "MemUsage": "6.578MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "4.76kB / 15.8kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 9,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 52594,
+            "tup_returned": 29198,
+            "tup_fetched": 23963,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 11.55,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "13.71%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.24%",
+            "MemUsage": "104.9MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "984kB / 795kB",
+            "PIDs": "9"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "2.77%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.45%",
+            "MemUsage": "86.48MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "1.37MB / 1.08MB",
+            "PIDs": "11"
+          },
+          {
+            "BlockIO": "1.35GB / 161MB",
+            "CPUPerc": "0.87%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "88.66%",
+            "MemUsage": "340.4MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.01kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.03%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.34%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.21%",
+            "MemUsage": "108.6MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "164kB / 15.5kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "0.73%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.77%",
+            "MemUsage": "17.32MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "313kB / 379kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.01%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "9.79%",
+            "MemUsage": "50.12MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "0.42%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.49%",
+            "MemUsage": "76.65MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "565kB / 783kB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.28%",
+            "MemUsage": "6.578MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "4.76kB / 15.8kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 10,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 57532,
+            "tup_returned": 33174,
+            "tup_fetched": 26971,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 16.28,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "5.27%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.14%",
+            "MemUsage": "103.8MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "1.23MB / 1.12MB",
+            "PIDs": "9"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "3.26%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.43%",
+            "MemUsage": "86.33MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "1.72MB / 1.38MB",
+            "PIDs": "11"
+          },
+          {
+            "BlockIO": "1.35GB / 161MB",
+            "CPUPerc": "0.68%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "88.60%",
+            "MemUsage": "340.2MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.15kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.01%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.25%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.14%",
+            "MemUsage": "108.3MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "221kB / 17.3kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "2.22%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.67%",
+            "MemUsage": "17.06MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "404kB / 486kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "10.17%",
+            "MemUsage": "52.07MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "8.40%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.51%",
+            "MemUsage": "76.89MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "665kB / 912kB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "11.17%",
+            "MemUsage": "7.148MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "5.28kB / 19.7kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 10,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 61048,
+            "tup_returned": 36951,
+            "tup_fetched": 29516,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 21.01,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "6.39%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.19%",
+            "MemUsage": "104.3MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "1.55MB / 1.51MB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "1.96%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.45%",
+            "MemUsage": "86.57MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "2.04MB / 1.67MB",
+            "PIDs": "11"
+          },
+          {
+            "BlockIO": "1.35GB / 161MB",
+            "CPUPerc": "0.76%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "88.66%",
+            "MemUsage": "340.4MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.15kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.01%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.33%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.22%",
+            "MemUsage": "108.7MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "221kB / 17.4kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "0.50%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.85%",
+            "MemUsage": "17.55MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "512kB / 608kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "10.06%",
+            "MemUsage": "51.52MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "8.12%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.51%",
+            "MemUsage": "76.85MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "729kB / 996kB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.50%",
+            "MemUsage": "6.719MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "5.28kB / 19.7kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 10,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 64660,
+            "tup_returned": 42339,
+            "tup_fetched": 33787,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 1,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 25.79,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "5.91%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.19%",
+            "MemUsage": "104.4MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "1.74MB / 1.74MB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "2.17%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.47%",
+            "MemUsage": "86.73MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "2.29MB / 1.9MB",
+            "PIDs": "11"
+          },
+          {
+            "BlockIO": "1.36GB / 161MB",
+            "CPUPerc": "0.81%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "90.10%",
+            "MemUsage": "346MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.15kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.02%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.22%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.15%",
+            "MemUsage": "108.3MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "221kB / 17.4kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "0.33%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.90%",
+            "MemUsage": "17.66MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "596kB / 701kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.01%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "9.82%",
+            "MemUsage": "50.27MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "16.94%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "7.51%",
+            "MemUsage": "76.92MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "792kB / 1.08MB",
+            "PIDs": "2"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.50%",
+            "MemUsage": "6.719MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "5.28kB / 19.7kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 10,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 68764,
+            "tup_returned": 48943,
+            "tup_fetched": 39403,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      },
+      {
+        "elapsed_seconds": 30.6,
+        "containers": [
+          {
+            "BlockIO": "54.6MB / 0B",
+            "CPUPerc": "7.81%",
+            "Container": "cce1a529fc795d2a4504012db4d76de04640fa34a5a25e72543cb1ff879131f0",
+            "ID": "cce1a529fc79",
+            "MemPerc": "10.16%",
+            "MemUsage": "104.1MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-api-1",
+            "NetIO": "1.94MB / 1.97MB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "60.8MB / 0B",
+            "CPUPerc": "2.42%",
+            "Container": "80e3ff569c32c557e224127a611695519bd1bfa7331f84817d6d3106e4d20c2f",
+            "ID": "80e3ff569c32",
+            "MemPerc": "8.47%",
+            "MemUsage": "86.7MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-db-1",
+            "NetIO": "2.56MB / 2.14MB",
+            "PIDs": "11"
+          },
+          {
+            "BlockIO": "1.56GB / 165MB",
+            "CPUPerc": "0.89%",
+            "Container": "0ea5175decb04f55d3d9070864371c08defbff5a624b2bf1f4a08e8f69258106",
+            "ID": "0ea5175decb0",
+            "MemPerc": "99.88%",
+            "MemUsage": "383.5MiB / 384MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-grafana-1",
+            "NetIO": "9.41kB / 106kB",
+            "PIDs": "155"
+          },
+          {
+            "BlockIO": "5.84MB / 0B",
+            "CPUPerc": "0.01%",
+            "Container": "232ec85313e04a394c66db90def55839401c49d739d7a3242952c41ac500761b",
+            "ID": "232ec85313e0",
+            "MemPerc": "10.80%",
+            "MemUsage": "13.82MiB / 128MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-mail-1",
+            "NetIO": "8.77kB / 8.31kB",
+            "PIDs": "1"
+          },
+          {
+            "BlockIO": "171MB / 0B",
+            "CPUPerc": "0.30%",
+            "Container": "83a771fae64c389cae66dd57d7bd3cbf1d0586388fe69fbc0d21bd73490ffc63",
+            "ID": "83a771fae64c",
+            "MemPerc": "21.09%",
+            "MemUsage": "108MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-prometheus-1",
+            "NetIO": "222kB / 17.6kB",
+            "PIDs": "16"
+          },
+          {
+            "BlockIO": "55.3MB / 0B",
+            "CPUPerc": "0.13%",
+            "Container": "82d29cfe36cc79defe7c42a1a386644f20aea9fcd1c2e698185f4266fa65ca37",
+            "ID": "82d29cfe36cc",
+            "MemPerc": "6.72%",
+            "MemUsage": "17.21MiB / 256MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-proxy-1",
+            "NetIO": "688kB / 803kB",
+            "PIDs": "8"
+          },
+          {
+            "BlockIO": "129MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "ae95c76a225faaf8c5dee274df9cb8f870caca1a879d3dfe9ab96b1ab223854d",
+            "ID": "ae95c76a225f",
+            "MemPerc": "9.77%",
+            "MemUsage": "50.04MiB / 512MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-web-1",
+            "NetIO": "4.6kB / 27.9kB",
+            "PIDs": "12"
+          },
+          {
+            "BlockIO": "2.66MB / 0B",
+            "CPUPerc": "13.00%",
+            "Container": "fddc471654643f772c4349c8387bdad987f473d4ed97d1e1a8fbf142c9235801",
+            "ID": "fddc47165464",
+            "MemPerc": "8.36%",
+            "MemUsage": "85.61MiB / 1GiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-1",
+            "NetIO": "872kB / 1.18MB",
+            "PIDs": "3"
+          },
+          {
+            "BlockIO": "16MB / 0B",
+            "CPUPerc": "0.00%",
+            "Container": "2d4184bd50b2ead2941c6ef5a6273dbd59dee8e467c590b0149a1a897b455df1",
+            "ID": "2d4184bd50b2",
+            "MemPerc": "10.50%",
+            "MemUsage": "6.719MiB / 64MiB",
+            "Name": "evidenceai-staging-smoke0046b49a55-worker-exporter-1",
+            "NetIO": "5.41kB / 19.8kB",
+            "PIDs": "6"
+          }
+        ],
+        "database": {
+          "connections": 10,
+          "max_connections": "80",
+          "database_io": {
+            "blks_read": 437,
+            "blks_hit": 72260,
+            "tup_returned": 55677,
+            "tup_fetched": 44826,
+            "temp_files": 0,
+            "temp_bytes": 0
+          },
+          "pending_document_jobs": 0,
+          "pending_embedding_jobs": 0,
+          "failed_document_jobs": 0,
+          "failed_embedding_jobs": 0
+        }
+      }
+    ]
+  },
+  "backup": {
+    "status": "encrypted_backup_complete",
+    "file": "evidenceai-20261019T202911439383Z-b21ee22a8d8f403180d6588c9b878c0d.tar.age",
+    "document_count": 23,
+    "storage_file_count": 23,
+    "elapsed_seconds": 0.057
+  },
+  "restore": {
+    "status": "restore_verified",
+    "schema_revision": "91e2b6d8c410",
+    "pgvector_version": "0.8.7",
+    "document_count": 23,
+    "storage_file_count": 23,
+    "elapsed_seconds": 0.092,
+    "scope": "isolated disposable recovery drill"
+  },
+  "recovery_application": {
+    "authenticated_session": "PASS",
+    "fresh_login": "PASS",
+    "original_download": "PASS",
+    "pending_queue_recovery": "PASS",
+    "queued_document_download": "PASS",
+    "measured_recovery_seconds": 45.69,
+    "last_write_to_backup_complete_seconds": 1.147,
+    "data_loss": "0 acknowledged synthetic writes; writers quiesced; local fixture only"
+  },
+  "rollback": {
+    "status": "NOT VERIFIED",
+    "reason": "No previous candidate image supplied; no accepted production release exists"
+  },
+  "nonempty_restore_target_rejected": true,
+  "tampered_ciphertext_rejected": true,
+  "shutdown_states": {
+    "api": {
+      "exit_code": 143,
+      "oom_killed": false
+    },
+    "worker": {
+      "exit_code": 0,
+      "oom_killed": false
+    },
+    "proxy": {
+      "exit_code": 0,
+      "oom_killed": false
+    }
+  },
+  "graceful_shutdown": "compose stop completed for proxy/API/worker"
+}

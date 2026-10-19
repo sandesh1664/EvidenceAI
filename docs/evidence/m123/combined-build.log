@@ -1,0 +1,51 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from stackdriver.Dockerfile
+#1 transferring dockerfile: 1.23kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/evidenceai-grafana:experimental-m123
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [download-arm64 1/1] ADD --checksum=sha256:5ac8bf252f415b5709c3e9f315919e1bdf152b70ee5b69c83bd9f1a1d41db0bd https://grafana.com/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=arm64 /plugin.zip
+#5 DONE 0.0s
+
+#6 [extract 1/3] FROM docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+#6 resolve docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f done
+#6 DONE 0.0s
+
+#7 [download-arm64 1/1] ADD --checksum=sha256:5ac8bf252f415b5709c3e9f315919e1bdf152b70ee5b69c83bd9f1a1d41db0bd https://grafana.com/api/plugins/stackdriver/versions/12.6.3/download?os=linux&arch=arm64 /plugin.zip
+#7 CACHED
+
+#8 [extract 2/3] COPY --from=download /plugin.zip /tmp/plugin.zip
+#8 CACHED
+
+#9 [extract 3/3] RUN mkdir /out && unzip -q /tmp/plugin.zip -d /out && test -f /out/stackdriver/MANIFEST.txt
+#9 CACHED
+
+#10 [stage-4 1/2] FROM docker.io/library/evidenceai-grafana:experimental-m123@sha256:422eb1fd63126e353551bf9f68220356a1ac290413932fa17f852bde8ce003fa
+#10 resolve docker.io/library/evidenceai-grafana:experimental-m123@sha256:422eb1fd63126e353551bf9f68220356a1ac290413932fa17f852bde8ce003fa done
+#10 DONE 0.0s
+
+#11 [stage-4 2/2] COPY --from=extract --chown=472:0 /out/stackdriver/ /usr/share/grafana/data/plugins-bundled/stackdriver/
+#11 DONE 0.0s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.5s done
+#12 exporting manifest sha256:d5860b6b4bdf8be8876e88c568c6fb3e97c1febcd6b2ff43ad28c0d7a224116f done
+#12 exporting config sha256:81964ca6e1843d65dd8a35c82bf9821151c64c477755a5c63f25c3b30d5557e7 done
+#12 exporting attestation manifest sha256:bbdc480f66e991783a7ef4830868f79f071c28c47022ac687e201c0fe49abbdc done
+#12 exporting manifest list sha256:c332df1a3568cc682a530b711d82941b4ef4700b9e137f5d3fa59da055a1fb98 done
+#12 naming to docker.io/library/evidenceai-grafana:combined-m123 done
+#12 unpacking to docker.io/library/evidenceai-grafana:combined-m123 0.1s done
+#12 DONE 0.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/5mvmcon5lj5e9t9h14mlknb4z

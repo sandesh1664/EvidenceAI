@@ -90,3 +90,53 @@ or hosted rollback was verified in 12.2.
 The deterministic unit suite and local TLS SMTP sink exercise application behavior
 without sending external mail. They do not verify provider credentials, quotas,
 sender reputation, DNS authentication, inbox delivery or real abuse resistance.
+
+## 12.3 pending hosted execution procedures
+
+All items here remain **NOT VERIFIED** on 2026-10-20 (Dubai). Source templates and
+local fixtures have been reviewed, but no production credentials or host were
+accessed. These are operator steps after separate authorization, not commands
+executed during remediation.
+
+- **TLS/ingress:** after approved DNS and firewall provisioning, verify intended
+  A/AAAA with `dig APPROVED_HOST A` / `dig APPROVED_HOST AAAA`, HTTPS chain/hostname
+  with `openssl s_client -connect APPROVED_HOST:443 -servername APPROVED_HOST
+  -verify_return_error -verify_hostname APPROVED_HOST </dev/null`, and routing
+  with `curl --fail --silent --show-error https://APPROVED_HOST/api/v1/ready`.
+  Check HTTP redirect and HSTS with `curl -I` and denial of `/metrics`,
+  `/grafana/api/health`, and `/api/v1/ops/metrics`. Never disable TLS verification.
+  Record certificate renewal rehearsal, access rules and redacted results.
+- **Hosted staging:** select approved digest-only environment outside Git, run
+  `python3 infra/scripts/deploy.py --env-file /absolute/private/staging.env validate`,
+  then (only under deployment authorization) `... start` and `... monitoring`.
+  Verify readiness, controlled registration/verification/login, private synthetic
+  upload/search/download, worker queues and the monitoring checklist. Local
+  fixtures cannot replace host hardening, public certificate and delivery evidence.
+- **Hosted CI/CD:** repository owner records branch protection/required checks,
+  required environment reviewers/no self-approval and the pinned SSH identity.
+  After deliberately reviewing/committing the final source in a separate step,
+  verify successful `ci.yml` for that exact main-push SHA and inspect all scan,
+  dependency and acceptance artifacts. Any security gate failure stops here.
+  Only release authority can approve an accepted manifest and dispatch the
+  protected manual host rollout. Do not dispatch workflows or modify protections
+  as part of this remediation.
+- **Hosted encrypted recovery:** under an approved maintenance window, run
+  `... backup` using the private staging environment, export the selected encrypted
+  backup with an explicit unused path via `... --backup-file BASENAME
+  --export-path /absolute/private/UNUSED.age export-backup`, and transfer it by
+  an approved authenticated method to an independent recovery host. The basename
+  must come from operator backup listing; never invent a receipt. Verify ciphertext
+  checksum, independently escrowed key access, `... --backup-file BASENAME
+  restore-verify` against fresh disposable recovery storage, restored revision/
+  pgvector/files, authenticated downloads and pending work. Record actual timestamps,
+  last acknowledged writes and measured loss/RTO; same-host local timings are not
+  production objectives. Preserve original volumes and prohibit in-place overwrite.
+- **SMTP:** execute the controlled-recipient, verified implicit-TLS and actual-inbox
+  procedure above; retain redacted receipts and provider rejection/limit outcomes.
+  No internet message was sent during 12.3.
+
+For each abbreviated `...` above use the full `python3 infra/scripts/deploy.py
+--env-file /absolute/private/staging.env` prefix; supply action options before the
+action, as shown by `--help`. Add production flags only in a separately approved
+production procedure. None of these pending steps grants infrastructure purchase,
+DNS mutation, public deployment, email recipient access or security exceptions.
