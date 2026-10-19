@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 25
     services:
       postgres:
-        image: pgvector/pgvector@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
+        image: pgvector/pgvector@sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84
         env:
           POSTGRES_DB: evidenceai
           POSTGRES_USER: evidenceai
@@ -56,7 +56,7 @@ jobs:
         working-directory: apps/web
         run: |
           python -m venv ../api/.venv --system-site-packages
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium firefox webkit
           npm run test:e2e
       - name: Preserve offline evaluation history
         if: always()
@@ -75,12 +75,15 @@ jobs:
         run: docker run --rm --network none -v "$PWD/.github/workflows:/workflows:ro" rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /workflows/ci.yml /workflows/deploy.yml
       - name: Build immutable release candidates
         run: |
-          docker build -t evidenceai-api:m11 -t "evidenceai-api:sha-${GITHUB_SHA}" apps/api
-          docker build -t evidenceai-web:m11 -t "evidenceai-web:sha-${GITHUB_SHA}" apps/web
-          docker build -t evidenceai-backup:m11 -t "evidenceai-backup:sha-${GITHUB_SHA}" infra/backup
-          docker build -t evidenceai-proxy:m11 -t "evidenceai-proxy:sha-${GITHUB_SHA}" infra/deploy
+          docker build -t evidenceai-api:m12 -t "evidenceai-api:sha-${GITHUB_SHA}" apps/api
+          docker build -t evidenceai-web:m12 -t "evidenceai-web:sha-${GITHUB_SHA}" apps/web
+          docker build -t evidenceai-backup:m12 -t "evidenceai-backup:sha-${GITHUB_SHA}" infra/backup
+          docker build -t evidenceai-proxy:m12 -t "evidenceai-proxy:sha-${GITHUB_SHA}" infra/deploy
       - name: Local HTTPS, secrets, storage, monitoring and recovery drill
-        run: python3 infra/scripts/smoke.py
+        run: |
+          python3 -m venv /tmp/evidenceai-m12-load
+          /tmp/evidenceai-m12-load/bin/pip install -r infra/load/requirements.txt
+          EVIDENCEAI_ACCEPTANCE=1 python3 infra/scripts/smoke.py
       - name: Package images without publishing
         run: |
           mkdir -p release
@@ -88,7 +91,7 @@ jobs:
           docker save "evidenceai-web:sha-${GITHUB_SHA}" -o release/web.tar
           docker save "evidenceai-backup:sha-${GITHUB_SHA}" -o release/backup.tar
           docker save "evidenceai-proxy:sha-${GITHUB_SHA}" -o release/proxy.tar
-          cp /tmp/evidenceai-m11-smoke-result.json release/staging-result.json
+          cp /tmp/evidenceai-m12-smoke-result.json release/staging-result.json
           git archive --format=tar.gz --output=release/deployment-source.tar.gz HEAD
           python3 infra/scripts/release_manifest.py --output release/manifest.json
       - name: Scan candidate images (no Docker socket in scanner)
@@ -97,6 +100,19 @@ jobs:
             docker run --rm -v "$PWD/release:/scan" aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222 image --input "/scan/$image.tar" --scanners vuln,secret --format json --output "/scan/$image-scan.json" --severity HIGH,CRITICAL --exit-code 1 || touch release/scan-failed
           done
           test ! -f release/scan-failed
+      - name: Gate pinned database and monitoring runtime images
+        if: ${{ !cancelled() }}
+        run: python3 infra/scripts/scan_images.py --support-only --directory release/support
+      - name: Preserve staging and benchmark evidence including failures
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: acceptance-${{ github.sha }}
+          path: |
+            infra/runtime/m12/*.json
+            infra/runtime/m12/*.csv
+            infra/runtime/m12/*.log
+          retention-days: 30
       - name: Publish review artifacts only
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

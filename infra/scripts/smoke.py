@@ -17,6 +17,9 @@ import urllib.request
 import uuid
 
 ROOT=Path(__file__).resolve().parents[2]
+M12=os.environ.get('EVIDENCEAI_ACCEPTANCE')=='1'
+TAG=os.environ.get('EVIDENCEAI_IMAGE_TAG','m12' if M12 else 'm11')
+def image(name): return 'evidenceai-'+name+':'+TAG
 
 
 def run(command,**kwargs):
@@ -34,19 +37,19 @@ def main():
         for name in ('db_password','postgres_password','operations_token','grafana_password'):
             (private/name).write_text(secrets.token_hex(32));(private/name).chmod(0o444)
         (private/'provider_key').write_text('');(private/'provider_key').chmod(0o444)
-        key=run(['docker','run','--rm','--network','none','--entrypoint','age-keygen','evidenceai-backup:m11'],stdout=subprocess.PIPE,stderr=subprocess.PIPE).decode()
+        key=run(['docker','run','--rm','--network','none','--entrypoint','age-keygen',image('backup')],stdout=subprocess.PIPE,stderr=subprocess.PIPE).decode()
         (private/'age_identity').write_text(key);(private/'age_identity').chmod(0o444)
         recipient=next(line.split(': ',1)[1] for line in key.splitlines() if line.startswith('# public key:'))
         values={'DEPLOY_PROJECT':project,'SITE_HOST':'localhost','PUBLIC_ORIGIN':'https://localhost:18443',
-            'ACME_EMAIL':'local@example.invalid','API_IMAGE':'evidenceai-api:m11','WEB_IMAGE':'evidenceai-web:m11',
-            'BACKUP_IMAGE':'evidenceai-backup:m11','PROXY_IMAGE':'evidenceai-proxy:m11','SECRETS_DIR':str(private),'AGE_RECIPIENT':recipient,
+            'ACME_EMAIL':'local@example.invalid','API_IMAGE':image('api'),'WEB_IMAGE':image('web'),
+            'BACKUP_IMAGE':image('backup'),'PROXY_IMAGE':image('proxy'),'SECRETS_DIR':str(private),'AGE_RECIPIENT':recipient,
             'EMBEDDING_PROVIDER':'fake','LLM_PROVIDER':'mock'}
         envfile=directory/'stage.env';envfile.write_text('\n'.join(k+'='+v for k,v in values.items())+'\n')
-        names=('documents','metrics','proxy','backups','prometheus','grafana')
+        names=('documents','metrics','proxy','backups','prometheus','grafana','restored')
         for name in names: (directory/name).mkdir()
         # Only synthetic temporary directories are touched by this bounded ownership helper.
-        helper="import os; base='/fixture'; [os.chown(base+'/'+n,10001,10001) or os.chmod(base+'/'+n,0o700) for n in ['documents','metrics','proxy','backups']]; os.chown(base+'/prometheus',65534,65534); os.chown(base+'/grafana',472,0)"
-        run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture','evidenceai-api:m11','-c',helper])
+        helper="import os; base='/fixture'; [os.chown(base+'/'+n,10001,10001) or os.chmod(base+'/'+n,0o700) for n in ['documents','metrics','proxy','backups','restored']]; os.chown(base+'/prometheus',65534,65534); os.chown(base+'/grafana',472,0)"
+        run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture',image('api'),'-c',helper])
         def mount(name,target,ro=''): return json.dumps(str(directory/name)+':'+target+ro)
         override=directory/'smoke.yml'
         override.write_text(f'''services:
@@ -71,7 +74,7 @@ def main():
   prometheus:
     volumes: !override ["{ROOT}/infra/deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "{ROOT}/infra/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro", {mount('prometheus','/prometheus')}]
   grafana:
-    volumes: !override [{mount('grafana','/var/lib/grafana')}, "{ROOT}/infra/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro", "{ROOT}/infra/monitoring/grafana/evidenceai.json:/var/lib/grafana/dashboards/evidenceai.json:ro"]
+    volumes: !override [{mount('grafana','/var/lib/grafana')}, "{ROOT}/infra/deploy/grafana/provisioning:/etc/grafana/provisioning:ro", "{ROOT}/infra/monitoring/grafana/evidenceai.json:/etc/grafana/dashboards/evidenceai.json:ro"]
   worker-exporter:
     volumes: !override [{mount('metrics','/metrics',':ro')}]
 networks:
@@ -80,6 +83,9 @@ networks:
       config: !override [{{subnet: 172.30.31.0/24}}]
 volumes: !reset {{}}
 ''')
+        if M12:
+            override.write_text(override.read_text().replace("  restore-verify:\n    volumes: !override ["+mount('backups','/backups',':ro')+"]",
+                "  restore-verify:\n    environment: {RESTORE_DOCUMENTS_TO: /restored-documents}\n    volumes: !override ["+mount('backups','/backups',':ro')+", "+mount('restored','/restored-documents')+"]"))
         command=['docker','compose','--project-name',project,'--env-file',str(envfile),'-f',str(ROOT/'infra/compose.production.yml'),'-f',str(ROOT/'infra/compose.staging.yml'),'-f',str(override)]
         env=os.environ.copy();env.update(values)
         def compose(*args,capture=False):
@@ -171,12 +177,88 @@ volumes: !reset {{}}
             scrape_check="import urllib.request,json,time; end=time.monotonic()+45;\nwhile time.monotonic()<end:\n data=json.load(urllib.request.urlopen('http://prometheus:9090/api/v1/targets',timeout=5))['data']['activeTargets'];\n if len(data)==2 and all(t['health']=='up' for t in data): break\n time.sleep(1)\nelse: raise AssertionError('Internal scrape targets not healthy')"
             compose('exec','-T','api','python','-c',scrape_check)
             report['prometheus_targets']='API and worker exporter up'
+            if M12:
+                from acceptance import load
+                report['load']=load(directory,project,compose,{'origin':origin,'project':project,'ca':str(ca),
+                    'email':f'{identity}@example.com','password':'Synthetic staging password 2026!',
+                    'workspace':workspace,'document':document_id})
+            if M12:
+                compose('stop','worker')
+                queued_multipart=multipart.replace(document,document+b' Unique recovery fixture.')
+                status,queued,_=request(f'/api/v1/workspaces/{workspace}/documents/',queued_multipart,headers={'Origin':origin,'X-CSRF-Protection':'1','Content-Type':'multipart/form-data; boundary='+boundary})
+                assert status==202
+                queued_id=json.loads(queued)['id']
+                last_write=time.time()
+            recovery_started=time.monotonic()
             compose('stop','proxy','api','worker')
             output=compose('run','--rm','--no-deps','-e','QUIESCED=1','backup',capture=True)
             backup=json.loads(output.strip().splitlines()[-1]);report['backup']=backup
+            if M12: backup_window=round(time.time()-last_write,3)
             compose('--profile','recovery','up','-d','--wait','restore-db')
             output=compose('--profile','recovery','run','--rm','--no-deps','-e','BACKUP_FILE='+backup['file'],'restore-verify',capture=True)
             report['restore']=json.loads(output.strip().splitlines()[-1])
+            if M12:
+                # Only this fixture's disposable restore-db is promoted for application verification.
+                password=(private/'db_password').read_text().strip()
+                sql=("ALTER DATABASE restorecheck RENAME TO evidenceai; CREATE ROLE evidenceai LOGIN PASSWORD '"+password+"';")
+                run(command+['exec','-T','restore-db','psql','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],env=env,input=sql,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+                sql='GRANT CONNECT ON DATABASE evidenceai TO evidenceai; GRANT USAGE ON SCHEMA public TO evidenceai; GRANT ALL ON ALL TABLES IN SCHEMA public TO evidenceai; GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO evidenceai;'
+                run(command+['exec','-T','restore-db','psql','-U','postgres','-d','evidenceai','-v','ON_ERROR_STOP=1'],env=env,input=sql,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+                recovery_override=directory/'recovery-app.yml'
+                recovery_override.write_text(f'''services:
+  api:
+    environment: {{DATABASE_HOST: restore-db}}
+    networks: !override [application, monitoring, recovery, egress]
+    volumes: !override [{mount('restored','/data/documents')}]
+  worker:
+    environment: {{DATABASE_HOST: restore-db}}
+    networks: !override [monitoring, recovery, egress]
+    volumes: !override [{mount('restored','/data/documents')}, {mount('metrics','/metrics')}]
+''')
+                command.extend(['-f',str(recovery_override)])
+                compose('up','-d','--wait','api','worker','proxy')
+                assert request('/api/v1/auth/me')[0]==200  # Restored existing session, not a new identity.
+                assert request('/api/v1/auth/login',{'email':f'{identity}@example.com','password':'Synthetic staging password 2026!'})[0]==200
+                status,restored,_=request(f'/api/v1/workspaces/{workspace}/documents/{document_id}/download')
+                assert status==200 and restored==document
+                deadline=time.monotonic()+60
+                while time.monotonic()<deadline:
+                    status,body,_=request(f'/api/v1/workspaces/{workspace}/documents/{queued_id}')
+                    if status==200 and json.loads(body)['processing_status']=='completed': break
+                    time.sleep(.5)
+                else: raise AssertionError('Restored pending queue did not recover')
+                status,body,_=request(f'/api/v1/workspaces/{workspace}/documents/{queued_id}/download')
+                assert status==200 and body==document+b' Unique recovery fixture.'
+                report['recovery_application']={'authenticated_session':'PASS','fresh_login':'PASS','original_download':'PASS',
+                    'pending_queue_recovery':'PASS','queued_document_download':'PASS',
+                    'measured_recovery_seconds':round(time.monotonic()-recovery_started,3),
+                    'last_write_to_backup_complete_seconds':backup_window,
+                    'data_loss':'0 acknowledged synthetic writes; writers quiesced; local fixture only'}
+                previous=os.environ.get('EVIDENCEAI_ROLLBACK_IMAGE')
+                if previous:
+                    if previous!='evidenceai-api:m11': raise ValueError('Only the local baseline candidate is permitted in this drill')
+                    current=recovery_override.read_text()
+                    rollback_started=time.monotonic()
+                    recovery_override.write_text(current.replace('  api:\n','  api:\n    image: '+previous+'\n').replace('  worker:\n','  worker:\n    image: '+previous+'\n'))
+                    compose('run','--rm','--no-deps','api','check')
+                    compose('stop','proxy','api','worker')
+                    compose('up','-d','--wait','api','worker','proxy')
+                    assert request('/api/v1/auth/me')[0]==200
+                    assert request(f'/api/v1/workspaces/{workspace}/documents/{document_id}/download')[1]==document
+                    report['rollback']={'status':'PASS','scope':'Local backend/worker candidate compatibility only; M11 is not an accepted production release',
+                        'previous_image':previous,'seconds_to_baseline_ready':round(time.monotonic()-rollback_started,3),
+                        'session_and_download':'PASS','schema_downgrade':False}
+                    recovery_override.write_text(current)
+                    compose('stop','proxy','api','worker')
+                    compose('up','-d','--wait','api','worker','proxy')
+                    assert request('/api/v1/auth/me')[0]==200
+                    report['rollback']['return_to_current_candidate']='PASS'
+                else:
+                    report['rollback']={'status':'NOT VERIFIED','reason':'No previous candidate image supplied; no accepted production release exists'}
+                compose('stop','proxy','api','worker')
+                command[-2:]=[]
+                run(command+['exec','-T','restore-db','psql','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],env=env,
+                    input='ALTER DATABASE evidenceai RENAME TO restorecheck;',text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             try:
                 compose('--profile','recovery','run','--rm','--no-deps','-e','BACKUP_FILE='+backup['file'],'restore-verify',capture=True)
             except subprocess.CalledProcessError: report['nonempty_restore_target_rejected']=True
@@ -190,9 +272,20 @@ volumes: !reset {{}}
                 compose('--profile','recovery','run','--rm','--no-deps','-e','BACKUP_FILE='+damaged,'restore-verify',capture=True)
             except subprocess.CalledProcessError: report['tampered_ciphertext_rejected']=True
             else: raise AssertionError('Tampered ciphertext was accepted')
+            if M12:
+                stopped={}
+                for service in ('api','worker','proxy'):
+                    identifier=compose('ps','-aq',service,capture=True).strip()
+                    state=json.loads(run(['docker','inspect','--format','{{json .State}}',identifier],stdout=subprocess.PIPE,text=True))
+                    assert not state['OOMKilled'] and state['ExitCode']!=137
+                    stopped[service]={'exit_code':state['ExitCode'],'oom_killed':state['OOMKilled']}
+                report['shutdown_states']=stopped
             report['graceful_shutdown']='compose stop completed for proxy/API/worker'
-            Path('/tmp/evidenceai-m11-smoke-result.json').write_text(json.dumps(report,indent=2)+'\n')
+            Path('/tmp/evidenceai-'+TAG+'-smoke-result.json').write_text(json.dumps(report,indent=2)+'\n')
             print(json.dumps(report,indent=2))
+            if M12:
+                assert report['load']['status']=='PASS', 'Performance acceptance failed; evidence retained'
+                assert report['recovery_application']['measured_recovery_seconds']<=report['load']['thresholds']['recovery_seconds_max'], 'Recovery duration exceeded proposed threshold'
         except Exception:
             compose('logs','--no-color','--tail','40','api','worker','proxy','prometheus','grafana')
             raise
@@ -200,8 +293,8 @@ volumes: !reset {{}}
             # Never --volumes/-v: this fixture uses bind mounts and tmpfs exclusively.
             try: compose('--profile','monitoring','--profile','recovery','down','--remove-orphans')
             finally:
-                owner=f"import os; root='/fixture'; uid={os.getuid()}; gid={os.getgid()}; [(os.chown(p,uid,gid),os.chmod(p,0o700)) for p in [root]+[os.path.join(d,n) for d,ds,fs in os.walk(root) for n in ds+fs]]"
-                run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture','evidenceai-api:m11','-c',owner])
+                owner=f"import os; root='/fixture'; uid={os.getuid()}; gid={os.getgid()}; [(os.chown(p,uid,gid),os.chmod(p,0o700)) for p in [root]+[os.path.join(d,n) for d,ds,fs in os.walk(root) for n in ds+fs if not os.path.join(d,n).startswith(root+'/secrets')]]"
+                run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture',image('api'),'-c',owner])
 
 
 if __name__=='__main__': main()

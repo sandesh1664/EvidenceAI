@@ -1,0 +1,161 @@
+{
+  "baseline": "02462040fec9eea53c596618c32b09cb694d60ee",
+  "scanner": "Trivy 0.76.0",
+  "scanner_image": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-20T13:35:30.519058502Z",
+    "UpdatedAt": "2026-10-19T13:35:30.519058742Z",
+    "DownloadedAt": "2026-10-19T17:50:15.239487714Z"
+  },
+  "images": {
+    "api": {
+      "reference": "evidenceai-api:m12",
+      "high": 44,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "d3380e5d32c450f5321890900c4a2985370fdd86d5317f755dd6e59eff14dc10",
+      "scan_created_at": "2026-10-19T18:01:08.639396961Z",
+      "scanner_artifact_id": "sha256:c9320627c3a31bfb26abee7910f935bcef17ba4a2aae3ccd0c0922ed715de2db",
+      "image_config_id": "sha256:c8be70045e0aa8f03c77e602fbb9b91155619d21f035eaafa674828280c5138f",
+      "docker_local_id": "sha256:de552480a9b8e1109e5dc6b422b45cb2cad47bfcd04592600aa8cfa703814980",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "debian",
+        "Name": "13.7"
+      },
+      "high_critical_with_listed_fix": 0
+    },
+    "web": {
+      "reference": "evidenceai-web:m12",
+      "high": 43,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "f92bd97d6dda7cc17c0d75228191a7676c754edd33f669baecd7c3d7e27aaede",
+      "scan_created_at": "2026-10-19T18:01:10.079298586Z",
+      "scanner_artifact_id": "sha256:3addc5b1e3a62c1d0af77dd9f660120d08d9ad33c5d1626f8fcbd1f1d29c1484",
+      "image_config_id": "sha256:dda3d54970a126a8cd61f61a1ee21879fb34e0196ea2b1720dd5d9084243e344",
+      "docker_local_id": "sha256:ba8ca11ad90ee2db40d734226e34a63b0499ff3be602536a8a767f79faf29116",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "debian",
+        "Name": "13.7"
+      },
+      "high_critical_with_listed_fix": 0
+    },
+    "backup": {
+      "reference": "evidenceai-backup:m12",
+      "high": 44,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "862d5c53169c70a46e5933cff9f7ef50e606ceee229aa0423b3ad5d27bd3f3e6",
+      "scan_created_at": "2026-10-19T18:01:11.46805167Z",
+      "scanner_artifact_id": "sha256:c436e0567d2b493b7e5dd93fefdd993a25c9f246a863e3e1960de35e5bcc47e0",
+      "image_config_id": "sha256:dce2c2c88e1a66db26102707d900b5b7c8ed2891b43f78b419260ae1103670d2",
+      "docker_local_id": "sha256:a7ef77117039883a2425e97e453c72627d8658c6220130fb24ffe6c2b5a26ed2",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "debian",
+        "Name": "13.7"
+      },
+      "high_critical_with_listed_fix": 0
+    },
+    "proxy": {
+      "reference": "evidenceai-proxy:m12",
+      "high": 0,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "9639d167dff43698d69d362265e6741394a9fa3c8372b6406946a8b1c4eb448c",
+      "scan_created_at": "2026-10-19T18:01:12.144401254Z",
+      "scanner_artifact_id": "sha256:f29a73afa91ba67b32cf7dc9ce7dd3fa3a41e1ba5919a39bf1522e81a745ee9d",
+      "image_config_id": "sha256:6e4edda10a23f7bccaeef276214f49d0139df0e4e72ca1c56dfa3d3065984697",
+      "docker_local_id": "sha256:5e9b75f823bfdfa9165063498ef0460083608a468d0e295f31176ff243f65554",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "alpine",
+        "Name": "3.23.6"
+      },
+      "high_critical_with_listed_fix": 0
+    },
+    "database": {
+      "reference": "pgvector/pgvector@sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84",
+      "high": 86,
+      "critical": 2,
+      "secrets": 0,
+      "scan_sha256": "968296562216609e6b640fbb0ce5e6432ccc6c30d8bc4a856d9963bf5f0760f1",
+      "scan_created_at": "2026-10-19T17:57:02.809825416Z",
+      "scanner_artifact_id": "sha256:157f30f74fc2e4653edaf3f85ba7123f4dac49325c9948e1993eb768e3332f63",
+      "image_config_id": "sha256:157f30f74fc2e4653edaf3f85ba7123f4dac49325c9948e1993eb768e3332f63",
+      "docker_local_id": "sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "debian",
+        "Name": "13.7"
+      },
+      "high_critical_with_listed_fix": 26
+    },
+    "prometheus": {
+      "reference": "prom/prometheus@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e",
+      "high": 8,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "34614f994f68903a00daddcfd914be2a532364652464c6da77fc18f6917ea679",
+      "scan_created_at": "2026-10-19T17:57:04.796491459Z",
+      "scanner_artifact_id": "sha256:21cfe572fdc08ad4007adb5c556dd4ffb256ae2e2f484962c63090f60de9ce28",
+      "image_config_id": "sha256:21cfe572fdc08ad4007adb5c556dd4ffb256ae2e2f484962c63090f60de9ce28",
+      "docker_local_id": "sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": null,
+      "high_critical_with_listed_fix": 8
+    },
+    "grafana": {
+      "reference": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+      "high": 61,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "b31ce70e08214eec394170473bf73f0ac20de00ea829a939c8b2f2f9d37fa034",
+      "scan_created_at": "2026-10-19T17:57:12.655315088Z",
+      "scanner_artifact_id": "sha256:af26b41119f782122b18b8be3bfdad5ccc1c4f389205fad7ac15706d20926df5",
+      "image_config_id": "sha256:af26b41119f782122b18b8be3bfdad5ccc1c4f389205fad7ac15706d20926df5",
+      "docker_local_id": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": {
+        "Family": "alpine",
+        "Name": "3.24.2"
+      },
+      "high_critical_with_listed_fix": 61
+    },
+    "exporter": {
+      "reference": "prom/node-exporter@sha256:1b4e4438faca4dd7e001dd445d161a4a2091b0fededa84093b3a8dfeae1f1be0",
+      "high": 14,
+      "critical": 0,
+      "secrets": 0,
+      "scan_sha256": "c37eeec3bf67ef30501a625250b428807197f3057525d21711fbdb89216b85d2",
+      "scan_created_at": "2026-10-19T17:57:13.332704338Z",
+      "scanner_artifact_id": "sha256:84acc55a7ba518e054cc71dcddbd1a120973f7926c2c0d6855f7d8d8e2b983e0",
+      "image_config_id": "sha256:84acc55a7ba518e054cc71dcddbd1a120973f7926c2c0d6855f7d8d8e2b983e0",
+      "docker_local_id": "sha256:1b4e4438faca4dd7e001dd445d161a4a2091b0fededa84093b3a8dfeae1f1be0",
+      "layers_match": true,
+      "architecture": "arm64",
+      "runtime_os": null,
+      "high_critical_with_listed_fix": 14
+    }
+  },
+  "strict_application_gate_exit_codes": {
+    "api": 1,
+    "web": 1,
+    "backup": 1,
+    "proxy": 0
+  },
+  "support_gate_exit_code": 1,
+  "independent_proxy_binary_rebuild_sha256": "352220e215482ce1eb9e82f876301125e44d7fb964c1d8c062e5f6050019d142",
+  "whole_image_reproducibility": "NOT VERIFIED",
+  "release": "BLOCKED"
+}

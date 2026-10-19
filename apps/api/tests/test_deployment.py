@@ -158,3 +158,24 @@ def test_release_packaging_rejects_dirty_source(monkeypatch,tmp_path):
     monkeypatch.setattr(sys,'argv',['release','--output',str(tmp_path/'manifest.json')])
     with pytest.raises(SystemExit,match='clean committed'): release.main()
     assert not (tmp_path/'manifest.json').exists()
+
+
+def test_release_acceptance_missing_or_failed_evidence_blocks():
+    spec=importlib.util.spec_from_file_location('acceptance',ROOT/'infra/scripts/verify_release.py')
+    acceptance=importlib.util.module_from_spec(spec);spec.loader.exec_module(acceptance)
+    complete={name:'PASS' for name in acceptance.REQUIRED}
+    assert acceptance.decision(complete)['release']=='PASS'
+    for status in ('FAIL','NOT VERIFIED'):
+        assert acceptance.decision({**complete,'container_security':status})['release']=='BLOCKED'
+    assert acceptance.decision({})['release']=='BLOCKED'
+    with pytest.raises(ValueError): acceptance.decision({'container_security':'WAIVED'})
+
+
+@pytest.mark.parametrize('destination',['/data/documents','/documents','../../originals','/tmp/restored-documents'])
+def test_recovery_documents_cannot_target_application_storage(monkeypatch,destination):
+    spec=importlib.util.spec_from_file_location('backup',ROOT/'infra/backup/backup.py')
+    backup=importlib.util.module_from_spec(spec);spec.loader.exec_module(backup)
+    monkeypatch.setenv('RESTORE_DOCUMENTS_TO',destination)
+    with pytest.raises(ValueError,match='empty isolated mount'): backup.recovery_directory()
+    monkeypatch.delenv('RESTORE_DOCUMENTS_TO')
+    assert backup.recovery_directory() is None

@@ -1,0 +1,32 @@
+{
+  "baseline": "02462040fec9eea53c596618c32b09cb694d60ee",
+  "source_fingerprint_sha256": "61b97245f08bf42b705de76f97bf6275bc69b96bbb34a1085f98779092df4968",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "FAIL",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "local_controls": {
+    "backend": "PASS",
+    "frontend": "PASS",
+    "offline_ai_evaluation": "PASS",
+    "private_ca_tls": "PASS",
+    "local_ci_lint": "PASS",
+    "local_rollback_compatibility": "PASS",
+    "existing_data_preservation": "PASS"
+  },
+  "remaining_runtime_image_findings": {
+    "HIGH": 300,
+    "CRITICAL": 2
+  },
+  "risk_acceptance": "No exception approved; named owners must review unresolved risks",
+  "production_deployed": false,
+  "committed": false,
+  "pushed": false
+}

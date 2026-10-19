@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG NODE_IMAGE=node:26-bookworm-slim@sha256:298992629d69bbd5b2b03ad57094d8e4fcb3a8eeb7c4e25d29de656519568913
+ARG NODE_IMAGE=node:26-trixie-slim@sha256:0d1e33586362bb9e608c4e751e7a9e7edb55c9ac11461ed5666af696cc461dd4
 FROM ${NODE_IMAGE} AS base
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 FROM base AS dependencies

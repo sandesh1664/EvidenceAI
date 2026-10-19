@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PYTHON_IMAGE=python:3.14.6-slim-bookworm@sha256:4c92ffcde4dd6f1ff72a24518f49fd4990b27134987dfa31a733badde66df9f8
+ARG PYTHON_IMAGE=python:3.14.6-slim-trixie@sha256:7bec7ddcddeff7975d6ba9b4be7dd6f6b2f55e7491539145e2978f7f97ce9144
 FROM ${PYTHON_IMAGE} AS base
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 FROM base AS dependencies

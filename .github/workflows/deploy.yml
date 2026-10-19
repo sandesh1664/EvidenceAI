@@ -40,6 +40,17 @@ jobs:
           test "$REF" = refs/heads/main
           gh api "repos/$REPOSITORY/environments/$TARGET_ENV" > /tmp/environment-policy.json
           python3 -c 'import json; p=json.load(open("/tmp/environment-policy.json")); assert any(r.get("type")=="required_reviewers" and r.get("reviewers") and r.get("prevent_self_review") for r in p.get("protection_rules",[])), "Required reviewer and no self-approval protection must be configured"'
+      - name: Require passing main-branch verification for the exact release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          gh api "repos/$REPOSITORY/actions/workflows/ci.yml/runs?head_sha=$RELEASE_SHA&branch=main&event=push&status=success&per_page=100" > /tmp/release-verification.json
+          python3 -c 'import json,os; runs=json.load(open("/tmp/release-verification.json"))["workflow_runs"]; assert any(r["head_sha"]==os.environ["RELEASE_SHA"] and r["head_branch"]=="main" and r["event"]=="push" and r["conclusion"]=="success" for r in runs), "Exact release requires successful main push CI, including vulnerability gates"'
+          gh api "repos/$REPOSITORY/compare/$RELEASE_SHA...main" > /tmp/release-ancestry.json
+          python3 -c 'import json; assert json.load(open("/tmp/release-ancestry.json"))["status"] in ("ahead","identical"), "Release must belong to main history"'
       - name: Verify release input and pinned SSH identity
         shell: bash
         run: |

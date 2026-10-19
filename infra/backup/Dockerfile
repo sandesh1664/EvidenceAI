@@ -1,5 +1,5 @@
-ARG POSTGRES_IMAGE=pgvector/pgvector@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
-ARG PYTHON_IMAGE=python:3.14.6-slim-bookworm@sha256:4c92ffcde4dd6f1ff72a24518f49fd4990b27134987dfa31a733badde66df9f8
+ARG POSTGRES_IMAGE=pgvector/pgvector@sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84
+ARG PYTHON_IMAGE=python:3.14.6-slim-trixie@sha256:7bec7ddcddeff7975d6ba9b4be7dd6f6b2f55e7491539145e2978f7f97ce9144
 FROM ${POSTGRES_IMAGE} AS clients
 RUN mkdir -p /opt/postgres/bin /opt/postgres/lib && cp /usr/lib/postgresql/17/bin/pg_dump /usr/lib/postgresql/17/bin/pg_restore /usr/lib/postgresql/17/bin/psql /opt/postgres/bin/ && ldd /opt/postgres/bin/* | awk '/=> \// {print $3}' | sort -u | xargs -I '{}' cp -L '{}' /opt/postgres/lib/
 FROM ${PYTHON_IMAGE}

@@ -1,0 +1,990 @@
+{
+  "scope": "Disposable local TLS staging; synthetic tiny corpus, fake embeddings and mock LLM",
+  "thresholds": {
+    "scope": "Proposed local acceptance, five users for 30 seconds; fake embeddings/mock LLM; no production capacity assertion",
+    "users": 5,
+    "duration_seconds": 30,
+    "aggregate_error_ratio_max": 0.01,
+    "p95_ms_max": 2000,
+    "p99_ms_max": 5000,
+    "minimum_requests": 100,
+    "queue_drain_seconds_max": 60,
+    "recovery_seconds_max": 120
+  },
+  "checks": {
+    "error_ratio": true,
+    "p95": true,
+    "p99": true,
+    "sample_count": true,
+    "runner_exit": true,
+    "queue_drained": true,
+    "no_failed_jobs": true
+  },
+  "status": "PASS",
+  "elapsed_seconds": 30.422,
+  "queue_drain_seconds": 0.895,
+  "host": {
+    "platform": "Darwin",
+    "architecture": "arm64",
+    "docker_cpus": 10,
+    "docker_memory_bytes": 8319504384
+  },
+  "database_before": {
+    "connections": 9,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 420,
+      "blks_hit": 41560,
+      "tup_returned": 20072,
+      "tup_fetched": 18484,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "database_after": {
+    "connections": 10,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 434,
+      "blks_hit": 71984,
+      "tup_returned": 58184,
+      "tup_fetched": 52575,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "database_drained": {
+    "connections": 10,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 434,
+      "blks_hit": 73307,
+      "tup_returned": 59676,
+      "tup_fetched": 53803,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "stats": [
+    {
+      "Type": "POST",
+      "Name": "authentication/login",
+      "Request Count": 5,
+      "Failure Count": 0,
+      "Min Response Time": 52.267582999775186,
+      "Max Response Time": 79.29895899724215,
+      "Average Response Time": 70.53234999912092,
+      "Requests/s": 0.16788733608494902,
+      "50%": 77,
+      "95%": 79,
+      "99%": 79
+    },
+    {
+      "Type": "POST",
+      "Name": "vector/search",
+      "Request Count": 50,
+      "Failure Count": 0,
+      "Min Response Time": 5.6173340053646825,
+      "Max Response Time": 29.94600000238279,
+      "Average Response Time": 12.446757459983928,
+      "Requests/s": 1.6788733608494903,
+      "50%": 10,
+      "95%": 20,
+      "99%": 30
+    },
+    {
+      "Type": "GET",
+      "Name": "authentication/me",
+      "Request Count": 62,
+      "Failure Count": 0,
+      "Min Response Time": 3.8340829996741377,
+      "Max Response Time": 14.179792000504676,
+      "Average Response Time": 8.6792236613673,
+      "Requests/s": 2.081802967453368,
+      "50%": 9,
+      "95%": 13,
+      "99%": 14
+    },
+    {
+      "Type": "POST",
+      "Name": "document/upload",
+      "Request Count": 25,
+      "Failure Count": 0,
+      "Min Response Time": 9.861000005912501,
+      "Max Response Time": 38.31708399957279,
+      "Average Response Time": 20.306539920857176,
+      "Requests/s": 0.8394366804247452,
+      "50%": 19,
+      "95%": 35,
+      "99%": 38
+    },
+    {
+      "Type": "GET",
+      "Name": "workspace/list",
+      "Request Count": 33,
+      "Failure Count": 0,
+      "Min Response Time": 3.8710410008206964,
+      "Max Response Time": 14.115124999079853,
+      "Average Response Time": 8.556156545334185,
+      "Requests/s": 1.1080564181606636,
+      "50%": 8,
+      "95%": 14,
+      "99%": 14
+    },
+    {
+      "Type": "POST",
+      "Name": "workspace/create",
+      "Request Count": 33,
+      "Failure Count": 0,
+      "Min Response Time": 3.789000002143439,
+      "Max Response Time": 10.725083004217595,
+      "Average Response Time": 6.319084515835681,
+      "Requests/s": 1.1080564181606636,
+      "50%": 6,
+      "95%": 9,
+      "99%": 11
+    },
+    {
+      "Type": "GET",
+      "Name": "workspace/read",
+      "Request Count": 33,
+      "Failure Count": 0,
+      "Min Response Time": 3.0650420012534596,
+      "Max Response Time": 11.235708996537142,
+      "Average Response Time": 5.146387575113102,
+      "Requests/s": 1.1080564181606636,
+      "50%": 4,
+      "95%": 10,
+      "99%": 11
+    },
+    {
+      "Type": "PATCH",
+      "Name": "workspace/update",
+      "Request Count": 33,
+      "Failure Count": 0,
+      "Min Response Time": 3.9866249935585074,
+      "Max Response Time": 13.15624999551801,
+      "Average Response Time": 6.764835878901508,
+      "Requests/s": 1.1080564181606636,
+      "50%": 5,
+      "95%": 12,
+      "99%": 13
+    },
+    {
+      "Type": "DELETE",
+      "Name": "workspace/delete",
+      "Request Count": 33,
+      "Failure Count": 0,
+      "Min Response Time": 4.27208399923984,
+      "Max Response Time": 9.360042000480462,
+      "Average Response Time": 6.122920424042439,
+      "Requests/s": 1.1080564181606636,
+      "50%": 5,
+      "95%": 9,
+      "99%": 9
+    },
+    {
+      "Type": "POST",
+      "Name": "rag/mock-answer",
+      "Request Count": 19,
+      "Failure Count": 0,
+      "Min Response Time": 12.464458995964378,
+      "Max Response Time": 35.70404200581834,
+      "Average Response Time": 22.33768647267042,
+      "Requests/s": 0.6379718771228063,
+      "50%": 23,
+      "95%": 36,
+      "99%": 36
+    },
+    {
+      "Type": "",
+      "Name": "Aggregated",
+      "Request Count": 326,
+      "Failure Count": 0,
+      "Min Response Time": 3.0650420012534596,
+      "Max Response Time": 79.29895899724215,
+      "Average Response Time": 10.831904092012973,
+      "Requests/s": 10.946254312738677,
+      "50%": 8,
+      "95%": 27,
+      "99%": 65
+    }
+  ],
+  "resource_samples": [
+    {
+      "elapsed_seconds": 2.06,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "15.76%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.72%",
+          "MemUsage": "89.32MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "87.8kB / 93.7kB",
+          "PIDs": "7"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "4.38%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.10%",
+          "MemUsage": "82.95MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "432kB / 314kB",
+          "PIDs": "10"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.88%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.13%",
+          "MemUsage": "246.2MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.27%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.33%",
+          "MemUsage": "42.65MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "10.1kB / 3.73kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.50%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "5.88%",
+          "MemUsage": "15.06MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "91.3kB / 115kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.63%",
+          "MemUsage": "49.3MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.43kB / 18.8kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "6.45%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.45%",
+          "MemUsage": "76.32MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "227kB / 311kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "6.75%",
+          "MemUsage": "4.32MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "1.85kB / 3.5kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 9,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 432,
+          "blks_hit": 44585,
+          "tup_returned": 22807,
+          "tup_fetched": 20169,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 6.66,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "10.52%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.72%",
+          "MemUsage": "89.32MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "301kB / 389kB",
+          "PIDs": "7"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "3.13%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.08%",
+          "MemUsage": "82.69MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "641kB / 497kB",
+          "PIDs": "10"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.59%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.26%",
+          "MemUsage": "246.7MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.22%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.73%",
+          "MemUsage": "44.69MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "59.6kB / 5.03kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.62%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "6.42%",
+          "MemUsage": "16.43MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "187kB / 229kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.63%",
+          "MemUsage": "49.31MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "23.08%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.45%",
+          "MemUsage": "76.28MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "324kB / 435kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.01%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "6.75%",
+          "MemUsage": "4.32MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "1.98kB / 3.64kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 9,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 48560,
+          "tup_returned": 25124,
+          "tup_fetched": 22381,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 1,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 11.36,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "6.74%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.73%",
+          "MemUsage": "89.36MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "593kB / 729kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.85%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.11%",
+          "MemUsage": "83.07MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "1.06MB / 858kB",
+          "PIDs": "10"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.82%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.25%",
+          "MemUsage": "246.7MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.29%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.65%",
+          "MemUsage": "44.29MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "59.6kB / 5.03kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.64%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "6.02%",
+          "MemUsage": "15.41MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "275kB / 333kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.63%",
+          "MemUsage": "49.3MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "12.78%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.47%",
+          "MemUsage": "76.49MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "404kB / 538kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.01%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "6.75%",
+          "MemUsage": "4.32MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "1.98kB / 3.64kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 10,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 52886,
+          "tup_returned": 28821,
+          "tup_fetched": 25593,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 16.01,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "9.02%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.77%",
+          "MemUsage": "89.75MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "904kB / 1.09MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "2.14%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.41%",
+          "MemUsage": "86.12MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "1.46MB / 1.21MB",
+          "PIDs": "11"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "1.03%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.45%",
+          "MemUsage": "247.5MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.29%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.61%",
+          "MemUsage": "44.09MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "59.7kB / 5.09kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.42%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "5.96%",
+          "MemUsage": "15.25MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "404kB / 480kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.58%",
+          "MemUsage": "49.05MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "6.89%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.51%",
+          "MemUsage": "76.91MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "456kB / 608kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "6.75%",
+          "MemUsage": "4.32MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "1.98kB / 3.64kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 10,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 58302,
+          "tup_returned": 34383,
+          "tup_fetched": 30725,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 1,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 20.58,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "5.58%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.77%",
+          "MemUsage": "89.86MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "1.1MB / 1.33MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.71%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.38%",
+          "MemUsage": "85.79MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "1.66MB / 1.4MB",
+          "PIDs": "11"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.87%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.57%",
+          "MemUsage": "247.9MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.28%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.72%",
+          "MemUsage": "44.64MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "63.6kB / 5.59kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.54%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "6.10%",
+          "MemUsage": "15.62MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "471kB / 555kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.58%",
+          "MemUsage": "49.05MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "7.23%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.50%",
+          "MemUsage": "76.82MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "512kB / 677kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.96%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "8.67%",
+          "MemUsage": "5.551MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "2.48kB / 7.59kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 10,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 61857,
+          "tup_returned": 39977,
+          "tup_fetched": 35911,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 25.24,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "4.01%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.77%",
+          "MemUsage": "89.8MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "1.27MB / 1.54MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "1.36%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.37%",
+          "MemUsage": "85.72MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "1.86MB / 1.58MB",
+          "PIDs": "11"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.86%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.35%",
+          "MemUsage": "247.1MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.25%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.59%",
+          "MemUsage": "43.96MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "63.7kB / 5.64kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.55%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "6.20%",
+          "MemUsage": "15.86MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "557kB / 651kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "13.62%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.94%",
+          "MemUsage": "50.89MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "6.94%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "8.41%",
+          "MemUsage": "86.14MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "539kB / 714kB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "7.52%",
+          "MemUsage": "4.812MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "2.52kB / 7.63kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 10,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 65249,
+          "tup_returned": 45354,
+          "tup_fetched": 40844,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 1,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 29.88,
+      "containers": [
+        {
+          "BlockIO": "2.33MB / 0B",
+          "CPUPerc": "9.93%",
+          "Container": "1c6346ecf6160ec4f1e13bde3c9195375f88f26483c66a5f05d2e5ab7ad6265f",
+          "ID": "1c6346ecf616",
+          "MemPerc": "8.78%",
+          "MemUsage": "89.87MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-api-1",
+          "NetIO": "1.57MB / 1.89MB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "2.69%",
+          "Container": "4f14550834dc79e6f16e3247289acf0bf8a730cd08de8bdae9e143ca5339d052",
+          "ID": "4f14550834dc",
+          "MemPerc": "8.37%",
+          "MemUsage": "85.71MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-db-1",
+          "NetIO": "2.34MB / 2.02MB",
+          "PIDs": "11"
+        },
+        {
+          "BlockIO": "733kB / 0B",
+          "CPUPerc": "0.97%",
+          "Container": "b2faec9a233afd859a230c6afaa915e089a289c290d7efff500ea36d73ac5e78",
+          "ID": "b2faec9a233a",
+          "MemPerc": "64.36%",
+          "MemUsage": "247.1MiB / 384MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-grafana-1",
+          "NetIO": "1.21kB / 126B",
+          "PIDs": "150"
+        },
+        {
+          "BlockIO": "11.6MB / 0B",
+          "CPUPerc": "0.39%",
+          "Container": "0ac20b81084ecf1f2bd675c9b5c83a67912af9e0dd8d4654a0c65cedf2d1b7f4",
+          "ID": "0ac20b81084e",
+          "MemPerc": "8.68%",
+          "MemUsage": "44.43MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-prometheus-1",
+          "NetIO": "63.7kB / 5.64kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.89%",
+          "Container": "6bcea50a0106f7c5d18f6578bda52eac17478f63021505cbe4681dbcd6a4c0e6",
+          "ID": "6bcea50a0106",
+          "MemPerc": "6.32%",
+          "MemUsage": "16.18MiB / 256MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-proxy-1",
+          "NetIO": "704kB / 814kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "0.01%",
+          "Container": "43b56cb2c6b8823ab67b4d85a2389f5e307f7de6d01bb98ddfd3e40b3295a7b6",
+          "ID": "43b56cb2c6b8",
+          "MemPerc": "9.73%",
+          "MemUsage": "49.84MiB / 512MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-web-1",
+          "NetIO": "3.5kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "0B / 0B",
+          "CPUPerc": "3.08%",
+          "Container": "ad667e60cc4da2fd8f60da7dedb8f1703bfe5b0e666f118349abc63910115910",
+          "ID": "ad667e60cc4d",
+          "MemPerc": "7.47%",
+          "MemUsage": "76.46MiB / 1GiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-1",
+          "NetIO": "691kB / 908kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "8.19kB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "bc79ee1a6ed914c94ee3899c39ecc14949af77a0f2d9f9288f24887663b13c43",
+          "ID": "bc79ee1a6ed9",
+          "MemPerc": "7.52%",
+          "MemUsage": "4.812MiB / 64MiB",
+          "Name": "evidenceai-staging-smokec9c94e41db-worker-exporter-1",
+          "NetIO": "2.52kB / 7.63kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 10,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 434,
+          "blks_hit": 70841,
+          "tup_returned": 57435,
+          "tup_fetched": 51932,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    }
+  ]
+}

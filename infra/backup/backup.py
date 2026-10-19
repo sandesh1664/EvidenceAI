@@ -101,11 +101,21 @@ def backup():
         'storage_file_count':len(hashes)-1,'elapsed_seconds':round(time.monotonic()-started,3)}))
 
 
+def recovery_directory():
+    destination=os.environ.get('RESTORE_DOCUMENTS_TO')
+    if not destination: return None
+    target=Path(destination)
+    if destination!='/restored-documents' or target.is_symlink() or not target.is_dir() or any(target.iterdir()):
+        raise ValueError('Recovery documents require an empty isolated mount')
+    return target
+
+
 def restore():
     if os.environ.get('PGHOST')!='restore-db' or os.environ.get('PGDATABASE')!='restorecheck':
         raise ValueError('Restore is restricted to the disposable restore-db/restorecheck target')
     filename=os.environ.get('BACKUP_FILE','')
     if not NAME.fullmatch(filename): raise ValueError('Select an exact encrypted backup filename')
+    target=recovery_directory()
     database_env()
     if sql("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'")!='0':
         raise ValueError('Restore target must be empty; refusing overwrite')
@@ -134,6 +144,11 @@ def restore():
             if not re.fullmatch(r'[a-f0-9]{32}',key) or digest(root/'documents'/key)!=record['sha256']:
                 raise ValueError('Restored document verification failed')
         if len(records)!=manifest['document_count']: raise ValueError('Document count mismatch')
+        if target is not None:
+            # Destination validated before restoring any database objects.
+            for source in (root/'documents').iterdir():
+                shutil.copyfile(source,target/source.name,follow_symlinks=False)
+                (target/source.name).chmod(0o600)
         print(json.dumps({'status':'restore_verified','schema_revision':revision,'pgvector_version':vector,
             'document_count':len(records),'storage_file_count':len(manifest['file_sha256'])-1,
             'elapsed_seconds':round(time.monotonic()-started,3),'scope':'isolated disposable recovery drill'}))

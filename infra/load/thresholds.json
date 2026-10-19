@@ -1,0 +1,11 @@
+{
+  "scope": "Proposed local acceptance, five users for 30 seconds; fake embeddings/mock LLM; no production capacity assertion",
+  "users": 5,
+  "duration_seconds": 30,
+  "aggregate_error_ratio_max": 0.01,
+  "p95_ms_max": 2000,
+  "p99_ms_max": 5000,
+  "minimum_requests": 100,
+  "queue_drain_seconds_max": 60,
+  "recovery_seconds_max": 120
+}

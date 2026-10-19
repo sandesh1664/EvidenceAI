@@ -1,0 +1,261 @@
+{
+  "baseline": "02462040fec9eea53c596618c32b09cb694d60ee",
+  "backend": {
+    "passed": 642,
+    "failed": 0,
+    "seconds": 22.52,
+    "junit": "backend.xml"
+  },
+  "frontend": {
+    "passed": 51,
+    "failed": 0,
+    "lint": "PASS",
+    "typescript": "PASS",
+    "standalone_image_build": "PASS"
+  },
+  "browsers": {
+    "stats": {
+      "startTime": "2026-10-19T18:07:47.577Z",
+      "duration": 67017.493,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 12959
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 563
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1353
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1468
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 679
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "project": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 493
+          }
+        ]
+      },
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 12939
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 531
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1533
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1524
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 646
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "project": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 434
+          }
+        ]
+      },
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 13221
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 573
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1516
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1605
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 731
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "project": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 610
+          }
+        ]
+      }
+    ],
+    "visual_inspection": "Desktop and 390x844 mobile screenshots inspected; sampled UI only"
+  },
+  "earlier_runs": [
+    {
+      "result": "4 Chromium passed, eight launches failed",
+      "reason": "Firefox/WebKit executables missing; installed into dedicated /tmp directory before retest"
+    },
+    {
+      "result": "13 passed, two failed",
+      "reason": "Ambiguous test selector matched Next route announcer; scoped to main content before retest"
+    }
+  ],
+  "limits": [
+    "No independent penetration test",
+    "No physical device or assistive technology acceptance",
+    "Browser provider failures injected; backend provider failure contracts tested with mocked transports"
+  ],
+  "migration": {
+    "revision": "6f22cc4c46ad",
+    "model_check": "No new upgrade operations detected",
+    "pip_check": "No broken requirements found"
+  },
+  "process_exit_codes": {
+    "backend": 0,
+    "browser_acceptance": 0,
+    "staging_load_recovery_rollback": 0,
+    "candidate_scan_gate": 1,
+    "supporting_scan_gate": 1,
+    "actionlint": 0
+  },
+  "preservation": {
+    "all_fifteen_public_table_hashes_unchanged": true,
+    "revision_unchanged": true,
+    "development_compose_unchanged": true,
+    "disposable_staging_containers_remaining": 0
+  }
+}

@@ -330,3 +330,53 @@ test("real membership roles, ownership transfer and eligible workspace deletion"
   ).not.toBeVisible();
   await colleagueContext.close();
 });
+
+test("network and provider failures remain recoverable and source text is inert", async ({ page }) => {
+  await register(page);
+  await workspace(page, "<script>window.compromised=true</script>");
+  expect(await page.evaluate(() => (window as Window & { compromised?: boolean }).compromised)).toBeUndefined();
+  await nav(page, "Search");
+  await page.route("**/api/v1/workspaces/*/search", (route) => route.abort("failed"));
+  await page.getByLabel("Search query").fill("Solar evidence");
+  await page.getByRole("button", { name: "Search passages" }).click();
+  await expect(page.getByRole("main").getByRole("alert")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Search passages" })).toBeEnabled();
+  await page.unroute("**/api/v1/workspaces/*/search");
+  await page.route("**/api/v1/workspaces/*/search", (route) => route.fulfill({
+    status: 503,
+    contentType: "application/json",
+    headers: { "Access-Control-Allow-Origin": "http://localhost:3100", "Access-Control-Allow-Credentials": "true" },
+    body: JSON.stringify({ detail: "Search provider temporarily unavailable" }),
+  }));
+  await page.getByRole("button", { name: "Search passages" }).click();
+  await expect(page.getByRole("main").getByRole("alert")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Search passages" })).toBeEnabled();
+  await page.unroute("**/api/v1/workspaces/*/search");
+  await page.getByRole("button", { name: "Search passages" }).click();
+  await expect(page.getByText("No matching indexed passages")).toBeVisible();
+});
+
+test("registration and login work through native keyboard form navigation", async ({ page }) => {
+  const email = `keyboard-${crypto.randomUUID()}@example.com`;
+  await page.goto("/register");
+  await page.getByLabel("Full name").focus();
+  await page.keyboard.type("Keyboard researcher");
+  await page.keyboard.press("Tab");
+  await expect(page.getByLabel("Email address")).toBeFocused();
+  await page.keyboard.type(email);
+  await page.keyboard.press("Tab");
+  await expect(page.getByLabel("Password", { exact: true })).toBeFocused();
+  await page.keyboard.type(secret);
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
+  await page.getByRole("button", { name: "Sign out", exact: false }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Welcome back" })).toBeVisible();
+  await page.getByLabel("Email address").focus();
+  await page.keyboard.type(email);
+  await page.keyboard.press("Tab");
+  await expect(page.getByLabel("Password", { exact: true })).toBeFocused();
+  await page.keyboard.type(secret);
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
+});
