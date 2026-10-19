@@ -377,3 +377,22 @@ ordering and validation metadata with claim IDs. Source deletion nulls live link
 private historical excerpts. Archive retains history and blocks new turns; DELETE conversation
 permanently removes its messages/snapshots, without deleting original documents. See the
 [complete conversation schemas, recovery and retention contract](conversation-engine.md).
+
+## Web consumer contract (Milestone 09)
+
+The Next.js web app now consumes the existing routes directly from the browser. Collections
+retain their actual trailing slashes (/workspaces/, /documents/); requests use credentials=include
+and cache=no-store, with X-CSRF-Protection: 1 for POST/PATCH/DELETE. Multipart uploads leave
+Content-Type to the browser. Document original downloads are authenticated fetches, not public
+links. Browser Origin must exactly match TRUSTED_FRONTEND_ORIGINS. No BFF/auth/account-update
+or provider-configuration endpoint was added. Settings checks connectivity through /auth/me
+because public /health currently omits cross-origin CORS headers.
+
+Frontend contracts mirror Pydantic in apps/web/src/types/api.ts. Lists use existing offset or
+conversation cursor/message-sequence pagination. Filename filtering is loaded-page-only; no
+new filename search API is implied. Member selection uses registered account UUIDs because
+the API exposes no email directory. Role controls are hints; backend checks remain mandatory.
+Conversation retries reuse the exact idempotency UUID/body; HTTP 201 can represent a saved
+failure, so the UI reads assistant state fields. Quick /ask retains failure envelopes on
+503/504. Status polling uses only real GET responses and no invented progress. Source quotes
+are plain text and snapshots are explicitly historical. See [frontend architecture and tests](frontend-architecture.md).

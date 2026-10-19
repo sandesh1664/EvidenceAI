@@ -1,8 +1,8 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 08 adds private,
-persistent research conversations with contextual follow-ups and saved citation snapshots,
-on top of authenticated workspace search and evidence-grounded question answering.
+EvidenceAI is a document intelligence and research platform. Milestone 09 adds a responsive
+web application for private workspaces, document research, source-grounded answers and
+persistent conversations, connected to the existing secure FastAPI backend.
 
 ## Development
 
@@ -195,3 +195,23 @@ for exact APIs, idempotency, concurrency, crash recovery and limits.
 **Deleting a source document retains historical citation excerpts.** Archive retains history;
 DELETE conversation permanently removes its messages/snapshots. There is no automatic TTL
 or source-wide historical purge. Treat saved questions and excerpts as private data.
+
+## Integrated web application (Milestone 09)
+
+`apps/web` now connects to the existing FastAPI API: register/login/logout, private workspace
+navigation, member roles/ownership, document uploads/status/indexing/downloads, semantic
+search, source-grounded questions, saved conversations and citation snapshots. Light/dark
+themes, responsive navigation, accessible forms and confirmation dialogs are included.
+
+Run the existing API on localhost:8000 and `npm ci && npm run dev` from apps/web for
+localhost:3000. Review apps/web/.env.example and the backend's exact trusted-origin/local
+HTTP settings; no backend secret is copied into the frontend. Real workers must run for
+processing/indexing, and provider defaults remain disabled. Profile/model settings without
+backend APIs are not invented.
+
+See [frontend setup, architecture, tests and manual checklist](docs/frontend-architecture.md).
+The browser uses credentialed cookie requests and the existing CSRF header; no new auth or
+private server cache is introduced. Playwright uses a separate disposable local schema and
+production frontend. The full npm audit retains five high development-lint-chain findings
+with no upstream braces patch; production-only audit currently reports zero. No forced
+framework downgrade is used. Backend migration stays at `6f22cc4c46ad`.

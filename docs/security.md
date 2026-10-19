@@ -349,3 +349,32 @@ Hosted opt-in can transmit bounded prior user questions as well as the current q
 excerpts. store=false does not override provider retention terms. No question/history/error
 bodies are added to logs, and automated tests remain offline. Reference resolution and claim
 relevance are heuristics; tests are not semantic assurance or independent security review.
+
+## Browser integration (Milestone 09)
+
+The web app uses existing API-host HttpOnly cookies with credentials=include and the exact
+trusted frontend Origin/CSRF contract. JavaScript never reads or stores session tokens; only
+theme preference goes into localStorage. Private API calls are browser-only/no-store, with
+account/workspace/path-scoped in-memory reads, abort/late-response guards, cross-tab session
+notifications and clearing/unmounting on logout/401. Private server HTML contains no user
+payload. Backend authorization is unchanged and remains authoritative even when UI hints stale.
+
+Source/answer/title text is React-escaped plain text, never dangerouslySetInnerHTML or untrusted
+Markdown. Downloads use credentialed API responses and temporary Blob URLs. Provider keys and
+backend .env are not exposed. Production documents use a fresh CSP nonce/strict-dynamic for
+scripts, no unsafe-inline/eval scripts, frame denial, nosniff, referrer/device restrictions and
+no-store. Styles still permit unsafe-inline; production TLS/HSTS/trusted proxy configuration
+remain ingress responsibilities. No private content is sent to analytics or application logs.
+
+Use HTTPS and same-site app/API hosts in production; do not weaken SameSite=Lax or Secure to
+support unrelated sites. No proxy forwards browser credentials elsewhere. Current provider
+readiness is not exposed by an API, so the UI reports this limitation and displays actual
+request outcomes/offline labels. Historical quotations survive source deletion until their
+conversation is erased; deletion confirmations explain that retention.
+
+Chromium tests use only generated local schemas, temporary private storage and fake/mock
+providers, block live outbound HTTP, and exercise actual CSRF/session/role boundaries. npm
+audit reports five high findings along the development braces/glob/ESLint chain; no upstream
+patch is listed and no force downgrade/suppression is applied. Production-only audit reports
+zero findings, which is not a security guarantee. See [frontend risks/tests](frontend-architecture.md)
+and [the advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm). No independent audit is claimed.

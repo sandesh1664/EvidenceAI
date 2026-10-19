@@ -266,3 +266,23 @@ delete cascades only to messages/snapshots; archive retains history and blocks n
 The additive migration is `6f22cc4c46ad`; stateless `/ask` remains compatible. No frontend,
 streaming or background conversation worker is added. See [conversation engine](conversation-engine.md)
 for concurrency, privacy, exact schemas and heuristic reference-resolution limits.
+
+## Milestone 09 integrated frontend
+
+The existing Next.js 16.4.2 App Router app provides the backend's real account/workspace,
+document, search, stateless research and persistent conversation workflows. Private data is
+fetched in browser components after the existing /auth/me check, with credentials=include,
+cache=no-store and X-CSRF-Protection: 1 on mutations. Server HTML contains generic loading
+UI rather than private payloads. No BFF, alternate session system or backend rebuild is added.
+
+Typed API contracts centralize methods/errors. A short-lived account/path-scoped browser
+cache aborts stale reads, invalidates on mutation and clears on logout/401; no private data
+is persisted to browser storage. Polling pauses on hidden/inactive pages. Workspace layouts
+and role hints follow existing services; authorization remains in FastAPI. Conversation
+retry preserves the exact idempotency key/body, and saved citations remain historical snapshots.
+
+A nonce-generating Next proxy and dynamic root document enforce production script CSP and
+private/no-store responses, plus other security headers. Responsive green/neutral CSS supports
+light/dark themes and native accessible controls. Real-browser tests use a production Next
+server, actual FastAPI/workers and a generated disposable schema/temporary storage. Backend
+source/migrations remain unchanged. See [frontend architecture](frontend-architecture.md).
