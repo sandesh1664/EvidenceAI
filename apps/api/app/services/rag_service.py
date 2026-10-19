@@ -16,6 +16,7 @@ from app.schemas.ask import AskResponse
 from app.schemas.search import SearchRequest
 from app.services import search_service
 from app.services.citation_validation import CitationError, validate_answer
+from app.services.conversation_context import evidence_question, retrieval_question
 from app.services.embedding_providers import profile_for
 from app.services.generation_capacity import CapacityBusy, generation_slot
 from app.services.llm_providers import LLMEngine, LLMError, model_identifier
@@ -137,12 +138,13 @@ def revalidate_context(db, workspace_id, actor_id, context, filters, settings):
     )
 
 
-def ask(db, workspace_id, actor_id, data, settings, *, engine=None):
+def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
     started = time.monotonic()
     deadline = started + settings.rag_request_timeout_seconds
     request_id = uuid4()
     context = []
     usage = None
+    support_question = evidence_question(data.question, history)
 
     def finish(status, reason, *, http=200, claims=None, citations=None, answer=None):
         elapsed = (time.monotonic() - started) * 1000
@@ -194,7 +196,7 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None):
             workspace_id,
             actor_id,
             SearchRequest(
-                query=data.question,
+                query=retrieval_question(data.question, history),
                 document_ids=data.document_ids,
                 limit=min(
                     data.retrieval_limit or settings.rag_retrieval_limit,
@@ -233,15 +235,15 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None):
         )
     if not context:
         return finish("insufficient_evidence", "no_evidence")
-    if contradictory(context, data.question):
+    if contradictory(context, support_question):
         return finish("insufficient_evidence", "contradictory_evidence")
     if not any(
-        relevant(sentence, data.question)
+        relevant(sentence, support_question)
         for item in context
         for sentence in sentences(item.text)
     ):
         return finish("insufficient_evidence", "unsupported_question")
-    prompt = make_prompt(data.question, context)
+    prompt = make_prompt(data.question, context, history)
     db.rollback()  # No source transaction spans provider I/O.
     try:
         with generation_slot(db, settings):
@@ -255,7 +257,7 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None):
             if time.monotonic() >= deadline:
                 raise LLMError("timeout")
             claims, citations = validate_answer(
-                reply.output, context, data.question, settings
+                reply.output, context, support_question, settings
             )
             if not claims:
                 return finish("insufficient_evidence", "model_abstained")

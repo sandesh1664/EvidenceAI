@@ -197,5 +197,8 @@ def assemble_context(candidates, settings):
     return evidence
 
 
-def make_prompt(question, evidence):
-    return encode({"question": question, "evidence": context_payload(evidence)})
+def make_prompt(question, evidence, history=()):
+    payload = {"question": question, "evidence": context_payload(evidence)}
+    if history:
+        payload["conversation_history"] = list(history)
+    return encode(payload)

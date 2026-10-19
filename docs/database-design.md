@@ -14,6 +14,9 @@
 | embedding_profiles | Provider/model/revision/dimension identity | SHA-256 profile PK; unique id/dimension; dimension bounds |
 | chunk_embeddings | Derived pgvector vectors and batch progress | Composite chunk/profile PK; profile/dimension FK; vector/status/norm checks; profile/status index |
 | embedding_jobs | Durable per-document/profile indexing | Composite document/profile PK; generation/lease UUIDs; availability index; attempt checks |
+| conversations | Owner-private saved research | UUID; workspace/user RESTRICT FKs; private creation pagination index; odd next-sequence/title checks |
+| messages | Durable ordered user/assistant turns | Conversation CASCADE FK; unique sequence and idempotency UUID per conversation; role/state checks; one-pending partial unique index |
+| message_citations | Bounded historical source snapshots | Message CASCADE FK; nullable source SET NULL FKs/indexes; immutable original UUIDs; unique citation ID/ordering; location/validation metadata |
 
 Users have owned workspaces, memberships, and uploaded documents. Workspaces have
 memberships and documents. Existing ORM relationships are explicitly paired. Original application foreign keys
@@ -21,7 +24,7 @@ use ON DELETE RESTRICT. Accounts with referencing records and workspaces with me
 or documents cannot be deleted directly. The workspace deletion service explicitly
 removes only the mandatory owner membership before deleting an otherwise empty workspace,
 in one transaction; any other member or document produces 409. ORM relationships delegate deletion checks to the DB,
-even with loaded children. No automatic delete cascades occur. Future explicit cleanup
+even with loaded children. Original identity/workspace records do not cascade. Milestone 08 conversation-owned messages/snapshots explicitly cascade on conversation deletion. Future explicit cleanup
 must account for external stored files before removing document metadata.
 
 Membership's unique composite index supports workspace lookup without a redundant
@@ -200,3 +203,23 @@ constraints are unchanged. Thus deletion and chunk replacement cannot leave deri
 vectors/jobs orphaned, and late provider results cannot recreate them. Profiles and old
 model-version embeddings are retained until their source is deleted; no automatic profile
 retention or cleanup of old versions is implemented.
+
+## Milestone 08 conversation migration
+
+Revision `6f22cc4c46ad` follows `d64a9f2b830c` and adds only conversations, messages and
+message_citations plus indexes. Existing records and migration files remain unchanged. Source
+FKs in citation rows use SET NULL on source deletion, retaining immutable original UUIDs and
+bounded filename/location/excerpt snapshots. Conversation deletion uses DB CASCADE for its
+messages and their citations, without deleting original sources. Workspace/account RESTRICT
+links prevent accidental removal of saved research; explicit owner cleanup is required.
+
+A short workspace-then-conversation lock transaction reserves consecutive user/assistant
+sequence numbers and a unique idempotency payload hash, with a persisted generation lease.
+No transaction spans generation. Finalization fences expired workers, reauthorizes and checks
+current source eligibility, then atomically commits the answer and all snapshots. Pending
+recovery uses PostgreSQL time on reads/submissions. Source-authority history is not reused.
+
+Archive is reversible and retains data; DELETE conversation hard-deletes history. There is no
+automatic retention TTL, per-message erasure or source-wide quote purge. Backups/WAL have
+separate operator retention. Review [conversation schema and privacy](conversation-engine.md)
+before deploying or planning a destructive downgrade.

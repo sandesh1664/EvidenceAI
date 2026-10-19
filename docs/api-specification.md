@@ -166,7 +166,7 @@ python -m pip check
 git diff --check
 ```
 
-Current migration is `d64a9f2b830c`; ingestion and embeddings are added without changing
+Current migration is `6f22cc4c46ad`; ingestion and embeddings are added without changing
 previously applied migrations. Tests authenticate real session cookies and use isolated PostgreSQL data.
 Concurrency tests require CREATE SCHEMA permission and use only uniquely named,
 disposable test schemas; they verify actual row-lock contention via pg_blocking_pids.
@@ -335,6 +335,45 @@ char_end and claim_ids. Metadata is server-derived; storage keys/paths are exclu
 | 429 / provider_error | Shared generation capacity busy; Retry-After: 1 |
 
 All failure/abstention envelopes contain an explicit safe message and empty claim/citation
-lists. Raw provider errors are suppressed. The endpoint is stateless; no streaming endpoint
-or conversation history is implemented. For examples, specific reason codes, limits and
+lists. Raw provider errors are suppressed. This endpoint is stateless; separate conversation APIs provide persisted history. No streaming endpoint is implemented. For examples, specific reason codes, limits and
 provider configuration see [RAG answer engine](rag-answer-engine.md).
+
+## Private conversation API (Milestone 08)
+
+All endpoints require a current session and workspace membership. Individual conversations
+are restricted to their creator; other workspace owners/admins receive 404. Mutations retain
+Origin and X-CSRF-Protection: 1 checks. Prefix `/api/v1/workspaces/{workspace_id}/conversations`:
+
+| Method/path | Input | Success |
+| --- | --- | --- |
+| POST prefix | optional title (1–200 trimmed chars) | 201 Conversation |
+| GET prefix | limit 1–100/default20, cursor UUID, include_archived/defaultfalse | 200 items/next_cursor |
+| GET /{conversation_id} | UUID | 200 Conversation |
+| PATCH /{conversation_id} | nonempty title/archived subset, no nulls | 200 Conversation |
+| DELETE /{conversation_id} | UUID | 204; cascades saved messages/citations only |
+| GET /{conversation_id}/messages | limit 1–100/default50, after_sequence >=0/default0 | 200 items/next_after_sequence |
+| POST /{conversation_id}/messages | AskRequest fields + required idempotency_key UUID | 201 new saved turn; 200 completed replay; 202 pending replay |
+
+Conversation fields: id, workspace_id, owner_id, title, created_at, updated_at, last_activity_at,
+archived_at. Lists order by created_at descending then UUID descending; cursor is the last
+returned accessible ID. Messages order by sequence ascending and page after the supplied
+exclusive sequence number. Next pointers are null on the last page. Unknown body fields,
+invalid UUIDs/titles/limits/keys and null patches return 422. Wrong owner/workspace/missing
+conversation/cursor/filter return 404; auth/CSRF remain 401/403.
+
+POST returns `{user_message, assistant_message, replayed}`. Each Message includes id,
+conversation_id, role, content, sequence, created_at, generation_status, answer_status, reason,
+model_identifier, usage, claims, retrieved_evidence_count, request_id, generation_http_status
+and citations. A new saved failure/abstention is HTTP 201; inspect its status fields and
+original generation_http_status. Same key/different normalized payload, a different key
+during generation, and archived new submissions return 409. Pending replays return 202 with
+Retry-After: 2; competing requests return 409 with the same retry header. POST also returns
+X-Request-ID matching the assistant. Storage/interrupted completion can return sanitized 503;
+retry the same key to inspect the durable reserved pair.
+
+Saved citations contain nullable live document/chunk UUIDs, immutable original_document_id/
+original_chunk_id, citation ID, filename/page/section/location, supporting excerpt, offsets,
+ordering and validation metadata with claim IDs. Source deletion nulls live links and retains
+private historical excerpts. Archive retains history and blocks new turns; DELETE conversation
+permanently removes its messages/snapshots, without deleting original documents. See the
+[complete conversation schemas, recovery and retention contract](conversation-engine.md).

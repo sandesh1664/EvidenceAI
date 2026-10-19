@@ -67,6 +67,10 @@ class Settings(BaseSettings):
     rag_max_claims: int = Field(default=4,ge=1,le=6)
     rag_concurrent_generations: int = Field(default=4,ge=1,le=8)
 
+    conversation_history_messages: int = Field(default=6, ge=0, le=20)
+    conversation_history_token_budget: int = Field(default=1500, ge=0, le=6000)
+    conversation_turn_lease_seconds: int = Field(default=180, ge=150, le=900)
+
     @model_validator(mode="after")
     def validate_rag(self):
         if self.rag_context_token_budget + 3000 > self.rag_input_token_budget:

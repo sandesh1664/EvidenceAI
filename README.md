@@ -1,8 +1,8 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 07 adds stateless,
-evidence-grounded question answering with validated extractive claims and citations,
-on top of authenticated workspace search, versioned embeddings and secure document ingestion.
+EvidenceAI is a document intelligence and research platform. Milestone 08 adds private,
+persistent research conversations with contextual follow-ups and saved citation snapshots,
+on top of authenticated workspace search and evidence-grounded question answering.
 
 ## Development
 
@@ -84,7 +84,7 @@ Creation and transfer preserve exactly one matching owner membership in a transa
 An empty workspace can be deleted with its mandatory owner membership; other members
 or any documents cause 409. No users or documents are cascade-deleted.
 
-Milestone 04 needed no schema migration; the current head is `d64a9f2b830c` (Milestone 06).
+Milestone 04 needed no schema migration; the current head is `6f22cc4c46ad` (Milestone 08).
 Run `python -m pytest -q`, `python -m alembic current`, `python -m alembic check`,
 `python -m pip check`, and `git diff --check` to verify. Authenticated TestClient tests
 cover tenant isolation, roles, CSRF, rollback, and actual PostgreSQL lock contention.
@@ -166,7 +166,7 @@ fake lexical provider on a tiny synthetic corpus, not hosted semantic quality or
 POST `/api/v1/workspaces/{workspace_id}/ask` accepts a question, optional document UUIDs
 and retrieval limit. Members receive source quotations with validated claim-level citations,
 or explicit insufficient_evidence/retrieval_unavailable/provider_error states. Existing session
-authentication and CSRF apply. Answers are stateless; conversation history remains future work.
+authentication and CSRF apply. This endpoint remains stateless; Milestone 08 provides separate persistent conversation APIs.
 
 Generation defaults to disabled. For offline development use `LLM_PROVIDER=mock`,
 `LLM_MODEL=mock-extractive-v1`, and the existing indexed fake embedding profile. Hosted
@@ -177,4 +177,21 @@ See [RAG answer engine](docs/rag-answer-engine.md) for configuration, API exampl
 limits and the 13-case [synthetic report](docs/rag-evaluation.json). Current answers are exact
 source extracts; this small mock-provider evaluation does not establish production accuracy.
 Streaming is deferred until draft content can be validated safely. No new schema migration
-or frontend changes are introduced; database head remains `d64a9f2b830c`.
+or frontend changes were introduced by Milestone 07; Milestone 08 adds migration `6f22cc4c46ad`.
+
+## Research conversations (Milestone 08)
+
+Authenticated workspace members can create owner-private conversations, rename/archive them,
+page ordered history, submit idempotent message turns and delete their saved research. Each
+turn performs fresh authorized retrieval; old assistant answers/snapshots are never evidence.
+The stateless `/ask` endpoint remains available. No frontend changes are included.
+
+Run `python -m alembic upgrade head` from apps/api after reviewing the additive migration
+`6f22cc4c46ad`. New settings: CONVERSATION_HISTORY_MESSAGES=6,
+CONVERSATION_HISTORY_TOKEN_BUDGET=1500, CONVERSATION_TURN_LEASE_SECONDS=180. Providers
+remain disabled unless explicitly configured. See [conversation engine](docs/conversation-engine.md)
+for exact APIs, idempotency, concurrency, crash recovery and limits.
+
+**Deleting a source document retains historical citation excerpts.** Archive retains history;
+DELETE conversation permanently removes its messages/snapshots. There is no automatic TTL
+or source-wide historical purge. Treat saved questions and excerpts as private data.

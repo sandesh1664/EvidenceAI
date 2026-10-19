@@ -4,7 +4,7 @@ The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
 17 and Alembic. pgvector now supports versioned embeddings and exact cosine retrieval. Workspace management and membership-based tenant
 access are implemented. Document upload, private storage, extraction and chunks are implemented in Milestone 05.
-Stateless grounded answer generation is implemented in Milestone 07; conversations and production retrieval evaluation remain planned.
+Stateless grounded answers (Milestone 07) and private persistent conversations (Milestone 08) are implemented; production retrieval evaluation remains future work.
 
 ## Configuration and connections
 
@@ -244,6 +244,25 @@ Membership, active user and evidence eligibility are checked again after provide
 A separate autocommit connection holds a session PostgreSQL advisory lock for generation
 capacity, shared across workers without adding tables. Source transactions do not span hosted
 I/O. All workers need consistent capacity settings and connection-pool headroom. The endpoint
-persists no conversations or answers, introduces no migration and keeps head `d64a9f2b830c`.
+persists no conversations or answers itself. Milestone 07 introduced no migration; Milestone 08 adds separate persistence at `6f22cc4c46ad`.
 Metrics/logs contain fixed outcomes, request IDs, counts and durations only. SSE is deferred
 to preserve validation before delivery. See [RAG answer engine](rag-answer-engine.md).
+
+## Milestone 08 private conversations
+
+Conversation endpoints authorize current membership and the conversation's immutable owner.
+They reserve a user/pending-assistant pair under workspace-then-conversation row locks, commit
+sequence/idempotency/lease state, run existing RAG outside the transaction, then reauthorize
+and atomically save validated content/citation snapshots. A partial unique pending index and
+canonical payload hashes prevent competing or duplicate turns. Expired turn leases are
+recovered on message reads/submissions; late workers cannot overwrite terminal outcomes.
+
+Bounded prior user questions are separate untrusted reference context. Assistant answers and
+saved citations are excluded from prompt history and fresh evidence. Every turn uses current
+workspace/profile retrieval and current filters. Nullable source FKs plus immutable original
+IDs and bounded excerpts preserve historical citations after source deletion. Conversation
+delete cascades only to messages/snapshots; archive retains history and blocks new turns.
+
+The additive migration is `6f22cc4c46ad`; stateless `/ask` remains compatible. No frontend,
+streaming or background conversation worker is added. See [conversation engine](conversation-engine.md)
+for concurrency, privacy, exact schemas and heuristic reference-resolution limits.

@@ -12,3 +12,6 @@ from app.models.document_chunk import DocumentChunk
 from app.models.document_job import DocumentJob, StorageCleanup
 
 from app.models.embedding import EmbeddingProfile, ChunkEmbedding, EmbeddingJob
+
+from app.models.conversation import Conversation, Message, MessageCitation
+__all__ += ['Conversation', 'Message', 'MessageCitation']

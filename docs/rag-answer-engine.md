@@ -5,7 +5,7 @@ The response contains validated **extractive** claims: each claim is an exact so
 quotation, followed by server-added citation markers. It does not currently produce
 free-form summaries, paraphrases, calculations or multi-source deductions. This deliberate
 constraint makes claim support checkable beyond simply checking citation ID existence.
-Conversation history belongs to Milestone 08; no question, prompt or answer is persisted.
+Stateless `/ask` persists no question, prompt or answer. Milestone 08 adds separate private conversation APIs with saved history.
 
 ## Request flow
 
@@ -217,7 +217,7 @@ count and provider name. In-process metrics expose outcome counters and aggregat
 through `rag_service.metrics.snapshot()` for instrumentation; they reset on worker restart
 and are not a distributed telemetry endpoint. No document text, questions, answers, raw HTTP
 errors, keys or raw provider usage objects are logged. Reverse proxy/APM/SQL logging settings
-need the same privacy controls. No persistent cost ledger or conversation state is added.
+need the same privacy controls. No persistent cost ledger is added. Stateless `/ask` retains no conversation state; the separate conversation layer saves explicit history.
 
 ## Verification and evaluation
 
@@ -261,7 +261,7 @@ when comparing configurations; latency depends on host/load and actual hosted ca
 SSE was evaluated and deferred: emitting draft tokens would expose claims before validation.
 A future design must buffer/validate claim units, send typed events with explicit final state,
 handle disconnects/cancellation and account for provider errors before declaring completion.
-No streaming endpoint is registered. Conversation history, semantic entailment checks,
+No streaming endpoint is registered. Milestone 08 now supplies conversation history. Semantic entailment checks,
 source-level contradiction resolution, per-user spend/abuse quotas, production corpus/load
 benchmarks and independent security review remain future work.
 
@@ -301,3 +301,22 @@ No migration was created/applied, no original records were deleted, and no Docke
 were changed. The only existing-test adjustment uses PostgreSQL time for an expired-session
 fixture after host/database clock skew exposed a false failure; its rejection assertion and
 production authentication behavior remain unchanged.
+
+## Milestone 08 conversation composition
+
+The separate conversation service now calls ask with optional bounded, non-authoritative
+prior user questions. Its latest question stays unchanged in the prompt; English referential
+queries may augment retrieval with prior user questions within search limits. Reference
+words are omitted from lexical support matching only when admitted history is available.
+Assistant answers and historical snapshots are excluded from prompts/retrieval evidence.
+Fresh authorized workspace/profile retrieval, current filters and existing citation validation
+apply every turn; a second source check precedes atomic saved citation creation. Stateless
+`/ask` request/response and no-history behavior remain unchanged.
+
+New settings control recent message count (6), serialized history token/byte budget (1500)
+and durable conversation turn lease (180s). History counts in the combined input budget.
+Hosted prompts with history add explicit system separation rules; test fixtures verify that
+the current question/history/evidence stay separate and no tools/storage are requested.
+Persistence, idempotency, ordered pair reservations, owner privacy, failure/recovery, archive
+and snapshot retention are specified in [conversation engine](conversation-engine.md).
+The current migration is `6f22cc4c46ad`; Milestone 07's verification above is historical.

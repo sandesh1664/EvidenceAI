@@ -318,6 +318,34 @@ Tests block live sync/async HTTP and use offline MockTransport. No paid evaluati
 Generation capacity is bounded across workers using PostgreSQL session advisory locks;
 transaction-pooling proxies are incompatible. Capacity is not a per-user cost/abuse quota.
 Retrieval/DB pool work still requires operational statement/lock/pool timeouts; the scheduling
-deadline cannot forcibly cancel synchronous retrieval. No streaming tokens or conversation
-history are retained. Small synthetic tests do not constitute independent security review.
+deadline cannot forcibly cancel synchronous retrieval. No streaming tokens or history are retained by stateless `/ask`; Milestone 08 explicitly persists conversations through separate APIs. Small synthetic tests do not constitute independent security review.
 See [RAG security, limits and evaluation](rag-answer-engine.md).
+
+## Persistent conversation privacy (Milestone 08)
+
+Every conversation route requires the existing session and workspace membership plus exact
+conversation ownership. Workspace owner/admin roles do not grant access to someone else's
+research. Wrong owner/workspace and missing resources return 404. Current active-user and
+membership checks are repeated after generation. Payloads cannot set owners, sender roles,
+citations or generation states; existing Origin/CSRF protection and no-store policy apply.
+
+Historical user questions are untrusted, bounded reference context in a separate prompt
+field; known instruction-pattern questions are excluded. Assistant history is never sent as
+source evidence. No saved quote or source ID can replace current authorized retrieval. Source
+eligibility is checked again under the workspace lock before saving citations. No generated
+content is persisted after revocation/deletion. Concurrent/replayed requests cannot create
+duplicate turns or overwrite expired generations; failed finalization cannot mark a partial
+answer completed. Tests include real independent-connection races and injected rollback.
+
+Questions/answers and bounded cited excerpts are now persisted sensitive data. Snapshots
+remain owner-private after document deletion; nullable live links distinguish unavailable
+sources. Archive is not erasure. DELETE conversation hard-deletes its messages/snapshots and
+idempotency records, but does not purge other conversations, backups or provider records.
+No automatic TTL, source-wide history purge or per-message deletion exists. Membership
+revocation removes access and does not erase history. Operators need backup/encryption and
+retention policies appropriate to this data; see [conversation retention](conversation-engine.md).
+
+Hosted opt-in can transmit bounded prior user questions as well as the current question and
+excerpts. store=false does not override provider retention terms. No question/history/error
+bodies are added to logs, and automated tests remain offline. Reference resolution and claim
+relevance are heuristics; tests are not semantic assurance or independent security review.
