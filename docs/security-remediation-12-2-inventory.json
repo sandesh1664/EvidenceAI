@@ -1,0 +1,3366 @@
+{
+  "baseline_git": "0f58dcf0b0a5777acd48da738bd1aa460a9bc0ab",
+  "working_tree_uncommitted": true,
+  "scanner_reference": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+  "vulnerability_database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-20T19:08:34.442427458Z",
+    "UpdatedAt": "2026-10-19T19:08:34.442427859Z",
+    "DownloadedAt": "2026-10-19T20:00:17.97068243Z"
+  },
+  "before": {
+    "source": "docs/security-remediation-inventory.json#/after",
+    "high": 61,
+    "critical": 0,
+    "finding_occurrences": 61,
+    "distinct_advisories": 12
+  },
+  "after": {
+    "images": {
+      "api": {
+        "reference": "evidenceai-api:m121",
+        "scan_created_at": "2026-10-19T20:00:18.595932722Z",
+        "scan_sha256": "5d84d09c2fa1a29b8ed292f4ef7e9f043728e9074e010bb5d44bd8d740010b2e",
+        "archive_sha256": "c14cb392c392ac82758ab52dcf35c6f333ecfea8bfd4bd209217794fe03b1fce",
+        "artifact_id": "sha256:a81e77a7cf3d3f74e72a913438cbae4c8fbe27d77cd4d6232e7aa1181cd33f36",
+        "docker_id": "sha256:ee9a67947f6c8f1a1c67eaa20db8cda7676a3b5e3bece3ab890656608e7ecba5",
+        "config_id": "sha256:07c63c30813db58ce58fa6638e9feef814039018d278cdcc478a9d8618f8cf3e",
+        "diff_ids": [
+          "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+          "sha256:15fc7fbc6cefcfb3047537e9358cbb953dc6e664040062c5192972e6393f4662",
+          "sha256:e65178efb902c981db1458214da2df47179e0ecc435084fa169543c1283b11f6",
+          "sha256:4c6347b5384b9a4ca034bfa626e5cb9de279b81ead0b7d793a7e032542943428",
+          "sha256:dec6df00f71d81817245adc343c29411ec7301a3be0561ef3092a5330fb79bff",
+          "sha256:93f6200b019c327ae6cb24716b7e063c55d2efe3b31864773e87d6fca5ec9d46",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:99764a140ac21577b5663f177e67f25be3debfae645f426d05f937de55a88396",
+          "sha256:76fe2b08839674eacc628e80f86b30f94574ecd77a0066d94fb9b8a99763c27d",
+          "sha256:00bff159ca4a4729cb8bb1bd66387053b7c7647708406519c8d30f3b811fc963",
+          "sha256:328f53bc6b38027b9a2ad3e3889d9c3bec40805e750e4e049ead0ecf5b60668c",
+          "sha256:1c767ae2da82697f0e4e743a2a7e61b7889c39a668ea032c6300306038b1e8e7"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.1"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "web": {
+        "reference": "evidenceai-web:m121",
+        "scan_created_at": "2026-10-19T20:00:22.141094334Z",
+        "scan_sha256": "fcf2487a052bd69386fe2259e47ea54a01289a8fcb4ac8beb5a7927d5c2d0547",
+        "archive_sha256": "75f1e9789ce8eb111f689e0b7f15eb67fa4372af189a89d448599fd08e9f7c15",
+        "artifact_id": "sha256:c05100ce5d81336089038594caea6f0c3b68a77439415e40c5008c42697b58da",
+        "docker_id": "sha256:5e1a23557de38f4c3fd829f0321ddb6be74afce81c6c4ce1774deda14fe8f155",
+        "config_id": "sha256:d731ec3d8a43030886a02f84c396c8e9f4b81bb2998d10d6d303879f898cfd23",
+        "diff_ids": [
+          "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+          "sha256:0406feeee254fc7943c9fe14bf7da32a4fdc6d69b72a842a43c77988ef050385",
+          "sha256:2c823c75c45e380ecb48e0a0f1fe801794ee08d94dcf0d5119b00dfe9ee5e437",
+          "sha256:002b5df6b3313b3e55f08b7a0fdd26f5b5559065e6a805f097b49d18a067d4fb",
+          "sha256:f2f517ffc963420ee2566187375256e5b4a3a615184ce4d05601a2c6003413c2",
+          "sha256:efce4ff70600af05198b01e20e4f5e6a08060b9c74fa9d5e7ec8eff58cbb7f40",
+          "sha256:1dcd9cbeebe68a47b89401f754cff813b045206f1b7ec852087e9e0d83cf2716",
+          "sha256:b5fc113e87d180784a76f50dfe560b95a67121092d70c5c7f5f1fc4efb529ec6",
+          "sha256:51ef91917742268e953bf06a762c2b2389d9d31b98d78d813c82ff77a3c4760e",
+          "sha256:cd1816ff8c90ceef8509684ae5ce52e39c219c1d1019971d7145ee1b3a245a6a"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.2"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "backup": {
+        "reference": "evidenceai-backup:m121",
+        "scan_created_at": "2026-10-19T20:00:23.445929376Z",
+        "scan_sha256": "3de55fb0ad736c88be31fdd29ecfd8586737bd1612424ee71c6531586360562f",
+        "archive_sha256": "a944ff184325bb9e4d6a9f80fb5b07de449d922d304db39b41678f401518a7c6",
+        "artifact_id": "sha256:1ada645d5503074bdb74cbd25538464fe5006b7a3f3fc63fe41638f77d5dd0e8",
+        "docker_id": "sha256:e75132cc6c630893f1cdd979e75dcc2ecc8dc81adb1f7a89600d4de4447ae241",
+        "config_id": "sha256:a2d51a704062598b0b5aaeec52ef84aba4adeabf4fc5e2fc048d28101596c3be",
+        "diff_ids": [
+          "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+          "sha256:15fc7fbc6cefcfb3047537e9358cbb953dc6e664040062c5192972e6393f4662",
+          "sha256:e65178efb902c981db1458214da2df47179e0ecc435084fa169543c1283b11f6",
+          "sha256:4c6347b5384b9a4ca034bfa626e5cb9de279b81ead0b7d793a7e032542943428",
+          "sha256:8d26fa6c36459c9567789ff544aee97bf47824caf16fad22df060535d76fac83",
+          "sha256:0c933a80685be5647a487d347479961f5b2136b41f175185c558fcaa32edeb25",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.1"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "proxy": {
+        "reference": "evidenceai-proxy:m121",
+        "scan_created_at": "2026-10-19T20:00:24.749921919Z",
+        "scan_sha256": "355a3da751808d16e800dd2af30345ddbb8bca0fc1e894b4a9bb4a1b82e83542",
+        "archive_sha256": "67425ef1dca747b9a73df43b62be24bc885b2d47af6edc82ea618699e7d92996",
+        "artifact_id": "sha256:18017e5329c9e6416f6b2a5c04afe241b8c0345d4701caec06ce8b73cd102af5",
+        "docker_id": "sha256:1cfa75cd2a46236d27bcfc7e656dfb5dd770941ba6f3f796182b85c022a1e3ab",
+        "config_id": "sha256:4e4c77cfb4dd116824e9add9ee7dbd85eebc7a256498212715f7aca7bdb2aa88",
+        "diff_ids": [
+          "sha256:18932007cc273c0541920263e57c02d40013c4730d7db35437a4ffcc31422eda",
+          "sha256:2f85427f3cf10f3f5ec83a6f9348e4a5aa39a055ef865c483699137ec245fb09",
+          "sha256:a097a3e207a2e295c9028ca0dc77fa84280c648805c0d3a0c57c9dd7bde0b4e3",
+          "sha256:d46970df0570c240c6c00001288d1e2affc075b284bd1a7e2df89bc26dae144a",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a16c3ddb65cac1a30b30d6edaf2dac092cb46cacb4832793a22dd0a6032f202c",
+          "sha256:412bb0c914f78f3a1a0b24a3ce6487089c8f62962a78110b0aa501d949d6a65d"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.23.6"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "database": {
+        "reference": "evidenceai-database:m121",
+        "scan_created_at": "2026-10-19T20:00:20.792017917Z",
+        "scan_sha256": "f357b69864393a60b34804c6d07a97a779a955a3f688e933d7f1cfd49bf2642e",
+        "archive_sha256": "55e1b78a66c46e146bb21aa2a3dc306acd657292b599d874b228fb55e60db0f0",
+        "artifact_id": "sha256:12b453c914b810a8ec6552e68ba96456cd8e8664fb948aecc9c9dbf8e8c4a342",
+        "docker_id": "sha256:633cb956dc3fa6e5930312667aec5e02264c56a59556d783de19236e8df0d6b5",
+        "config_id": "sha256:fd4414043a3a6080faf7a421fc2dea433cf99507a68d64c7ad9dfea06f33f4b6",
+        "diff_ids": [
+          "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+          "sha256:6105053010d7234e5da3c998271cd6a06c966bf02609780cd462ffbb8ccd4af2",
+          "sha256:d973feabfe24563d84362ea8e3cf5fa8d3f15d77c741c6cbae34cc19a0c99c89",
+          "sha256:59b3db3a6e9366134d5a638faf1bd73cd7ebf5f83fb66c756a2261a3185f480e",
+          "sha256:69f72ea6f65dbab3e3bdfd07322848577dce31912d95ea38e1c1a36d5a70e462",
+          "sha256:b9896a47aeba727e79e04481a1eb6e80227a071346553689b933153440d441ba",
+          "sha256:f069d78ee120649c0cb6b9a65598638a3d6236b884e65705a6d8fdbaea79e965",
+          "sha256:075b36f84691a142a8d182af28926d791b4a4d82b6e3fd390dc03961521e4c03",
+          "sha256:f769e9f71cef9122be783a92c89fd894e0c077069d841c27335d7ba996d771f9",
+          "sha256:08c3845a93301179ecebb8b32a7d0b99c0d955b6af8d4363f92287c6e999b8fa",
+          "sha256:c0ca19b7b69013a035f39e62c5b14db82dc3cc0d963f803186ef97508d5785c6",
+          "sha256:62f2d533aef8da392157e6162dbc51283c8b39283b440bbebcaff2f3543277f4",
+          "sha256:20fbb98b91533bd8ef893e6ccf5727dc94d13d115a1ba41cf60b1d193c62b5cb",
+          "sha256:40477a8aed33ae1d993bfc221c6114519adfa8457693ff081ad13d3226586188",
+          "sha256:da0e6300b8b3690c07901c1120a45ff4216d6f7728ed74d4019d5336515af386",
+          "sha256:24a6afec847a01023b460f4339a87f339e7717d68ef779c3d07840a33fea866a"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.2"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "prometheus": {
+        "reference": "evidenceai-prometheus:m121",
+        "scan_created_at": "2026-10-19T20:00:25.634215294Z",
+        "scan_sha256": "d0828cc66b2750c07897633657d150006b9d791a28278712af7913d383093522",
+        "archive_sha256": "0c7caa359a0a97760ed486fe746280eb21f024c53f7a0f88be1d7894c423bb1f",
+        "artifact_id": "sha256:bc104c4b74742e2a580250a3e35186cdf6f6f37cc95fe983a3d9f763b5bc1bf3",
+        "docker_id": "sha256:70d7b943da6aff0fbfcbb10578ad48d0ff6e0122b4fb2e647b9706d261672dcc",
+        "config_id": "sha256:f8fe8474f8a4ea74c085004f1306f7d2196d09888371fd444fd1f8ca4b0b0402",
+        "diff_ids": [
+          "sha256:0e45164bbb0cf92e067264c29d5024f6fc439f779f6d98bc8b8c0bcc17482066",
+          "sha256:a9a61be7b6066fe938f94fe7609263e0b01110a0af95c32c7d1faf70f62a45ce",
+          "sha256:0a1b28683737277650f5f559ecaa28b0c48ce83a99a37667eb1575fa6693c130",
+          "sha256:4128b08eed6f9cbcf9e143b9e3489936e4736799e898f4ad8b76211f0b96a5e9",
+          "sha256:9bc7fe2673d1e122be310119657331ba20853153316bb5b95a4244ed64582d47",
+          "sha256:dc2624ad1c51169e76a7014fe40143c9cbebf0337d6787f9d8d94286b33d57e1",
+          "sha256:8101d4ac980a56959436797097cae18bbf8ba000f613d3fe9de6570bb695f858",
+          "sha256:1c873c6152d733f380c180f1e08c68a7d1172f13a78c5b7f4bf7601762e8f45b",
+          "sha256:d4638067d90a9acd4f0abb7ff7bdb5a0011e4f5e1a77de89414dc987f703c10d",
+          "sha256:eb377631fda59aa912495801ef54ab879f339a0fbea547f1d6ec23dd744734aa",
+          "sha256:179808f2f601970b912dbfab7ca9774466e553971f1e3aaf7c8471071f5abf60",
+          "sha256:b8652b3d762e8f97d44d2e7069e8cf4b2c29ee5da79530a372dde32af47829ca",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "os": null,
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "exporter": {
+        "reference": "evidenceai-exporter:m121",
+        "scan_created_at": "2026-10-19T20:00:26.353771794Z",
+        "scan_sha256": "945a59b10b3020a6160b4ea335505331878e17c0339e85577a3c7c380cf2e8f5",
+        "archive_sha256": "56dde9de8c44e7b98f5c60085b0a1d8d844c950ed07f81009ad8156f422a4e10",
+        "artifact_id": "sha256:f779552bdb73b320ae7986caeb59a97c40f85d262f3d095ca42ef14cab738ca1",
+        "docker_id": "sha256:a7b403e49b2e5344e997a5ab45e9429aa9967e289d02edc2f46defbcf3e7d840",
+        "config_id": "sha256:3c576536a72e0fcd5748410bcb83143439ca2fd6e4228ebe34536658d94b312c",
+        "diff_ids": [
+          "sha256:488b881850fc4df4e7e5c884a74de77b66fcf2509e666cd85af73d98c50721a2",
+          "sha256:6d275db3b77636482bcdb47a0cc5589632c100a6de9cc6dbd3ba194ed7aea249",
+          "sha256:21aaedadb2e2fdea9ca5a0e2033b72da4a2e1621dbd7d9f7cb1706623a2d92a8",
+          "sha256:39e38d269453a037641e93f8ae652eba322ba6d80e56a72ffcef87af5cf45e5d"
+        ],
+        "os": null,
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 0,
+        "critical": 0,
+        "secrets": 0
+      },
+      "grafana": {
+        "reference": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+        "scan_created_at": "2026-10-19T20:00:36.055778882Z",
+        "scan_sha256": "e739fd6b523cbdb0027f39ecdd4736c1bf14712bf11c4219aa39bfa6daa00f55",
+        "archive_sha256": "148e5f6c5d8d9ae20e99cd0588ff6c4ab3c4f096080b798ddf4a2f7a23a0701d",
+        "artifact_id": "sha256:af26b41119f782122b18b8be3bfdad5ccc1c4f389205fad7ac15706d20926df5",
+        "docker_id": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+        "config_id": "sha256:af26b41119f782122b18b8be3bfdad5ccc1c4f389205fad7ac15706d20926df5",
+        "diff_ids": [
+          "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+          "sha256:20c9f0c13d7f03ca55a6104fbc997b3ca20862fdd672a5eabd855911acc1f20a",
+          "sha256:c61f7a956bb6f1cecf890271896e0967c3f4f1de74a05ae59446a7155339a5fa",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a6aea3bac8aefbf6e5722cd1e7e1e5dce109d883444c674600a412a974132f3a",
+          "sha256:6130abb51c165dc0f68109ec72f4fb5b9f0fa73fea3ca0dfd8f31bd8411e980e",
+          "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1",
+          "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625",
+          "sha256:099824293ac421537396cd4cc1ed03f5a8753359f7729dd294d4723a93eddf7e",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:f728a00de809ca5f6a9d4a428c4d8269a8a367654f6c8f5197303d66cb8e6640"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.2"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 61,
+        "critical": 0,
+        "secrets": 0
+      }
+    },
+    "high": 61,
+    "critical": 0,
+    "finding_occurrences": 61,
+    "distinct_advisories": 12,
+    "findings": [
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/bin/grafana",
+        "advisory": "CVE-2026-100349",
+        "package": "github.com/getkin/kin-openapi",
+        "installed": "v0.144.0",
+        "fixed": "0.146.0",
+        "severity": "HIGH",
+        "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via nil pointer dereference in response validation",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-100349",
+        "layer": {
+          "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+          "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/bin/grafana",
+        "advisory": "CVE-2026-100351",
+        "package": "github.com/getkin/kin-openapi",
+        "installed": "v0.144.0",
+        "fixed": "0.147.0",
+        "severity": "HIGH",
+        "title": "github.com/getkin/kin-openapi: kin-openapi: Authentication bypass via URL path decoding discrepancy",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-100351",
+        "layer": {
+          "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+          "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/bin/grafana",
+        "advisory": "CVE-2026-100352",
+        "package": "github.com/getkin/kin-openapi",
+        "installed": "v0.144.0",
+        "fixed": "0.148.0",
+        "severity": "HIGH",
+        "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via improper handling of non-finite numeric values",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-100352",
+        "layer": {
+          "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+          "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/bin/grafana",
+        "advisory": "CVE-2026-100353",
+        "package": "github.com/getkin/kin-openapi",
+        "installed": "v0.144.0",
+        "fixed": "0.149.0",
+        "severity": "HIGH",
+        "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via nil-pointer dereference in request decoding",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-100353",
+        "layer": {
+          "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+          "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/bin/grafana",
+        "advisory": "CVE-2026-100354",
+        "package": "github.com/getkin/kin-openapi",
+        "installed": "v0.144.0",
+        "fixed": "0.149.0",
+        "severity": "HIGH",
+        "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via unbounded recursion during schema validation",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-100354",
+        "layer": {
+          "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+          "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.59.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.6",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.6",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.6",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.59.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.27.1",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.27.1",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.27.1",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.58.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-84304",
+        "package": "google.golang.org/grpc",
+        "installed": "v1.83.0",
+        "fixed": "1.83.1",
+        "severity": "HIGH",
+        "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via HTTP/2 DATA Frame Fragmentation",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-84304",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-84445",
+        "package": "google.golang.org/grpc",
+        "installed": "v1.83.0",
+        "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+        "severity": "HIGH",
+        "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via malformed RPC requests",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-84445",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-21728",
+        "package": "github.com/grafana/tempo",
+        "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+        "fixed": "2.8.4, 2.9.2, 2.10.2",
+        "severity": "HIGH",
+        "title": "grafana/tempo: Tempo: Denial of Service via large queries",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-21728",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-28377",
+        "package": "github.com/grafana/tempo",
+        "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+        "fixed": "2.10.3",
+        "severity": "HIGH",
+        "title": "Grafana Tempo: Grafana Tempo: Information disclosure of S3 encryption key via status config endpoint",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-28377",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.59.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "golang.org/x/net",
+        "installed": "v0.59.0",
+        "fixed": "0.60.0",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+        "advisory": "CVE-2026-78667",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+        "advisory": "CVE-2026-78669",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      },
+      {
+        "image": "grafana",
+        "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+        "advisory": "CVE-2026-97031",
+        "package": "stdlib",
+        "installed": "v1.26.7",
+        "fixed": "1.26.9, 1.27.2",
+        "severity": "HIGH",
+        "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+        "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+        "layer": {
+          "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+          "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+        },
+        "status": "fixed",
+        "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+      }
+    ]
+  },
+  "approved_exceptions": [],
+  "release": "BLOCKED",
+  "experiments": {
+    "grafana-candidate": {
+      "image": {
+        "reference": "evidenceai-grafana:m122",
+        "scan_created_at": "2026-10-19T20:03:47.800950596Z",
+        "scan_sha256": "d33e59004653381806d2359e5de2c0f6867f12842225e3f8f0d7155fb95dc7fd",
+        "archive_sha256": "652e61b4c4c5b265588dc453cc11ed9171b7aafb50aec4a3316adb3facfb256f",
+        "artifact_id": "sha256:7b1464a4620f7596b0f5e0f30c4bbe93d860a5246d70a3c27962eb70ad7e9371",
+        "docker_id": "sha256:104a1740076a507a65239c909cc29b79764e27a77fb395fee82870846ba694da",
+        "config_id": "sha256:9a517368aff147239ed974eb1c7a9a54d1292db1c731710ee5d06b014bc07ad7",
+        "diff_ids": [
+          "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+          "sha256:20c9f0c13d7f03ca55a6104fbc997b3ca20862fdd672a5eabd855911acc1f20a",
+          "sha256:c61f7a956bb6f1cecf890271896e0967c3f4f1de74a05ae59446a7155339a5fa",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a6aea3bac8aefbf6e5722cd1e7e1e5dce109d883444c674600a412a974132f3a",
+          "sha256:6130abb51c165dc0f68109ec72f4fb5b9f0fa73fea3ca0dfd8f31bd8411e980e",
+          "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1",
+          "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625",
+          "sha256:099824293ac421537396cd4cc1ed03f5a8753359f7729dd294d4723a93eddf7e",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:f728a00de809ca5f6a9d4a428c4d8269a8a367654f6c8f5197303d66cb8e6640",
+          "sha256:a776171ce573e9135278057bfea6cce6bdd2ef238035f6f09c1beaf079064faf"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.2"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 61,
+        "critical": 0,
+        "secrets": 0
+      },
+      "findings": [
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/bin/grafana",
+          "advisory": "CVE-2026-100349",
+          "package": "github.com/getkin/kin-openapi",
+          "installed": "v0.144.0",
+          "fixed": "0.146.0",
+          "severity": "HIGH",
+          "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via nil pointer dereference in response validation",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-100349",
+          "layer": {
+            "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+            "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/bin/grafana",
+          "advisory": "CVE-2026-100351",
+          "package": "github.com/getkin/kin-openapi",
+          "installed": "v0.144.0",
+          "fixed": "0.147.0",
+          "severity": "HIGH",
+          "title": "github.com/getkin/kin-openapi: kin-openapi: Authentication bypass via URL path decoding discrepancy",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-100351",
+          "layer": {
+            "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+            "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/bin/grafana",
+          "advisory": "CVE-2026-100352",
+          "package": "github.com/getkin/kin-openapi",
+          "installed": "v0.144.0",
+          "fixed": "0.148.0",
+          "severity": "HIGH",
+          "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via improper handling of non-finite numeric values",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-100352",
+          "layer": {
+            "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+            "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/bin/grafana",
+          "advisory": "CVE-2026-100353",
+          "package": "github.com/getkin/kin-openapi",
+          "installed": "v0.144.0",
+          "fixed": "0.149.0",
+          "severity": "HIGH",
+          "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via nil-pointer dereference in request decoding",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-100353",
+          "layer": {
+            "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+            "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/bin/grafana",
+          "advisory": "CVE-2026-100354",
+          "package": "github.com/getkin/kin-openapi",
+          "installed": "v0.144.0",
+          "fixed": "0.149.0",
+          "severity": "HIGH",
+          "title": "github.com/getkin/kin-openapi: kin-openapi: Denial of Service via unbounded recursion during schema validation",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-100354",
+          "layer": {
+            "Digest": "sha256:da51f1487cef1e69604a0a8a34b577b077a784568b35096bb4e99895a78d4c47",
+            "DiffID": "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-84304",
+          "package": "google.golang.org/grpc",
+          "installed": "v1.83.0",
+          "fixed": "1.83.1",
+          "severity": "HIGH",
+          "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via HTTP/2 DATA Frame Fragmentation",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-84304",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-84445",
+          "package": "google.golang.org/grpc",
+          "installed": "v1.83.0",
+          "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+          "severity": "HIGH",
+          "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via malformed RPC requests",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-84445",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-21728",
+          "package": "github.com/grafana/tempo",
+          "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "fixed": "2.8.4, 2.9.2, 2.10.2",
+          "severity": "HIGH",
+          "title": "grafana/tempo: Tempo: Denial of Service via large queries",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-21728",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-28377",
+          "package": "github.com/grafana/tempo",
+          "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "fixed": "2.10.3",
+          "severity": "HIGH",
+          "title": "Grafana Tempo: Grafana Tempo: Information disclosure of S3 encryption key via status config endpoint",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-28377",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        }
+      ],
+      "selected_for_production": false
+    },
+    "grafana-core": {
+      "image": {
+        "reference": "evidenceai-grafana:experimental-m122",
+        "scan_created_at": "2026-10-19T20:05:33.382127423Z",
+        "scan_sha256": "a1feeb234f5c3fb1fa8e28f0c5540d0788e29cb78637dc795ca0613b0bfd0463",
+        "archive_sha256": "f91bce45321bb0090e5db8504a383e26709e575a789cc965900b7738cb7c0edd",
+        "artifact_id": "sha256:afe986d88aba0c16b2948a9f064a3e80f6c7a13f020c228c5fb0a0c26d0c3ded",
+        "docker_id": "sha256:a7fdd7111ee5e42be50e8a5b1461b11899ea5fddff96960150df5f55e4ad436f",
+        "config_id": "sha256:77d9cad8a567b0232f306841005288e3f1642e7bb7b09e1884c1dffd5b5ebcd7",
+        "diff_ids": [
+          "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+          "sha256:20c9f0c13d7f03ca55a6104fbc997b3ca20862fdd672a5eabd855911acc1f20a",
+          "sha256:c61f7a956bb6f1cecf890271896e0967c3f4f1de74a05ae59446a7155339a5fa",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a6aea3bac8aefbf6e5722cd1e7e1e5dce109d883444c674600a412a974132f3a",
+          "sha256:6130abb51c165dc0f68109ec72f4fb5b9f0fa73fea3ca0dfd8f31bd8411e980e",
+          "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1",
+          "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625",
+          "sha256:099824293ac421537396cd4cc1ed03f5a8753359f7729dd294d4723a93eddf7e",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:f728a00de809ca5f6a9d4a428c4d8269a8a367654f6c8f5197303d66cb8e6640",
+          "sha256:1dec93fa60ab9f5bcf889562f5e3098d3594678db25d26b36a582fde4d2f1de2"
+        ],
+        "os": {
+          "Family": "alpine",
+          "Name": "3.24.2"
+        },
+        "architecture": "arm64",
+        "scan_matches_archive_and_live_layers": true,
+        "high": 56,
+        "critical": 0,
+        "secrets": 0
+      },
+      "findings": [
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.6",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.27.1",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.58.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-84304",
+          "package": "google.golang.org/grpc",
+          "installed": "v1.83.0",
+          "fixed": "1.83.1",
+          "severity": "HIGH",
+          "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via HTTP/2 DATA Frame Fragmentation",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-84304",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-84445",
+          "package": "google.golang.org/grpc",
+          "installed": "v1.83.0",
+          "fixed": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+          "severity": "HIGH",
+          "title": "google.golang.org/grpc: gRPC-Go: Denial of Service via malformed RPC requests",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-84445",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-21728",
+          "package": "github.com/grafana/tempo",
+          "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "fixed": "2.8.4, 2.9.2, 2.10.2",
+          "severity": "HIGH",
+          "title": "grafana/tempo: Tempo: Denial of Service via large queries",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-21728",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-28377",
+          "package": "github.com/grafana/tempo",
+          "installed": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "fixed": "2.10.3",
+          "severity": "HIGH",
+          "title": "Grafana Tempo: Grafana Tempo: Information disclosure of S3 encryption key via status config endpoint",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-28377",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "golang.org/x/net",
+          "installed": "v0.59.0",
+          "fixed": "0.60.0",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78667",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: golang: golang: Denial of Service via crafted HTTP Range headers",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78667",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-78669",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "net/http: net/http/internal/http2: golang.org/x/net/http2: net/http: Denial of Service via excessive HTTP/2 SETTINGS frames",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-78669",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        },
+        {
+          "image": "grafana",
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "advisory": "CVE-2026-97031",
+          "package": "stdlib",
+          "installed": "v1.26.7",
+          "fixed": "1.26.9, 1.27.2",
+          "severity": "HIGH",
+          "title": "crypto/tls: golang: crypto/tls: Denial of Service via multiple ECH outer extension references",
+          "url": "https://avd.aquasec.com/nvd/cve-2026-97031",
+          "layer": {
+            "Digest": "sha256:9afdcde3f45f14896464445a6c1a9dc9ff812671007b524c4d598815152ee74a",
+            "DiffID": "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625"
+          },
+          "status": "fixed",
+          "reachability": "Runtime binary present; no approved exception. Core serves APIs; Prometheus is provisioned and exercised. Other datasource use is configuration-dependent, not a waiver."
+        }
+      ],
+      "selected_for_production": false
+    }
+  }
+}

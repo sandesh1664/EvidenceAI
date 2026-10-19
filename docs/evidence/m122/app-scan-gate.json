@@ -1,0 +1,26 @@
+{
+  "api": {
+    "reference": "evidenceai-api:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "web": {
+    "reference": "evidenceai-web:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "backup": {
+    "reference": "evidenceai-backup:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "proxy": {
+    "reference": "evidenceai-proxy:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  }
+}

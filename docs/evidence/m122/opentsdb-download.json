@@ -1,0 +1,12 @@
+{
+  "version": "13.0.5",
+  "commit": "4aca35f82bf7aa96c0c437e4eb402024a5066a11",
+  "source": "https://github.com/grafana/grafana-opentsdb-datasource",
+  "package": {
+    "md5": "f269ccd1a5bee5d9b6119cec30fa5784",
+    "sha256": "089b71a3c576dec39003ae809902428d54462c05d58d39a50f075f1180567859",
+    "packageName": "linux-arm64",
+    "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=arm64"
+  },
+  "verified_sha256": "089b71a3c576dec39003ae809902428d54462c05d58d39a50f075f1180567859"
+}

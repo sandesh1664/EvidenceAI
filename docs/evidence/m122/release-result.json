@@ -1,0 +1,33 @@
+{
+  "baseline": "0f58dcf0b0a5777acd48da738bd1aa460a9bc0ab",
+  "implementation_fingerprint_sha256": "5bddc8ce7921620ad846c2b0ff66ff78d823f4120fd56d7385a4bfd261a0cc02",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "PASS",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "selected_runtime_findings": {
+    "HIGH": 61,
+    "CRITICAL": 0,
+    "unique_advisories": 12
+  },
+  "experimental_core_findings": {
+    "HIGH": 56,
+    "CRITICAL": 0,
+    "selected": false
+  },
+  "approved_exceptions": [],
+  "real_smtp_delivery": "NOT VERIFIED",
+  "hosted_staging": "NOT VERIFIED",
+  "committed": false,
+  "pushed": false,
+  "public_deployment": false,
+  "dns_modified": false,
+  "data_reset": false
+}

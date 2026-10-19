@@ -1,0 +1,34 @@
+[
+  {
+    "name": "frontend",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "seconds": 2.32
+  },
+  {
+    "name": "lint",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 1.76
+  },
+  {
+    "name": "types",
+    "cwd": "apps/web",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.88
+  }
+]

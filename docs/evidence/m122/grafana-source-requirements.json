@@ -1,0 +1,185 @@
+[
+  {
+    "id": "elasticsearch",
+    "version": "12.9.2",
+    "source_repository": "https://github.com/grafana/grafana-elasticsearch-datasource",
+    "source_commit": "a4b9ec92456c705a5b3ff81c538c19293a5ee88e",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-elasticsearch-datasource/a4b9ec92456c705a5b3ff81c538c19293a5ee88e/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-elasticsearch-datasource",
+      "go 1.26.7",
+      "google.golang.org/grpc v1.83.2",
+      "golang.org/x/net v0.58.0 // indirect"
+    ]
+  },
+  {
+    "id": "grafana-postgresql-datasource",
+    "version": "13.0.4",
+    "source_repository": "https://github.com/grafana/grafana-postgresql-datasource",
+    "source_commit": "4d167c25053dc0444178451abf8a3f171e9e4471",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-postgresql-datasource/4d167c25053dc0444178451abf8a3f171e9e4471/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-postgresql-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.58.0",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "grafana-pyroscope-datasource",
+    "version": "13.0.7",
+    "source_repository": "https://github.com/grafana/grafana-pyroscope-datasource",
+    "source_commit": "fcc51a6c9f04f446e7d6ff0a7b3a288e3ca8c52e",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-pyroscope-datasource/fcc51a6c9f04f446e7d6ff0a7b3a288e3ca8c52e/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-pyroscope-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.59.0 // indirect",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "influxdb",
+    "version": "13.1.7",
+    "source_repository": "https://github.com/grafana/grafana-influxdb-datasource",
+    "source_commit": "030eec102c9cfab314b73c87a2599ba8bb80bc40",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-influxdb-datasource/030eec102c9cfab314b73c87a2599ba8bb80bc40/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-influxdb-datasource",
+      "go 1.26.7",
+      "google.golang.org/grpc v1.83.2",
+      "golang.org/x/net v0.58.0 // indirect"
+    ]
+  },
+  {
+    "id": "jaeger",
+    "version": "13.0.5",
+    "source_repository": "https://github.com/grafana/grafana-jaeger-datasource",
+    "source_commit": "f2e2b7c6e0c2504cac5d30141e4a2f7b4990fe63",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-jaeger-datasource/f2e2b7c6e0c2504cac5d30141e4a2f7b4990fe63/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-jaeger-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.58.0 // indirect",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "loki",
+    "version": "13.2.2",
+    "source_repository": "https://github.com/grafana/grafana-loki-datasource",
+    "source_commit": "6d076df3d695f5fda342fbbad1f52547b55a96e2",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-loki-datasource/6d076df3d695f5fda342fbbad1f52547b55a96e2/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-loki-datasource",
+      "go 1.26.7",
+      "google.golang.org/grpc v1.83.2",
+      "golang.org/x/net v0.58.0 // indirect"
+    ]
+  },
+  {
+    "id": "mssql",
+    "version": "13.0.7",
+    "source_repository": "https://github.com/grafana/grafana-mssql-datasource",
+    "source_commit": "e0ad61ae045182f7869ba35afd1c48069b6add43",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-mssql-datasource/e0ad61ae045182f7869ba35afd1c48069b6add43/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-mssql-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.58.0",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "mysql",
+    "version": "13.1.4",
+    "source_repository": "https://github.com/grafana/grafana-mysql-datasource",
+    "source_commit": "453ec30a1245e539974d869a62f1c09bb5b9dfa9",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-mysql-datasource/453ec30a1245e539974d869a62f1c09bb5b9dfa9/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-mysql-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.58.0",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "opentsdb",
+    "version": "13.0.4",
+    "source_repository": "https://github.com/grafana/grafana-opentsdb-datasource",
+    "source_commit": "2e3dc74ef71fe4b57b24170bd2c35612bc69ac25",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-opentsdb-datasource/2e3dc74ef71fe4b57b24170bd2c35612bc69ac25/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-opentsdb-datasource",
+      "go 1.26.6",
+      "golang.org/x/net v0.58.0 // indirect",
+      "google.golang.org/grpc v1.83.2 // indirect"
+    ]
+  },
+  {
+    "id": "prometheus",
+    "version": "13.2.3",
+    "source_repository": "https://github.com/grafana/grafana-prometheus-datasource",
+    "source_commit": "6d21418acde6ce31c9f7a6418a88758842a881bb",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-prometheus-datasource/6d21418acde6ce31c9f7a6418a88758842a881bb/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-prometheus-datasource",
+      "go 1.27.1",
+      "golang.org/x/net v0.59.0 // indirect",
+      "google.golang.org/grpc v1.85.0-dev.0.20260825072537-93e31b48545e // indirect"
+    ]
+  },
+  {
+    "id": "stackdriver",
+    "version": "12.6.2",
+    "source_repository": "https://github.com/grafana/grafana-cloudmonitoring-datasource",
+    "source_commit": "cb0dadba1d04a4697a344d134d92dc520411bb7c",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-cloudmonitoring-datasource/cb0dadba1d04a4697a344d134d92dc520411bb7c/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-cloudmonitoring-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.58.0 // indirect",
+      "google.golang.org/grpc v1.83.0 // indirect"
+    ]
+  },
+  {
+    "id": "tempo",
+    "version": "13.2.4",
+    "source_repository": "https://github.com/grafana/grafana-tempo-datasource",
+    "source_commit": "cdacb742bae90fbf62c48c5cca0eacdc08fd2acd",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-tempo-datasource/cdacb742bae90fbf62c48c5cca0eacdc08fd2acd/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-tempo-datasource",
+      "go 1.26.7",
+      "github.com/grafana/tempo v1.5.1-0.20260910130453-bcfe9f230c1d",
+      "google.golang.org/grpc v1.85.0-dev.0.20260825072537-93e31b48545e",
+      "golang.org/x/net v0.59.0 // indirect"
+    ]
+  },
+  {
+    "id": "zipkin",
+    "version": "12.4.9",
+    "source_repository": "https://github.com/grafana/grafana-zipkin-datasource",
+    "source_commit": "4f1d9629b22e2bae0c887e20d82360786b4f34b6",
+    "go_mod_url": "https://raw.githubusercontent.com/grafana/grafana-zipkin-datasource/4f1d9629b22e2bae0c887e20d82360786b4f34b6/go.mod",
+    "exit_code": 0,
+    "relevant_go_mod_lines": [
+      "module github.com/grafana/grafana-zipkin-datasource",
+      "go 1.26.7",
+      "golang.org/x/net v0.59.0 // indirect",
+      "google.golang.org/grpc v1.85.0-dev.0.20260825072537-93e31b48545e // indirect"
+    ]
+  }
+]

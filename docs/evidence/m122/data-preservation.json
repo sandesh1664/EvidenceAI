@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "public_tables_compared": 16,
+  "all_original_counts_and_row_hashes_equal": true,
+  "revision_before": "91e2b6d8c410",
+  "revision_after": "91e2b6d8c410",
+  "comparison": "All 16 existing public tables, including registration_intents and auth_rate_limits; counts and SHA256 of deterministically ordered complete rows. No row values published. Private snapshots stay outside Git.",
+  "development_compose_unchanged": true
+}

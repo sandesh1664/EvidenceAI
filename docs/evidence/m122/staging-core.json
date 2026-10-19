@@ -1,0 +1,46 @@
+{
+  "scope": "local isolated staging, private CA; not public TLS or production acceptance",
+  "project": "evidenceai-staging-smoke6b8be2a779",
+  "compose_validation": "staging and production; production was not started",
+  "registration": "Uniform 202, pre-verification login refused, real TLS SMTP fixture delivery and browser-bound verification passed",
+  "embedding_rag": "fake/mock indexed retrieval and cited answer passed",
+  "https_cookie_csrf_routing_storage_worker": "passed",
+  "api_uid": "10001",
+  "worker_uid": "10001",
+  "web_uid": "10001",
+  "database_role": "non-superuser; no create database or roles",
+  "read_only_root": "enforced",
+  "prometheus_targets": "API and worker exporter up",
+  "grafana": {
+    "health": "PASS",
+    "anonymous_denied": "PASS",
+    "admin_authentication": "PASS",
+    "signup_disabled": "PASS",
+    "dashboard_provisioning": "PASS",
+    "datasource_health": "PASS",
+    "prometheus_query_targets_up": 2,
+    "internal_only_network": "PASS",
+    "container_health": "PASS",
+    "image": "evidenceai-grafana:experimental-m122",
+    "image_id": "sha256:a7fdd7111ee5e42be50e8a5b1461b11899ea5fddff96960150df5f55e4ad436f"
+  },
+  "backup": {
+    "status": "encrypted_backup_complete",
+    "file": "evidenceai-20261019T200715005423Z-54a20649b8ce4a21918f914c0129d251.tar.age",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.05
+  },
+  "restore": {
+    "status": "restore_verified",
+    "schema_revision": "91e2b6d8c410",
+    "pgvector_version": "0.8.7",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.072,
+    "scope": "isolated disposable recovery drill"
+  },
+  "nonempty_restore_target_rejected": true,
+  "tampered_ciphertext_rejected": true,
+  "graceful_shutdown": "compose stop completed for proxy/API/worker"
+}

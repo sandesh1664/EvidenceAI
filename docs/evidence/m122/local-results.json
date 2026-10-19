@@ -1,0 +1,22 @@
+{
+  "backend": 653,
+  "frontend": 53,
+  "browsers": {
+    "chromium": 6,
+    "firefox": 6,
+    "webkit": 6
+  },
+  "deployment_guard_tests": 26,
+  "lint": "PASS",
+  "typescript": "PASS",
+  "production_build": "PASS; initial build-lock collision retained",
+  "alembic_head": "91e2b6d8c410",
+  "alembic_check": "PASS",
+  "python_audit_dependencies": 44,
+  "python_audit_findings": 0,
+  "runtime_npm_findings": 0,
+  "development_npm_high_nodes": 5,
+  "selected_image_high": 61,
+  "selected_image_critical": 0,
+  "experimental_core_high": 56
+}

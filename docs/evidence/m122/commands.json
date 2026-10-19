@@ -1,0 +1,348 @@
+[
+  {
+    "cwd": "apps/api",
+    "command": "EVIDENCEAI_TIMING_REPORT=/Users/redmug/EvidenceAI/docs/evidence/m122/registration-timing.json .venv/bin/python -m pytest -q --junitxml=/Users/redmug/EvidenceAI/docs/evidence/m122/backend.xml",
+    "exit_code": 0,
+    "result": "653 passed"
+  },
+  {
+    "cwd": "apps/api",
+    "command": ".venv/bin/python -m pytest -q tests/test_deployment.py",
+    "exit_code": 0,
+    "result": "26 passed"
+  },
+  {
+    "cwd": "apps/web",
+    "command": "npm run build",
+    "exit_code": 1,
+    "result": "Initial standalone attempt collided with Playwright build; retained build.log"
+  },
+  {
+    "cwd": "apps/web",
+    "command": "npm run build",
+    "exit_code": 0,
+    "result": "Sequential retry passed; build-retry.log"
+  },
+  {
+    "cwd": "apps/web",
+    "command": "PLAYWRIGHT_BROWSERS_PATH=/tmp/evidenceai-m12-browsers npm run test:e2e",
+    "exit_code": 0,
+    "result": "18 passed: six each Chromium, Firefox, WebKit"
+  },
+  {
+    "cwd": ".",
+    "command": "python3 infra/scripts/scan_images.py --tag m121 --directory infra/runtime/m122/candidates",
+    "exit_code": 0,
+    "result": "All four images zero high/critical/secrets"
+  },
+  {
+    "cwd": ".",
+    "command": "python3 infra/scripts/scan_images.py --tag m121 --support-only --directory infra/runtime/m122/support",
+    "exit_code": 1,
+    "result": "Grafana 61 high; other three zero high/critical/secrets"
+  },
+  {
+    "cwd": ".",
+    "command": "docker build --progress=plain -t evidenceai-grafana:experimental-m122 infra/monitoring/grafana-rebuild",
+    "exit_code": 0,
+    "result": "322.33 seconds; 56 high in full scan; unselected"
+  },
+  {
+    "cwd": ".",
+    "command": "docker build --progress=plain -t evidenceai-grafana:m122 infra/monitoring/build-grafana",
+    "exit_code": 0,
+    "result": "Actual initial command; recipe subsequently moved to infra/monitoring/grafana-rebuild/opentsdb.Dockerfile; 61 high; unselected"
+  },
+  {
+    "cwd": ".",
+    "command": "EVIDENCEAI_EVIDENCE_TAG=m122-core EVIDENCEAI_GRAFANA_IMAGE=evidenceai-grafana:experimental-m122 python3 infra/scripts/smoke.py",
+    "exit_code": 0,
+    "result": "Rebuilt core functional monitoring and basic recovery fixture passed"
+  },
+  {
+    "cwd": ".",
+    "command": "EVIDENCEAI_ACCEPTANCE=1 EVIDENCEAI_EVIDENCE_TAG=m122 python3 infra/scripts/smoke.py",
+    "exit_code": 0,
+    "result": "Selected-image staging, load and recovery passed"
+  },
+  {
+    "cwd": ".",
+    "command": "python3 docs/evidence/m122/generate_inventory.py",
+    "exit_code": 0,
+    "result": "Eight selected and two experimental scan/archive/live identities verified"
+  },
+  {
+    "cwd": ".",
+    "command": "python3 infra/scripts/release_manifest.py --output infra/runtime/m122/manifest.json",
+    "exit_code": 1,
+    "result": "Expected clean-source packaging refusal; no commit performed"
+  },
+  {
+    "name": "alembic-current",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "alembic",
+      "current"
+    ],
+    "exit_code": 0,
+    "seconds": 0.55
+  },
+  {
+    "name": "alembic-check",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "alembic",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.39
+  },
+  {
+    "name": "pip-check",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.24
+  },
+  {
+    "name": "python-audit",
+    "cwd": "apps/api",
+    "command": [
+      "/tmp/evidenceai-m11-audit-venv/bin/python",
+      "-m",
+      "pip_audit",
+      "-r",
+      "requirements.txt",
+      "--format",
+      "json"
+    ],
+    "exit_code": 0,
+    "seconds": 32.78
+  },
+  {
+    "name": "npm-runtime-audit",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--omit=dev",
+      "--json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.82
+  },
+  {
+    "name": "npm-development-audit",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--json"
+    ],
+    "exit_code": 1,
+    "seconds": 1.05
+  },
+  {
+    "name": "actionlint",
+    "cwd": ".",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/Users/redmug/EvidenceAI/.github/workflows:/work:ro",
+      "-w",
+      "/work",
+      "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+      "-color",
+      "ci.yml",
+      "deploy.yml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.28
+  },
+  {
+    "name": "frontend",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "seconds": 2.32
+  },
+  {
+    "name": "lint",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 1.76
+  },
+  {
+    "name": "types",
+    "cwd": "apps/web",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.88
+  },
+  {
+    "scope": "candidates",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/candidates/api.json",
+      "infra/runtime/m122/candidates/web.json",
+      "infra/runtime/m122/candidates/backup.json",
+      "infra/runtime/m122/candidates/proxy.json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "high_critical_occurrences": 0,
+      "secrets": 0,
+      "status": "PASS"
+    }
+  },
+  {
+    "scope": "support",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/support/database.json",
+      "infra/runtime/m122/support/prometheus.json",
+      "infra/runtime/m122/support/exporter.json",
+      "infra/runtime/m122/support/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 61,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  },
+  {
+    "scope": "grafana-core",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/grafana-core/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 56,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  },
+  {
+    "scope": "grafana-candidate",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/grafana-candidate/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 61,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  },
+  {
+    "command": [
+      "python3",
+      "infra/scripts/verify_release.py",
+      "docs/evidence/m122/release-result.json"
+    ],
+    "exit_code": 1,
+    "result": "BLOCKED"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-grafana:experimental-m122",
+      "-o",
+      "infra/runtime/m122/grafana-core/archives/grafana.tar"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/grafana-core/archives:/scan:ro",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/grafana-core:/reports",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/support/trivy-cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/grafana.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/reports/grafana.json"
+    ],
+    "exit_code": 0,
+    "result": "Report generated; security policy evaluation fails (see strict-gates.json)"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-grafana:m122",
+      "-o",
+      "infra/runtime/m122/grafana-candidate/archives/grafana.tar"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/grafana-candidate/archives:/scan:ro",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/grafana-candidate:/reports",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m122/support/trivy-cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/grafana.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/reports/grafana.json"
+    ],
+    "exit_code": 0,
+    "result": "Report generated; security policy evaluation fails (see strict-gates.json)"
+  }
+]

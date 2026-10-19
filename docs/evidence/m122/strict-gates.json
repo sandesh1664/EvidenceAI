@@ -1,0 +1,64 @@
+[
+  {
+    "scope": "candidates",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/candidates/api.json",
+      "infra/runtime/m122/candidates/web.json",
+      "infra/runtime/m122/candidates/backup.json",
+      "infra/runtime/m122/candidates/proxy.json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "high_critical_occurrences": 0,
+      "secrets": 0,
+      "status": "PASS"
+    }
+  },
+  {
+    "scope": "support",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/support/database.json",
+      "infra/runtime/m122/support/prometheus.json",
+      "infra/runtime/m122/support/exporter.json",
+      "infra/runtime/m122/support/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 61,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  },
+  {
+    "scope": "grafana-core",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/grafana-core/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 56,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  },
+  {
+    "scope": "grafana-candidate",
+    "command": [
+      "python3",
+      "docs/evidence/m122/check_scan_policy.py",
+      "infra/runtime/m122/grafana-candidate/grafana.json"
+    ],
+    "exit_code": 1,
+    "result": {
+      "high_critical_occurrences": 61,
+      "secrets": 0,
+      "status": "FAIL"
+    }
+  }
+]

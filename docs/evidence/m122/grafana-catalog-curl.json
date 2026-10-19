@@ -1,0 +1,2458 @@
+[
+  {
+    "id": "elasticsearch",
+    "installed": "12.9.2",
+    "url": "https://grafana.com/api/plugins/elasticsearch/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "12.9.2",
+        "url": "https://github.com/grafana/grafana-elasticsearch-datasource",
+        "commit": "a4b9ec92456c705a5b3ff81c538c19293a5ee88e",
+        "createdAt": "2026-10-06T17:16:58.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.2.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "ac2cdfcc7f2894c43582ed34ee0139c3",
+            "sha256": "e2308c86f9d00ac7ed2222eebc34ae276673cab2b5db33fc61f2223fe7cdc0e6",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "731a2cff8844d90cf48a51bc0198a294",
+            "sha256": "0127641fb1ff1528b2fab14981c9c09bc95e635377263864926810e92e9e7460",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "7d4f50bb658968b93987f3f6545fd1e6",
+            "sha256": "abda2fe09dc33779e9e2328601a89c357193dc7086b75866f02f7929ff174399",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "a943414ff09fe84b0df1f4624c3c80bc",
+            "sha256": "7e7eb1b58f4fed7d18b5007bd52a75c43fae5d2865e664980738f2aefebd8875",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "4cdb450e4f2e35b758e251c332b1e82a",
+            "sha256": "5f30d94a8e00f6b50a2a913110d2f3f8a8ace167c42809d459e597ce0236178b",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "7bddbb8e31751ced04f928dcf5b50818",
+            "sha256": "b3da65547cdad92c1eb87da70665753c3cdf050441043f87b9b8f8f0fdf012fc",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "c5392ae3638f06e8c16fa62bea652213",
+            "sha256": "4a6466060b9ff42c64187dbde89870cf4a7af7980e5d340ed1c5040b8afe5508",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "b178d7800329e1e199fa25c3aa574467",
+            "sha256": "63f9c436bf403bcf9aee861cfc9d28fcb552758d89d19a2508df37c2f14745c6",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "2f8fccbbe444ae2095d4d7fe9a9187c8",
+            "sha256": "46aa20dae418fbbd81469013b960b0ccd6c2c1501295f91ebb94ed70823eb0cd",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.2/download"
+          }
+        }
+      },
+      {
+        "version": "12.9.1",
+        "url": "https://github.com/grafana/grafana-elasticsearch-datasource",
+        "commit": "bbab6fb808710af53d230e87bf0b8dcc281e5b2a",
+        "createdAt": "2026-09-28T12:25:34.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.2.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "a331bdea116187e95d77a1a7e299f59d",
+            "sha256": "9518b64c8c90ad1fe95291c2f30f0b21b1fc64213168a1a26112e7e9548e97bc",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "057b081e460ebf6d071cb0fe40865e61",
+            "sha256": "aea38aa45445461ae3abc67d1526768c0bb73a9499c28602ca1214197eaa032f",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "55a8d6de129f1276d6314c47946c481d",
+            "sha256": "2b5e4edc2dcb0c94ff413a15715162f2be0b7379079f0e9a9ebffc021beff551",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "e3373868024379a3cb4683a0c716d86c",
+            "sha256": "edf28d75e6f84bd9364fa95b90d4d58fd90dfe25a1826c60fd1248060ff758f6",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "e2ffb42a3feaa21643a267baf452f2a8",
+            "sha256": "7504c76693c013a582362a87e04d0d4f0538aef7e2c2024d34d1051df84341bb",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "6c778b564378593efb3f1e94942164bb",
+            "sha256": "8373dfbd9ce8cb7da021d85e4aa62c18aef2e3969c3383fe80a534b4f8ebb73e",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "c493234d9efe18609bb641dcc07323bb",
+            "sha256": "a64a69ca59d34454112321ebb896937c13bbb186765e61613991a1e4c6d53004",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "e699417eb94b8c87151d1468f90d2068",
+            "sha256": "a1cb52ecdc0b09bb18ff93e69d671e0648087782164b501da307993abbb2b3aa",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "a32d03ac96d161d708719c90705aaf69",
+            "sha256": "02fd7bf5a3acf805820ee4f3face56f0e07e7a55a4ca20c8e15b3d79ba589fdb",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.1/download"
+          }
+        }
+      },
+      {
+        "version": "12.9.0",
+        "url": "https://github.com/grafana/grafana-elasticsearch-datasource",
+        "commit": "8176419bd03364c6ba80c06381d091a60b876a05",
+        "createdAt": "2026-09-16T21:59:17.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.2.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "2da49f40690da513192660a7aa750232",
+            "sha256": "33afee6221f71fabde7e2db7d0ebe2901d88f7358290655726ed2721e04404d8",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "10b6b3116c66c030650865c2d0578887",
+            "sha256": "7beeca09b35d54c0d5b120579054a9134c4463826c6c8546c11cc0916a79274d",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "37abbd24ba93d69f764547c15f029f57",
+            "sha256": "fb90d74bbb8383f87d38c9b521edd7cef5505263edf88a1884ef6ab549d61b53",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "7b2a278a31105c86b3fd225b807ee68e",
+            "sha256": "79dc4fbd7bed4e731c4211033b0e5f5ae01d3fb1732555fa68b241e52a3a56e3",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "52792c8e1e435b9df20e88c309c9f418",
+            "sha256": "8d82aa74f3b82e774d8afaa785aa46e447210aaa7fe9276b2813cd9ffae0bced",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "990edcbfc4f9356e10f61dffc34c95da",
+            "sha256": "f75f2467a546a52c96b0173ef2cb9ddf10d77786b692e2c2638fab262e117e7b",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "aaa532861071db5f8898ec772393e753",
+            "sha256": "364be93bed63c2f22417f5c1e7f7e2aae854327454ef27a62768a9034f40eb83",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "a376360b5791faab02b1ac4af79478d2",
+            "sha256": "10eac31ba743154a88973783a1a9099a45a88fae2d7fa18610deeae5af42482e",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "511aa9572d41995338a630f159f4fbef",
+            "sha256": "9b54b5e76334edd726e8d7cfc288602bf61304f00578a20562fcdab314b2223c",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/elasticsearch/versions/12.9.0/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "grafana-postgresql-datasource",
+    "installed": "13.0.4",
+    "url": "https://grafana.com/api/plugins/grafana-postgresql-datasource/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.0.4",
+        "url": "https://github.com/grafana/grafana-postgresql-datasource",
+        "commit": "4d167c25053dc0444178451abf8a3f171e9e4471",
+        "createdAt": "2026-09-28T15:27:49.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "eb68c7297cd3d7d99819d2b3f3c11aad",
+            "sha256": "e8a951d5f0bfe88ac7e2659a767a21fe50c79665e58f4608c1a4acfdc70f4f8d",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "64333e98aec9210a65728e1e814065c0",
+            "sha256": "9272619ef5be517d4628f3e6f7b8ce13e976467cfea52a6db69b82d4b64f768c",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "7c7cb284e0d805e78b91d3b71faf999b",
+            "sha256": "d34f44bd13213502de4394955fcc170d70fb822531c181bff0179f216c35a0e0",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "0e89566d0b21ca95ae501f7d531c2ff6",
+            "sha256": "8d92ad5ed012e0c4a8ed99df4916dec59a691eb1c9fa9e67fa80f764d53d8836",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "75d1675a15310e3e39d6f67e30e4d3fb",
+            "sha256": "7b3af34998cbb7ef7854991f7103d6c4004c42c9a8bd405f90833b11e652b083",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "6681e85ca7b5dc19237e0df938ad00a9",
+            "sha256": "28e6579ae063f2c844b44a87cce25683416d39162090d66510a2e6be36c4ba2d",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "569c2598e245af5b4bb6574f6bc1143b",
+            "sha256": "e0c9f7b560229fd78b701fa803552127db4aab467bb036d506d8d124c62c7feb",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.4/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.3",
+        "url": "https://github.com/grafana/grafana-postgresql-datasource",
+        "commit": "59af90904a0839b54fd6a1f5825ff59ed8e16c37",
+        "createdAt": "2026-09-08T16:04:20.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "74ee3a503abeed02318aeddd20b7ed96",
+            "sha256": "cdd08477b385012b6502ada84f756b4765b6cb63817f31384ed6042f48517bfd",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "3f19ca13c960cd441c4784971a6f666a",
+            "sha256": "6aea40a7f9182466557a42ec956af8641c843d23fefeab720e64a85c1678485e",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "abb647b507501837e574385028828f07",
+            "sha256": "e033b54510d4c24b34e27e3f97615ad0b8b853431bda04b96804cd42adc6ffec",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "917669b4c92f849e6c940240c83553a6",
+            "sha256": "1af46d538395bdfc57059f24b6a17b698fc9fb04918983fef7ca404079c50c07",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "1814b6740d3f2ff12ddd06452955e77c",
+            "sha256": "d521aeb0e372ed84c0e693041cc6338e2df1486aa35a3fe7cca0ffc09d2e743b",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "857c01e8e1b2ef83da8af131db31f117",
+            "sha256": "a01d115b96c8429fee8edaf71690e2500dc0925c9969842861eef28eea789f8b",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "e44fd3c8c2e458062f1a8b11c70f13fa",
+            "sha256": "90b20fa46f7c9532dc769119edf3eee86a0a8c242d8bdc5e3b10436a229096f6",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.3/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.1",
+        "url": "https://github.com/grafana/grafana-postgresql-datasource",
+        "commit": "dfaf814c8ee7c836f9b589e98c84e8ed7751d607",
+        "createdAt": "2026-07-13T13:58:13.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "bba6cc57a702bde6718d8d88890749cd",
+            "sha256": "d507e1e737ea1cce834574d08005ee2fd4873b8b98f2e4092f2eb8f000727357",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "64d2ce968f5f1240fc702e42768f9310",
+            "sha256": "d82f78dd2ae4d0dbb639d2ef5538f558c9a6e427bd6b4a8b19dec46ef413fa4f",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "774b55a9c8adee03abb35d8b0042411f",
+            "sha256": "0b4fd5df8b114b557d9c4ef4f43c2b7f6e698da0f2e5ca9b048deac6d9f56b6a",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "ab3d93817205304274cf1260b761e1d9",
+            "sha256": "85157d54998be5253abbe2200b88de4e66dd2eac0df24e95a60c8a6ac981f5b7",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "fb8e82a61df50627673641d3dc95dc91",
+            "sha256": "17c44c721cfac0d227a9d23d550f3981b1bce807a56ac386773ef750b8181d33",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "84ec3abfd16242cc1bfde90ae8699fa9",
+            "sha256": "856ecb86c370b6d00218853aad6c39ba2627b9a99d65c2e21fcd2af2635c9590",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "0f589c998a868e6149f6316185b38262",
+            "sha256": "55bc8c5d1bb60b7988e01035837d729975ebf603b3bb2252602c8b14768633c6",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-postgresql-datasource/versions/13.0.1/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "grafana-pyroscope-datasource",
+    "installed": "13.0.7",
+    "url": "https://grafana.com/api/plugins/grafana-pyroscope-datasource/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.0.7",
+        "url": "https://github.com/grafana/grafana-pyroscope-datasource",
+        "commit": "fcc51a6c9f04f446e7d6ff0a7b3a288e3ca8c52e",
+        "createdAt": "2026-10-08T18:30:23.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "4cd3150fdd9806454cb7a343139178c3",
+            "sha256": "ebde7ad568a5ffc2e22fd96741089ba3ea1fe1c1e3dde3ced85814c77e2fab6f",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "ee7ce5ebcae4269a3ca00aa34dc7551c",
+            "sha256": "2c96fdf3d6f0e925b95e6cd07e7de2db9f1e743f246ce3b3ad92be033b7e248b",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "f421ec25954699ba306d0ad58a3b978c",
+            "sha256": "397266357522001d19433d3b77c49f6bbf2210aea5e2a8d51bedb93ebc74b773",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "151b00814bf1e10301e207b1af8d4817",
+            "sha256": "84d4d9d8ba10b1e8c0bcbdd5bb313359ff713835af6f0c9d98107c6216d723d4",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "12cb4191c646a3888ef72e48ed073583",
+            "sha256": "c04f7b55881c6165818264006d4c497196a9ea4f8343bdc8afdcd61cb04d48ea",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "5880ef918592e2d8bb828c4c07fd1694",
+            "sha256": "5c22b8c94bd8d4b0f0ced0ea1474ef99001352f0700726d5c6bff9e42daf8cc1",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "24a1d605ca02be02df3f526af6a36659",
+            "sha256": "660c081d255fae1b18652ea0d76ace78a5968dd372fe4ee109bacf767ac2b8d3",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "3af7bf390e98f367a17ae980638869ec",
+            "sha256": "5405559b6e06312a90b8ecbf985a8da3e2a3ab5290fb01849a248f5a27087c1e",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "fca08e8e775f54a5e54652e955339714",
+            "sha256": "607603efd43ef6d4507582240b70eea8f2b7f2eb5d77c21491c290e06288a783",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.7/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.6",
+        "url": "https://github.com/grafana/grafana-pyroscope-datasource",
+        "commit": "1282a3ad29722ced1192794ab5dacd58e5239071",
+        "createdAt": "2026-09-10T10:14:53.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "23a633158ca1fddfd5e70c523ca9b732",
+            "sha256": "e508f040eeb654fe0522b2c4364a1bbf4af6b2d7b7eafd942cbce0e68856c234",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "c69016f4bf1a1c9d5659bdd9ea0c934c",
+            "sha256": "754b28df9c9d8596420d2dd166171bf3073d398c6595f57219335f28ba501c8c",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "21d4eb96782051dc08ac0b507e25488a",
+            "sha256": "d4380ee6a82f1e284e517bc78826c6ede6a34c0a60d3c147f37e80d3c7038cdb",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "438c2e53d44cb679ed6c1b94d19861f9",
+            "sha256": "044db66b49581b27ef250b0a2ebb65694d098fcab219d9529e2b17f79c1eabc9",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "08f2cad5713f0f997ae8df6621a35f6a",
+            "sha256": "93a8a11d224ffae8470f3100e04b4d70561d496f14d52c91a6b1582c51cf51be",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "e944e2803df0c7c71545031110af0cef",
+            "sha256": "d50e707f4f48d9ad5040ca3c4439a8a2512b3d8fa2c66a217aa0aee5338bce49",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "56550350f076821ab29d6ef8da241700",
+            "sha256": "112f1b9394ec3a0a7948bed2b599e95252d3c2dbbdcd49c6da9e40ba03a5cfbd",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "849898db10097fe96bced9be4796072d",
+            "sha256": "7d70879bf06630194763cd5a6cd3264a653209316bc365a817894ca39b568592",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "3d95ab9b6bb7ccf5674eed3dfefff0ed",
+            "sha256": "39ecf87cc6b2f2ff649b5d1f578463e4f0ca45a06e167ea1c9703df4ecb6cf22",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.6/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.4",
+        "url": "https://github.com/grafana/grafana-pyroscope-datasource",
+        "commit": "f5366bd5e7c363e08a55b2cfb74ec6821fee2dd0",
+        "createdAt": "2026-07-09T15:31:29.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "7af8d5056ea19a9731be2f0fade51e81",
+            "sha256": "08a5a56fb3986ca9caaf0b2d128dd6627cbdf26bf67eda2368105529e6b60ae9",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "e0aa4e9de3d89aa8769704c5c770ae3f",
+            "sha256": "c8d26c56eda46ba24ec060786b5e2c61cdfc9aeab976f7a28ab2b53394eef28e",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "685c0123c91b44ab31a5ddd074c0a3f3",
+            "sha256": "1bad7f690bd27bc98689f355082e178dfcbd815072f4ede6e4fe736d47c4b695",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "d65d1fd9b8b88249465f78391beef73c",
+            "sha256": "b5f481b4680a865b5bf98d7020085b42d203127718f3626c68e3182f11e5c82a",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "26fb6e3a21fe8b513445b2c2ae95ac1e",
+            "sha256": "32ffc21c4115bde42649ad10720b64740763ef7db93d37cf92565a8686ae2172",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "a1775ad79851441e12b8c506f55d86d8",
+            "sha256": "8ef979076450f34c5330be3c18b3af6598c4166af71f0f9c86e481d88118895a",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "a7c4ff2c98d768d7728caafc22600fd6",
+            "sha256": "3423edd05865677b22b616ab51f58d686caf15accff77c826b5c792490f2f851",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "1dc74fe905202841c8c4975dabfff004",
+            "sha256": "4988744a69cb0f3be9ab44ff0dbbeb89639367e1e496b0e8f65d7ee640d70c73",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "8805a506ec1741870fca6496cf7dfb64",
+            "sha256": "5050ab9236d07c87adf6dc433b8013edf7d3a70a52f514b66a4723381aff6aba",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/grafana-pyroscope-datasource/versions/13.0.4/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "influxdb",
+    "installed": "13.1.7",
+    "url": "https://grafana.com/api/plugins/influxdb/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.1.7",
+        "url": "https://github.com/grafana/grafana-influxdb-datasource",
+        "commit": "030eec102c9cfab314b73c87a2599ba8bb80bc40",
+        "createdAt": "2026-10-07T19:40:58.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "11cb6a669cdc411e8e9bec34baff7602",
+            "sha256": "0a61f6315ef818fd5cdb22ac1353be6f1125c2fc03a6a29479619aca65fae547",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "4ba34bd3898c225e35354317fb7820d2",
+            "sha256": "c041ce98d18d99c07b26a55bf720a8f9b10bb7acf10b7a1c892cf0b85e384b8f",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "043c7122ba384c61530f210a15ea3671",
+            "sha256": "640a19f8494d41b2d4f12b10670348506698fd3b0a5ac9e32e9601cb65b40897",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "93403acf879f4312ac2bc8221b8eb796",
+            "sha256": "6cbcd7f94d29c19ab98c44ab70fcfe1bca992e44164b4be6c4fbe089680b2957",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "5301226436187f3a668fe61280e704f5",
+            "sha256": "82e2bf75c04d9c04626877cab878bf09e5a3115dd1368362881db3cf90dce813",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "00e1942f69a8daad7346d023395e393f",
+            "sha256": "519a9133f3fbd9856763fe0530f37d747a35cdf021ed4b2fbea0fdc6cc14fe05",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "e866e40a7e3a3ce71cf070023b8d4eb3",
+            "sha256": "ee14b52da2eb5743c48e52d86e70aaa303de61f01c10a6a2ba9ca89e09d8cdb2",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "4c57d15e696465b8f848072d4fff9be5",
+            "sha256": "c430db7507a9620ad2764679b9067bfd388782faf798a1029c244411df6d162c",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "8ecdd40133767f3978abb70975098f93",
+            "sha256": "eba13a336886823997c0cd237b72d948f2790448267815c8529fa9e91bce0ee4",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.7/download"
+          }
+        }
+      },
+      {
+        "version": "13.1.6",
+        "url": "https://github.com/grafana/grafana-influxdb-datasource",
+        "commit": "f4594324c6ae0810a20ee3721ef4ef56ac3a868c",
+        "createdAt": "2026-09-28T15:41:13.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "ed2371ac239cb7a2e73d33a30970330e",
+            "sha256": "8650570dfed9dcafe3e998f98cdab48ff3b547e2df771691a9911ea9604b1587",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "865f0ba089b72bc8f9d37c7a3598b8df",
+            "sha256": "ef33cee2ae4287d505d4a31e2397cbec37189a9492730ea9633aa10a39805cea",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "4a019bd208f1fef688a0df11d5b957b0",
+            "sha256": "ebf559b2a3d2375efe7959568a132c16ebe1fe7c55bfaf2ce7643693d6b0bceb",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "4f7288f1d5779cb40873e8384a55866b",
+            "sha256": "1b96ffff9a1a2b9da6fd2dc79fc820968c3dad60fb11abf3025c84a4f6202e13",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "28e23fd47eafc46a04458d1351ca4759",
+            "sha256": "50d049ea7069206e677e13c645a92e826e3deb6d618266c6f158e8f2163a65d1",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "b5fc936147648e673b260bd96efe6439",
+            "sha256": "a925ea11313b0eed5d4d101c4abd604e4d0841cdbe4c3c93a4a06f5c82c0dbc6",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "15c3b69ebe0e160681d93410908bf606",
+            "sha256": "7bb206d3387d1dcef671e1706989164c56478043ccebb16a1ddf6bac0486f8db",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "ba5dca64025fb8f34b29d882d700865c",
+            "sha256": "7b103d8790e110b17c384d48ccb791a46114f7a0801c01f6ffdc2246554f1aef",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "4c0a09fd32dfc2f3fc87271a42087165",
+            "sha256": "d7e256559d0711eb0b4be26f66aca5094e5a15fb101ef90e096f0ae9f7e66983",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.6/download"
+          }
+        }
+      },
+      {
+        "version": "13.1.5",
+        "url": "https://github.com/grafana/grafana-influxdb-datasource",
+        "commit": "852bf23d0eedd604bd3af60535e9adf4e8183ef2",
+        "createdAt": "2026-09-24T14:58:06.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "4be966b4818a3e35bc9e8ae57328b487",
+            "sha256": "92c25f96178b2260dd42e0ebb761e85e0ebc891d6ab595bb895a5e68617c164b",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "6e8cd124edd82d16fddd8bffd3388d36",
+            "sha256": "d8268ab98c786fddcce68dd146a39fa5f7acd094361e850c4ddf738f3965e6fb",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "348179537d2a0cff0f58fae1ae4b1bd7",
+            "sha256": "ef2234efde30055b51a1364f182ae20089b8f5cf712d93cefc3bc214e2bda38f",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "89afcb8d23f398435c66834a218219d6",
+            "sha256": "8e30c1af7026524e180855a5facf144a6d998020280c3b4f00192bee79c05d02",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "2ae00db00b3dcc2ca713b7fd9d4401cb",
+            "sha256": "6d323f50a6c876a578be95c6f095516628ada410723b55e421a2796090beeb1d",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "6a4c50b0a1186f8e3fb728de47ed44ab",
+            "sha256": "3953e0dc7d0d254a61d474de0e0b826586c10916f427ed5fccfb465dae6f1e33",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "4993dedd8aea4803630f8a505dff56e4",
+            "sha256": "568d21310af406d4b9431273c7151e2bdb5785da0049a51dc0f1573dfb40e0e2",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "8361c907d2b95940ef8bcc77f8255749",
+            "sha256": "91624b8b4092471ce96a1aff3a13f17171bb9285152969e4082e4303ab4d32b3",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "7ae4d9cdd1f9c558faf10bbc2cb1344d",
+            "sha256": "32b476cca5cc6e1c7772e91b536ff3abe0f8ecb8b566dba7f061e60a79e260e5",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/influxdb/versions/13.1.5/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "jaeger",
+    "installed": "13.0.5",
+    "url": "https://grafana.com/api/plugins/jaeger/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.0.5",
+        "url": "https://github.com/grafana/grafana-jaeger-datasource",
+        "commit": "f2e2b7c6e0c2504cac5d30141e4a2f7b4990fe63",
+        "createdAt": "2026-10-08T18:38:50.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "794e6c5ab971cefe90a0f4eb1ecaa3eb",
+            "sha256": "05f582d38a49e195687b139aed994105d783a5ec461deaf91af08fac23b6e530",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "92c1c75a1b2bb0dbee973a0e6e3d2d8f",
+            "sha256": "cf344e8831c8f44dc36e5aec069aeb849e51b5be5c9f178ad18da7125b161387",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "50e7fe5548df1ef0c8628aa3321dabd3",
+            "sha256": "dc57642e289ba81a2dd7179b0f7e945966f5db1234c7aaf9e470a2db34207ce1",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "b0dba42cb2d8a431550998699d49c4f7",
+            "sha256": "53ff111b5f9483358e77e0e9e49ab2ed9a4ec8cabf9b6eaa7db96c7ca33ff5a0",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "cd1559dc98eedd7cb73fba32284d7c70",
+            "sha256": "62cac5d2ab05881ddfafb0654267406ae13df3c11395ce7ef6f65e0b3193c17f",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "3eab391124075441553b0567ae67d625",
+            "sha256": "ac1db1a3652e7f83430637f1ec7d507418a5cd72d4941157acaa56d1e95227d6",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "2258da26f06ee36d0cdaa4f627bab07b",
+            "sha256": "0f48d7d8ced5e6869f427f8fdb870087baa935ad9ba78c15e0edc2b491044dc5",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.5/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.4",
+        "url": "https://github.com/grafana/grafana-jaeger-datasource",
+        "commit": "425852083a6f0db96749497cccafe7196135dd82",
+        "createdAt": "2026-09-28T15:33:30.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "e5c92c1f36fdda40e6c44e483f869ba6",
+            "sha256": "9e3c15aa0351813ff10a66d67ffd11848e515aca904c0efb48d238960e4c81ef",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "73646605f0097bd99c2785beb34a6f4e",
+            "sha256": "3fb0bd0447b83402cd0bccaad45323c1f7398da5ea1605779e2f4de25b6aea6d",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "9a4ecba20207bb4936435a4542d2aa78",
+            "sha256": "2a2458a646e735715a47bddc02a0dbb86a0c88412bc7851f3fd7de212b0a7c14",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "9174b5bad1670e1252fb6500ceefb252",
+            "sha256": "7940d63d9c16b7b85ceae80949ec4e1e7c3629bc5d53dba63a10a1473abe95ef",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "d9c51dae63cc075dd36aad0dd6086547",
+            "sha256": "0d6476aee8ede54ed7a0ec533c8eaf97efb860a90c44ea4bda37b8385ef7f5c5",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "b227195471817c53dd0b085b03e45431",
+            "sha256": "6db2f4e3aa18f73f305d88ecea55be16a6d0c4b8a20314a44d5a8971ad5883ac",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "96fa7e00da18aa18781292aa5abc7557",
+            "sha256": "b67fbf11afc4333d693ee57b3d02565cd13d29a47954973c34f0a34f9895c3da",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.4/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.3",
+        "url": "https://github.com/grafana/grafana-jaeger-datasource",
+        "commit": "ef21e6e57b7083a31fe9309b3af1459010e0085b",
+        "createdAt": "2026-09-09T22:50:02.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "43aed9d82bb1fb1efd289088e1292f19",
+            "sha256": "cd76c9ffb8ea9dca076cab0b425cb43e92d44519228e0629a2fac67556dc43b7",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "3ddbba3b9a7a0e92d22da4a6da0fdb05",
+            "sha256": "ef84bf5359fbe6d62a2ec8c6be81c00c36d0c17b92ff0d6436ecc9e237bb3521",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "f1e768b96586f9448a2197d2a119766c",
+            "sha256": "5a2830e24a13368128ddb7478ee024bbcd3e5a054acaf2ac16d5d59615a0074e",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "dd85456622736845b2c6e13a4ad9e4ed",
+            "sha256": "188f46742a77be0deb45a883f976bb3c81ec2e2d4ad8a158f20635a52270d07f",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "987a231d080f8867c066cad4f65fde54",
+            "sha256": "07927e34e59767431949e493f2952081d1cc80aa3e10b9f608c518ab0c69e438",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "3d0e1aa70250fae54ba8e48d901be50a",
+            "sha256": "d98501259ab5733e7b8a59eb0725e7f709d1fceb7ca03c42cd4ca98a8fea2b78",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "cfe3425fc8a8b93edfc53ddb2037c11c",
+            "sha256": "2240a42f784a8856f134f31e975e3bb6a57913348bb091d5ce4f61395f17b2ed",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/jaeger/versions/13.0.3/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "loki",
+    "installed": "13.2.2",
+    "url": "https://grafana.com/api/plugins/loki/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.2.2",
+        "url": "https://github.com/grafana/grafana-loki-datasource",
+        "commit": "6d076df3d695f5fda342fbbad1f52547b55a96e2",
+        "createdAt": "2026-10-08T18:35:57.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "c41a6483851fba325c52bb50650c9bd4",
+            "sha256": "29a94c156f575bdca42000c78f93a570db3818ee75269f7d3fd1a58641877285",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "2efcf68f6ddf1e3f1fffaa5d7274f131",
+            "sha256": "77418fc8eb20cc6de8c18817fe35824b4a27760829efd8ff631872861bbd5d27",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "6b85b2857a5e28cfbf2873352bbe5571",
+            "sha256": "0d1f5794d34febc54e55ac05ac92ea4ad6548ec3f2521865116c9ed46f7d55e9",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "4f52e08d37e6028415ed4772a8e14f19",
+            "sha256": "e46e83966ddeb8dd4a7e2cd6ffc8a2530023e50953583943f0327b98aa8a314d",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "c829471041d62b2193187f54fc0bf454",
+            "sha256": "7351ef25f01bf5347ad0db13b66a8cbc8b6b91272dc11f42ea2d700a3ac60163",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "e51c523a653136259a4e4d9b09759f1f",
+            "sha256": "9373240a646f0e1e3da2fe103e2c979fc451f739a34cef957182e3873e54312a",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "9b77bf0368448a775927dc2113a40c9d",
+            "sha256": "8d09ddd4653efabf3aa4d31da98aea9e46ce35d8f8bd77bdee5ce465a5876be8",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.2/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.1",
+        "url": "https://github.com/grafana/grafana-loki-datasource",
+        "commit": "9f30ae5c15698ebf5745439608bb8335ac1a2340",
+        "createdAt": "2026-09-28T15:30:50.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "ecbade89a876bb3cf41a6f9ad0d248df",
+            "sha256": "c9e9ef51c866360b380631bc34fb8682aa3c78be55567b7476f8c5fc541f546e",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "2edefba3aecef5d779ba76c12792541e",
+            "sha256": "d4feb290471deb820c9202ec3277fb1246f116531145682e254c0253d0f45fd1",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "0bf3607104e209c9ada369386bd5fa52",
+            "sha256": "ad64433709b43eee8744b4817f1e183bd08266dae12ac943e037b56670d49c52",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "9c8e21d1ef368f1dba6317afa353aa22",
+            "sha256": "820c27f940da576bdd83cca5d0c065d2a9f942f11b71dac0b93a2c20cc7d1442",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "68782044721fb8a68391bcaea758e580",
+            "sha256": "0107190a48790f10504e96594e722da36aeae21eb636803a04975ffd1d4a9663",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "0690f32493861606b5c639bf876c5046",
+            "sha256": "afe39bf5c76b30f49b694a15d7e940a06690b581640c9d5f41d05c418d2e11d0",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "753645ada7195c244a11626da91432f4",
+            "sha256": "6a8a92affeb1b8c95ded7cd1d7996334d6b72d948cea801265cd46ed75a47058",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.1/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.0",
+        "url": "https://github.com/grafana/grafana-loki-datasource",
+        "commit": "bf56f07221b363c2aaaa8a6d0b4e94f287a8ab10",
+        "createdAt": "2026-09-10T22:07:22.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "05a87cf5a1c955a7cca8fdfd0f483455",
+            "sha256": "5e7c4dcf884284778677cb734575d6c32fb95cda3645599b7d38fae50adeb6e3",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "fe571c21ca5a411576a1a9f99a7f3819",
+            "sha256": "2062988cdeedf363ec0e95e0880ef975f1ea034b0ad4cd5f2277209d6d340967",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "c5f6472d565c1ff63dce27781bae7192",
+            "sha256": "982f2026325901971951de0f1a365f8cfee8ed533b1cddde8826f2fd6b1e6a5c",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "b5e3235cd97c61c203a5ea113fa6fbe5",
+            "sha256": "b7fc3dba2e8a405a41ae05992d8948e1aabd4e5a14dc003845f2fe6f305f69f1",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "0695835ef903d319f17da22b0208be9c",
+            "sha256": "345c5c98f139064d45b8ca800023c885019d9f484e0f7b8078ff8aa1108f29e0",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "869bec27797168de60e33aab4a2c2314",
+            "sha256": "bcb4bac62f26cc9284b1d57bdffd7ab7c343a5986e304517349c6bed11d008f6",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "aa01b0be55a3bb0cca841afe91ab3062",
+            "sha256": "a323953ba550533864144050209d92292039c64d44e3af48b9c2fd1e11df4728",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/loki/versions/13.2.0/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "mssql",
+    "installed": "13.0.7",
+    "url": "https://grafana.com/api/plugins/mssql/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.0.7",
+        "url": "https://github.com/grafana/grafana-mssql-datasource",
+        "commit": "e0ad61ae045182f7869ba35afd1c48069b6add43",
+        "createdAt": "2026-10-08T18:37:53.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "0c413b13f73cb30145307b699d80cd0f",
+            "sha256": "d12c712b2cb296c0b68b29d15aff525af78d881dd4ba1d8512f53e3c30b77259",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "6cbd0a1baf79ea17b667a75625413fa8",
+            "sha256": "b556b6d9c1b14c2e32c14b9e3961bbc8b7948698a3a52a16cb295d727335d02b",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "582ac5909efa243ed13095c7e6a6896a",
+            "sha256": "4c7482151acda930ff35b45bafa0d90ec8636c8f92350a20a287496bf7e202b0",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "96560b311e4d3def83a1bf3e83c06129",
+            "sha256": "0639641d285f749719680a4219c2b0cf851061de066c5fed382600c10f937738",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "d509a5c5238069b3e75dfdb1ce1ad409",
+            "sha256": "39777fa140141325a2ca653346b03e4f376ccdde869c7db226ec950879afe1fd",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "9029c4c5a81ecb4472b6700bcff60757",
+            "sha256": "30f11516f303974e798faabf709a9f63d3f759a366ac961cb39dc451ac34ade7",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "b930f08aac78bded4a2a4c5020db90a8",
+            "sha256": "496dac761f207652fddd10cf992def76154cc9206a4da62c544f07140ef1beaa",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "9c2ea92b9dbfc5eb798ad5a159946b75",
+            "sha256": "58f0d67c769722bfd30e3b8b6d2b22b3780669434d907d971ad6c47809c79b7f",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "5c019f2a88205fa824b9fa504a0fa07a",
+            "sha256": "163e09e94b0ddc49113dffeb268db44c43aef3b44ff0e862e9bb9d7724a33e67",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.7/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.6",
+        "url": "https://github.com/grafana/grafana-mssql-datasource",
+        "commit": "4112a42def3a759450321e4415cf0b95aa93d88e",
+        "createdAt": "2026-09-28T15:31:49.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "3ef3bd9d90c99f1d4b218730e07c9a96",
+            "sha256": "0bd256ca16f086f5e6b89535009edc079dfd26267683559292973a03f53affa5",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "e98d8c28c9a07178ed1e710717474481",
+            "sha256": "1fe2b73f1a654f02f3231e2ba086762ee1ffe8df81368ae7c564c35088eb97b0",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "d1555195d929ee9569a959b8f45a18a0",
+            "sha256": "7a447327c2df3a7b6bf711fe85bd2eb21bb91539d42194d058cf9663b95ef8b8",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "ca76a9409c0cdab006d1878afe27c385",
+            "sha256": "900cf0943c337dd2a46cd1763060a2ea5e66f3f9b4daa7944315b7c04238e53d",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "3bc202d849cae0f1065a682ef361bdcf",
+            "sha256": "352313a5c2186c7513425e808cf57441f4d4849bdaaa780647617b22306b3724",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "38b01c8b4a0dac014b1f56592692fa34",
+            "sha256": "c2359dd783b68e4b4ae394f50944287202a969539c9973425df8b3f30921afcf",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "561c22b4aaddb1bfe0d6586228d218dd",
+            "sha256": "fdc7f84a116f3eb90329546c9dd0d88d985e2c39d97480d0e74cb5dfeaaa2a3c",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "09102f46fd6b9f82d69f08924bdb1f28",
+            "sha256": "dd3d0c8b5100bbbcb6c257c95c00ed2ba76844ce185335591e4c69242d9b21bf",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "65b72931e26d25023282657f423266ce",
+            "sha256": "a3aff022b21594e40e704cefdfdda08bba4bd4c037a89985b8c5dd35ff91dd9b",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.6/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.5",
+        "url": "https://github.com/grafana/grafana-mssql-datasource",
+        "commit": "88366b503bd635558c121299039d5c05bb30228e",
+        "createdAt": "2026-09-10T19:34:24.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "2f9ae921e2df0acad30a4bdf9a314afd",
+            "sha256": "1408b44f09bafb4bc1f53e2b2ef346df10a8bbee810abf175cd2dde62fdea7d5",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "be8672b97addd3e273b2909dcf80ee88",
+            "sha256": "68c68d12bd2a65c87f397cc043da6c381f926603c5134392ab53f0f681a39212",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "8752485ddf4141405207090878f9f7a8",
+            "sha256": "2f1a831a2c97a20d55bbd0cedd0894be2ff29bb9d1096e8d2c3ba7ce47fc9aa2",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "4d7cc20e9b50507902682bf200c3da9b",
+            "sha256": "208fedad07f76a30b21a482f24c89637502573d66ad106de4dd0d2a558f3c0ba",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "a68feb852e8c8455df6ed6109170135e",
+            "sha256": "8889cfd74b1cf75547d223d69c420c29ceb4fc5ca017531f6378eecc39a423a9",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "907d7041426255e1f28025d8f5f71075",
+            "sha256": "fcc54c7a08a55623f5909d56aa70b88beac368a253d998f514f1dfad7bab0476",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "1983db8f9b5c2d0bc2f4b2cbf3c7edf9",
+            "sha256": "18696cdfd69a446a47bfa8e6b56ef43eb0ca0188bfec0d95eec6c43100bf9c77",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "b17c68168c8625051a844e9fa3f32ab7",
+            "sha256": "fbc6d68a0474208108cf5996ec00d86a4b5c88d4f3d186e694cf22b50ea9e693",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "63789654e5e2ff2723ed249191814822",
+            "sha256": "b1daf0434ece3a593a591df588aec551a8c68362ee1f6ea0d9127dbf9bc1f80a",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mssql/versions/13.0.5/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "mysql",
+    "installed": "13.1.4",
+    "url": "https://grafana.com/api/plugins/mysql/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.1.4",
+        "url": "https://github.com/grafana/grafana-mysql-datasource",
+        "commit": "453ec30a1245e539974d869a62f1c09bb5b9dfa9",
+        "createdAt": "2026-10-08T18:28:17.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "bd717cfb87f058d2abd78526a5a26135",
+            "sha256": "a9c502b68aa4dd755022cfd8531aef92520cb82e053b4f9520642b51e17a60c2",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "3ad75947b16ee2701bf92f7ddb3f553a",
+            "sha256": "17e36ca1f7f3cd92f66c99d437294954f2c9babc02980cda5c5095c366a7780b",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "102b5fb00c4a4f99ee6c4020ff0d0403",
+            "sha256": "70ad88d3a304c677ef59603adb644ff9958d3abaae773793b8710d69651845c6",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "752452e7270b921004b1d6d3ec8927b6",
+            "sha256": "6b4d7932f66f63501551ea7db30ca191f5318a7edd6b219e9f44f191faca2d50",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "4eabe2f16af0a1d511e68ad9bd98f5e4",
+            "sha256": "dbad2bd02a24f11a9075e0ef619d6c58011dd370f0ea3cdac15dbbf2b37d665c",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "fd0434c4bb2a563ee25980c97c2c2743",
+            "sha256": "dd662a0a385155b268ac69c421121f7a160d5a8d50deaf03627afad0e5dbe72d",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "3e89d3b0c179b5cb60da48caac4b0cd4",
+            "sha256": "078a33f9c3a6298536dd938a31fc209ff4f450948dbc61e318ed92f153a00b78",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.4/download"
+          }
+        }
+      },
+      {
+        "version": "13.1.3",
+        "url": "https://github.com/grafana/grafana-mysql-datasource",
+        "commit": "747f6c787a7adbab3da6603e642f6c82e284074b",
+        "createdAt": "2026-09-28T15:23:59.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "9131d0913362f25a9cebc8641905d47d",
+            "sha256": "a635bb6497b0f3e570fa8ee6a34402c421729eea81bd1ec33f6897836fa2dbb0",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "4060b5c259e12a5a2a14e0b78d012123",
+            "sha256": "1ce3d59445621f8b50f07edd6ad9d41de0bc072045b33c47e72d27512875bd9e",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "4e0219577248086b96c2438bfbd9df95",
+            "sha256": "894f3ce4a763486fc24a2cd0bc7cbcee27e829207301935de4f5455390a1a780",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "0f97bc934b9547a3fe4ab2bae075a067",
+            "sha256": "e4b388cc1ddba33fbfcb654cf1a767cde163af7b08a3dd6afdc5dc9331be3a58",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "4750b4c4a2a998ef9418fb13d9d814f2",
+            "sha256": "8ef1ecc38ce3f0d0b598bc8e36a6e945e5033ddc6e0205067883abb2a99bf841",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "c8795ff29ced7bfa6cd3256ad784cfd5",
+            "sha256": "b425302ed28c3b95ee414bb7123dfcbf1854dc74a2840407ad351058786bdd00",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "2275af2ad20a67cbd8139628e57dc993",
+            "sha256": "831027a79c204314d3ce1eb47000887ee7c3aba2c0e39cbf4c32917ae7ded86a",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.3/download"
+          }
+        }
+      },
+      {
+        "version": "13.1.2",
+        "url": "https://github.com/grafana/grafana-mysql-datasource",
+        "commit": "507be1535b213372efafb2959289cba3a5a620a8",
+        "createdAt": "2026-09-10T22:04:30.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "7daf5de21b8abcea3bc19968a7d7f620",
+            "sha256": "f94920faa807252605b1704ff290c193fead08ebc3ae7de55640bf7aad196c9d",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "ca79f0a105183ea56f55e3b449147f08",
+            "sha256": "929a312577fc801c42a3ed51f70332bbff053b9e2aa75d6840f5942623b50a3b",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "c63ffa701a317518212a9d65dc7a1807",
+            "sha256": "f6327899991df61efa4c1c934bc15f87aaee02f11284a071bd88a248bbd6a1c0",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "c76b6941aca587441f0bef3c52c0f8d4",
+            "sha256": "d8a05c2949dd7b9be59bf36ee40f9496d3adb8eac2199482af046aaa3c7ef85a",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "538f8dabbf6ee5d198186149a87ce004",
+            "sha256": "3d96bfee5b9b4ec188271df7e9d5268facfdaaa4bc718c0c59827101242e2a05",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=linux&arch=arm64"
+          },
+          "windows-amd64": {
+            "md5": "1b04dfa7a83fb3fd6fb401b83b21049e",
+            "sha256": "a2f299e1ab6a30909405cb80629eb13f1dc7567bcc1b2674841befe79f0c04df",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download?os=windows&arch=amd64"
+          },
+          "any": {
+            "md5": "bef1108a451a02d8ed8ce578e83f9e52",
+            "sha256": "86f3d46be86248e3538e6836e528789b2abc3a5a71775c61fbece9391e1094ff",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/mysql/versions/13.1.2/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "opentsdb",
+    "installed": "13.0.4",
+    "url": "https://grafana.com/api/plugins/opentsdb/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.0.5",
+        "url": "https://github.com/grafana/grafana-opentsdb-datasource",
+        "commit": "4aca35f82bf7aa96c0c437e4eb402024a5066a11",
+        "createdAt": "2026-10-13T14:21:07.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "c0b93656f1417f7e7b4ec0b04f65b5be",
+            "sha256": "d6b84deddf4241e3bd771143998e587f0de03ab6896c03bb163ab58c57fecf1d",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "590fc36a3f910dc4431c01043272b0ff",
+            "sha256": "46f46d1ff21b5d7154b2db1bf2c3068fe664a2da87763e35eebec9e9652a9463",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "04d9567726f6d230ca8cd1d74b544bac",
+            "sha256": "ae51e0a76901de07860777f5b992fe3924206181f4c99287a9d840710682bf24",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "05cf714e1c1323fa91bef35ae7ae70c8",
+            "sha256": "88ff8d2dd133280fbe0b8763cd47d81173e8916339db499b150576f369a1d9fa",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "f269ccd1a5bee5d9b6119cec30fa5784",
+            "sha256": "089b71a3c576dec39003ae809902428d54462c05d58d39a50f075f1180567859",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "144be0dad05fdd31f30e7e843eb5351c",
+            "sha256": "f206e80b4618697454da643e19b76c6c70233247f4f2954596d6d143e1be256a",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "2ea29a4ac0512f077c4aaefa9f99bf82",
+            "sha256": "48aea0eb59bb5a0daf10800730e0d54dca0d3ce02a2b2c7354785628671420c1",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "5d298e834d0cc159495fa21577e6dea9",
+            "sha256": "567c16d1bee9e3c9c7ffda6fe29a2cf43e1ce806472af65efbd483ff42403af2",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "32ff08b07b6711cad2e1b5ea450404ec",
+            "sha256": "03af18edeb8cfdb9c376ae679fd6e5ff5f16b6b0ac9761c140672310e3998817",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.5/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.4",
+        "url": "https://github.com/grafana/grafana-opentsdb-datasource",
+        "commit": "2e3dc74ef71fe4b57b24170bd2c35612bc69ac25",
+        "createdAt": "2026-09-28T17:06:07.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "d63156da38fbc5fdf784b97c2c81c732",
+            "sha256": "0881a788940801337e38f4cbc578523ebb996c2833792e76499fe4f97a7ca624",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "43cfac68b5c5ac05923c95170b2778a2",
+            "sha256": "6ffe96e9473d2c5293d62885324650e2621c3935ff2ee4fd6481055a770ca15e",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "d7a3f34f760bb2d3e56e44d390b723c2",
+            "sha256": "5fbe65a810453d7edc40e968fb3e19f1114d17d82401c4806727eee5b2f7f612",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "8a487bbd29cfcf6434ce85e543c9d6bb",
+            "sha256": "23c9af9fccc0af79f6e9871c0cbd7303cc76e179e0cae9ce12b894f4d7cf3e04",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "1cbac4a3fdac6961841aac866f036a37",
+            "sha256": "a3edaf676dcf7c4cf6513e1604dd49aa47e1e1de48a219688aa5ceffe61c9a02",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "3fca4fa7aedf6d714cc52210061b7db1",
+            "sha256": "602df74567bda01250c2cfc7a0bdee3b0e0e14a29459df65deceec50f165d3e3",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "4df35af524f102d0134d81813d5cbd5d",
+            "sha256": "a0f53430d4e973ff5b239c974d476dd25ed0472fcf2e8950d0842bc9d84a8e8a",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "08206dc8cdb5a94cfae0ecae1af44e3b",
+            "sha256": "699ca987745096c438e46591af02e98ff3ffde1bad8fb9b2ac57a2a136a30a97",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "4ea666d78194860e2feb2f81d550592a",
+            "sha256": "2708e686aab85b809426807c1687e46ac56b009a16ed5547a447b3fdc49f51b3",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.4/download"
+          }
+        }
+      },
+      {
+        "version": "13.0.3",
+        "url": "https://github.com/grafana/grafana-opentsdb-datasource",
+        "commit": "16aacae13389b2d0e9c3a03c4172f02e610a075c",
+        "createdAt": "2026-09-10T14:43:32.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "480b71a4a355510b84715c20183abfd6",
+            "sha256": "4bcca64db6c4c9b232e00ab309fd42af6abfd038b6768bbaf2a1dc7ce7b863fd",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "b53b8dd1e6cf0040977550cfd7d95525",
+            "sha256": "15c08f3ae15d18ec44628113fa1d0b612dfa2d4945e2096ed9e189df4e327a91",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "71ccaf3ede4f841f1e3fd30bda4b2f93",
+            "sha256": "34270f63a9516b9f83d2729d57dbd9558313a654f0ad10f9a59c1d3d027e3a32",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "cab74abd217ba2abcedec0572a0f61b3",
+            "sha256": "e526c2f156dbfa97b8fa0c91d590226356ec5d78a78ef05a5ac6f098d519296f",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "291746e126f04d953c3c3d1699f40f3b",
+            "sha256": "f47aa6ed60f73ac0368754779bb5714d383011ade13c2fc133701972e1edc8ae",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "475ef32524502b6656f8310f7230d315",
+            "sha256": "e7dd9052dd997959510a310b2c14f9129d9587a00184cbba509c60e5d4bfa464",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "19736b0b3890159083b294f179bfdaa5",
+            "sha256": "424e56910dd0437f5dcada511438a809fd1500e1c8fb8066d2af3a32f1fe896d",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "fd7712d849f49e5d17bade9001f6d0f0",
+            "sha256": "f7890a0729ea12da2ed3ab031fb2ade62f6e0432d889123e9ad8966d91329cdc",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "cc0218fe7bdedabda301f33b929974e9",
+            "sha256": "a8360697e8d8eeb03169661f91f88fb98411fe0ef72ef1bb2e14373dba194ff9",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/opentsdb/versions/13.0.3/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "prometheus",
+    "installed": "13.2.3",
+    "url": "https://grafana.com/api/plugins/prometheus/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.2.3",
+        "url": "https://github.com/grafana/grafana-prometheus-datasource",
+        "commit": "6d21418acde6ce31c9f7a6418a88758842a881bb",
+        "createdAt": "2026-09-29T12:06:01.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "b118a20d9667cee8fd608eba0d71cbfb",
+            "sha256": "14c39e4b4cf01167bb10d5af4e7d3feffbed1be102dce3246c74b647a9ea5609",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "6df0c6d8cd397f63e54afece18c9996b",
+            "sha256": "725b8a13f230f3e4639757cf830cee76458467874e27c484b1bfa4b9375f134c",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "47d1ac8e1d0cf78824aefe8b1f250c9a",
+            "sha256": "8bdd6583e398f84d497dabec0287563b9eee471d711dea08a21482db5cd5a294",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "af4c3520c0b23ce47c0f36b1fb4077cd",
+            "sha256": "587d154a7800adbd7722aa682c4669557468da87f08a7bc52357d42972ca3f0c",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "e71087d155006197c9e192574094c6d7",
+            "sha256": "a49bb6a6fe6e79578dc78841ce7f437a50d294a0fdb74bf25214cd6ce75d85db",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "a87f5117657fdaa5f5354080967213ff",
+            "sha256": "8149689c8d10b8a4ce05c4a985adabd24cebc853a6e2a44bf82ad5386d40d468",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "76b262cfa447b0efef88ebbe9c9affdc",
+            "sha256": "c3e1f1acb1708ab6f2e47f5940b4915ff1c0ca630bd123a1f202755cdcb03b31",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "15d0d0166f2706e4a801ab2c875c9f17",
+            "sha256": "f2a1089a9c2af5794dd177b9d6e0322d90f9f5b8af4fbd98c13ae24df75c71c4",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "65edbc256975496e1bd9912fba6e949c",
+            "sha256": "e0871397ef37dcfe76dd14ab534256acaf7f57caefe370fc19e55b8496a423b8",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.3/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.2",
+        "url": "https://github.com/grafana/grafana-prometheus-datasource",
+        "commit": "dc4485c75f87636b59713f1c4d44835377cb33be",
+        "createdAt": "2026-09-28T15:23:14.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "8a5a4dfb72fbcdd72c7336dee57147cf",
+            "sha256": "045db54b1afaec5c45647bdfde47aca43b43d50704372069a59c1329eb5b5b3d",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "1c95c3a11f8417f63b3132394b44a9bb",
+            "sha256": "7361aade491698ce84446f3fa5624b54fcdc17602a4c78324df832119df59eb3",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "c02eb77c3d8e0da01607fd7d6a917f68",
+            "sha256": "1787f2dac81a213891486ea4e417adee36ef67f7a324bc8d8403735a96dfb49a",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "844885ca622ec28438cac8b896971e29",
+            "sha256": "1b30e322052e81b25b7e94e040b09d1981f86c80406f650092fe07d539a9f757",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "4aee6f9442e85a66aa781215d3e10441",
+            "sha256": "496335b7f1f2a9e8b3529bf380e8702703346680e125ecb3860bf80e5c8431a9",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "7d83717f79c29ee487f8ed1f85dfc145",
+            "sha256": "34baa0d4fe6b69dab2b97ed92311c0a7b45e66f1aadd0f611827972d672f0613",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "ddb40e527ffda1a9f442bfe775c0dc20",
+            "sha256": "9220e15aa02fd07f704d6c83e7a978b46cc2614c4e9ee64a6a184a0c3896747d",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "cfc34bfbd867250c91ff0fddf2003863",
+            "sha256": "78bf20b4be19190981dcb7a49a333eb6dbc603686115a420d19641a109e567fc",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "f3df225e3435e68eae305782571a44aa",
+            "sha256": "0330158c5230b400bce595eb717b70134df2db37f3f22944fc9d47e3db30acda",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.2/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.1",
+        "url": "https://github.com/grafana/grafana-prometheus-datasource",
+        "commit": "99e3ef1c7190682ec950cb6c16144b06ff0fdbc3",
+        "createdAt": "2026-09-22T16:29:57.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "692a8eaf1b57f36a7ca03b58f0f9b3db",
+            "sha256": "ae41a89636be80ca84b879695758bb13b1c45222099c5da914c3be86187e4740",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "3a1eb9d9a6d7c570a4defaf0a6dc685b",
+            "sha256": "98332348b659cd75140d02169871921de0d26dc99001c4ffd733aaed8694e3ef",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "c8123e45b9c1721b83a29b963ee84c28",
+            "sha256": "dd982c4b0e2466e0051a8001071c1ecc68c394a7eb31e2b1ad6dfff689c3ad72",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "cc10b118564451531bbc2c667db975ce",
+            "sha256": "8fd68fdf32aeb8e45f8aa877bd65902ecd3f9a3bd226554a7d322f73b02ebdd9",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "8555331e3e57a6e2c4f19284e637a1f3",
+            "sha256": "166888bce96dd42e071921e0e007435b0e993b6903ae243200759c85d15a9f7d",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "30a8aab9ce6af26ed7c2180038c0e0c1",
+            "sha256": "c21f473113bbafd27d398cfa7bf3df98aaa030a14fbce4a900c5c8f02262be55",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "5ead83f7edcfe735c4062636299ace4e",
+            "sha256": "e5e726b2c7061b96bb028b30a792e0162a264f0762160a3fba0e614fb0cc0205",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "0d94da640c8a8fab887714d530a1c220",
+            "sha256": "059f7ed384053b1399785ee33af7b62bbd80afae49d4a265223dd27f19d39d9a",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "e560c223070d7bfd523cc9ec8692a630",
+            "sha256": "d6a4b70bb7ef63edf9bbdb8b5b0035fa7cd237142cd4141090cb9629fc6c8aae",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/prometheus/versions/13.2.1/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "stackdriver",
+    "installed": "12.6.2",
+    "url": "https://grafana.com/api/plugins/stackdriver/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "12.6.2",
+        "url": "https://github.com/grafana/grafana-cloudmonitoring-datasource",
+        "commit": "cb0dadba1d04a4697a344d134d92dc520411bb7c",
+        "createdAt": "2026-08-27T10:46:19.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "2b54c129456ae0cbb0bdebc19f086681",
+            "sha256": "23d07c6a5e1dd0d0404f14ec1432382444f2673c5d2e9aec5d6ee9aa03503c9f",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "c003596fcec5fa9502b290c7bda1df72",
+            "sha256": "9c010aed43fa785ce8d8349a8c55d5062be83c34f2fc23c850eef48b8d71fede",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "96dc72194fe086ce5320e84b3a492af0",
+            "sha256": "4792fb5705567b03dc0089db1bd688fbc541f9b8bb47e40488b7b6a32a19bf5a",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "8aa17e545dc715f31df2b76e4f45d546",
+            "sha256": "aa2a8100cb5af31e7b513262a12c4f1358c6fbe42807a0324fee3ede1b3990ec",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "92d45095e4a204bc7013cf84d52927c3",
+            "sha256": "c1401ecc373a1c96be5e820361afb09d82914dfde4948c8d77bc55d55c147ef3",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "ae7893f4f0d59cc0533d7a7a1502fe63",
+            "sha256": "c4a5cead0ed8eea231887813417261551b2183734292eedf7e0d96a7b88ab9e3",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "b0cc9a8d79528352f53a1b8443c6a875",
+            "sha256": "0931d0e92e9a30e692bf55c60aabc314e373ffd5e1d615b069697398fc4ce778",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "01019e42a0d2429dd8e8d50e2502841e",
+            "sha256": "86ae698f61cd80a5904967da75f6daeca9a9f8817248f059d8211e14d11ffc1b",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "ce899ee99d8cb56a612d5fff80e18433",
+            "sha256": "e45d08f831b807f55a26e590714b57d1935e56d95791e68b3f43f1805410de79",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.2/download"
+          }
+        }
+      },
+      {
+        "version": "12.6.1",
+        "url": "https://github.com/grafana/grafana-cloudmonitoring-datasource",
+        "commit": "6ec8e4a7e3a401d0193c3668bb3e11ae8d4f19e8",
+        "createdAt": "2026-06-30T13:22:16.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "ac904551cbf5764bae9545ec252e8625",
+            "sha256": "f74a38cce2900de6785f73a508413875cb2b2d409f61955a1769e31ddd4b032a",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "3d8dd36f31d67b30ea745c196607ddb5",
+            "sha256": "53cc8d2fc31cb0d42ee0f6c7216c918a4046544380fa017ae46616b9f5cb1797",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "b05f1f6cacc528ddcd9572a425fe91e6",
+            "sha256": "3618435177e4b71b199a67e02db02ed8f48a911f1499bc26f6777abfef0daf26",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "ef9c92c2e39242a099e05e3e9b93f685",
+            "sha256": "d7a5919ccf55c30cb6426da3e4f68db096b8e26f89e3f972e41bbce7dd76fd36",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "051ec31cf0f50603c7a493862f4f9261",
+            "sha256": "02a4e1eb4786c039d0f2ed3aad7685d58517f1eaacd76cf6e6f29be3f8c8bbaa",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "05ffdc386ae308a96593d3f3ff9feadd",
+            "sha256": "88c1c6df2f9ec1730ea212187fe6517590efe8ebf603fdd655f142ab06590f28",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "37e350122514133bd67f23da828eba1c",
+            "sha256": "c0cde1a7e7ac829aecc07ea3e60cca0e2eaaa1f137af7e1a981411e1ac4cf445",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "db1e4db66cc162cb5c310c1ab1c320d6",
+            "sha256": "48b9daa241aa9c8b356207c7371dd9e56dfb91253b05154a515f8e1fdbc5e9d8",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "3cc6934278450de7e1e4e53f6929734d",
+            "sha256": "3323efdf3e1a69855297721fb1bad0f919478ca3b15e6e3a0f78557efee2560e",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.6.1/download"
+          }
+        }
+      },
+      {
+        "version": "12.5.1",
+        "url": "https://github.com/grafana/grafana-cloudmonitoring-datasource",
+        "commit": "0b7254eff9fa2b18abcf915daef5923190369bd5",
+        "createdAt": "2026-06-22T20:46:21.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "424797d81cfe90f310ee09931d13626c",
+            "sha256": "93a51171fb7bdf93cf20709abeb1ab3ad470d1dfa2c76e60f45774ba029f06de",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "8bf985a61c771f56e1d6dc08eb11a766",
+            "sha256": "3e57c0e6d073f0993ef634231e126da586cd590ee9a2fe921d0970db65802577",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "72d1ceda0581c0a1b5a92f90bf86be40",
+            "sha256": "bb0758ca34f4f616cb614d0eacdce3ac337d53af4e03a6cdad08b7de070e3876",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "18cdfab4132078b2da8ff9180d27ef43",
+            "sha256": "a02434b323044b31c1ad10545816f2ac49cb4ae13cbe84cb5690c06acbeedce1",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "488706aaede02cdd4a161276e72a1735",
+            "sha256": "af7389bdfa540b384339b3c70cba8a2cab464364b3750a2d53769f6b5c0cd364",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "61d2dda78ffa66ed102d1411dbe2dbb1",
+            "sha256": "558487bb9bde47d9676acbb097c0d0ddf82794254255941ef381ec1ce7137d06",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "79e33acaca7b43befa199bfc8177a001",
+            "sha256": "b6df2ffb53c76b7a11e998a1c43f97f5095f2c45aac6dbbe2dfd66d47e23e18a",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "2535f2fdc39952763c11ca1a2b1a702e",
+            "sha256": "813dfaec09794a4c06d4d4ba079e62d9b51a3435286fd38a7f9bd2e2113a564b",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "ae6f0484c8d4e76a53e80608fa5c418f",
+            "sha256": "0855286815bafe24d8d9e936a980b87f616db572e3548514f4bba20ee5fc19c4",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/stackdriver/versions/12.5.1/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "tempo",
+    "installed": "13.2.4",
+    "url": "https://grafana.com/api/plugins/tempo/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "13.2.4",
+        "url": "https://github.com/grafana/grafana-tempo-datasource",
+        "commit": "cdacb742bae90fbf62c48c5cca0eacdc08fd2acd",
+        "createdAt": "2026-10-06T16:40:55.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "23987ee57f1e60784b052af7ed9ce428",
+            "sha256": "0e4160a688722740d189cbef7b5ee75280f62996725c7e621345507d20968387",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "42801d0c5c8f557f67486dcd9cbb85f1",
+            "sha256": "ff4e481f3210a97925abf04ffb2b692deb3f14a4ae71de7cfe7f4923c7e20358",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "fb697d545244e60b9eaee55a8db960d0",
+            "sha256": "a89fa4ee83a61e58dac30eae3ce42ae6f677545d05e419b88f0a6f5f6cfdf8e7",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "d138ffc26527a4a1e0255f7e860b994c",
+            "sha256": "552685e176279838c30df5ea09dd6968df62545dd774a00701076c1da63fa9eb",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "0af9b07fd36e896012cbfd911c3c7e42",
+            "sha256": "b55cc94908ea2736d783940b2dc503d6217e83e014e8705e5a16d6887fb4c3d5",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "b2fb7f819adb852bcbaff70c0dbe328f",
+            "sha256": "121111983b9f2408f13d30733d829cced0fd2933a8b98505123f0d0a26c16add",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "57b6f0e3abdc92b1414c5c0df9426d65",
+            "sha256": "9a65fc1474a775e3eab4b117d6d1bf97818b4486ec9643c62e85448f261d58fd",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "0f72f342f4f4c26b7f6c33842515352e",
+            "sha256": "dc257ef7219d720c871c1ca7741884d65d53c8d1703503d1b2c61f79baf57089",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "a61d16da5998961c9e809112da1d3601",
+            "sha256": "cae2d9342de5e96b134891cbef6575786195ac3a6f3e0626a060726d80b8f288",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.4/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.2",
+        "url": "https://github.com/grafana/grafana-tempo-datasource",
+        "commit": "0ea6aeeb34113ee91deeecf2a594eb9b307d6e8c",
+        "createdAt": "2026-09-23T18:21:30.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "06f7101f0566bf663c5293d31b59baac",
+            "sha256": "9cb60c536a9e1662e09e33f642e5d86097be57d6db63442f29c6c502ba6f3af2",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "8740ffc3602087653b87045f91ca403a",
+            "sha256": "5ce28541f3645c4e428e73ed1bbc152932a940f6be7f4c4b2940b6c962757564",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "3e97838ee7e470c6d49044e177348c22",
+            "sha256": "36d53fdc7d0900b38f89e3e6da0babb7da99a2351caad6d19b736edda6deee8c",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "501c9c0629755315260e013fecd1dfd8",
+            "sha256": "ad2dd2fc5c5f9ce04f81899f3083a9eb8caac9e408efe05846ae84f47fc39aa5",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "ba495c9e2bc72aaab9074657cc50a06f",
+            "sha256": "e174e7f0bb1fff4a729cec74290aaf848628ac7ac2d27c2fa5693092def69ecb",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "34420292bd3a29ac723abb14619cf948",
+            "sha256": "54fc5e4677a49974ed0d9bfd4296aeec6d279308c09c2a262f70d464427f4a5d",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "9163e12c8a083b30b94b3df783a3914d",
+            "sha256": "f01f8060bc330acb3881b21552b937171fda32cdcf18fb1f06093fd6476436f3",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "d9df383eed824ce30e282250094df4f8",
+            "sha256": "e400e89699cdd8c9bcbdae1b02ed82e6dba61ac6c32534604a2cff66d8fed848",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "e1b12b48fc023ab952b21f1c6b008f13",
+            "sha256": "59aea7819bb15408254caeafbf2611fc8c4ecfce559e8f5f6a9272894a0260c2",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.2/download"
+          }
+        }
+      },
+      {
+        "version": "13.2.1",
+        "url": "https://github.com/grafana/grafana-tempo-datasource",
+        "commit": "76d888b076b133a8bdb66332c3cd85580ee50f29",
+        "createdAt": "2026-09-10T15:12:27.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "79428eb40527f8f777f0484ddd7578db",
+            "sha256": "7fd4029bde0348d78670dda609bf9a2ee157fbae6d2f6be8007d5e36a8c71c12",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "91d67c64ab08adf124aecb20e3ec6f22",
+            "sha256": "f74e6e6b686b8652656cf533b1fc816e4173089a4666b30c248f58b74bd6b407",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "95aa61ebedb2244b087b15e7eb0c1e99",
+            "sha256": "12fd65ed8b321d02a0f1dde4b8fb465b5bb9be74df9f440d13efee4644c13e87",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "c6c34e619dce779a030b8ff856485eab",
+            "sha256": "171785626e2d39932843fb26a5783b79868b112aa45f9416f363dd2995addc17",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "fd232e4fb3a8eb86608881ab8f96f208",
+            "sha256": "a9eb206826bc2b909e100dae3bffbc0e7a48249b19279ee5e002eb1831d06296",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "da3e3805b0115c41bac027659c141960",
+            "sha256": "fec9fbc6eb7c6139a6a54f94a4c610d955e456a2bf3ed16b0cffaa4520664ce4",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "707fc226f0a6c26f3914de2fbc3e685c",
+            "sha256": "23c568f5d5f17851938faa05d4c5aaffb73b2078cf211c190aa20da80c2a352b",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "95de8a17cefe4ac1e6ff7775bb4ce0f6",
+            "sha256": "0d17781c517ab8c4f6e3cd3f32d0e12a25fdf57f02b4cbcaacafe72c495994e3",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "f8df40dcabdd58ab9697e7b608cb5075",
+            "sha256": "1b52f051ac5e2549a2f9defb7afb9dca9c32a61eca051365d77e2aeb1ae2383b",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/tempo/versions/13.2.1/download"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "zipkin",
+    "installed": "12.4.9",
+    "url": "https://grafana.com/api/plugins/zipkin/versions",
+    "exit_code": 0,
+    "versions": [
+      {
+        "version": "12.4.9",
+        "url": "https://github.com/grafana/grafana-zipkin-datasource",
+        "commit": "4f1d9629b22e2bae0c887e20d82360786b4f34b6",
+        "createdAt": "2026-09-28T20:20:00.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "8ac9f0abbcb7610a347d91492cd688be",
+            "sha256": "e62d38508c628dd4f50ce850e977e5f6b60280e1e48e30057ef51c4149bb4fea",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "90fa4467a82c1fb8eccf8d115bf1984b",
+            "sha256": "3de9307a2303e901f9a0b138523be44a74d2311589be3ac79ed58c6fabc5d52d",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "c77ba28f435f071dfc855808f769674e",
+            "sha256": "94e67f5f4236925282a88a4cf7407582310fd4efa77cde1a67252e57fbd63b15",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "a61bd9f016bece38d632b747755832c8",
+            "sha256": "f18ad73dc63ad49a06bb1977b2428e48f375542a9f5d4a3d9c9c101c4d399ee8",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "684ba716bc71addab64ecf4ac5eceb55",
+            "sha256": "4d674ae1a340be189892db84208731858cb281136ec8f0257446f5f7e909af68",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "1ea1c06c51867d6e420a04c52660c9f0",
+            "sha256": "0998b5fc9257e017151ee034d0ec5bc63b81f25a4927d6ee9a908512f9656303",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "a2a57b9baa32d725ac22afd474b69e85",
+            "sha256": "4087f6046ab9f1db63eb8dc9c6e1221a6583e258040b5672355f9cd9a07a5136",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "2b9e8196e78780b9ce834a80a4a8453e",
+            "sha256": "fb65c3f83440cfc432a46b48586a39f626f7b870812224017592cb4dc0e0fc29",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "832f485c908f33e5e68d644fc7ac587b",
+            "sha256": "e0f9ce6bb2ae738554ecdaa453f2deba829af96c56ee30b3753c23228ff35a6b",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.9/download"
+          }
+        }
+      },
+      {
+        "version": "12.4.8",
+        "url": "https://github.com/grafana/grafana-zipkin-datasource",
+        "commit": "0b1e568901d05ee8263c18ce6e7e6a09be302673",
+        "createdAt": "2026-09-10T14:15:16.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "99a2ecc3cb9e816416a3004b41220b5c",
+            "sha256": "349223880cdc2772bc468c8018cba7b9093acc6976fdddfa182774e80b46c675",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "07ddcd9978378b3070393d99148f2ca3",
+            "sha256": "0b98fb621b5339e03f330a550b0435307d0bb566a7f04dce0fcef202570a9cf3",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "05cddf1d432167ea287f818b571a2a80",
+            "sha256": "43dec3b7d37b26654b92de11cfe16916d918e9f67a7affaea9aa09a62ddc50be",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "9f4c577761cb0015aa04e7f0c3fa84a2",
+            "sha256": "5211378844267f7f85b6815579e35bcae467bef355078e5a61e21407d8bc1df7",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "e70b1727c2c9035716755bfcbdd70b6a",
+            "sha256": "edad73b6306753b1faa3a12e8511e2bc616eec022d842e0eb4b48a8b51c7f092",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "8758228cb83684e4d2ce672267cad82e",
+            "sha256": "7ea1cc94bbcf2273357013cb6fc6df1c9bf1c568ad7ff26927d618c68c7425f6",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "fcbc2a9362d5384389644c91f69a621b",
+            "sha256": "c64e3922a05cf88c90eb8297b3b57d4cfd2e8ffce65dfb6bb78be85f863459a0",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "058db95956fb7711b45e2b640995c323",
+            "sha256": "3a49b4272a017bfb362520a93dc1bb69b71413c7f3ae1fa22a68007bd1e33c31",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "61e068c22d1a7699ea07ca15eb1df6bc",
+            "sha256": "cc379a246f2c0cd1820d31617e4198ab8b5fd14a7874aa88b9f092e9b32a6eee",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.8/download"
+          }
+        }
+      },
+      {
+        "version": "12.4.6",
+        "url": "https://github.com/grafana/grafana-zipkin-datasource",
+        "commit": "0dec2cc60c80382257954c237e9a444ea5ccea7a",
+        "createdAt": "2026-08-13T19:21:58.000Z",
+        "status": "active",
+        "grafanaDependency": ">=12.3.0-0",
+        "packages": {
+          "darwin-amd64": {
+            "md5": "0199c09571f5dad4486d3ccbae23df9c",
+            "sha256": "41389b47e4f5d17ac2449f900eef7293a199387bb7fb5772db72974c4f224f9d",
+            "packageName": "darwin-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=darwin&arch=amd64"
+          },
+          "darwin-arm64": {
+            "md5": "a13893aae12fc3fe0829decdc2eeffd5",
+            "sha256": "e68f8f94076b919f2c868d7cb91e06d58981b75b9abc1c2816577bd62aaceffe",
+            "packageName": "darwin-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=darwin&arch=arm64"
+          },
+          "linux-amd64": {
+            "md5": "82076bae7c4b612b373dfdc0856d6677",
+            "sha256": "96351df029b8404b7a3f2563fe5ac8a354ece7b47f300570df6b67888984abeb",
+            "packageName": "linux-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=linux&arch=amd64"
+          },
+          "linux-arm": {
+            "md5": "12a956c471c084ee4d4f3bfc760a4e2a",
+            "sha256": "7b96d12870dae9632a9d6c3df3ec9b3aeb23ce6c3c663f9b5a3e8d8ec031a10b",
+            "packageName": "linux-arm",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=linux&arch=arm"
+          },
+          "linux-arm64": {
+            "md5": "c91dcf252f83914bb8909cfd2beadc6a",
+            "sha256": "0e138d46ff918d42d751adc84bb766b81f2ba4d36222e844d2e304609c48dc4b",
+            "packageName": "linux-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=linux&arch=arm64"
+          },
+          "linux-s390x": {
+            "md5": "1da3a0fda0e697b5686771aba3f9101c",
+            "sha256": "d576bb2877a97a9a3e582216d4baac7322fc7f06d120d561e1f10c9d0b95c89d",
+            "packageName": "linux-s390x",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=linux&arch=s390x"
+          },
+          "windows-amd64": {
+            "md5": "e4efa30d4958fe7e912f1540a6614479",
+            "sha256": "96df3cccfd684483b8f1bd46cdf4da1754ee46176f4fe198fcc8948011d0736b",
+            "packageName": "windows-amd64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=windows&arch=amd64"
+          },
+          "windows-arm64": {
+            "md5": "f101f89ca1acd5dd1cba20d34a7004da",
+            "sha256": "3265108112c1a7d9b841b0257a97b31ffd2f168e578e4ff5a4700dabd5264cdf",
+            "packageName": "windows-arm64",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download?os=windows&arch=arm64"
+          },
+          "any": {
+            "md5": "5b380a1fc586cd792b3b332586087c5c",
+            "sha256": "701912e8807df17a2b6a80a726d5a5f71ca29f8590a4de2eecc02566ac5fdddd",
+            "packageName": "any",
+            "downloadUrl": "/api/plugins/zipkin/versions/12.4.6/download"
+          }
+        }
+      }
+    ]
+  }
+]

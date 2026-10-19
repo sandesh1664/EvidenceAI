@@ -1,0 +1,15 @@
+{
+  "baseline": "0f58dcf0b0a5777acd48da738bd1aa460a9bc0ab",
+  "current_head": "0f58dcf0b0a5777acd48da738bd1aa460a9bc0ab",
+  "working_tree_uncommitted": true,
+  "implementation_file_sha256": {
+    "infra/monitoring/grafana-rebuild/Dockerfile": "44dbe50e645067d1edcf991f7d19163aacb4e529dce0f9e51d8efc2a5a17d170",
+    "infra/monitoring/grafana-rebuild/README.md": "1ab034951ac6f1d6f0e52f47d4b7247085183d9034b0efa7888ecd9516b8841c",
+    "infra/monitoring/grafana-rebuild/dependencies.patch": "560a737d2ff94f9b9e2d929f19f5e406d13be2287a7b2da2614710b001dec634",
+    "infra/monitoring/grafana-rebuild/opentsdb.Dockerfile": "5c84c581ff51841788d6fb829b7d48e3aa8f8cb2480ad8e1bb720626cb556000",
+    "infra/scripts/smoke.py": "f62558000a6d775a1ad112d6a8b04a0aa6d5760461c0be1059d6c59a3da8c584",
+    "infra/testing/monitoring_check.py": "b5b34af0f19d099bcfbe7561a8791d55ad3859f5c056fa3b7b9bf288483731e2"
+  },
+  "note": "Completed product code and selected images unchanged; documentation/evidence checksums are separately indexed.",
+  "implementation_fingerprint_sha256": "5bddc8ce7921620ad846c2b0ff66ff78d823f4120fd56d7385a4bfd261a0cc02"
+}

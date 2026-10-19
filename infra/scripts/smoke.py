@@ -19,6 +19,7 @@ import uuid
 ROOT=Path(__file__).resolve().parents[2]
 M12=os.environ.get('EVIDENCEAI_ACCEPTANCE')=='1'
 TAG=os.environ.get('EVIDENCEAI_IMAGE_TAG','m121')
+EVIDENCE_TAG=os.environ.get('EVIDENCEAI_EVIDENCE_TAG',TAG)
 def image(name): return 'evidenceai-'+name+':'+TAG
 
 
@@ -55,6 +56,9 @@ def main():
         for filename in ('key.pem','cert.pem'): (directory/'mail'/filename).chmod(0o444)
         def mount(name,target,ro=''): return json.dumps(str(directory/name)+':'+target+ro)
         override=directory/'smoke.yml'
+        # An experiment may change only this disposable fixture's Grafana image.
+        grafana_override=('    image: '+json.dumps(os.environ['EVIDENCEAI_GRAFANA_IMAGE'])+'\n'
+            if os.environ.get('EVIDENCEAI_GRAFANA_IMAGE') else '')
         override.write_text(f'''services:
   db:
     volumes: !override ["{ROOT}/infra/deploy/init-db.sh:/docker-entrypoint-initdb.d/10-evidenceai.sh:ro"]
@@ -77,7 +81,7 @@ def main():
   prometheus:
     volumes: !override ["{ROOT}/infra/deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "{ROOT}/infra/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro", {mount('prometheus','/prometheus')}]
   grafana:
-    volumes: !override [{mount('grafana','/var/lib/grafana')}, "{ROOT}/infra/deploy/grafana/provisioning:/etc/grafana/provisioning:ro", "{ROOT}/infra/monitoring/grafana/evidenceai.json:/etc/grafana/dashboards/evidenceai.json:ro"]
+{grafana_override}    volumes: !override [{mount('grafana','/var/lib/grafana')}, "{ROOT}/infra/deploy/grafana/provisioning:/etc/grafana/provisioning:ro", "{ROOT}/infra/monitoring/grafana/evidenceai.json:/etc/grafana/dashboards/evidenceai.json:ro"]
   mail:
     image: python:3.14.6-alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92
     user: '10001:10001'
@@ -201,9 +205,26 @@ volumes: !reset {{}}
             scrape_check="import urllib.request,json,time; end=time.monotonic()+45;\nwhile time.monotonic()<end:\n data=json.load(urllib.request.urlopen('http://prometheus:9090/api/v1/targets',timeout=5))['data']['activeTargets'];\n if len(data)==2 and all(t['health']=='up' for t in data): break\n time.sleep(1)\nelse: raise AssertionError('Internal scrape targets not healthy')"
             compose('exec','-T','api','python','-c',scrape_check)
             report['prometheus_targets']='API and worker exporter up'
+            # Only this synthetic fixture's generated secret enters stdin; no
+            # password is put in a command argument, log, report or image.
+            monitoring_script=(ROOT/'infra/testing/monitoring_check.py').read_text()
+            report['grafana']=json.loads(run(command+['exec','-T','api','python','-c',monitoring_script],
+                env=env,input=(private/'grafana_password').read_text(),stdout=subprocess.PIPE,text=True))
+            grafana_id=compose('ps','-q','grafana',capture=True).strip()
+            container=json.loads(run(['docker','inspect',grafana_id],stdout=subprocess.PIPE,text=True))[0]
+            assert not container['HostConfig']['PortBindings'], 'Grafana has a published host port'
+            networks=container['NetworkSettings']['Networks']
+            assert len(networks)==1 and next(iter(networks)).endswith('_monitoring')
+            network=json.loads(run(['docker','network','inspect',next(iter(networks))],stdout=subprocess.PIPE,text=True))[0]
+            assert network['Internal'] is True
+            assert container['State']['Health']['Status']=='healthy'
+            report['grafana']['internal_only_network']='PASS'
+            report['grafana']['container_health']='PASS'
+            report['grafana']['image']=container['Config']['Image']
+            report['grafana']['image_id']=container['Image']
             if M12:
                 import acceptance
-                acceptance.OUT=ROOT/'infra/runtime'/TAG
+                acceptance.OUT=ROOT/'infra/runtime'/EVIDENCE_TAG
                 from acceptance import load
                 report['load']=load(directory,project,compose,{'origin':origin,'project':project,'ca':str(ca),
                     'email':f'{identity}@example.com','password':'Synthetic staging password 2026!',
@@ -307,7 +328,7 @@ volumes: !reset {{}}
                     stopped[service]={'exit_code':state['ExitCode'],'oom_killed':state['OOMKilled']}
                 report['shutdown_states']=stopped
             report['graceful_shutdown']='compose stop completed for proxy/API/worker'
-            Path('/tmp/evidenceai-'+TAG+'-smoke-result.json').write_text(json.dumps(report,indent=2)+'\n')
+            Path('/tmp/evidenceai-'+EVIDENCE_TAG+'-smoke-result.json').write_text(json.dumps(report,indent=2)+'\n')
             print(json.dumps(report,indent=2))
             if M12:
                 assert report['load']['status']=='PASS', 'Performance acceptance failed; evidence retained'

@@ -1,0 +1,44 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [stage-1 1/2] FROM docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+#1 resolve docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f done
+#1 CACHED
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.05kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [download-arm64 1/1] ADD --checksum=sha256:089b71a3c576dec39003ae809902428d54462c05d58d39a50f075f1180567859 https://grafana.com/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=arm64 /plugin.zip
+#5 DONE 0.8s
+
+#6 [download-arm64 1/1] ADD --checksum=sha256:089b71a3c576dec39003ae809902428d54462c05d58d39a50f075f1180567859 https://grafana.com/api/plugins/opentsdb/versions/13.0.5/download?os=linux&arch=arm64 /plugin.zip
+#6 DONE 0.0s
+
+#7 [extract 2/3] COPY --from=download /plugin.zip /tmp/plugin.zip
+#7 DONE 0.2s
+
+#8 [extract 3/3] RUN mkdir /out && unzip -q /tmp/plugin.zip -d /out && test -f /out/opentsdb/MANIFEST.txt
+#8 DONE 0.3s
+
+#9 [stage-4 2/2] COPY --from=extract --chown=472:0 /out/opentsdb/ /usr/share/grafana/data/plugins-bundled/opentsdb/
+#9 DONE 0.0s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.5s done
+#10 exporting manifest sha256:2482de5223b1f23f44b96c63da4cffdc9f604e1277e7891e398089c24c3fef31 done
+#10 exporting config sha256:9a517368aff147239ed974eb1c7a9a54d1292db1c731710ee5d06b014bc07ad7 done
+#10 exporting attestation manifest sha256:966bc652477d67e601da59237840a92f5401336e1fce47c0ba6299b6143ecf57 done
+#10 exporting manifest list sha256:104a1740076a507a65239c909cc29b79764e27a77fb395fee82870846ba694da done
+#10 naming to docker.io/library/evidenceai-grafana:m122 done
+#10 unpacking to docker.io/library/evidenceai-grafana:m122 0.1s done
+#10 DONE 0.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/skf0pg7p3hha5j5195ijzm34u

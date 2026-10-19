@@ -1,0 +1,67 @@
+[
+  {
+    "id": "elasticsearch",
+    "url": "https://grafana.com/api/plugins/elasticsearch/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "grafana-postgresql-datasource",
+    "url": "https://grafana.com/api/plugins/grafana-postgresql-datasource/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "grafana-pyroscope-datasource",
+    "url": "https://grafana.com/api/plugins/grafana-pyroscope-datasource/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "influxdb",
+    "url": "https://grafana.com/api/plugins/influxdb/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "jaeger",
+    "url": "https://grafana.com/api/plugins/jaeger/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "loki",
+    "url": "https://grafana.com/api/plugins/loki/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "mssql",
+    "url": "https://grafana.com/api/plugins/mssql/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "mysql",
+    "url": "https://grafana.com/api/plugins/mysql/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "opentsdb",
+    "url": "https://grafana.com/api/plugins/opentsdb/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "prometheus",
+    "url": "https://grafana.com/api/plugins/prometheus/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "stackdriver",
+    "url": "https://grafana.com/api/plugins/stackdriver/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "tempo",
+    "url": "https://grafana.com/api/plugins/tempo/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  },
+  {
+    "id": "zipkin",
+    "url": "https://grafana.com/api/plugins/zipkin/versions",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+  }
+]
