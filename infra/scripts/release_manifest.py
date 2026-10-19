@@ -17,7 +17,7 @@ def main():
     if output(['git','status','--porcelain','--','.',':(exclude)release/']): raise SystemExit('Release packaging requires a clean committed source tree')
     revision=output(['git','rev-parse','HEAD'])
     images={}
-    for name in ('api','web','backup','proxy'):
+    for name in ('api','web','backup','proxy','database','prometheus','exporter'):
         ref=f'evidenceai-{name}:sha-{revision}'
         images[name]={'tag':ref,'image_id':output(['docker','image','inspect',ref,'--format','{{.Id}}'])}
     checksums={}

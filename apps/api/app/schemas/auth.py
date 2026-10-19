@@ -43,3 +43,12 @@ class UserResponse(BaseModel):
     display_name: str
     is_active: bool
     created_at: datetime
+
+
+class RegistrationAccepted(BaseModel):
+    detail: str = "Registration request accepted. Complete email verification before signing in. If delivery is unavailable, contact the administrator."
+
+
+class VerifyRegistrationRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", hide_input_in_errors=True)
+    token: SecretStr = Field(min_length=43, max_length=43)

@@ -26,18 +26,6 @@ def rate_limit(db: Session, settings: Settings, client: str, action: str):
         raise HTTPException(429, "Too many authentication attempts", headers={"Retry-After": str(seconds)})
 
 
-def register(db: Session, data: RegisterRequest) -> User:
-    user = User(email=data.email, display_name=data.display_name,
-                password_hash=password_hasher.hash(data.password.get_secret_value()))
-    db.add(user)
-    try:
-        db.commit()
-    except IntegrityError:
-        db.rollback()
-        raise HTTPException(409, "Email is already registered") from None
-    return user
-
-
 def login(db: Session, data: LoginRequest, settings: Settings):
     user = db.scalar(select(User).where(func.lower(func.btrim(User.email)) == data.email))
     valid = verify_password(user.password_hash if user else None, data.password.get_secret_value())

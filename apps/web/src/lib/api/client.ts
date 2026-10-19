@@ -133,10 +133,11 @@ export const api = {
   login: (email: string, password: string) =>
     request<User>("/api/v1/auth/login", json("POST", { email, password })),
   register: (email: string, password: string, display_name: string) =>
-    request<User>(
+    request<{ detail: string }>(
       "/api/v1/auth/register",
       json("POST", { email, password, display_name }),
     ),
+  verifyRegistration: (token: string) => request<{ detail: string }>("/api/v1/auth/verify-registration", json("POST", { token })),
   logout: () => request<void>("/api/v1/auth/logout", json("POST")),
   createWorkspace: (name: string, description: string) =>
     request<Workspace>(

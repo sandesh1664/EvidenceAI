@@ -7,6 +7,9 @@ tests from targeting the normal API or existing application records.
 from contextlib import contextmanager
 from pathlib import Path
 import os
+import hashlib
+import json
+import shutil
 import signal
 import sys
 import tempfile
@@ -59,6 +62,15 @@ def environment():
                 document_storage_root=Path(temporary).resolve(),embedding_provider='fake',embedding_model='fake-hash-v1',
                 embedding_dimensions=128,embedding_hosted_allowed=False,openai_api_key=None,
                 llm_provider='mock',llm_model='mock-extractive-v1',llm_hosted_allowed=False,rag_min_similarity=0.0)
+            mail=Path(os.environ['EVIDENCEAI_E2E_MAIL_DIR'])
+            if mail.parent.resolve()!=Path('/tmp').resolve() or not mail.name.startswith('evidenceai-e2e-mail-'):
+                raise RuntimeError('Owned temporary mail fixture required')
+            from app.services import registration_service
+            def fixture_deliver(settings,email,token):
+                target=mail/(hashlib.sha256(email.encode()).hexdigest()+'.json')
+                target.write_text(json.dumps({'token':token})); target.chmod(0o600)
+                return True
+            registration_service.deliver=fixture_deliver
             storage=LocalDocumentStorage(Path(temporary).resolve())
             def isolated_db():
                 with factory() as db:
@@ -89,6 +101,7 @@ def environment():
     finally:
         stop.set()
         if thread:thread.join(timeout=10)
+        if "mail" in locals(): shutil.rmtree(mail)
         app.dependency_overrides.clear()
         if scratch:scratch.dispose()
         assert schema.startswith('e2e_web_') and len(schema)==40

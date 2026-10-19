@@ -36,6 +36,7 @@ def main():
     for name in ('db_password','postgres_password','operations_token','grafana_password'):
         create(directory/name,secrets.token_hex(32),0o444)
     create(directory/'provider_key','',0o444)
+    create(directory/'smtp_password','',0o444)
     print('Secret files created. Keep the recovery identity offline; only the public recipient is needed for normal backup.')
     print('AGE_RECIPIENT='+recipient)
 

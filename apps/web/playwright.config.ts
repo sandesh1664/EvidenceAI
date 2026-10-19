@@ -1,4 +1,8 @@
+import { randomUUID } from "node:crypto";
+import { mkdirSync } from "node:fs";
 import { defineConfig, devices } from "@playwright/test";
+process.env.EVIDENCEAI_E2E_MAIL_DIR ||= `/tmp/evidenceai-e2e-mail-${randomUUID()}`;
+mkdirSync(process.env.EVIDENCEAI_E2E_MAIL_DIR, { mode: 0o700, recursive: true });
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,

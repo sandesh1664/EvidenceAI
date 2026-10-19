@@ -22,7 +22,7 @@ def configuration(path, environment, *, recovery=False):
         if not separator or not re.fullmatch(r'[A-Z][A-Z0-9_]*',key) or key in values:
             raise ValueError('Malformed or duplicate deployment setting')
         values[key]=value.strip()
-    required=('DEPLOY_PROJECT','SITE_HOST','PUBLIC_ORIGIN','ACME_EMAIL','API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE','SECRETS_DIR','AGE_RECIPIENT')
+    required=('DEPLOY_PROJECT','SITE_HOST','PUBLIC_ORIGIN','ACME_EMAIL','API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE','DATABASE_IMAGE','PROMETHEUS_IMAGE','EXPORTER_IMAGE','SECRETS_DIR','AGE_RECIPIENT')
     if any(not values.get(key) or 'REPLACE' in values[key] for key in required): raise ValueError('Required deployment settings missing')
     if not re.fullmatch('evidenceai-'+environment+r'(-[a-z0-9]+)?',values['DEPLOY_PROJECT']):
         raise ValueError('Project must be a dedicated evidenceai-staging/production name')
@@ -33,7 +33,7 @@ def configuration(path, environment, *, recovery=False):
         if url.port not in (None,443) or values['SITE_HOST'].endswith(('.localhost','.invalid')) or values['SITE_HOST']=='localhost':
             raise ValueError('Production requires a public DNS hostname and HTTPS port 443')
         if values['ACME_EMAIL'].endswith('.invalid'): raise ValueError('Production ACME contact required')
-        if any(not re.fullmatch(r'.+@sha256:[a-f0-9]{64}',values[key]) for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE')):
+        if any(not re.fullmatch(r'.+@sha256:[a-f0-9]{64}',values[key]) for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE','DATABASE_IMAGE','PROMETHEUS_IMAGE','EXPORTER_IMAGE')):
             raise ValueError('Production requires immutable registry image digests')
     if not re.fullmatch(r'age1[a-z0-9]{58}',values['AGE_RECIPIENT']): raise ValueError('Valid age public recipient required')
     retention=int(values.get('BACKUP_RETENTION_DAYS','14'))
@@ -42,11 +42,11 @@ def configuration(path, environment, *, recovery=False):
     if directory.resolve()==ROOT or ROOT in directory.resolve().parents: raise ValueError('Secrets must be outside the source checkout')
     if not directory.is_absolute() or not directory.is_dir() or directory.is_symlink(): raise ValueError('Private absolute secrets directory required')
     if directory.stat().st_mode & 0o077: raise ValueError('Secrets directory must be mode 0700')
-    for name in ('db_password','postgres_password','operations_token','grafana_password','provider_key') + (('age_identity',) if recovery else ()):
+    for name in ('db_password','postgres_password','operations_token','grafana_password','provider_key','smtp_password') + (('age_identity',) if recovery else ()):
         file=directory/name
         if file.is_symlink() or not file.is_file(): raise ValueError('Required secret file missing')
         value=file.read_text().strip()
-        if name not in {'provider_key','age_identity'} and len(value)<32: raise ValueError('Weak or missing secret')
+        if name not in {'provider_key','smtp_password','age_identity'} and len(value)<32: raise ValueError('Weak or missing secret')
         if name=='age_identity' and 'AGE-SECRET-KEY-' not in value: raise ValueError('Recovery identity is required')
     if values.get('AUTH_ALLOW_INSECURE_HTTP','false').lower()!='false': raise ValueError('Insecure authentication is forbidden')
     return values
@@ -117,6 +117,8 @@ class Deployment:
         previous=configuration(self.args.previous_env,self.args.environment)
         if any(previous[key]!=self.values[key] for key in ('DEPLOY_PROJECT','SECRETS_DIR','PUBLIC_ORIGIN')):
             raise ValueError('Rollout must preserve project, secrets and origin')
+        if previous['DATABASE_IMAGE']!=self.values['DATABASE_IMAGE']:
+            raise ValueError('Database image changes require a separately reviewed fresh-volume logical migration; app rollout cannot switch database runtimes')
         self.compose('pull','api','web','backup','proxy')
         self.backup(restart=False)
         # Quiesce writers for the one-time migration, then recreate only app services.

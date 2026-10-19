@@ -26,7 +26,10 @@ def settings():
 
 
 @pytest.fixture
-def client(db, settings):
+def client(db, settings, monkeypatch):
+    from app.services import registration_service
+    outbox={}
+    monkeypatch.setattr(registration_service,'deliver',lambda settings,email,token:outbox.update({email:token}))
     app.dependency_overrides[get_db] = lambda: db
     app.dependency_overrides[get_settings] = lambda: settings
     # Middleware uses runtime configuration, independent of route DI.
@@ -35,6 +38,8 @@ def client(db, settings):
     browser.get_settings = lambda: settings
     app.middleware_stack = None
     with TestClient(app, headers=HEADERS) as client:
+        client.registration_outbox=outbox
+        client.registration_db=db
         yield client
     app.dependency_overrides.clear()
     browser.get_settings = original
@@ -48,8 +53,13 @@ def payload():
 
 def register(client, payload):
     response = client.post('/api/v1/auth/register', json=payload)
-    assert response.status_code == 201, response.text
-    return response.json()
+    assert response.status_code == 202, response.text
+    email=payload['email'].strip().lower()
+    proof=client.registration_outbox[email]
+    assert client.post('/api/v1/auth/verify-registration',json={'token':proof}).status_code==202
+    from app.schemas.auth import UserResponse
+    user=client.registration_db.scalar(select(User).where(User.email==email))
+    return UserResponse.model_validate(user).model_dump(mode='json')
 
 
 def login(client, payload):
@@ -73,7 +83,7 @@ def test_duplicate_email(client, payload, variant):
     register(client, payload)
     if variant == 'case': payload['email'] = payload['email'].upper()
     if variant == 'spaces': payload['email'] = '  ' + payload['email'] + '  '
-    assert client.post('/api/v1/auth/register', json=payload).status_code == 409
+    assert client.post('/api/v1/auth/register', json=payload).status_code == 202
     # The failed transaction was rolled back and the session remains usable.
     assert login(client, payload).status_code == 200
 
@@ -261,7 +271,7 @@ def test_existing_legacy_identity_login(client, db, payload):
                 password_hash=password_hasher.hash(PASSWORD)))
     db.commit()
     assert login(client, payload).status_code == 200
-    assert client.post('/api/v1/auth/register', json=payload).status_code == 409
+    assert client.post('/api/v1/auth/register', json=payload).status_code == 202
 
 
 def test_session_expiration_configuration(client, db, settings, payload):
@@ -371,3 +381,116 @@ def test_health_without_configuration(monkeypatch):
             assert client.get('/api/v1/health').status_code == 200
     finally:
         app.middleware_stack = None
+
+
+def test_registration_acceptance_does_not_disclose_or_authenticate(client,db,payload):
+    from app.models import RegistrationIntent
+    new=client.post('/api/v1/auth/register',json=payload)
+    assert new.status_code==202
+    assert set(new.json())=={'detail'} and payload['email'] not in new.text
+    assert 'sent' not in new.text and 'set-cookie' in new.headers
+    assert client.get('/api/v1/auth/me').status_code==401
+    assert login(client,payload).status_code==401  # chosen-password probe must not reveal new emails
+    assert db.scalar(select(User).where(User.email==payload['email'])) is None
+    intent=db.scalar(select(RegistrationIntent).where(RegistrationIntent.email==payload['email']))
+    assert intent.password_hash.startswith('$argon2id$')
+    assert intent.token_hash!=client.registration_outbox[payload['email']]
+    first=client.registration_outbox[payload['email']]
+    assert client.post('/api/v1/auth/verify-registration',json={'token':first}).status_code==202
+    assert login(client,payload).status_code==200
+    session_token=client.cookies['evidenceai_session']
+    original=db.scalar(select(User).where(User.email==payload['email']))
+    original_hash=original.password_hash
+    existing=client.post('/api/v1/auth/register',json={**payload,'password':'a different long password!','display_name':'Attacker'})
+    assert existing.status_code==new.status_code and existing.content==new.content
+    assert client.post('/api/v1/auth/verify-registration',json={'token':client.registration_outbox[payload['email']]}).status_code==202
+    db.refresh(original)
+    assert original.password_hash==original_hash and original.display_name=='Researcher'
+    assert client.cookies['evidenceai_session']==session_token
+    assert client.get('/api/v1/auth/me').status_code==200
+
+
+@pytest.mark.parametrize('kind',['other_browser','expired','replayed','invalid','inactive'])
+def test_verification_fails_closed_and_never_reactivates_existing_users(client,db,payload,kind):
+    from app.models import RegistrationIntent
+    if kind=='inactive':
+        user=register(client,payload); record=db.get(User,uuid.UUID(user['id']));record.is_active=False;db.commit()
+    assert client.post('/api/v1/auth/register',json=payload).status_code==202
+    token=client.registration_outbox[payload['email']]
+    if kind=='other_browser': client.cookies.delete('evidenceai_registration')
+    if kind=='expired':
+        record=db.scalar(select(RegistrationIntent).where(RegistrationIntent.token_hash==hash_token(token)))
+        record.expires_at=db.scalar(select(func.clock_timestamp()))-timedelta(seconds=1);db.commit()
+    if kind=='invalid':token='!'*43
+    if kind=='replayed':assert client.post('/api/v1/auth/verify-registration',json={'token':token}).status_code==202
+    response=client.post('/api/v1/auth/verify-registration',json={'token':token})
+    assert response.status_code==(202 if kind=='inactive' else 400)
+    assert token not in response.text
+    if kind=='inactive':assert login(client,payload).status_code==401
+    assert client.get('/api/v1/auth/me').status_code==401
+
+
+def test_missing_delivery_does_not_claim_mail_was_sent(client,payload,monkeypatch):
+    from app.services import registration_service
+    monkeypatch.setattr(registration_service,'deliver',lambda *args:False)
+    first=client.post('/api/v1/auth/register',json=payload)
+    def fail(*args):raise RuntimeError('PRIVATE SMTP DIAGNOSTIC')
+    monkeypatch.setattr(registration_service,'deliver',fail)
+    second=client.post('/api/v1/auth/register',json=payload)
+    assert first.status_code==second.status_code==202 and first.content==second.content
+    assert 'sent' not in second.text and 'PRIVATE' not in second.text
+
+
+def test_registration_practical_timing_comparison(client,db,payload):
+    import json,os,statistics,time
+    register(client,payload)
+    samples={'existing':[],'new':[]}
+    for index in range(20):
+        # Alternate order to avoid a systematic warmup/order bias.
+        for kind in (('existing','new') if index%2 else ('new','existing')):
+            data=payload if kind=='existing' else {**payload,'email':f'{uuid.uuid4()}@example.com'}
+            start=time.perf_counter();response=client.post('/api/v1/auth/register',json=data)
+            samples[kind].append((time.perf_counter()-start)*1000)
+            assert response.status_code==202
+    medians={kind:statistics.median(values) for kind,values in samples.items()}
+    difference=abs(medians['existing']-medians['new'])
+    # Predefined practical bound: 20ms or 50% of the faster median. Statistical
+    # non-significance is not claimed; production/network timing needs rehearsal.
+    bound=max(20,min(medians.values())*.5)
+    report={'samples_ms':samples,'medians_ms':medians,'median_difference_ms':difference,'bound_ms':bound,'passed':difference<=bound,
+        'scope':'20 paired loopback TestClient requests per class, synthetic delivery; not proof against all timing attacks'}
+    if os.environ.get('EVIDENCEAI_TIMING_REPORT'):
+        from pathlib import Path
+        Path(os.environ['EVIDENCEAI_TIMING_REPORT']).write_text(json.dumps(report,indent=2)+'\n')
+    assert difference<=bound
+
+
+def test_verification_requires_csrf_and_uses_secure_browser_cookie(client,settings,payload):
+    response=client.post('/api/v1/auth/verify-registration',json={'token':'a'*43},headers={'Origin':ORIGIN,'X-CSRF-Protection':''})
+    assert response.status_code==403
+    settings.auth_allow_insecure_http=False;settings.app_env='production'
+    client.base_url='https://testserver'
+    response=client.post('/api/v1/auth/register',json=payload)
+    assert response.status_code==202
+    cookie=response.headers['set-cookie']
+    assert '__Host-evidenceai_registration=' in cookie and 'HttpOnly' in cookie and 'Secure' in cookie and 'Path=/' in cookie
+
+
+def test_smtp_delivery_verifies_tls_and_emits_only_verification_link(settings,monkeypatch):
+    import ssl
+    from app.services import registration_service
+    settings.registration_email_enabled=True;settings.smtp_host='mail.example.invalid';settings.smtp_sender='noreply@example.invalid'
+    captured={}
+    class SMTP:
+        def __init__(self,host,port,timeout,context):
+            assert context.check_hostname and context.verify_mode==ssl.CERT_REQUIRED
+            assert host=='mail.example.invalid' and timeout==10
+        def __enter__(self):return self
+        def __exit__(self,*args):pass
+        def send_message(self,message):captured['message']=message
+    monkeypatch.setattr(registration_service.smtplib,'SMTP_SSL',SMTP)
+    assert registration_service.deliver(settings,'synthetic@example.com','a'*43)
+    message=captured['message']
+    assert message['To']=='synthetic@example.com'
+    assert '/verify-email#token='+'a'*43 in message.get_content()
+    assert 'SAME browser' in message.get_content()

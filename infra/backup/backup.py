@@ -16,7 +16,7 @@ import tempfile
 import time
 import uuid
 
-REVISION='6f22cc4c46ad'
+REVISION='91e2b6d8c410'
 NAME=re.compile(r'evidenceai-\d{8}T\d{12}Z-[a-f0-9]{32}\.tar\.age')
 
 

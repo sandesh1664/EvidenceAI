@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "libxml2": "2.13.9-r2",
+    "musl": "1.2.6-r2"
+  },
+  "postgres": "17.11",
+  "pgvector": "0.8.7",
+  "uid": 999,
+  "gosu": "removed; root startup refused"
+}

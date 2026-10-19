@@ -18,7 +18,7 @@ import uuid
 
 ROOT=Path(__file__).resolve().parents[2]
 M12=os.environ.get('EVIDENCEAI_ACCEPTANCE')=='1'
-TAG=os.environ.get('EVIDENCEAI_IMAGE_TAG','m12' if M12 else 'm11')
+TAG=os.environ.get('EVIDENCEAI_IMAGE_TAG','m121')
 def image(name): return 'evidenceai-'+name+':'+TAG
 
 
@@ -37,19 +37,22 @@ def main():
         for name in ('db_password','postgres_password','operations_token','grafana_password'):
             (private/name).write_text(secrets.token_hex(32));(private/name).chmod(0o444)
         (private/'provider_key').write_text('');(private/'provider_key').chmod(0o444)
+        (private/'smtp_password').write_text('');(private/'smtp_password').chmod(0o444)
         key=run(['docker','run','--rm','--network','none','--entrypoint','age-keygen',image('backup')],stdout=subprocess.PIPE,stderr=subprocess.PIPE).decode()
         (private/'age_identity').write_text(key);(private/'age_identity').chmod(0o444)
         recipient=next(line.split(': ',1)[1] for line in key.splitlines() if line.startswith('# public key:'))
         values={'DEPLOY_PROJECT':project,'SITE_HOST':'localhost','PUBLIC_ORIGIN':'https://localhost:18443',
-            'ACME_EMAIL':'local@example.invalid','API_IMAGE':image('api'),'WEB_IMAGE':image('web'),
+            'ACME_EMAIL':'local@example.invalid','PROMETHEUS_IMAGE':image('prometheus'),'EXPORTER_IMAGE':image('exporter'),'DATABASE_IMAGE':image('database'),'API_IMAGE':image('api'),'WEB_IMAGE':image('web'),
             'BACKUP_IMAGE':image('backup'),'PROXY_IMAGE':image('proxy'),'SECRETS_DIR':str(private),'AGE_RECIPIENT':recipient,
             'EMBEDDING_PROVIDER':'fake','LLM_PROVIDER':'mock'}
         envfile=directory/'stage.env';envfile.write_text('\n'.join(k+'='+v for k,v in values.items())+'\n')
-        names=('documents','metrics','proxy','backups','prometheus','grafana','restored')
+        names=('documents','metrics','proxy','backups','prometheus','grafana','restored','mail')
         for name in names: (directory/name).mkdir()
         # Only synthetic temporary directories are touched by this bounded ownership helper.
-        helper="import os; base='/fixture'; [os.chown(base+'/'+n,10001,10001) or os.chmod(base+'/'+n,0o700) for n in ['documents','metrics','proxy','backups','restored']]; os.chown(base+'/prometheus',65534,65534); os.chown(base+'/grafana',472,0)"
+        helper="import os; base='/fixture'; [os.chown(base+'/'+n,10001,10001) or os.chmod(base+'/'+n,0o700) for n in ['documents','metrics','proxy','backups','restored','mail']]; os.chown(base+'/prometheus',65534,65534); os.chown(base+'/grafana',472,0)"
         run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture',image('api'),'-c',helper])
+        run(['openssl','req','-x509','-newkey','rsa:2048','-nodes','-keyout',str(directory/'mail/key.pem'),'-out',str(directory/'mail/cert.pem'),'-subj','/CN=mail','-addext','subjectAltName=DNS:mail','-days','1'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        for filename in ('key.pem','cert.pem'): (directory/'mail'/filename).chmod(0o444)
         def mount(name,target,ro=''): return json.dumps(str(directory/name)+':'+target+ro)
         override=directory/'smoke.yml'
         override.write_text(f'''services:
@@ -57,8 +60,8 @@ def main():
     volumes: !override ["{ROOT}/infra/deploy/init-db.sh:/docker-entrypoint-initdb.d/10-evidenceai.sh:ro"]
     tmpfs: !override ["/var/lib/postgresql/data:rw,nosuid,size=512m,uid=999,gid=999", "/var/run/postgresql:rw,nosuid,size=16m,uid=999,gid=999", "/tmp:rw,nosuid,size=32m,uid=999,gid=999"]
   api:
-    volumes: !override [{mount('documents','/data/documents')}]
-    environment: {{TRUSTED_PROXY_IP: 172.30.31.10}}
+    volumes: !override [{mount('documents','/data/documents')}, {mount('mail/cert.pem','/smtp-ca.pem',':ro')}]
+    environment: {{TRUSTED_PROXY_IP: 172.30.31.10, REGISTRATION_EMAIL_ENABLED: 'true', SMTP_HOST: mail, SMTP_PORT: '1465', SMTP_SENDER: noreply@example.invalid, SMTP_CA_FILE: /smtp-ca.pem}}
   worker:
     volumes: !override [{mount('documents','/data/documents')}, {mount('metrics','/metrics')}]
   migrate:
@@ -75,6 +78,16 @@ def main():
     volumes: !override ["{ROOT}/infra/deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "{ROOT}/infra/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro", {mount('prometheus','/prometheus')}]
   grafana:
     volumes: !override [{mount('grafana','/var/lib/grafana')}, "{ROOT}/infra/deploy/grafana/provisioning:/etc/grafana/provisioning:ro", "{ROOT}/infra/monitoring/grafana/evidenceai.json:/etc/grafana/dashboards/evidenceai.json:ro"]
+  mail:
+    image: python:3.14.6-alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92
+    user: '10001:10001'
+    command: [python, /smtp_sink.py]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    networks: [application]
+    volumes: [{mount('mail','/mail')}, "{ROOT}/infra/testing/smtp_sink.py:/smtp_sink.py:ro"]
   worker-exporter:
     volumes: !override [{mount('metrics','/metrics',':ro')}]
 networks:
@@ -94,13 +107,13 @@ volumes: !reset {{}}
             compose('config','--quiet')
             run([sys.executable,str(ROOT/'infra/scripts/deploy.py'),'--env-file',str(envfile),'validate'])
             production={**values,'DEPLOY_PROJECT':'evidenceai-production-validate'+identity,'SITE_HOST':'evidenceai.example.com','PUBLIC_ORIGIN':'https://evidenceai.example.com','ACME_EMAIL':'operator@example.com'}
-            for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE'): production[key]='registry.example.com/release@sha256:'+'a'*64
+            for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE','DATABASE_IMAGE','PROMETHEUS_IMAGE','EXPORTER_IMAGE'): production[key]='registry.example.com/release@sha256:'+'a'*64
             production_env=directory/'production.env';production_env.write_text('\n'.join(k+'='+v for k,v in production.items()))
             run([sys.executable,str(ROOT/'infra/scripts/deploy.py'),'--environment','production','--env-file',str(production_env),'validate'])
             report['compose_validation']='staging and production; production was not started'
             compose('up','-d','--wait','db')
             compose('run','--rm','migrate')
-            compose('up','-d','--wait','api','worker','web','proxy')
+            compose('up','-d','--wait','mail','api','worker','web','proxy')
             compose('--profile','monitoring','up','-d','--wait','prometheus','worker-exporter','grafana')
             ca=directory/'root.crt';compose('cp','proxy:/data/caddy/pki/authorities/local/root.crt',str(ca))
             context=ssl.create_default_context(cafile=str(ca))
@@ -127,7 +140,18 @@ volumes: !reset {{}}
             assert 'max-age=' in request('/login')[2]['Strict-Transport-Security']
             assert 'no-store' in request('/api/v1/ready')[2]['Cache-Control']
             assert request('/api/v1/ops/metrics')[0]==404
-            assert request('/api/v1/auth/register',{'email':f'{identity}@example.com','password':'Synthetic staging password 2026!','display_name':'Staging fixture'})[0]==201
+            registration={'email':f'{identity}@example.com','password':'Synthetic staging password 2026!','display_name':'Staging fixture'}
+            first=request('/api/v1/auth/register',registration)
+            assert first[0]==202
+            assert request('/api/v1/auth/login',{'email':registration['email'],'password':registration['password']})[0]==401
+            filename=hashlib.sha256(registration['email'].encode()).hexdigest()+'.json'
+            proof=compose('exec','-T','mail','python','-c',"from pathlib import Path; import sys; print((Path('/mail')/sys.argv[1]).read_text())",filename,capture=True)
+            token=json.loads(proof)['token']
+            assert request('/api/v1/auth/verify-registration',{'token':token})[0]==202
+            duplicate=request('/api/v1/auth/register',registration)
+            assert duplicate[0]==first[0] and duplicate[1]==first[1]
+            report['registration']='Uniform 202, pre-verification login refused, real TLS SMTP fixture delivery and browser-bound verification passed'
+
             status,body,headers=request('/api/v1/auth/login',{'email':f'{identity}@example.com','password':'Synthetic staging password 2026!'})
             assert status==200 and '__Host-evidenceai_session=' in headers['Set-Cookie'] and 'Secure' in headers['Set-Cookie'] and 'HttpOnly' in headers['Set-Cookie']
             assert request('/api/v1/auth/logout',body=b'',method='POST',headers={'Origin':origin})[0]==403
@@ -178,6 +202,8 @@ volumes: !reset {{}}
             compose('exec','-T','api','python','-c',scrape_check)
             report['prometheus_targets']='API and worker exporter up'
             if M12:
+                import acceptance
+                acceptance.OUT=ROOT/'infra/runtime'/TAG
                 from acceptance import load
                 report['load']=load(directory,project,compose,{'origin':origin,'project':project,'ca':str(ca),
                     'email':f'{identity}@example.com','password':'Synthetic staging password 2026!',
@@ -209,7 +235,7 @@ volumes: !reset {{}}
   api:
     environment: {{DATABASE_HOST: restore-db}}
     networks: !override [application, monitoring, recovery, egress]
-    volumes: !override [{mount('restored','/data/documents')}]
+    volumes: !override [{mount('restored','/data/documents')}, {mount('mail/cert.pem','/smtp-ca.pem',':ro')}]
   worker:
     environment: {{DATABASE_HOST: restore-db}}
     networks: !override [monitoring, recovery, egress]
@@ -293,7 +319,7 @@ volumes: !reset {{}}
             # Never --volumes/-v: this fixture uses bind mounts and tmpfs exclusively.
             try: compose('--profile','monitoring','--profile','recovery','down','--remove-orphans')
             finally:
-                owner=f"import os; root='/fixture'; uid={os.getuid()}; gid={os.getgid()}; [(os.chown(p,uid,gid),os.chmod(p,0o700)) for p in [root]+[os.path.join(d,n) for d,ds,fs in os.walk(root) for n in ds+fs if not os.path.join(d,n).startswith(root+'/secrets')]]"
+                owner=f"import os; root='/fixture'; uid={os.getuid()}; gid={os.getgid()}; [(os.chown(p,uid,gid),os.chmod(p,0o700)) for p in [root]+[os.path.join(d,n) for d,ds,fs in os.walk(root) for n in ds+fs if not os.path.join(d,n).startswith(root+'/secrets') and os.path.join(d,n) not in (root+'/mail/key.pem',root+'/mail/cert.pem')]]"
                 run(['docker','run','--rm','--network','none','--user','0','--entrypoint','python','-v',str(directory)+':/fixture',image('api'),'-c',owner])
 
 

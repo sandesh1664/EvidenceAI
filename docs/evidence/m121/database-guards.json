@@ -1,0 +1,20 @@
+{
+  "existing_unmarked_cluster_refused": {
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "passed": true,
+    "diagnostic": "Database startup refused: initialize a fresh compatible volume and perform a verified logical restore."
+  },
+  "root_startup_refused": {
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "passed": true,
+    "diagnostic": "Database startup requires the dedicated UID 999; root privilege switching is unsupported."
+  },
+  "unused_gosu_absent": {
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "diagnostic": ""
+  }
+}

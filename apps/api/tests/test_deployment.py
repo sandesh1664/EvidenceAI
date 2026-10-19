@@ -17,9 +17,10 @@ def deployment_env(tmp_path):
     for name in ('db_password','postgres_password','operations_token','grafana_password'):
         (secrets/name).write_text('synthetic-secret-'+'a'*32)
     (secrets/'provider_key').write_text('')
+    (secrets/'smtp_password').write_text('')
     (secrets/'age_identity').write_text('AGE-SECRET-KEY-SYNTHETIC-ONLY')
     values={'DEPLOY_PROJECT':'evidenceai-staging-test','SITE_HOST':'localhost','PUBLIC_ORIGIN':'https://localhost:18443',
-        'ACME_EMAIL':'operator@example.invalid','API_IMAGE':'evidenceai-api:test','WEB_IMAGE':'evidenceai-web:test',
+        'ACME_EMAIL':'operator@example.invalid','PROMETHEUS_IMAGE':'evidenceai-prometheus:test','EXPORTER_IMAGE':'evidenceai-exporter:test','DATABASE_IMAGE':'evidenceai-database:test','API_IMAGE':'evidenceai-api:test','WEB_IMAGE':'evidenceai-web:test',
         'BACKUP_IMAGE':'evidenceai-backup:test','PROXY_IMAGE':'evidenceai-proxy:test','SECRETS_DIR':str(secrets),'AGE_RECIPIENT':'age1'+'a'*58}
     def write(changes=None):
         path=tmp_path/'deployment.env';actual={**values,**(changes or {})}
@@ -57,7 +58,7 @@ def test_production_requires_digests_and_dns(deployment_env):
     values={'DEPLOY_PROJECT':'evidenceai-production','SITE_HOST':'evidenceai.example.com',
         'PUBLIC_ORIGIN':'https://evidenceai.example.com','ACME_EMAIL':'operator@example.com'}
     with pytest.raises(ValueError): deployment.configuration(write(values),'production')
-    values.update({key:'registry.example.com/evidenceai@sha256:'+'a'*64 for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE')})
+    values.update({key:'registry.example.com/evidenceai@sha256:'+'a'*64 for key in ('API_IMAGE','WEB_IMAGE','BACKUP_IMAGE','PROXY_IMAGE','DATABASE_IMAGE','PROMETHEUS_IMAGE','EXPORTER_IMAGE')})
     assert deployment.configuration(write(values),'production')['DEPLOY_PROJECT']=='evidenceai-production'
 
 
@@ -136,7 +137,7 @@ def test_restore_key_not_needed_for_normal_start(deployment_env):
 def test_rollout_migrates_before_any_new_writer_start(monkeypatch):
     instance=object.__new__(deployment.Deployment)
     instance.args=SimpleNamespace(previous_env=Path('/synthetic/previous.env'),environment='staging')
-    instance.values={'DEPLOY_PROJECT':'evidenceai-staging','SECRETS_DIR':'/synthetic','PUBLIC_ORIGIN':'https://localhost'}
+    instance.values={'DEPLOY_PROJECT':'evidenceai-staging','SECRETS_DIR':'/synthetic','PUBLIC_ORIGIN':'https://localhost','DATABASE_IMAGE':'same-reviewed-db'}
     monkeypatch.setattr(deployment,'configuration',lambda *args,**kwargs:instance.values)
     calls=[]
     def compose(*args,**kwargs): calls.append(args);return ''
@@ -179,3 +180,15 @@ def test_recovery_documents_cannot_target_application_storage(monkeypatch,destin
     with pytest.raises(ValueError,match='empty isolated mount'): backup.recovery_directory()
     monkeypatch.delenv('RESTORE_DOCUMENTS_TO')
     assert backup.recovery_directory() is None
+
+
+
+def test_application_rollout_refuses_database_image_change_before_any_operation(monkeypatch):
+    instance=object.__new__(deployment.Deployment)
+    instance.args=SimpleNamespace(previous_env=Path('/synthetic/previous.env'),environment='staging')
+    instance.values={'DEPLOY_PROJECT':'evidenceai-staging','SECRETS_DIR':'/synthetic','PUBLIC_ORIGIN':'https://localhost','DATABASE_IMAGE':'new-runtime'}
+    monkeypatch.setattr(deployment,'configuration',lambda *args,**kwargs:{**instance.values,'DATABASE_IMAGE':'old-runtime'})
+    calls=[]
+    instance.compose=lambda *args,**kwargs:calls.append(args)
+    with pytest.raises(ValueError,match='fresh-volume logical migration'):instance.rollout()
+    assert calls==[]

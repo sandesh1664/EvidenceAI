@@ -14,7 +14,7 @@ from app.core.config import get_settings
 from app.core.telemetry import registry
 from app.db.session import get_db, get_session_factory
 
-REQUIRED_REVISION = '6f22cc4c46ad'
+REQUIRED_REVISION = '91e2b6d8c410'
 router = APIRouter()
 
 

@@ -1,0 +1,259 @@
+{
+  "backend_host": {
+    "passed": 653,
+    "failed": 0,
+    "seconds": 23.06
+  },
+  "backend_alpine": {
+    "passed": 652,
+    "failed": 0,
+    "seconds": 19.07,
+    "note": "All runtime/security tests; one later host-only pure deployment guard test added and passed in host total"
+  },
+  "frontend": {
+    "passed": 53,
+    "lint": "PASS",
+    "typescript": "PASS",
+    "production_build": "PASS"
+  },
+  "browsers": {
+    "stats": {
+      "startTime": "2026-10-19T18:34:47.457Z",
+      "duration": 75839.256,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 13346
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 760
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1737
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 1866
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 875
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "browser": "chromium",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 605
+          }
+        ]
+      },
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 13297
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 810
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 2007
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 2017
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 840
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "browser": "firefox",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 714
+          }
+        ]
+      },
+      {
+        "title": "real authenticated research, workers, citations, persistence and retention",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 13546
+          }
+        ]
+      },
+      {
+        "title": "real CSRF, untrusted origin, safe private HTML and expired session",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 782
+          }
+        ]
+      },
+      {
+        "title": "mobile layout, keyboard navigation, themes and ownership boundaries",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 2066
+          }
+        ]
+      },
+      {
+        "title": "real membership roles, ownership transfer and eligible workspace deletion",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 2052
+          }
+        ]
+      },
+      {
+        "title": "network and provider failures remain recoverable and source text is inert",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 880
+          }
+        ]
+      },
+      {
+        "title": "registration and login work through native keyboard form navigation",
+        "browser": "webkit",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "duration_ms": 819
+          }
+        ]
+      }
+    ]
+  },
+  "migration": {
+    "isolated_and_local_head": "91e2b6d8c410",
+    "alembic_check": "No new upgrade operations detected",
+    "pip_check": "No broken requirements found"
+  },
+  "staging_process_exit": 0,
+  "dependency_audit": {
+    "python": 0,
+    "npm_runtime": 0,
+    "npm_development_high_nodes": 5
+  },
+  "workflow_lint": "PASS",
+  "preserved_failures": [
+    {
+      "test": "secure cookie regression",
+      "result": "HTTP request was correctly rejected; fixture corrected to HTTPS and suite passed"
+    },
+    {
+      "test": "staging cleanup",
+      "result": "Read-only synthetic SMTP key ownership cleanup corrected; full run repeated"
+    },
+    {
+      "test": "bounded load",
+      "result": "81 requests, below minimum100 after long execution gap; unchanged thresholds passed in repeat375 requests"
+    },
+    {
+      "test": "Grafana source rebuild",
+      "result": "Uncompleted attempt stopped; no custom Grafana promoted, 61 highs remain"
+    }
+  ]
+}

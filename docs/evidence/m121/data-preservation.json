@@ -1,0 +1,31 @@
+{
+  "existing_application_rows_preserved": true,
+  "whole_tables_with_identical_hashes": [
+    "users",
+    "workspaces",
+    "workspace_members",
+    "documents",
+    "auth_sessions",
+    "document_chunks",
+    "document_jobs",
+    "storage_cleanup",
+    "embedding_profiles",
+    "chunk_embeddings",
+    "embedding_jobs",
+    "conversations",
+    "messages",
+    "message_citations"
+  ],
+  "auth_rate_limits": {
+    "all_original_rows_preserved": true,
+    "before_count": 3,
+    "after_count": 4,
+    "observation": "One additional localhost-login throttle bucket observed during session; preserved, not attributed or deleted"
+  },
+  "before_revision": "6f22cc4c46ad",
+  "after_revision": "91e2b6d8c410",
+  "additive_new_table": "registration_intents",
+  "new_table_observed_rows": 0,
+  "development_database_image_and_volumes": "unchanged",
+  "public_private_row_values_disclosed": false
+}

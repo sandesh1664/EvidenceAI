@@ -1,0 +1,467 @@
+{
+  "scope": "Disposable local TLS staging; synthetic tiny corpus, fake embeddings and mock LLM",
+  "thresholds": {
+    "scope": "Proposed local acceptance, five users for 30 seconds; fake embeddings/mock LLM; no production capacity assertion",
+    "users": 5,
+    "duration_seconds": 30,
+    "aggregate_error_ratio_max": 0.01,
+    "p95_ms_max": 2000,
+    "p99_ms_max": 5000,
+    "minimum_requests": 100,
+    "queue_drain_seconds_max": 60,
+    "recovery_seconds_max": 120
+  },
+  "checks": {
+    "error_ratio": true,
+    "p95": true,
+    "p99": true,
+    "sample_count": false,
+    "runner_exit": true,
+    "queue_drained": true,
+    "no_failed_jobs": true
+  },
+  "status": "FAIL",
+  "elapsed_seconds": 7.615,
+  "queue_drain_seconds": 1.063,
+  "host": {
+    "platform": "Darwin",
+    "architecture": "arm64",
+    "docker_cpus": 10,
+    "docker_memory_bytes": 8319504384
+  },
+  "database_before": {
+    "connections": 9,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 423,
+      "blks_hit": 42484,
+      "tup_returned": 21584,
+      "tup_fetched": 18934,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "database_after": {
+    "connections": 12,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 437,
+      "blks_hit": 50962,
+      "tup_returned": 26250,
+      "tup_fetched": 23418,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "database_drained": {
+    "connections": 12,
+    "max_connections": "80",
+    "database_io": {
+      "blks_read": 437,
+      "blks_hit": 52105,
+      "tup_returned": 26915,
+      "tup_fetched": 24061,
+      "temp_files": 0,
+      "temp_bytes": 0
+    },
+    "pending_document_jobs": 0,
+    "pending_embedding_jobs": 0,
+    "failed_document_jobs": 0,
+    "failed_embedding_jobs": 0
+  },
+  "stats": [
+    {
+      "Type": "POST",
+      "Name": "authentication/login",
+      "Request Count": 5,
+      "Failure Count": 0,
+      "Min Response Time": 43.4933340002317,
+      "Max Response Time": 121.17308300366858,
+      "Average Response Time": 68.9630501990905,
+      "Requests/s": 0.004697108123203607,
+      "50%": 60,
+      "95%": 120.0,
+      "99%": 120.0
+    },
+    {
+      "Type": "GET",
+      "Name": "authentication/me",
+      "Request Count": 9,
+      "Failure Count": 0,
+      "Min Response Time": 3.4496669977670535,
+      "Max Response Time": 13.958165996882599,
+      "Average Response Time": 8.777162110264827,
+      "Requests/s": 0.008454794621766494,
+      "50%": 9,
+      "95%": 14,
+      "99%": 14
+    },
+    {
+      "Type": "GET",
+      "Name": "workspace/list",
+      "Request Count": 11,
+      "Failure Count": 0,
+      "Min Response Time": 4.80066699674353,
+      "Max Response Time": 233.13066699483898,
+      "Average Response Time": 57.56251154525671,
+      "Requests/s": 0.010333637871047937,
+      "50%": 13,
+      "95%": 230.0,
+      "99%": 230.0
+    },
+    {
+      "Type": "POST",
+      "Name": "workspace/create",
+      "Request Count": 11,
+      "Failure Count": 0,
+      "Min Response Time": 4.424291000759695,
+      "Max Response Time": 22.13208299508551,
+      "Average Response Time": 11.115106000612617,
+      "Requests/s": 0.010333637871047937,
+      "50%": 8,
+      "95%": 22,
+      "99%": 22
+    },
+    {
+      "Type": "GET",
+      "Name": "workspace/read",
+      "Request Count": 11,
+      "Failure Count": 0,
+      "Min Response Time": 3.2210409990511835,
+      "Max Response Time": 14.556082998751663,
+      "Average Response Time": 8.181526181446811,
+      "Requests/s": 0.010333637871047937,
+      "50%": 6,
+      "95%": 15,
+      "99%": 15
+    },
+    {
+      "Type": "PATCH",
+      "Name": "workspace/update",
+      "Request Count": 11,
+      "Failure Count": 0,
+      "Min Response Time": 4.287083000235725,
+      "Max Response Time": 24.614374997327104,
+      "Average Response Time": 12.168942998290401,
+      "Requests/s": 0.010333637871047937,
+      "50%": 10,
+      "95%": 25,
+      "99%": 25
+    },
+    {
+      "Type": "DELETE",
+      "Name": "workspace/delete",
+      "Request Count": 11,
+      "Failure Count": 0,
+      "Min Response Time": 4.5879169992986135,
+      "Max Response Time": 16.289958002744243,
+      "Average Response Time": 8.613254000506872,
+      "Requests/s": 0.010333637871047937,
+      "50%": 8,
+      "95%": 16,
+      "99%": 16
+    },
+    {
+      "Type": "POST",
+      "Name": "vector/search",
+      "Request Count": 6,
+      "Failure Count": 0,
+      "Min Response Time": 6.528583006002009,
+      "Max Response Time": 31.447125002159737,
+      "Average Response Time": 13.426451501194,
+      "Requests/s": 0.005636529747844329,
+      "50%": 9,
+      "95%": 31,
+      "99%": 31
+    },
+    {
+      "Type": "POST",
+      "Name": "rag/mock-answer",
+      "Request Count": 2,
+      "Failure Count": 0,
+      "Min Response Time": 19.135167000058573,
+      "Max Response Time": 30.175125000823755,
+      "Average Response Time": 24.655146000441164,
+      "Requests/s": 0.001878843249281443,
+      "50%": 30,
+      "95%": 30,
+      "99%": 30
+    },
+    {
+      "Type": "POST",
+      "Name": "document/upload",
+      "Request Count": 4,
+      "Failure Count": 0,
+      "Min Response Time": 17.03029100463027,
+      "Max Response Time": 114.86008400243009,
+      "Average Response Time": 44.2088750005496,
+      "Requests/s": 0.003757686498562886,
+      "50%": 25,
+      "95%": 110.0,
+      "99%": 110.0
+    },
+    {
+      "Type": "",
+      "Name": "Aggregated",
+      "Request Count": 81,
+      "Failure Count": 0,
+      "Min Response Time": 3.2210409990511835,
+      "Max Response Time": 233.13066699483898,
+      "Average Response Time": 22.278629123275657,
+      "Requests/s": 0.07609315159589844,
+      "50%": 10,
+      "95%": 68,
+      "99%": 230.0
+    }
+  ],
+  "resource_samples": [
+    {
+      "elapsed_seconds": 2.08,
+      "containers": [
+        {
+          "BlockIO": "38.4MB / 0B",
+          "CPUPerc": "16.57%",
+          "Container": "5362bcfcf466138ef9699016e1a3312e139fb320ff9c48335836d398a9231121",
+          "ID": "5362bcfcf466",
+          "MemPerc": "9.08%",
+          "MemUsage": "92.99MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-api-1",
+          "NetIO": "123kB / 131kB",
+          "PIDs": "7"
+        },
+        {
+          "BlockIO": "33.9MB / 0B",
+          "CPUPerc": "0.98%",
+          "Container": "c60bc8c131590d46f7f3d97a6393041c09c921064b1742ac8426d865361d889e",
+          "ID": "c60bc8c13159",
+          "MemPerc": "8.24%",
+          "MemUsage": "84.34MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-db-1",
+          "NetIO": "405kB / 295kB",
+          "PIDs": "10"
+        },
+        {
+          "BlockIO": "2.26GB / 214MB",
+          "CPUPerc": "6.11%",
+          "Container": "6e43fe37444284fc858f24ef362dc7ec958d805a739d1984c49646b61452e5ab",
+          "ID": "6e43fe374442",
+          "MemPerc": "69.56%",
+          "MemUsage": "267.1MiB / 384MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-grafana-1",
+          "NetIO": "1.12kB / 126B",
+          "PIDs": "148"
+        },
+        {
+          "BlockIO": "8.33MB / 0B",
+          "CPUPerc": "0.03%",
+          "Container": "1a86f0b6c3f2fc90dea57fb50dd22a38d73eb4db3dced1eae5569988e81efb22",
+          "ID": "1a86f0b6c3f2",
+          "MemPerc": "10.28%",
+          "MemUsage": "13.16MiB / 128MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-mail-1",
+          "NetIO": "8.61kB / 8.31kB",
+          "PIDs": "1"
+        },
+        {
+          "BlockIO": "123MB / 0B",
+          "CPUPerc": "0.23%",
+          "Container": "d79a11287b64f828c7ffc27f5290135e9118090f4875d8a2d1bc5d5b1bb9c69b",
+          "ID": "d79a11287b64",
+          "MemPerc": "22.63%",
+          "MemUsage": "115.9MiB / 512MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-prometheus-1",
+          "NetIO": "10.2kB / 3.75kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "14.2MB / 0B",
+          "CPUPerc": "0.34%",
+          "Container": "f45b20c017d9b1a63e8220c22f8ca0b1ecc3f53c81cfd165e63c80ab6e2ce08b",
+          "ID": "f45b20c017d9",
+          "MemPerc": "8.38%",
+          "MemUsage": "21.45MiB / 256MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-proxy-1",
+          "NetIO": "104kB / 132kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "128MB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "07e48a2c74639ef86440da2f910e9bc8bc002ee6387d391b329a276bab993642",
+          "ID": "07e48a2c7463",
+          "MemPerc": "10.43%",
+          "MemUsage": "53.41MiB / 512MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-web-1",
+          "NetIO": "3.51kB / 18.8kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "25.1MB / 0B",
+          "CPUPerc": "0.78%",
+          "Container": "5a1b39d0483cc87c7778d0a1b3104970354f21f6985a833f2e363c51fe7c74e1",
+          "ID": "5a1b39d0483c",
+          "MemPerc": "7.28%",
+          "MemUsage": "74.54MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-worker-1",
+          "NetIO": "207kB / 285kB",
+          "PIDs": "2"
+        },
+        {
+          "BlockIO": "16MB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "72e163e97b1f504904605f8dd635ad907238ae551ff53c4c562bd8fb153a9378",
+          "ID": "72e163e97b1f",
+          "MemPerc": "6.57%",
+          "MemUsage": "4.203MiB / 64MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-worker-exporter-1",
+          "NetIO": "1.9kB / 3.54kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 9,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 437,
+          "blks_hit": 45518,
+          "tup_returned": 23245,
+          "tup_fetched": 20570,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    },
+    {
+      "elapsed_seconds": 6.89,
+      "containers": [
+        {
+          "BlockIO": "38.4MB / 0B",
+          "CPUPerc": "16.42%",
+          "Container": "5362bcfcf466138ef9699016e1a3312e139fb320ff9c48335836d398a9231121",
+          "ID": "5362bcfcf466",
+          "MemPerc": "9.17%",
+          "MemUsage": "93.88MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-api-1",
+          "NetIO": "397kB / 441kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "33.9MB / 0B",
+          "CPUPerc": "6.22%",
+          "Container": "c60bc8c131590d46f7f3d97a6393041c09c921064b1742ac8426d865361d889e",
+          "ID": "c60bc8c13159",
+          "MemPerc": "8.96%",
+          "MemUsage": "91.76MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-db-1",
+          "NetIO": "720kB / 570kB",
+          "PIDs": "13"
+        },
+        {
+          "BlockIO": "2.3GB / 214MB",
+          "CPUPerc": "1.51%",
+          "Container": "6e43fe37444284fc858f24ef362dc7ec958d805a739d1984c49646b61452e5ab",
+          "ID": "6e43fe374442",
+          "MemPerc": "80.62%",
+          "MemUsage": "309.6MiB / 384MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-grafana-1",
+          "NetIO": "1.12kB / 126B",
+          "PIDs": "148"
+        },
+        {
+          "BlockIO": "8.33MB / 0B",
+          "CPUPerc": "0.01%",
+          "Container": "1a86f0b6c3f2fc90dea57fb50dd22a38d73eb4db3dced1eae5569988e81efb22",
+          "ID": "1a86f0b6c3f2",
+          "MemPerc": "10.22%",
+          "MemUsage": "13.08MiB / 128MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-mail-1",
+          "NetIO": "8.61kB / 8.31kB",
+          "PIDs": "1"
+        },
+        {
+          "BlockIO": "123MB / 0B",
+          "CPUPerc": "0.29%",
+          "Container": "d79a11287b64f828c7ffc27f5290135e9118090f4875d8a2d1bc5d5b1bb9c69b",
+          "ID": "d79a11287b64",
+          "MemPerc": "22.75%",
+          "MemUsage": "116.5MiB / 512MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-prometheus-1",
+          "NetIO": "10.2kB / 3.75kB",
+          "PIDs": "14"
+        },
+        {
+          "BlockIO": "14.2MB / 0B",
+          "CPUPerc": "0.89%",
+          "Container": "f45b20c017d9b1a63e8220c22f8ca0b1ecc3f53c81cfd165e63c80ab6e2ce08b",
+          "ID": "f45b20c017d9",
+          "MemPerc": "8.63%",
+          "MemUsage": "22.09MiB / 256MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-proxy-1",
+          "NetIO": "210kB / 261kB",
+          "PIDs": "8"
+        },
+        {
+          "BlockIO": "128MB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "07e48a2c74639ef86440da2f910e9bc8bc002ee6387d391b329a276bab993642",
+          "ID": "07e48a2c7463",
+          "MemPerc": "10.34%",
+          "MemUsage": "52.94MiB / 512MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-web-1",
+          "NetIO": "3.61kB / 18.9kB",
+          "PIDs": "12"
+        },
+        {
+          "BlockIO": "25.1MB / 0B",
+          "CPUPerc": "2.24%",
+          "Container": "5a1b39d0483cc87c7778d0a1b3104970354f21f6985a833f2e363c51fe7c74e1",
+          "ID": "5a1b39d0483c",
+          "MemPerc": "7.45%",
+          "MemUsage": "76.33MiB / 1GiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-worker-1",
+          "NetIO": "255kB / 347kB",
+          "PIDs": "3"
+        },
+        {
+          "BlockIO": "16MB / 0B",
+          "CPUPerc": "0.00%",
+          "Container": "72e163e97b1f504904605f8dd635ad907238ae551ff53c4c562bd8fb153a9378",
+          "ID": "72e163e97b1f",
+          "MemPerc": "6.57%",
+          "MemUsage": "4.203MiB / 64MiB",
+          "Name": "evidenceai-staging-smoke3434a830d4-worker-exporter-1",
+          "NetIO": "1.9kB / 3.54kB",
+          "PIDs": "6"
+        }
+      ],
+      "database": {
+        "connections": 12,
+        "max_connections": "80",
+        "database_io": {
+          "blks_read": 437,
+          "blks_hit": 49482,
+          "tup_returned": 25307,
+          "tup_fetched": 22548,
+          "temp_files": 0,
+          "temp_bytes": 0
+        },
+        "pending_document_jobs": 0,
+        "pending_embedding_jobs": 0,
+        "failed_document_jobs": 0,
+        "failed_embedding_jobs": 0
+      }
+    }
+  ]
+}

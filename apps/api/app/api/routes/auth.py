@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from app.core.config import Settings, get_settings
 from app.db.session import get_db
 from app.models import AuthSession, User
-from app.schemas.auth import LoginRequest, RegisterRequest, UserResponse
-from app.services import auth_service
+from app.schemas.auth import LoginRequest, RegisterRequest, UserResponse, RegistrationAccepted, VerifyRegistrationRequest
+from app.services import auth_service, registration_service
 
 router = APIRouter(prefix="/api/v1/auth", tags=["authentication"])
 
@@ -26,9 +26,25 @@ def auth_attempt(request: Request, db: Session = Depends(get_db), settings: Sett
     auth_service.rate_limit(db, settings, request.client.host if request.client else "unknown", request.url.path)
 
 
-@router.post("/register", response_model=UserResponse, status_code=201, dependencies=[Depends(auth_attempt)])
-def register(data: RegisterRequest, db: Session = Depends(get_db)):
-    return auth_service.register(db, data)
+def registration_cookie(settings):
+    return ('__Host-' if settings.secure_cookies else '')+'evidenceai_registration'
+
+
+@router.post("/register", response_model=RegistrationAccepted, status_code=202, dependencies=[Depends(auth_attempt)])
+def register(data: RegisterRequest, response: Response, db: Session = Depends(get_db), settings: Settings = Depends(get_settings)):
+    auth_service.rate_limit(db,settings,"registration-email:"+data.email,"registration-email")
+    browser=registration_service.request_registration(db,data,settings)
+    response.set_cookie(registration_cookie(settings),browser,httponly=True,secure=settings.secure_cookies,
+        samesite='lax',path='/',max_age=settings.registration_ttl_seconds)
+    return RegistrationAccepted()
+
+
+@router.post('/verify-registration',status_code=202,dependencies=[Depends(auth_attempt)])
+def verify_registration(data: VerifyRegistrationRequest, request: Request, response: Response,
+        db: Session = Depends(get_db), settings: Settings = Depends(get_settings)):
+    registration_service.verify_registration(db,data.token.get_secret_value(),request.cookies.get(registration_cookie(settings)))
+    response.delete_cookie(registration_cookie(settings),path='/',httponly=True,secure=settings.secure_cookies,samesite='lax')
+    return {'detail':'Registration verified. You can now sign in with your credentials.'}
 
 
 @router.post("/login", response_model=UserResponse, dependencies=[Depends(auth_attempt)])

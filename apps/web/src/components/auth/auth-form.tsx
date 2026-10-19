@@ -8,6 +8,7 @@ import { ErrorBox } from "@/components/ui";
 export function AuthForm({ register = false }: { register?: boolean }) {
   const router = useRouter();
   const session = useSession();
+  const [accepted, setAccepted] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -15,12 +16,17 @@ export function AuthForm({ register = false }: { register?: boolean }) {
     if (busy) return;
     setBusy(true);
     setError(undefined);
-    const values = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const values = new FormData(form);
     try {
       const email = String(values.get("email")).trim();
       const password = String(values.get("password"));
-      if (register)
+      if (register) {
         await api.register(email, password, String(values.get("name")).trim());
+        form.reset();
+        setAccepted(true);
+        return;
+      }
       await api.login(email, password);
       await session.refresh();
       const channel = new BroadcastChannel("evidenceai-session");
@@ -62,7 +68,11 @@ export function AuthForm({ register = false }: { register?: boolean }) {
               ? "Create an account to organize your evidence."
               : "Sign in to your private workspaces."}
           </p>
-          <form onSubmit={submit}>
+          {accepted ? <div role="status">
+            <p>Registration request accepted. Complete email verification before signing in. If delivery is unavailable, contact the administrator.</p>
+            <p>Use the verification link in the same browser that submitted this request.</p>
+            <Link href="/verify-email">Enter verification token</Link>
+          </div> : <form onSubmit={submit}>
             {register && (
               <label>
                 Full name
@@ -104,7 +114,7 @@ export function AuthForm({ register = false }: { register?: boolean }) {
             <button className="button primary full" disabled={busy}>
               {busy ? "Please wait…" : register ? "Create account" : "Sign in"}
             </button>
-          </form>
+          </form>}
           <p>
             {register ? "Already have an account?" : "New to EvidenceAI?"}{" "}
             <Link href={register ? "/login" : "/register"}>

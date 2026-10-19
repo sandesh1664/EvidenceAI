@@ -1,6 +1,19 @@
+import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 const secret = "A sufficiently long test password!";
+async function verifyAndLogin(page: Page, email: string) {
+  const filename = createHash("sha256").update(email).digest("hex") + ".json";
+  const proof = JSON.parse(await readFile(`${process.env.EVIDENCEAI_E2E_MAIL_DIR}/${filename}`, "utf8"));
+  await page.goto(`/verify-email#token=${proof.token}`);
+  await page.getByRole("button", { name: "Verify email", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("Registration verified");
+  await page.getByRole("link", { name: "Sign in", exact: true }).click();
+  await page.getByLabel("Email address").fill(email);
+  await page.getByLabel("Password", { exact: true }).fill(secret);
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
+}
 async function register(page: Page, label = "Researcher") {
   const email = `research-${crypto.randomUUID()}@example.com`;
   await page.goto("/register");
@@ -19,6 +32,9 @@ async function register(page: Page, label = "Researcher") {
   const sentId = response.request().headers()["x-request-id"];
   expect(sentId).toMatch(/^[0-9a-f-]{36}$/);
   expect(response.headers()["x-request-id"]).toBe(sentId);
+  expect(response.status()).toBe(202);
+  await expect(page.getByRole("status")).toContainText("Registration request accepted");
+  await verifyAndLogin(page, email);
   await expect(
     page.getByRole("heading", { name: "Your workspaces" }),
   ).toBeVisible();
@@ -368,6 +384,8 @@ test("registration and login work through native keyboard form navigation", asyn
   await expect(page.getByLabel("Password", { exact: true })).toBeFocused();
   await page.keyboard.type(secret);
   await page.keyboard.press("Enter");
+  await expect(page.getByRole("status")).toContainText("Registration request accepted");
+  await verifyAndLogin(page, email);
   await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
   await page.getByRole("button", { name: "Sign out", exact: false }).focus();
   await page.keyboard.press("Enter");

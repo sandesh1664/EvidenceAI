@@ -27,9 +27,9 @@ def configure():
             if len(password)<32: raise ValueError('Database password must contain at least 32 characters')
             os.environ['DATABASE_URL']=URL.create('postgresql+psycopg',username='evidenceai',password=password,
                 host=os.environ.get('DATABASE_HOST','db'),port=5432,database='evidenceai').render_as_string(hide_password=False)
-        for name in ('OPERATIONS_TOKEN','OPENAI_API_KEY'):
+        for name in ('OPERATIONS_TOKEN','OPENAI_API_KEY','SMTP_PASSWORD'):
             if os.environ.get(name+'_FILE'):
-                value=read_secret(os.environ[name+'_FILE'],required=name!='OPENAI_API_KEY')
+                value=read_secret(os.environ[name+'_FILE'],required=name=='OPERATIONS_TOKEN')
                 if value: os.environ[name]=value
         stage='settings'
         from app.core.config import get_settings

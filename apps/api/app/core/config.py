@@ -29,6 +29,29 @@ class Settings(BaseSettings):
     auth_rate_limit: int = Field(default=20, ge=1, le=10000)
     auth_rate_window_seconds: int = Field(default=300, ge=1, le=86400)
 
+    registration_ttl_seconds: int = Field(default=1800, ge=300, le=3600)
+    registration_email_enabled: bool = False
+    registration_public_origin: str = 'https://localhost:18443'
+    smtp_host: str = ''
+    smtp_port: int = Field(default=465, ge=1, le=65535)
+    smtp_username: str = ''
+    smtp_password: SecretStr | None = None
+    smtp_sender: str = ''
+    smtp_ca_file: Path | None = None
+
+    @model_validator(mode="after")
+    def validate_registration_delivery(self):
+        from urllib.parse import urlsplit
+        origin=urlsplit(self.registration_public_origin)
+        if origin.scheme!='https' or not origin.hostname or origin.username or origin.password or origin.path or origin.query or origin.fragment:
+            raise ValueError('Registration requires a matching HTTPS frontend origin')
+        if self.registration_email_enabled:
+            if self.registration_public_origin not in self.trusted_frontend_origins or not self.smtp_host or not self.smtp_sender or '@' not in self.smtp_sender:
+                raise ValueError('Email delivery requires a trusted public origin, SMTP host and sender')
+            if any(c in self.smtp_sender+self.smtp_host+self.smtp_username for c in '\r\n'):
+                raise ValueError('Invalid SMTP configuration')
+        return self
+
     document_storage_root: Path = BACKEND_ROOT.parent.parent / "storage" / "documents"
     document_upload_max_bytes: int = Field(default=20 * 1024 * 1024, ge=1, le=100 * 1024 * 1024)
     document_chunk_size: int = Field(default=1600, ge=64, le=10000)

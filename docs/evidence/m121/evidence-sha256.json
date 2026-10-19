@@ -1,0 +1,20 @@
+{
+  "docs/evidence/m121/backend.xml": "daf12393e1ba30482a1e7eb8711aad7fddb7c0c17ca4d9ed681858d9aa0bcaff",
+  "docs/evidence/m121/data-preservation.json": "d1c694782f33fc34d001124dae001566974ad28b54dc34ac8519dbf296576526",
+  "docs/evidence/m121/database-components.json": "48dc1edc3ac66eb10c7e8cc4e9e8658f9c161dce8fd39d21491fe4e2d33cf32c",
+  "docs/evidence/m121/database-guards.json": "b24d4b7758d1cd369edca14374724c93be15f7a78f234b17d45099a3480f740e",
+  "docs/evidence/m121/interrupted-load.json": "bbd024a7a840700555095157a3508606d3c5a6d1cbe77c49187765dda41be1f6",
+  "docs/evidence/m121/load.json": "da3db1d18160be11c087ea53d6d7fbacaf0249db5c98738a7e30952a86a4bfd3",
+  "docs/evidence/m121/npm-all.json": "ce60b1c682aef44468a19b6240fc2af0b4e692ab653fe18c90a3122821c8e197",
+  "docs/evidence/m121/npm-runtime.json": "a82356c0a35056ad900b47a8dcf03d6ebff9ba6d618c567e612c06e827a5f103",
+  "docs/evidence/m121/python-audit.json": "928f80050c0240195d2935eca6096b4a7b758e21fa52fd454515074be813c1dc",
+  "docs/evidence/m121/registration-timing.json": "a4de065e56bdc84de200d2a87530694d0109565783dba7682f124c2095a48702",
+  "docs/evidence/m121/release-result.json": "4ef339381edebc94bb97cac3bfea656eac3b6d36724c2dfab68ce8ea1ddbbe44",
+  "docs/evidence/m121/source-manifest.json": "1437190aaf75a5de80d0447f223cb8647042fef21af59f8f8c171a9d26eb7f47",
+  "docs/evidence/m121/staging.json": "bab204f6de4b12bca9c14194ba864eb10c3fc6a96eac666d5bcd5c74c0b0ba17",
+  "docs/evidence/m121/strict-gates.json": "b2367ef9df272900a05704278db43003dcc4b1b28bce2b845a0c33d9a3397c85",
+  "docs/evidence/m121/verification.json": "39fd65abeb87f05e7c61064f20d1de50eb3c38c2c63f9e53e243cd005ef4d73d",
+  "docs/security-remediation-12-1.md": "10a39ef76638e365f2283278c58b2d7e26630abc3747830ba4c1693aec111d69",
+  "docs/security-remediation-inventory.json": "4552740cf7117f888986704a286b3c8c3252ee545ba753040044882c909a6baa",
+  "docs/security-remediation-verification.md": "a792b8d0a2450553a30626ddeb77718c107382034c1f2d4888ffc81b8c8e950f"
+}

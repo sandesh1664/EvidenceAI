@@ -10,6 +10,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ReactNode } from "react";
 import { SessionProvider, useSession } from "@/lib/auth/session";
 import { api, ApiError, request } from "@/lib/api/client";
+import VerifyEmail from "@/app/verify-email/page";
 import { AuthForm } from "@/components/auth/auth-form";
 import { PrivateShell } from "@/components/layout/shell";
 import { WorkspaceScope } from "@/components/workspaces/context";
@@ -309,17 +310,18 @@ describe("authentication", () => {
           name: register ? "Create account" : "Sign in",
         }),
       );
-      await waitFor(() =>
-        expect(navigation.replace).toHaveBeenCalledWith("/workspaces"),
-      );
+      if (register) {
+        await screen.findByRole("status");
+        expect(navigation.replace).not.toHaveBeenCalled();
+        expect(fetcher.mock.calls.filter(([url]) => url.endsWith("/login"))).toHaveLength(0);
+      } else {
+        await waitFor(() => expect(navigation.replace).toHaveBeenCalledWith("/workspaces"));
+      }
       const calls = fetcher.mock.calls.filter(([url]) =>
         url.endsWith(register ? "/register" : "/login"),
       );
       expect(calls).toHaveLength(1);
-      expect(screen.getByLabelText("Password")).toHaveAttribute(
-        "autocomplete",
-        register ? "new-password" : "current-password",
-      );
+      if (!register) expect(screen.getByLabelText("Password")).toHaveAttribute("autocomplete", "current-password");
     },
   );
   it("shows safe credential errors", async () => {
@@ -791,4 +793,27 @@ it("ignores a late initial session response after a new login", async () => {
   expect(screen.getByTestId("session-identity")).toHaveTextContent(
     "New account",
   );
+});
+
+
+describe("email verification", () => {
+  it("posts the fragment token and clears it without creating a session", async () => {
+    window.history.replaceState(null, "", "/verify-email#token=" + "a".repeat(43));
+    render(<VerifyEmail />);
+    await userEvent.click(screen.getByRole("button", { name: "Verify email" }));
+    await screen.findByRole("status");
+    expect(window.location.hash).toBe("");
+    const calls = fetcher.mock.calls.filter(([url]) => url.endsWith("/verify-registration"));
+    expect(calls).toHaveLength(1);
+    expect(JSON.parse(calls[0][1].body)).toEqual({ token: "a".repeat(43) });
+    expect(fetcher.mock.calls.filter(([url]) => url.endsWith("/login"))).toHaveLength(0);
+  });
+  it("supports a manually pasted token when a link is unavailable", async () => {
+    window.history.replaceState(null, "", "/verify-email");
+    render(<VerifyEmail />);
+    await userEvent.type(screen.getByLabelText("Verification token"), "b".repeat(43));
+    await userEvent.click(screen.getByRole("button", { name: "Verify email" }));
+    await screen.findByRole("status");
+    expect(screen.getByRole("link", { name: "Sign in" })).toBeVisible();
+  });
 });

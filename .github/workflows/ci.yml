@@ -75,10 +75,13 @@ jobs:
         run: docker run --rm --network none -v "$PWD/.github/workflows:/workflows:ro" rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /workflows/ci.yml /workflows/deploy.yml
       - name: Build immutable release candidates
         run: |
-          docker build -t evidenceai-api:m12 -t "evidenceai-api:sha-${GITHUB_SHA}" apps/api
-          docker build -t evidenceai-web:m12 -t "evidenceai-web:sha-${GITHUB_SHA}" apps/web
-          docker build -t evidenceai-backup:m12 -t "evidenceai-backup:sha-${GITHUB_SHA}" infra/backup
-          docker build -t evidenceai-proxy:m12 -t "evidenceai-proxy:sha-${GITHUB_SHA}" infra/deploy
+          docker build -t evidenceai-api:m121 -t "evidenceai-api:sha-${GITHUB_SHA}" apps/api
+          docker build -t evidenceai-web:m121 -t "evidenceai-web:sha-${GITHUB_SHA}" apps/web
+          docker build -t evidenceai-backup:m121 -t "evidenceai-backup:sha-${GITHUB_SHA}" infra/backup
+          docker build -t evidenceai-proxy:m121 -t "evidenceai-proxy:sha-${GITHUB_SHA}" infra/deploy
+          docker build -t evidenceai-database:m121 -t "evidenceai-database:sha-${GITHUB_SHA}" infra/database
+          docker build -t evidenceai-prometheus:m121 -t "evidenceai-prometheus:sha-${GITHUB_SHA}" infra/monitoring/build-prometheus
+          docker build -t evidenceai-exporter:m121 -t "evidenceai-exporter:sha-${GITHUB_SHA}" infra/monitoring/build-exporter
       - name: Local HTTPS, secrets, storage, monitoring and recovery drill
         run: |
           python3 -m venv /tmp/evidenceai-m12-load
@@ -91,7 +94,10 @@ jobs:
           docker save "evidenceai-web:sha-${GITHUB_SHA}" -o release/web.tar
           docker save "evidenceai-backup:sha-${GITHUB_SHA}" -o release/backup.tar
           docker save "evidenceai-proxy:sha-${GITHUB_SHA}" -o release/proxy.tar
-          cp /tmp/evidenceai-m12-smoke-result.json release/staging-result.json
+          docker save "evidenceai-database:sha-${GITHUB_SHA}" -o release/database.tar
+          docker save "evidenceai-prometheus:sha-${GITHUB_SHA}" -o release/prometheus.tar
+          docker save "evidenceai-exporter:sha-${GITHUB_SHA}" -o release/exporter.tar
+          cp /tmp/evidenceai-m121-smoke-result.json release/staging-result.json
           git archive --format=tar.gz --output=release/deployment-source.tar.gz HEAD
           python3 infra/scripts/release_manifest.py --output release/manifest.json
       - name: Scan candidate images (no Docker socket in scanner)
@@ -109,9 +115,9 @@ jobs:
         with:
           name: acceptance-${{ github.sha }}
           path: |
-            infra/runtime/m12/*.json
-            infra/runtime/m12/*.csv
-            infra/runtime/m12/*.log
+            infra/runtime/m121/*.json
+            infra/runtime/m121/*.csv
+            infra/runtime/m121/*.log
           retention-days: 30
       - name: Publish review artifacts only
         if: always()

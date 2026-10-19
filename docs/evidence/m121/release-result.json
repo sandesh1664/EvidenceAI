@@ -1,0 +1,25 @@
+{
+  "baseline": "4107cb379185f55956c37efdfc7aa4d48714f913",
+  "source_fingerprint_sha256": "05ae017bff424c163590a095ec43ff4795331540d0a6efa28dca622a403a4b02",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "PASS",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "remaining_image_findings": {
+    "HIGH": 61,
+    "CRITICAL": 0,
+    "unique_advisories": 12
+  },
+  "approved_exceptions": [],
+  "real_smtp_delivery": "NOT VERIFIED; synthetic TLS delivery passed",
+  "public_deployment": false,
+  "committed": false,
+  "pushed": false
+}

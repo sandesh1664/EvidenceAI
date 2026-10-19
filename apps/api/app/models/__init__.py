@@ -15,3 +15,6 @@ from app.models.embedding import EmbeddingProfile, ChunkEmbedding, EmbeddingJob
 
 from app.models.conversation import Conversation, Message, MessageCitation
 __all__ += ['Conversation', 'Message', 'MessageCitation']
+
+from app.models.registration import RegistrationIntent
+__all__ += ['RegistrationIntent']
