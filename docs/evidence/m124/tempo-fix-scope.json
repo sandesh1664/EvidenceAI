@@ -1,0 +1,66 @@
+[
+  {
+    "advisory": "CVE-2026-21728",
+    "url": "https://api.github.com/repos/grafana/tempo/commits/650eb1985a0776789c8564122990f588a742356f",
+    "exit_code": 0,
+    "changed_files": [
+      {
+        "filename": "CHANGELOG.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "filename": "docs/sources/tempo/configuration/manifest.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "filename": "modules/frontend/config.go",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "filename": "modules/frontend/config_test.go",
+        "status": "added",
+        "additions": 15,
+        "deletions": 0
+      }
+    ],
+    "source_scope_note": "Fix touches Tempo source paths; no blanket claim that Grafana exposes these server handlers. Ancestry alone does not rule out later reverts or prove compiled reachability."
+  },
+  {
+    "advisory": "CVE-2026-28377",
+    "url": "https://api.github.com/repos/grafana/tempo/commits/bb8ca663db34a0980c9758b40d918fda3b4dbec3",
+    "exit_code": 0,
+    "changed_files": [
+      {
+        "filename": "CHANGELOG.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "filename": "tempodb/backend/s3/config.go",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "filename": "tempodb/backend/s3/config_test.go",
+        "status": "added",
+        "additions": 28,
+        "deletions": 0
+      },
+      {
+        "filename": "tempodb/backend/s3/s3.go",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2
+      }
+    ],
+    "source_scope_note": "Fix touches Tempo source paths; no blanket claim that Grafana exposes these server handlers. Ancestry alone does not rule out later reverts or prove compiled reachability."
+  }
+]

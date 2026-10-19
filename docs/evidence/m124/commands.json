@@ -1,0 +1,464 @@
+{
+  "regression_environment": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/tmp/evidenceai-m12-browsers",
+    "EVIDENCEAI_TIMING_REPORT": "/Users/redmug/EvidenceAI/docs/evidence/m124/registration-timing.json"
+  },
+  "commands": [
+    {
+      "name": "pytest",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=/Users/redmug/EvidenceAI/docs/evidence/m124/backend.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 40.673
+    },
+    {
+      "name": "alembic-current",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "current"
+      ],
+      "exit_code": 0,
+      "seconds": 0.502
+    },
+    {
+      "name": "alembic-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.413
+    },
+    {
+      "name": "pip-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.165
+    },
+    {
+      "name": "unit",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "seconds": 2.342
+    },
+    {
+      "name": "lint",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "seconds": 1.865
+    },
+    {
+      "name": "types",
+      "cwd": "apps/web",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "seconds": 0.93
+    },
+    {
+      "name": "build",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 10.004
+    },
+    {
+      "name": "browser",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "test:e2e"
+      ],
+      "exit_code": 0,
+      "seconds": 79.323
+    },
+    {
+      "name": "python-audit",
+      "cwd": "apps/api",
+      "command": [
+        "/tmp/evidenceai-m11-audit-venv/bin/python",
+        "-m",
+        "pip_audit",
+        "-r",
+        "requirements.txt",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "seconds": 29.882
+    },
+    {
+      "name": "npm-runtime",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.73
+    },
+    {
+      "name": "npm-all",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exit_code": 1,
+      "seconds": 0.991
+    },
+    {
+      "name": "actionlint",
+      "cwd": ".",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "-v",
+        "/Users/redmug/EvidenceAI/.github/workflows:/work:ro",
+        "-w",
+        "/work",
+        "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+        "-color",
+        "ci.yml",
+        "deploy.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.722
+    },
+    {
+      "exit_code": 1,
+      "name": "tempo-probe",
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "tempo-probe",
+        "-f",
+        "infra/monitoring/grafana-rebuild/124.Dockerfile",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "seconds": 49.068
+    },
+    {
+      "exit_code": 1,
+      "name": "kin-build",
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "candidate",
+        "-f",
+        "infra/monitoring/grafana-rebuild/124.Dockerfile",
+        "-t",
+        "evidenceai-grafana:kin-m124",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "seconds": 181.174
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "candidate",
+        "-f",
+        "infra/monitoring/grafana-rebuild/124.Dockerfile",
+        "-t",
+        "evidenceai-grafana:kin-m124",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 0,
+      "seconds": 207.352,
+      "change": "Use the source-pinned go.work and local promlib, rather than incompatible external promlib selected by GOWORK=off."
+    },
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "exit_code": 0,
+      "seconds": 1.638
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/upstream-124/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 6.52
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/upstream-124/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/upstream-124:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 16.825
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m124/scan_candidate.py",
+        "--name",
+        "upstream-124",
+        "--reference",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 5,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "evidenceai-grafana:kin-m124",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 2.824
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 3.149
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m124/scan_candidate.py",
+        "--name",
+        "kin",
+        "--reference",
+        "evidenceai-grafana:kin-m124"
+      ],
+      "exit_code": 1,
+      "result": {
+        "high_critical_occurrences": 2,
+        "secrets": 0,
+        "status": "FAIL"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--support-only",
+        "--directory",
+        "infra/runtime/m124/support"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--directory",
+        "infra/runtime/m124/application"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "tempo-probe",
+        "-f",
+        "infra/monitoring/grafana-rebuild/124.Dockerfile",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 1,
+      "result": "Final strict proxy/isolated-module probe confirms canonical v2 path rejection"
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_deployment.py"
+      ],
+      "cwd": "apps/api",
+      "exit_code": 0,
+      "result": "26 passed"
+    },
+    {
+      "command": [
+        "python3",
+        "docs/evidence/m124/generate_inventory.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/smoke.py"
+      ],
+      "environment": {
+        "EVIDENCEAI_EVIDENCE_TAG": "m124",
+        "EVIDENCEAI_GRAFANA_IMAGE": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "EVIDENCEAI_GRAFANA_TRANSITION_IMAGE": "evidenceai-grafana:kin-m124"
+      },
+      "exit_code": 1,
+      "result": "Initial functional profile rejected native plugins; failure retained"
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/smoke.py"
+      ],
+      "environment": {
+        "EVIDENCEAI_ACCEPTANCE": "1",
+        "EVIDENCEAI_EVIDENCE_TAG": "m124-final",
+        "EVIDENCEAI_GRAFANA_IMAGE": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "EVIDENCEAI_GRAFANA_TRANSITION_IMAGE": "evidenceai-grafana:kin-m124"
+      },
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "apps/api/.venv/bin/python",
+        "/tmp/m124_snapshot.py",
+        "before"
+      ],
+      "environment": {
+        "PYTHONPATH": "apps/api"
+      },
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "apps/api/.venv/bin/python",
+        "/tmp/m124_snapshot.py",
+        "after"
+      ],
+      "environment": {
+        "PYTHONPATH": "apps/api"
+      },
+      "exit_code": 1,
+      "result": "Full state differs; private subset analysis proves original-row and storage preservation; additions not removed"
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/release_manifest.py",
+        "--output",
+        "infra/runtime/m124/manifest.json"
+      ],
+      "exit_code": 1,
+      "result": "Release packaging requires a clean committed source tree"
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/verify_release.py",
+        "docs/evidence/m124/release-result.json"
+      ],
+      "exit_code": 1,
+      "result": {
+        "release": "BLOCKED",
+        "unmet_criteria": [
+          "container_security",
+          "ai_security",
+          "ci_cd",
+          "production_environment"
+        ]
+      }
+    }
+  ]
+}

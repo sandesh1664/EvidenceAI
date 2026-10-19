@@ -1,0 +1,224 @@
+[
+  {
+    "id": "influxdb",
+    "version": null,
+    "executable": null,
+    "backend": true
+  },
+  {
+    "id": "jaeger",
+    "version": "%VERSION%",
+    "executable": "gpx_jaeger",
+    "backend": true
+  },
+  {
+    "id": "jaeger",
+    "version": "12.4.12",
+    "executable": "gpx_jaeger",
+    "backend": true
+  },
+  {
+    "id": "mssql",
+    "version": "%VERSION%",
+    "executable": "gpx_mssql",
+    "backend": true
+  },
+  {
+    "id": "mssql",
+    "version": "12.4.12",
+    "executable": "gpx_mssql",
+    "backend": true
+  },
+  {
+    "id": "grafana-pyroscope-datasource",
+    "version": "%VERSION%",
+    "executable": "gpx_grafana-pyroscope-datasource",
+    "backend": true
+  },
+  {
+    "id": "grafana-pyroscope-datasource",
+    "version": "12.4.12",
+    "executable": "gpx_grafana-pyroscope-datasource",
+    "backend": true
+  },
+  {
+    "id": "opentsdb",
+    "version": "%VERSION%",
+    "executable": "gpx_opentsdb",
+    "backend": true
+  },
+  {
+    "id": "opentsdb",
+    "version": "12.4.12",
+    "executable": "gpx_opentsdb",
+    "backend": true
+  },
+  {
+    "id": "elasticsearch",
+    "version": "%VERSION%",
+    "executable": "gpx_elasticsearch",
+    "backend": true
+  },
+  {
+    "id": "elasticsearch",
+    "version": "12.4.12",
+    "executable": "gpx_elasticsearch",
+    "backend": true
+  },
+  {
+    "id": "grafana-azure-monitor-datasource",
+    "version": "%VERSION%",
+    "executable": "gpx_azuremonitor",
+    "backend": true
+  },
+  {
+    "id": "grafana-azure-monitor-datasource",
+    "version": "12.4.12",
+    "executable": "gpx_azuremonitor",
+    "backend": true
+  },
+  {
+    "id": "grafana-testdata-datasource",
+    "version": "%VERSION%",
+    "executable": "gpx_testdata",
+    "backend": true
+  },
+  {
+    "id": "grafana-testdata-datasource",
+    "version": "12.4.12",
+    "executable": "gpx_testdata",
+    "backend": true
+  },
+  {
+    "id": "grafana-postgresql-datasource",
+    "version": "%VERSION%",
+    "executable": "gpx_grafana-postgresql-datasource",
+    "backend": true
+  },
+  {
+    "id": "grafana-postgresql-datasource",
+    "version": "12.4.12",
+    "executable": "gpx_grafana-postgresql-datasource",
+    "backend": true
+  },
+  {
+    "id": "cloudwatch",
+    "version": null,
+    "executable": null,
+    "backend": true
+  },
+  {
+    "id": "stackdriver",
+    "version": "%VERSION%",
+    "executable": "gpx_cloudmonitoring",
+    "backend": true
+  },
+  {
+    "id": "stackdriver",
+    "version": "12.4.12",
+    "executable": "gpx_cloudmonitoring",
+    "backend": true
+  },
+  {
+    "id": "dashboard",
+    "version": null,
+    "executable": null,
+    "backend": null
+  },
+  {
+    "id": "grafana",
+    "version": null,
+    "executable": null,
+    "backend": true
+  },
+  {
+    "id": "loki",
+    "version": "%VERSION%",
+    "executable": "gpx_loki",
+    "backend": true
+  },
+  {
+    "id": "loki",
+    "version": "12.4.12",
+    "executable": "gpx_loki",
+    "backend": true
+  },
+  {
+    "id": "parca",
+    "version": "%VERSION%",
+    "executable": "gpx_parca",
+    "backend": true
+  },
+  {
+    "id": "parca",
+    "version": "12.4.12",
+    "executable": "gpx_parca",
+    "backend": true
+  },
+  {
+    "id": "zipkin",
+    "version": "%VERSION%",
+    "executable": "gpx_zipkin",
+    "backend": true
+  },
+  {
+    "id": "zipkin",
+    "version": "12.4.12",
+    "executable": "gpx_zipkin",
+    "backend": true
+  },
+  {
+    "id": "prometheus",
+    "version": null,
+    "executable": null,
+    "backend": true
+  },
+  {
+    "id": "tempo",
+    "version": "%VERSION%",
+    "executable": "gpx_tempo",
+    "backend": true
+  },
+  {
+    "id": "tempo",
+    "version": "12.4.12",
+    "executable": "gpx_tempo",
+    "backend": true
+  },
+  {
+    "id": "mysql",
+    "version": "%VERSION%",
+    "executable": "gpx_mysql",
+    "backend": true
+  },
+  {
+    "id": "mysql",
+    "version": "12.4.12",
+    "executable": "gpx_mysql",
+    "backend": true
+  },
+  {
+    "id": "alertmanager",
+    "version": null,
+    "executable": null,
+    "backend": null
+  },
+  {
+    "id": "graphite",
+    "version": "%VERSION%",
+    "executable": "gpx_graphite",
+    "backend": true
+  },
+  {
+    "id": "graphite",
+    "version": "12.4.12",
+    "executable": "gpx_graphite",
+    "backend": true
+  },
+  {
+    "id": "mixed",
+    "version": null,
+    "executable": null,
+    "backend": null
+  }
+]

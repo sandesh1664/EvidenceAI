@@ -1,0 +1,28 @@
+[
+  {
+    "advisory": "CVE-2026-21728",
+    "fix_commit": "650eb1985a0776789c8564122990f588a742356f",
+    "candidate_module_commit": "525d1bab07e0",
+    "url": "https://api.github.com/repos/grafana/tempo/compare/650eb1985a0776789c8564122990f588a742356f...525d1bab07e0",
+    "exit_code": 0,
+    "status": "ahead",
+    "ahead_by": 337,
+    "behind_by": 0,
+    "total_commits": 337,
+    "html_url": "https://github.com/grafana/tempo/compare/650eb1985a0776789c8564122990f588a742356f...525d1bab07e0",
+    "merge_base": "650eb1985a0776789c8564122990f588a742356f"
+  },
+  {
+    "advisory": "CVE-2026-28377",
+    "fix_commit": "bb8ca663db34a0980c9758b40d918fda3b4dbec3",
+    "candidate_module_commit": "525d1bab07e0",
+    "url": "https://api.github.com/repos/grafana/tempo/compare/bb8ca663db34a0980c9758b40d918fda3b4dbec3...525d1bab07e0",
+    "exit_code": 0,
+    "status": "ahead",
+    "ahead_by": 218,
+    "behind_by": 0,
+    "total_commits": 218,
+    "html_url": "https://github.com/grafana/tempo/compare/bb8ca663db34a0980c9758b40d918fda3b4dbec3...525d1bab07e0",
+    "merge_base": "bb8ca663db34a0980c9758b40d918fda3b4dbec3"
+  }
+]

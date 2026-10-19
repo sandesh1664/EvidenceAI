@@ -1,0 +1,26 @@
+{
+  "database": {
+    "reference": "evidenceai-database:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "prometheus": {
+    "reference": "evidenceai-prometheus:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "exporter": {
+    "reference": "evidenceai-exporter:m121",
+    "high": 0,
+    "critical": 0,
+    "secrets": 0
+  },
+  "grafana": {
+    "reference": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+    "high": 61,
+    "critical": 0,
+    "secrets": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "message": "No commit found for SHA: 6367d911d57309d1da370872b8fd76237b5a0ffa",
+  "documentation_url": "https://docs.github.com/rest/commits/commits#get-a-commit",
+  "status": "422"
+}
+
+HTTP_STATUS=422

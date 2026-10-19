@@ -48,14 +48,27 @@ def verify(password):
                 'grafana-pyroscope-datasource', 'influxdb', 'jaeger', 'loki',
                 'mssql', 'mysql', 'opentsdb', 'prometheus', 'stackdriver', 'tempo', 'zipkin'}
     assert expected <= plugins.keys(), 'An expected bundled datasource is missing'
-    assert all(plugins[name].get('signature') == 'valid' for name in expected), 'Plugin signature invalid'
+    # 12.4 includes native core datasources. Grafana marks these trusted
+    # built-ins "internal", rather than externally signed "valid". Confirm
+    # native identity through the server's core-only API, not an unsigned waiver.
+    # External unsigned plugins remain forbidden; the 13.x profile is unchanged.
+    native_ids = ({plugin['id'] for plugin in get('/api/plugins?core=1')}
+                  if health.get('version') == '12.4.13' else set())
+    assert all(plugins[name].get('signature') == 'valid' or
+               (name in native_ids and plugins[name].get('signature') == 'internal')
+               for name in expected), 'Plugin signature invalid: ' + repr({
+                   name: {'signature': plugins[name].get('signature'),
+                          'core': plugins[name].get('core'),
+                          'baseUrl': plugins[name].get('baseUrl')}
+                   for name in sorted(expected)})
     print(json.dumps({'health': 'PASS', 'anonymous_denied': 'PASS',
                       'admin_authentication': 'PASS', 'signup_disabled': 'PASS',
                       'dashboard_provisioning': 'PASS', 'datasource_health': 'PASS',
                       'prometheus_query_targets_up': len(targets),
                       'grafana_version': health.get('version'), 'grafana_commit': health.get('commit'),
                       'bundled_plugin_signatures': 'PASS',
-                      'bundled_plugin_versions': {name: plugins[name]['info']['version'] for name in sorted(expected)}}))
+                      'native_internal_plugins': sorted(name for name in expected if plugins[name].get('signature') == 'internal'),
+                      'bundled_plugin_versions': {name: plugins[name]['info'].get('version') for name in sorted(expected)}}))
 
 
 if __name__ == '__main__':

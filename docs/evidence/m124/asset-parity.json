@@ -1,0 +1,34 @@
+{
+  "upstream": {
+    "frontend": {
+      "files": 11551,
+      "sha256": "0aaadbe581f496442c2df0bbf695b58c27755b4f7e5b3c236b2181d489fd5fb5"
+    },
+    "plugins": {
+      "files": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "binary_sha256": "770ae442d2f86cc06787b114e04248d6a465a28cf36ec1882b42b15fdb7a3122",
+    "plugin_links": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "entries": []
+    }
+  },
+  "kin": {
+    "frontend": {
+      "files": 11551,
+      "sha256": "0aaadbe581f496442c2df0bbf695b58c27755b4f7e5b3c236b2181d489fd5fb5"
+    },
+    "plugins": {
+      "files": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "binary_sha256": "151b7fd5ac677a1a44c0d179767a567e2a3fb0bd1807a3ccfbca5cc483a2b20f",
+    "plugin_links": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "entries": []
+    }
+  }
+}

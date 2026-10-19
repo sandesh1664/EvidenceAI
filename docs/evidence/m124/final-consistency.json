@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scan_counts_and_advisory_removals_consistent": true,
+  "operational_and_regression_evidence_consistent": true,
+  "source_hashes_and_links_valid": true,
+  "data_delta_retained_as_FAIL": true,
+  "release": "BLOCKED"
+}

@@ -1,0 +1,29 @@
+{
+  "official_repository": "https://hub.docker.com/r/grafana/grafana",
+  "reference": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+  "live_id": "sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+  "platform": "linux/arm64",
+  "official_tag_digest_matches": true,
+  "release": {
+    "tag_name": "v12.4.13",
+    "published_at": "2026-10-13T13:09:03Z",
+    "html_url": "https://github.com/grafana/grafana/releases/tag/v12.4.13",
+    "draft": false,
+    "prerelease": false
+  },
+  "source_commit": {
+    "sha": "bbc0a79c71a946c1fd61ee4f9e0fcba812c18bd7",
+    "html_url": "https://github.com/grafana/grafana/commit/bbc0a79c71a946c1fd61ee4f9e0fcba812c18bd7",
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-10-13T13:02:54Z"
+    }
+  },
+  "support": {
+    "status": "maintained patch support",
+    "end_date": "2027-05-24",
+    "vendor_policy": "https://grafana.com/docs/grafana/latest/upgrade-guide/when-to-upgrade/"
+  },
+  "publisher_signature_verification": "NOT VERIFIED; registry origin/digest and GitHub commit metadata are not independent publisher signature verification"
+}

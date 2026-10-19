@@ -1,0 +1,48 @@
+{
+  "reference": "evidenceai-grafana:kin-m124",
+  "name": "kin",
+  "policy": {
+    "high_critical_occurrences": 2,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "policy_exit_code": 1,
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "save",
+        "evidenceai-grafana:kin-m124",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 2.824
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/kin:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m124/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 3.149
+    }
+  ]
+}

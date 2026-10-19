@@ -1,0 +1,19 @@
+{
+  "whole_development_database_equal": "FAIL",
+  "all_original_records_preserved": "PASS",
+  "private_storage_content_and_metadata_equal": "PASS",
+  "public_tables_compared": 16,
+  "whole_tables_identical": 14,
+  "revision_before": "91e2b6d8c410",
+  "revision_after": "91e2b6d8c410",
+  "original_rate_limit_rows_identical": true,
+  "added_auth_rate_limit_rows": 8,
+  "added_registration_intents": 3,
+  "added_record_attribution": "NOT VERIFIED; no intent matches exact owned staging identities or browser/unit UUID source patterns. No added record was deleted or rewritten.",
+  "method": "Private deterministic full-row SHA256/count snapshots; original rate-limit subset found by exact before-hash match among current rows. Recursive storage bytes/size/mtime/mode/owner/link comparison. No original row values, recipient identities or filenames published.",
+  "observed_intent_fixture_matches": {
+    "owned_staging_identities": 0,
+    "browser_research_keyboard_uuid_patterns": 0,
+    "unit_uuid_pattern": 0
+  }
+}

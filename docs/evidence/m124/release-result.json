@@ -1,0 +1,37 @@
+{
+  "baseline": "1ffa5ea18ca4eb73d72263efc7ac6978376f1080",
+  "source_fingerprint": "5e2b2605da3585e860ee45003cd80a7db501f559822085c9768b1075dc51830d",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "PASS",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "additional_failed_assessment_conditions": [
+    "Full development DB equality failed: 8 auth limiter rows and 3 registration intents added; attribution NOT VERIFIED. All original rows/private storage preserved."
+  ],
+  "selected_high": 61,
+  "selected_critical": 0,
+  "upstream_candidate_high": 5,
+  "patched_candidate_high": 2,
+  "removed_advisories": [
+    "CVE-2026-100352",
+    "CVE-2026-100353",
+    "CVE-2026-100354"
+  ],
+  "remaining_target_advisories": [
+    "CVE-2026-21728",
+    "CVE-2026-28377"
+  ],
+  "selected_image_changed": false,
+  "approved_exceptions": [],
+  "hosted_acceptance": "NOT VERIFIED",
+  "committed": false,
+  "pushed": false,
+  "public_deployment": false
+}

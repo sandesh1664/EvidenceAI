@@ -1,0 +1,17 @@
+[
+  {
+    "check": "Tempo default Go resolution",
+    "status": "FAIL",
+    "reason": "Go proxy rejected v2.10.3 path; direct fallback additionally failed because Git was absent. Strict proxy retry isolated the module path mismatch."
+  },
+  {
+    "check": "Initial 12.4 rebuild",
+    "status": "FAIL",
+    "reason": "GOWORK=off selected external promlib v0.0.8 with obsolete parser.ParseExpr; retry uses source-pinned go.work/local promlib."
+  },
+  {
+    "check": "First 12.4 monitoring fixture",
+    "status": "FAIL",
+    "reason": "13.x external-signature-only acceptance profile rejected native internal core plugins. Corrected 12.4-only profile verifies native identity using /api/plugins?core=1; unsigned external plugins remain rejected."
+  }
+]

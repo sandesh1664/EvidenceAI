@@ -1,0 +1,17 @@
+{
+  "command": [
+    "docker",
+    "build",
+    "--progress=plain",
+    "--target",
+    "candidate",
+    "-f",
+    "infra/monitoring/grafana-rebuild/124.Dockerfile",
+    "-t",
+    "evidenceai-grafana:kin-m124",
+    "infra/monitoring/grafana-rebuild"
+  ],
+  "exit_code": 0,
+  "seconds": 207.352,
+  "change": "Use the source-pinned go.work and local promlib, rather than incompatible external promlib selected by GOWORK=off."
+}

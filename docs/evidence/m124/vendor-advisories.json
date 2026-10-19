@@ -1,0 +1,88 @@
+[
+  {
+    "advisory": "CVE-2026-100352",
+    "url": "https://github.com/getkin/kin-openapi/security/advisories/GHSA-rj39-cv6w-8wv7",
+    "retrieved_url": "https://api.github.com/repos/getkin/kin-openapi/security-advisories/GHSA-rj39-cv6w-8wv7",
+    "exit_code": 0,
+    "record": {
+      "cve_id": "CVE-2026-100352",
+      "ghsa_id": "GHSA-rj39-cv6w-8wv7",
+      "severity": "high",
+      "published_at": "2026-08-27T10:16:27Z",
+      "updated_at": "2026-09-25T19:21:39Z",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "go",
+            "name": ""
+          },
+          "vulnerable_version_range": "v0.144.0",
+          "patched_versions": "v0.148.0",
+          "vulnerable_functions": []
+        }
+      ]
+    }
+  },
+  {
+    "advisory": "CVE-2026-100353",
+    "url": "https://github.com/getkin/kin-openapi/security/advisories/GHSA-vrcc-3ch7-hppw",
+    "retrieved_url": "https://api.github.com/repos/getkin/kin-openapi/security-advisories/GHSA-vrcc-3ch7-hppw",
+    "exit_code": 0,
+    "record": {
+      "cve_id": "CVE-2026-100353",
+      "ghsa_id": "GHSA-vrcc-3ch7-hppw",
+      "severity": "high",
+      "published_at": "2026-08-28T09:15:54Z",
+      "updated_at": "2026-09-25T19:21:49Z",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "go",
+            "name": "github.com/getkin/kin-openapi"
+          },
+          "vulnerable_version_range": " >= 0.136.0 through v0.144.0",
+          "patched_versions": "v0.149.0",
+          "vulnerable_functions": []
+        }
+      ]
+    }
+  },
+  {
+    "advisory": "CVE-2026-100354",
+    "url": "https://github.com/getkin/kin-openapi/security/advisories/GHSA-g8cf-rcjf-c8cf",
+    "retrieved_url": "https://api.github.com/repos/getkin/kin-openapi/security-advisories/GHSA-g8cf-rcjf-c8cf",
+    "exit_code": 0,
+    "record": {
+      "cve_id": "CVE-2026-100354",
+      "ghsa_id": "GHSA-g8cf-rcjf-c8cf",
+      "severity": "high",
+      "published_at": "2026-08-28T09:15:59Z",
+      "updated_at": "2026-09-25T19:21:59Z",
+      "vulnerabilities": [
+        {
+          "package": {
+            "ecosystem": "go",
+            "name": "github.com/getkin/kin-openapi"
+          },
+          "vulnerable_version_range": "v0.144.0",
+          "patched_versions": "v0.149.0",
+          "vulnerable_functions": []
+        }
+      ]
+    }
+  },
+  {
+    "advisory": "CVE-2026-21728",
+    "url": "https://grafana.com/security/security-advisories/cve-2026-21728",
+    "retrieved_url": "https://grafana.com/security/security-advisories/cve-2026-21728",
+    "exit_code": 0,
+    "page_sha256": "7c040f8633b8823d72ed63da9b3b2dfe9846e912c66a64c9433ec9c4815d76c2"
+  },
+  {
+    "advisory": "CVE-2026-28377",
+    "url": "https://grafana.com/security/security-advisories/cve-2026-28377",
+    "retrieved_url": "https://grafana.com/security/security-advisories/cve-2026-28377",
+    "exit_code": 0,
+    "page_sha256": "7c040f8633b8823d72ed63da9b3b2dfe9846e912c66a64c9433ec9c4815d76c2"
+  }
+]

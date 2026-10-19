@@ -1,0 +1,61 @@
+[
+  {
+    "name": "python-audit",
+    "cwd": "apps/api",
+    "command": [
+      "/tmp/evidenceai-m11-audit-venv/bin/python",
+      "-m",
+      "pip_audit",
+      "-r",
+      "requirements.txt",
+      "--format",
+      "json"
+    ],
+    "exit_code": 0,
+    "seconds": 29.882
+  },
+  {
+    "name": "npm-runtime",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--omit=dev",
+      "--json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.73
+  },
+  {
+    "name": "npm-all",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--json"
+    ],
+    "exit_code": 1,
+    "seconds": 0.991
+  },
+  {
+    "name": "actionlint",
+    "cwd": ".",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/Users/redmug/EvidenceAI/.github/workflows:/work:ro",
+      "-w",
+      "/work",
+      "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+      "-color",
+      "ci.yml",
+      "deploy.yml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.722
+  }
+]

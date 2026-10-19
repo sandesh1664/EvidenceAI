@@ -1,0 +1,34 @@
+[
+  {
+    "exit_code": 1,
+    "name": "tempo-probe",
+    "command": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "--target",
+      "tempo-probe",
+      "-f",
+      "infra/monitoring/grafana-rebuild/124.Dockerfile",
+      "infra/monitoring/grafana-rebuild"
+    ],
+    "seconds": 49.068
+  },
+  {
+    "exit_code": 1,
+    "name": "kin-build",
+    "command": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "--target",
+      "candidate",
+      "-f",
+      "infra/monitoring/grafana-rebuild/124.Dockerfile",
+      "-t",
+      "evidenceai-grafana:kin-m124",
+      "infra/monitoring/grafana-rebuild"
+    ],
+    "seconds": 181.174
+  }
+]

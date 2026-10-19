@@ -61,3 +61,28 @@ fixture exercises restart, selected-to-custom upgrade and rollback with a
 persistent synthetic dashboard; it does not authorize production downgrade or
 establish complete source/vendor security parity. See the
 [12.3 report](../../../docs/security-remediation-12-3.md) for final results.
+
+## 12.4 maintained-branch experiment
+
+`124.Dockerfile` uses checksum-pinned v12.4.13 source and the official pinned
+12.4.13 runtime image, keeping all frontend and datasource files. The separate
+`dependencies-124.patch` upgrades kin-openapi 0.147.0 -> 0.149.0 and jsonschema
+6.0.2 -> 6.0.3 with locked checksums. Both dry-run and actual patch application
+must succeed with zero fuzz; compilation uses the **source-pinned go.work**.
+Disabling workspace mode incorrectly selects external promlib 0.0.8, incompatible
+with the source's Prometheus parser API. That failed attempt is retained in 12.4
+evidence; no product workaround or parser downgrade was added.
+
+```sh
+docker build --progress=plain --target candidate -f infra/monitoring/grafana-rebuild/124.Dockerfile -t evidenceai-grafana:kin-m124 infra/monitoring/grafana-rebuild
+```
+
+Actual ARM64 candidate scan: **2 HIGH / 0 CRITICAL**, versus 5/0 upstream. The three
+kin-openapi findings are absent; both Tempo findings remain. The `tempo-probe`
+target attempts the vendor-reported fixed Tempo tag through the official Go proxy
+and fails canonical major-version/module-path validation. No module version string
+was rewritten to deceive scanning. Source ancestry includes both Tempo fix commits,
+but this is not a security exception or proof of all runtime applicability; those
+scanner findings still block policy. The build metadata is local evidence, not an
+independent publisher signature or full reproducible-build attestation. Neither
+12.4 image is selected or approved. See [12.4 report](../../../docs/security-remediation-12-4.md).
