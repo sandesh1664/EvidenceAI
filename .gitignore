@@ -17,3 +17,8 @@ node_modules/
 # Local storage
 storage/
 .DS_Store
+
+# Local, timestamped evaluation history and private operations runtime files
+apps/api/evaluation/reports/
+infra/monitoring/secrets/
+infra/monitoring/runtime/
