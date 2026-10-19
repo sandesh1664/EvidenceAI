@@ -2,8 +2,9 @@
 
 The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
-17 and Alembic. pgvector is installed but unused. Tenant authorization,
-CRUD, storage, chunks, embeddings, conversations, citations, and evaluations are planned.
+17 and Alembic. pgvector is installed but unused. Workspace management and membership-based tenant
+access are implemented. Uploads, storage, chunks, embeddings, conversations, citations,
+and evaluations remain planned.
 
 ## Configuration and connections
 
@@ -34,7 +35,7 @@ populated database without a recovery plan.
 Tests use PostgreSQL transactions with externally owned outer transactions and
 `join_transaction_mode="create_savepoint"` sessions. Commits/rollbacks operate within
 savepoints; fixture cleanup rolls back the outer transaction. A dedicated test proves
-a committed row disappears after outer rollback. No tables are truncated or dropped.
+a committed row disappears after outer rollback. No public application tables are truncated or dropped.
 Use a separate migrated database in CI. Missing connectivity fails tests, rather than
 skipping them. Commands are in the root README.
 
@@ -52,8 +53,7 @@ httpx2>=2.0.0 and emit a deprecation warning for the current httpx transport. Th
 test passes with that warning visible. Dependencies were preserved; validate a transport
 upgrade separately. No warnings are filtered.
 
-Next milestone: atomic workspace services, authorization-aware
-CRUD and owner-membership enforcement, followed by authenticated upload/storage.
+Next milestone: authenticated upload/storage with document-level workspace checks.
 
 ## Milestone 03 authentication
 
@@ -79,3 +79,50 @@ Other devices remain signed in. Authentication attempts are counted atomically i
 PostgreSQL and committed before credential handling so failures consume the budget.
 Each subsequent write commits explicitly; IntegrityError causes registration rollback.
 See [security](security.md) for browser and deployment contracts.
+
+## Milestone 04 workspaces and membership
+
+`app/api/routes/workspaces.py` and `workspace_members.py` use the existing
+`get_current_user` dependency on every endpoint. Authentication completes and records
+session use before workspace work starts. No endpoint substitutes caller-supplied users
+or trusts owner/role fields outside the explicit schemas. `app/schemas/workspace.py`
+and `workspace_member.py` define safe responses, bounded payloads, and validated UUIDs.
+Workspace and membership listings are paginated, ordered, and membership-filtered.
+
+`app/core/authorization.py` centralizes access checks and role rules. Read queries
+require a membership join. Missing and inaccessible workspaces both return 404 with
+`Workspace not found`. Mutation services acquire a workspace `SELECT ... FOR UPDATE`
+lock before loading current membership in a separate statement. Queries refresh the
+Session identity map (`populate_existing=True`) so cached pre-transfer ownership or
+admin roles cannot authorize a waiting request. All mutations acquire locks in this
+same order and hold them through commit/rollback. This uses PostgreSQL's default
+READ COMMITTED isolation; changing isolation requires a fresh concurrency review.
+
+`app/services/workspace_service.py` creates a workspace and its owner membership in
+one transaction, handles workspace updates, and permits only safe empty deletion.
+`workspace_member_service.py` handles addition of active registered users, duplicate
+membership conflicts, non-owner role changes/removal, and atomic ownership transfer.
+Transfer changes owner_id and both membership roles together; the former owner becomes
+admin. The target must already be an active registered member. General role requests
+accept only admin/member. Admins may promote ordinary members to admin, but cannot
+change/remove existing admins, themselves, or owners. Only owners manage existing admins.
+
+`workspace_transaction.py` commits successful writes and rolls back failed operations.
+Integrity failures become safe 409 responses. PostgreSQL deadlock, serialization, and
+lock-not-available errors also become retryable 409 conflicts. Database/network failures
+are not swallowed. Read and failed-auth transactions close via the existing get_db
+lifecycle. Services reject inconsistent legacy owner memberships without repairing data.
+
+No Milestone 04 migration is needed. Application services maintain the cross-row owner
+invariant; existing unique membership, role checks and RESTRICT FKs remain authoritative
+within their scope. Direct SQL/ORM tools must honor the same protocol; no trigger grants
+arbitrary writes the service guarantees. No frontend, upload, or AI code changed.
+
+Concurrency tests use independent connections and authenticated TestClient requests.
+Each test creates only a unique disposable schema, seeds test users/sessions/workspace,
+observes actual lock blocking with pg_blocking_pids, and checks the resulting owner
+invariant and permission decision. Scratch schemas are removed in finally cleanup;
+public data is untouched. Other new and existing tests retain rollback isolation.
+Use a dedicated CI database whose role can create test schemas.
+
+Reference: [PostgreSQL 17 row locking](https://www.postgresql.org/docs/17/explicit-locking.html).

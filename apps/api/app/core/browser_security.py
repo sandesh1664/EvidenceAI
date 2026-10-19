@@ -15,7 +15,7 @@ class BrowserSecurityMiddleware:
         settings = get_settings()
         if self.cors is None:
             self.cors = CORSMiddleware(self.protected, allow_origins=settings.trusted_frontend_origins,
-                allow_credentials=True, allow_methods=["GET", "POST"],
+                allow_credentials=True, allow_methods=["GET", "POST", "PATCH", "DELETE"],
                 allow_headers=["Content-Type", "X-CSRF-Protection"])
         await self.cors(scope, receive, send)
 

@@ -1,7 +1,8 @@
-# Authentication security
+# Authentication and workspace security
 
-Milestone 03 uses server-side PostgreSQL sessions. It implements no OAuth, JWT,
-workspace authorization, email verification, password reset, or account recovery.
+Milestone 03 uses server-side PostgreSQL sessions. Milestone 04 adds authenticated
+workspace management and role-based membership authorization. OAuth, JWT, email
+verification, password reset, and account recovery are not implemented.
 
 ## API contract
 
@@ -59,7 +60,7 @@ Use Next.js `http://localhost:3000` and API `http://localhost:8000` for developm
 These are different origins and the same site. Use fetch `credentials: "include"`
 for every auth call. Every state-changing request requires an exact trusted Origin plus
 `X-CSRF-Protection: 1`. Browser code cannot set Origin manually. Requiring a custom header
-forces a CORS preflight; credentialed CORS allows only configured exact origins, GET/POST,
+forces a CORS preflight; credentialed CORS allows only configured exact origins, GET/POST/PATCH/DELETE,
 and Content-Type/X-CSRF-Protection. No wildcard origins, regex reflection, or wildcard
 credential policy exists. Login and registration are protected too, preventing login CSRF.
 Requests without Origin are rejected for writes, including CLI clients unless they supply
@@ -135,3 +136,60 @@ httpx2 transport migration remains a separate compatibility task.
 
 References: [argon2-cffi API](https://argon2-cffi.readthedocs.io/en/stable/api.html),
 [Starlette CORS](https://www.starlette.io/middleware/#corsmiddleware).
+
+## Workspace authorization
+
+Every workspace and membership endpoint reuses get_current_user and rejects invalid,
+revoked, expired sessions or inactive users. A caller must hold workspace membership
+before workspace/member data is returned. Membership cannot be inferred from owner_id
+alone. Missing/inaccessible workspace IDs use the same 404 response. Listing queries
+are filtered by caller membership and have bounded pagination. UUIDs and bounded request
+schemas reject malformed IDs, unrecognized fields and client-assigned owner_id/roles.
+Membership responses expose only membership identifiers, role and join time, never
+emails, password hashes or auth-session details.
+
+| Action | Owner | Admin | Member |
+| --- | --- | --- | --- |
+| View workspace and members | Yes | Yes | Yes |
+| Update workspace | Yes | Yes | No |
+| Add existing active registered users as member/admin | Yes | Yes | No |
+| Change/remove ordinary members | Yes | Yes | No |
+| Change/remove existing admins | Yes | No | No |
+| Assign owner using membership POST/PATCH | No | No | No |
+| Transfer ownership to an existing eligible member | Yes | No | No |
+| Delete an empty workspace | Yes | No | No |
+
+Admins may promote ordinary members to admin; they cannot modify/remove current admins,
+including themselves. Members cannot self-promote or self-remove. No general membership
+mutation can demote/remove an owner. Owners must use transfer; the old owner becomes
+admin and the new owner must already be an active registered member. Only the new owner
+can transfer again. Explicit assignment of owner through member payloads is a 422 error.
+
+Creation atomically creates exactly one owner membership matching owner_id. Every
+workspace mutation takes the workspace row lock before rechecking current membership
+and designated ownership, refreshing stale ORM objects. This prevents a concurrent
+transfer/demotion/removal from leaving an old authority usable after the lock wait.
+Exactly one matching owner membership is checked before mutation; inconsistent legacy
+records produce a conflict or fail the owner check and require operator resolution.
+The schema does not independently impose this cross-row invariant on direct SQL writers;
+operational scripts must use these services or follow the same locking/invariant rules.
+
+Deletion is permitted only for the designated owner of a workspace with no documents
+and no other memberships. The service removes its required owner membership and workspace
+in one transaction. Dependency checks and existing RESTRICT FKs prevent unexpected
+cascades; errors roll back both operations. No user/document data is deleted.
+
+CSRF and trusted-Origin checks cover every POST/PATCH/DELETE, with credentials and
+HTTPS requirements unchanged. CORS explicitly includes PATCH/DELETE for authorized
+frontend preflights. CSRF is not an authorization substitute; all routes also authenticate
+and check workspace role on the backend.
+
+No invitations, public join links, upload APIs or document access APIs are added. Future
+document endpoints need equivalent workspace checks. An already authorized read can
+finish while a concurrent membership removal commits. Per-workspace mutation locks
+serialize writes and can become a contention point for very active workspaces. Deadlock,
+serialization and lock-unavailable errors return generic retryable 409 conflicts; there
+is no automatic retry of non-idempotent operations. Configure deployment request/DB
+lock timeouts as appropriate. No independent production security audit has been performed.
+
+See [API specification](api-specification.md) for contracts and consistent error responses.
