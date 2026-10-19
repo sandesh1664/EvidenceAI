@@ -1,0 +1,18 @@
+# Overlay: -f compose.production.yml -f compose.staging.yml; private CA, loopback only.
+services:
+  api:
+    environment: {APP_ENV: staging, TRUSTED_PROXY_IP: 172.30.21.10}
+  worker:
+    environment: {APP_ENV: staging, TRUSTED_PROXY_IP: 172.30.21.10}
+  migrate:
+    environment: {APP_ENV: staging, TRUSTED_PROXY_IP: 172.30.21.10}
+  proxy:
+    ports: !override ["127.0.0.1:18080:8080", "127.0.0.1:18443:8443"]
+    volumes:
+      - ./deploy/tls.staging.caddy:/etc/caddy/tls.caddy:ro
+    networks:
+      application: {ipv4_address: 172.30.21.10}
+networks:
+  application:
+    ipam:
+      config: !override [{subnet: 172.30.21.0/24}]

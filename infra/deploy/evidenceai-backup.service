@@ -1,0 +1,15 @@
+[Unit]
+Description=Quiesced encrypted EvidenceAI backup
+Requires=docker.service
+After=docker.service
+[Service]
+Type=oneshot
+User=evidenceai-deploy
+WorkingDirectory=/opt/evidenceai/current
+ExecStart=/usr/bin/python3 /opt/evidenceai/current/infra/scripts/deploy.py --environment production --ack-production --env-file /etc/evidenceai/production.env backup
+TimeoutStartSec=30min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/evidenceai/current/infra/runtime

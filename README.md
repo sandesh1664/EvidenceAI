@@ -230,3 +230,18 @@ See [observability](docs/observability.md), [evaluation](docs/evaluation-framewo
 [observed verification](docs/milestone-10-verification.md). Prometheus/Grafana configuration
 is in `infra/monitoring`. Backend tests now confine default worker/database queries to
 an owned disposable schema, allowing safe tests alongside development records.
+
+## Deployment candidates (Milestone 11)
+
+Production Dockerfiles, separate staging/production Compose configurations, same-origin
+HTTPS routing, file-mounted secrets, private monitoring, controlled rollout/migrations and
+encrypted database-plus-document backup/restore verification are available. Development
+`infra/docker-compose.yml` and its PostgreSQL volume/port 5433 remain unchanged.
+
+Start with [architecture](docs/production-architecture.md),
+[deployment guide](docs/deployment-guide.md), [backup/recovery](docs/backup-and-recovery.md),
+[CI/CD](docs/ci-cd.md), [production security](docs/production-security.md), and
+[observed verification](docs/milestone-11-verification.md). `npm run build` now consistently
+uses supported Webpack; the container serves standalone output from the same HTTPS origin.
+Run the local-only infrastructure drill with `python3 infra/scripts/smoke.py` after building
+the four `:m11` images. Do not publicly deploy until Milestone 12 acceptance.

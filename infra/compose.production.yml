@@ -1,0 +1,244 @@
+# Separate project and volumes from infra/docker-compose.yml; invoke through scripts/deploy.py.
+name: ${DEPLOY_PROJECT:?Set a unique evidenceai-production project}
+x-runtime: &runtime
+  restart: unless-stopped
+  init: true
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 256
+  logging: {driver: json-file, options: {max-size: 10m, max-file: "3"}}
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=128m,uid=10001,gid=10001"]
+x-api-env: &api-env
+  APP_ENV: production
+  AUTH_ALLOW_INSECURE_HTTP: "false"
+  TRUSTED_FRONTEND_ORIGINS: '["${PUBLIC_ORIGIN:?Set HTTPS public origin}"]'
+  DATABASE_PASSWORD_FILE: /run/secrets/db_password
+  OPERATIONS_TOKEN_FILE: /run/secrets/operations_token
+  OPENAI_API_KEY_FILE: /run/secrets/provider_key
+  DATABASE_HOST: db
+  DOCUMENT_STORAGE_ROOT: /data/documents
+  DOCUMENT_UPLOAD_MAX_BYTES: "20971520"
+  DATABASE_POOL_SIZE: "5"
+  DATABASE_MAX_OVERFLOW: "3"
+  DATABASE_CONNECT_TIMEOUT_SECONDS: "5"
+  DATABASE_STATEMENT_TIMEOUT_MS: "15000"
+  TRUSTED_PROXY_IP: 172.30.11.10
+  EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-disabled}
+  EMBEDDING_MODEL: ${EMBEDDING_MODEL:-fake-hash-v1}
+  EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-128}
+  EMBEDDING_HOSTED_ALLOWED: ${EMBEDDING_HOSTED_ALLOWED:-false}
+  LLM_PROVIDER: ${LLM_PROVIDER:-disabled}
+  LLM_MODEL: ${LLM_MODEL:-mock-extractive-v1}
+  LLM_HOSTED_ALLOWED: ${LLM_HOSTED_ALLOWED:-false}
+services:
+  db:
+    <<: *runtime
+    image: pgvector/pgvector@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
+    user: "999:999"
+    command: [postgres, -c, max_connections=80, -c, shared_buffers=128MB, -c, password_encryption=scram-sha-256, -c, log_statement=none, -c, log_min_error_statement=panic, -c, log_error_verbosity=terse]
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    secrets: [postgres_password, db_password]
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./deploy/init-db.sh:/docker-entrypoint-initdb.d/10-evidenceai.sh:ro
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=64m,uid=999,gid=999", "/var/run/postgresql:rw,nosuid,size=16m,uid=999,gid=999"]
+    networks: [database]
+    shm_size: 128mb
+    mem_limit: 1g
+    cpus: 1.5
+    healthcheck: {test: [CMD-SHELL, "pg_isready -U postgres -h 127.0.0.1 -d evidenceai"], interval: 5s, timeout: 5s, retries: 20}
+    stop_grace_period: 90s
+  api:
+    <<: *runtime
+    image: ${API_IMAGE:?Set immutable release API image}
+    build: {context: ../apps/api}
+    environment: *api-env
+    secrets: [db_password, operations_token, provider_key]
+    volumes: [documents:/data/documents]
+    networks: [application, database, monitoring, egress]
+    depends_on: {db: {condition: service_healthy}}
+    mem_limit: 1g
+    cpus: 1.5
+    healthcheck:
+      test: [CMD, python, -m, app.container_entrypoint, check]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    stop_grace_period: 160s
+  worker:
+    <<: *runtime
+    image: ${API_IMAGE:?Set immutable release API image}
+    command: [worker]
+    environment: *api-env
+    secrets: [db_password, operations_token, provider_key]
+    volumes: [documents:/data/documents, worker_metrics:/metrics]
+    networks: [database, monitoring, egress]
+    depends_on: {db: {condition: service_healthy}}
+    mem_limit: 1g
+    cpus: 1.5
+    stop_grace_period: 180s
+    healthcheck:
+      test: [CMD, python, -c, "import pathlib,time; p=pathlib.Path('/metrics/worker.prom'); assert p.exists() and time.time()-p.stat().st_mtime<180"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+  migrate:
+    <<: *runtime
+    image: ${API_IMAGE:?Set immutable release API image}
+    profiles: [operations]
+    restart: "no"
+    command: [migrate]
+    environment: *api-env
+    secrets: [db_password, operations_token, provider_key]
+    volumes: [documents:/data/documents]
+    networks: [database]
+    depends_on: {db: {condition: service_healthy}}
+    healthcheck: {disable: true}
+    mem_limit: 512m
+  web:
+    <<: *runtime
+    image: ${WEB_IMAGE:?Set immutable release web image}
+    build: {context: ../apps/web}
+    networks: [application]
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=64m,uid=10001,gid=10001", "/app/.next/cache:rw,noexec,nosuid,size=64m,uid=10001,gid=10001"]
+    mem_limit: 512m
+    cpus: 1.0
+    stop_grace_period: 30s
+  proxy:
+    <<: *runtime
+    image: ${PROXY_IMAGE:?Set immutable proxy release image}
+    build: {context: ./deploy}
+    user: "10001:10001"
+    environment:
+      SITE_HOST: ${SITE_HOST:?Set DNS hostname without port}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?Set HTTPS public origin}
+      ACME_EMAIL: ${ACME_EMAIL:?Set certificate contact}
+      XDG_DATA_HOME: /data
+      XDG_CONFIG_HOME: /config
+    ports: ["80:8080", "443:8443"]
+    networks:
+      application: {ipv4_address: 172.30.11.10}
+      ingress: {}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./deploy/tls.production.caddy:/etc/caddy/tls.caddy:ro
+      - proxy_state:/data
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,uid=10001,gid=10001", "/config:rw,noexec,nosuid,size=16m,uid=10001,gid=10001"]
+    depends_on: {api: {condition: service_healthy}, web: {condition: service_healthy}}
+    healthcheck: {test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/_proxy/health], interval: 30s, timeout: 5s, retries: 3}
+    mem_limit: 256m
+    cpus: 0.5
+    stop_grace_period: 30s
+  prometheus:
+    <<: *runtime
+    image: prom/prometheus@sha256:69f5241418838263316593f7274a304b095c40bcf22e57272865da91bd60a8ac
+    profiles: [monitoring]
+    command: [--config.file=/etc/prometheus/prometheus.yml, --storage.tsdb.path=/prometheus, --storage.tsdb.retention.time=14d, --storage.tsdb.retention.size=2GB]
+    secrets: [operations_token]
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prometheus:/prometheus
+    networks: [monitoring]
+    mem_limit: 512m
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,uid=65534,gid=65534"]
+    healthcheck: {test: [CMD, promtool, check, healthy, --url=http://127.0.0.1:9090], interval: 30s, timeout: 5s, retries: 3}
+  worker-exporter:
+    <<: *runtime
+    image: prom/node-exporter@sha256:d00a542e409ee618a4edc67da14dd48c5da66726bbd5537ab2af9c1dfc442c8a
+    profiles: [monitoring]
+    user: "10001:10001"
+    command: [--collector.disable-defaults, --collector.textfile, --collector.textfile.directory=/metrics]
+    volumes: [worker_metrics:/metrics:ro]
+    networks: [monitoring]
+    mem_limit: 64m
+  grafana:
+    <<: *runtime
+    image: grafana/grafana@sha256:2d1f9ae67c1778d33e291d4c3c759cd8b650e67491f02533499eb950e075eeb5
+    profiles: [monitoring]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_password
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+    secrets: [grafana_password]
+    volumes:
+      - grafana:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/evidenceai.json:/var/lib/grafana/dashboards/evidenceai.json:ro
+    networks: [monitoring]
+    mem_limit: 384m
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=64m,uid=472,gid=0"]
+    healthcheck: {test: [CMD-SHELL, "wget -q -O /dev/null http://127.0.0.1:3000/api/health"], interval: 30s, timeout: 5s, retries: 3}
+  backup:
+    <<: *runtime
+    image: ${BACKUP_IMAGE:?Set release backup image}
+    build: {context: ./backup}
+    profiles: [operations]
+    restart: "no"
+    environment:
+      PGHOST: db
+      PGDATABASE: evidenceai
+      PGUSER: evidenceai
+      AGE_RECIPIENT: ${AGE_RECIPIENT:?Set age public recipient}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-14}
+    secrets: [db_password]
+    volumes: [documents:/documents:ro, backups:/backups]
+    tmpfs: ["/work:rw,noexec,nosuid,size=2g,uid=10001,gid=10001", "/tmp:rw,noexec,nosuid,size=64m,uid=10001,gid=10001"]
+    networks: [database]
+    mem_limit: 256m
+    healthcheck: {disable: true}
+  restore-db:
+    <<: *runtime
+    image: pgvector/pgvector@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
+    profiles: [recovery]
+    user: "999:999"
+    environment: {POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password, POSTGRES_DB: restorecheck}
+    secrets: [postgres_password]
+    tmpfs: ["/var/lib/postgresql/data:rw,nosuid,size=1g,uid=999,gid=999", "/var/run/postgresql:rw,nosuid,size=16m,uid=999,gid=999", "/tmp:rw,nosuid,size=64m,uid=999,gid=999"]
+    networks: [recovery]
+    mem_limit: 512m
+    healthcheck: {test: [CMD-SHELL, "pg_isready -h 127.0.0.1 -U postgres -d restorecheck"], interval: 5s, timeout: 5s, retries: 20}
+  restore-verify:
+    <<: *runtime
+    image: ${BACKUP_IMAGE:?Set release backup image}
+    profiles: [recovery]
+    restart: "no"
+    command: [restore]
+    environment: {PGHOST: restore-db, PGDATABASE: restorecheck, PGUSER: postgres, BACKUP_FILE: "${BACKUP_FILE:-}", DATABASE_PASSWORD_FILE: /run/secrets/postgres_password}
+    secrets: [postgres_password, age_identity]
+    volumes: [backups:/backups:ro]
+    tmpfs: ["/work:rw,noexec,nosuid,size=2g,uid=10001,gid=10001", "/tmp:rw,noexec,nosuid,size=64m,uid=10001,gid=10001"]
+    networks: [recovery]
+    depends_on: {restore-db: {condition: service_healthy}}
+    mem_limit: 256m
+    healthcheck: {disable: true}
+networks:
+  ingress: {}
+  application:
+    internal: true
+    ipam: {config: [{subnet: 172.30.11.0/24}]}
+  database: {internal: true}
+  monitoring: {internal: true}
+  recovery: {internal: true}
+  egress: {}
+volumes:
+  proxy_state: {}
+  backups: {}
+  database: {}
+  documents: {}
+  worker_metrics: {}
+  prometheus: {}
+  grafana: {}
+secrets:
+  postgres_password: {file: "${SECRETS_DIR:?Set private secrets directory}/postgres_password"}
+  db_password: {file: "${SECRETS_DIR}/db_password"}
+  operations_token: {file: "${SECRETS_DIR}/operations_token"}
+  provider_key: {file: "${SECRETS_DIR}/provider_key"}
+  grafana_password: {file: "${SECRETS_DIR}/grafana_password"}
+  age_identity: {file: "${SECRETS_DIR}/age_identity"}

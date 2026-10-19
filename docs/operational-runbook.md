@@ -122,3 +122,19 @@ Next priorities: representative and consented evaluation with human semantic jud
 load/capacity and failure-injection testing, backup/restore drills, deployment-specific
 monitoring/alert delivery and secret rotation, lifecycle retention/source-wide erasure,
 and a review of dependency advisories. No availability/security certification is claimed.
+
+## Milestone 11 deployment operations
+
+Deployment candidates now have separate staging/production Compose files, non-root images,
+HTTPS same-origin routing, file secrets and controlled migration/rollout/rollback commands.
+Keep the existing development Compose project/volume on port 5433 untouched. Use
+`infra/scripts/deploy.py` with an explicit private env file; see
+[deployment guide](deployment-guide.md) and [production architecture](production-architecture.md).
+
+Container diagnostics must enter through `python -m app.container_entrypoint check` or
+`status`, because a fresh docker exec does not inherit secrets injected into PID 1.
+Backups stop writers, include DB plus originals, encrypt with age, and verify only against
+an empty disposable restore DB. The private decryption identity is not required for normal
+startup. See [backup and recovery](backup-and-recovery.md) for retention/offsite transfer,
+manual new-project recovery and proposed RPO/RTO. Monitoring is an internal optional profile;
+configure actual alert delivery. No production acceptance is claimed before Milestone 12.

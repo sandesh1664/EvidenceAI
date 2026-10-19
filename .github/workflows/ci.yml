@@ -1,0 +1,131 @@
+name: Verify and package
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  application:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: pgvector/pgvector@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
+        env:
+          POSTGRES_DB: evidenceai
+          POSTGRES_USER: evidenceai
+          POSTGRES_PASSWORD: synthetic-ci-only-password
+        ports: [5432:5432]
+        options: --health-cmd "pg_isready -U evidenceai -d evidenceai" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://evidenceai:synthetic-ci-only-password@127.0.0.1:5432/evidenceai
+      APP_ENV: test
+      EMBEDDING_PROVIDER: disabled
+      LLM_PROVIDER: disabled
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with: {python-version: 3.14.6, cache: pip, cache-dependency-path: apps/api/requirements.txt}
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with: {node-version: 26.12.0, cache: npm, cache-dependency-path: apps/web/package-lock.json}
+      - name: Backend and PostgreSQL integration
+        working-directory: apps/api
+        run: |
+          python -m pip install --only-binary=:all: -r requirements.txt
+          python -m alembic upgrade head
+          python -m alembic current
+          python -m alembic check
+          python -m pip check
+          python -m pytest -q
+          python -m app.evaluate --repeat 3
+      - name: Frontend checks
+        working-directory: apps/web
+        run: |
+          npm ci
+          npm run lint
+          npx tsc --noEmit
+          npm test
+          npm run build
+      - name: Browser integration
+        working-directory: apps/web
+        run: |
+          python -m venv ../api/.venv --system-site-packages
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+      - name: Preserve offline evaluation history
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: evaluation-${{ github.sha }}
+          path: apps/api/evaluation/reports/*.json
+          retention-days: 30
+  containers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with: {persist-credentials: false}
+      - name: Workflow syntax and shell checks
+        run: docker run --rm --network none -v "$PWD/.github/workflows:/workflows:ro" rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /workflows/ci.yml /workflows/deploy.yml
+      - name: Build immutable release candidates
+        run: |
+          docker build -t evidenceai-api:m11 -t "evidenceai-api:sha-${GITHUB_SHA}" apps/api
+          docker build -t evidenceai-web:m11 -t "evidenceai-web:sha-${GITHUB_SHA}" apps/web
+          docker build -t evidenceai-backup:m11 -t "evidenceai-backup:sha-${GITHUB_SHA}" infra/backup
+          docker build -t evidenceai-proxy:m11 -t "evidenceai-proxy:sha-${GITHUB_SHA}" infra/deploy
+      - name: Local HTTPS, secrets, storage, monitoring and recovery drill
+        run: python3 infra/scripts/smoke.py
+      - name: Package images without publishing
+        run: |
+          mkdir -p release
+          docker save "evidenceai-api:sha-${GITHUB_SHA}" -o release/api.tar
+          docker save "evidenceai-web:sha-${GITHUB_SHA}" -o release/web.tar
+          docker save "evidenceai-backup:sha-${GITHUB_SHA}" -o release/backup.tar
+          docker save "evidenceai-proxy:sha-${GITHUB_SHA}" -o release/proxy.tar
+          cp /tmp/evidenceai-m11-smoke-result.json release/staging-result.json
+          git archive --format=tar.gz --output=release/deployment-source.tar.gz HEAD
+          python3 infra/scripts/release_manifest.py --output release/manifest.json
+      - name: Scan candidate images (no Docker socket in scanner)
+        run: |
+          for image in api web backup proxy; do
+            docker run --rm -v "$PWD/release:/scan" aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222 image --input "/scan/$image.tar" --scanners vuln,secret --format json --output "/scan/$image-scan.json" --severity HIGH,CRITICAL --exit-code 1 || touch release/scan-failed
+          done
+          test ! -f release/scan-failed
+      - name: Publish review artifacts only
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: release-candidates-${{ github.sha }}
+          path: release/
+          retention-days: 14
+          compression-level: 1
+  dependency-report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with: {python-version: 3.14.6}
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with: {node-version: 26.12.0}
+      - name: Dependency vulnerability reports
+        run: |
+          mkdir -p reports
+          python -m pip install pip-audit==2.10.1
+          python -m pip_audit --strict -r apps/api/requirements.txt --format json --output reports/python-audit.json || touch reports/runtime-audit-failed
+          cd apps/web
+          npm ci
+          npm audit --json > ../../reports/npm-all.json || true
+          npm audit --omit=dev --audit-level=high --json > ../../reports/npm-runtime.json || touch ../../reports/runtime-audit-failed
+          cd ../..
+          test ! -f reports/runtime-audit-failed
+      - if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with: {name: "dependency-reports-${{ github.sha }}", path: reports/, retention-days: 30}

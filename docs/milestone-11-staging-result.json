@@ -1,0 +1,32 @@
+{
+  "scope": "local isolated staging, private CA; not public TLS or production acceptance",
+  "project": "evidenceai-staging-smokec85f9efea3",
+  "compose_validation": "staging and production; production was not started",
+  "embedding_rag": "fake/mock indexed retrieval and cited answer passed",
+  "https_cookie_csrf_routing_storage_worker": "passed",
+  "api_uid": "10001",
+  "worker_uid": "10001",
+  "web_uid": "10001",
+  "database_role": "non-superuser; no create database or roles",
+  "read_only_root": "enforced",
+  "prometheus_targets": "API and worker exporter up",
+  "backup": {
+    "status": "encrypted_backup_complete",
+    "file": "evidenceai-20261019T172443120399Z-0f14407e57c04ab58794230b636017a2.tar.age",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.03
+  },
+  "restore": {
+    "status": "restore_verified",
+    "schema_revision": "6f22cc4c46ad",
+    "pgvector_version": "0.8.7",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.049,
+    "scope": "isolated disposable recovery drill"
+  },
+  "nonempty_restore_target_rejected": true,
+  "tampered_ciphertext_rejected": true,
+  "graceful_shutdown": "compose stop completed for proxy/API/worker"
+}

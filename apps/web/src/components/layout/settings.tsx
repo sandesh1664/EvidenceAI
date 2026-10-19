@@ -109,7 +109,7 @@ export function Settings() {
             </Badge>
           )}
           <p>
-            <code>{API_ORIGIN}</code>
+            <code>{API_ORIGIN || "Same origin"}</code>
           </p>
           <p className="hint">
             The session endpoint is reachable. This does not prove worker or

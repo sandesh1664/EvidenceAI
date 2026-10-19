@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 export function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const development = process.env.NODE_ENV !== "production";
-  const apiOrigin = new URL(
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000",
-  ).origin;
+  const configuredOrigin =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+  const apiOrigin =
+    configuredOrigin === "same-origin" ? "" : new URL(configuredOrigin).origin;
   const policy = [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ""}`,

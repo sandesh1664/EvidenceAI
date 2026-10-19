@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     operations_token: SecretStr | None = Field(default=None, min_length=32)
     database_connect_timeout_seconds: int = Field(default=5, ge=1, le=30)
     database_statement_timeout_ms: int = Field(default=15000, ge=1000, le=60000)
+    database_pool_size: int = Field(default=5, ge=1, le=20)
+    database_max_overflow: int = Field(default=5, ge=0, le=20)
     database_pool_timeout_seconds: int = Field(default=5, ge=1, le=30)
 
     session_ttl_seconds: int = Field(default=86400, ge=60, le=2592000)
@@ -27,7 +29,7 @@ class Settings(BaseSettings):
     auth_rate_limit: int = Field(default=20, ge=1, le=10000)
     auth_rate_window_seconds: int = Field(default=300, ge=1, le=86400)
 
-    document_storage_root: Path = BACKEND_ROOT.parents[1] / "storage" / "documents"
+    document_storage_root: Path = BACKEND_ROOT.parent.parent / "storage" / "documents"
     document_upload_max_bytes: int = Field(default=20 * 1024 * 1024, ge=1, le=100 * 1024 * 1024)
     document_chunk_size: int = Field(default=1600, ge=64, le=10000)
     document_chunk_overlap: int = Field(default=200, ge=0)

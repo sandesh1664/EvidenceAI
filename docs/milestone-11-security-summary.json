@@ -1,0 +1,92 @@
+{
+  "scanner": "Trivy 0.76.0",
+  "scope": "Local linux/arm64 candidate image archives; findings are not exploitability assessments",
+  "release_gate": "blocked pending triage/remediation and Milestone 12 acceptance",
+  "images": {
+    "api": {
+      "created_at": "2026-10-19T17:25:51.385227178Z",
+      "vulnerability_findings_by_severity": {
+        "LOW": 91,
+        "HIGH": 61,
+        "MEDIUM": 101,
+        "CRITICAL": 2,
+        "UNKNOWN": 1
+      },
+      "high_critical_with_listed_fix": 0,
+      "secret_findings": 0,
+      "scanner_artifact_id": "sha256:9a7e86cea82879dcb9c4dd541be2455a64d4d1a7962418da8934aafebfd94344",
+      "image_config_id": "sha256:b5f8dff1b2a778c2d16ce800c495a013a09194796ed215ff9e8a742f0c0080a5",
+      "docker_local_id": "sha256:7e40a2ec48bf6edc5035e56747480e2ffb74c4b62b09f8be2a026c696bb6f2a2",
+      "scanned_layers_match_local_image": true
+    },
+    "web": {
+      "created_at": "2026-10-19T17:26:01.863792544Z",
+      "vulnerability_findings_by_severity": {
+        "LOW": 84,
+        "HIGH": 56,
+        "MEDIUM": 89,
+        "UNKNOWN": 1,
+        "CRITICAL": 1
+      },
+      "high_critical_with_listed_fix": 0,
+      "secret_findings": 0,
+      "scanner_artifact_id": "sha256:765917f7ccaf0287c5f133f99d37bb9f07a6a1e4a27c1df5de935cd77aea28ac",
+      "image_config_id": "sha256:b0076e2d9a4f7e7239dea9918f5d1d247fce379c2f8b728e8f97e16c90f84b83",
+      "docker_local_id": "sha256:3075b03cf8bdc60a226a7b22e570f5acb2e3f29140eb21cf3deb0f70fa0c0075",
+      "scanned_layers_match_local_image": true
+    },
+    "backup": {
+      "created_at": "2026-10-19T17:26:13.043565133Z",
+      "vulnerability_findings_by_severity": {
+        "LOW": 91,
+        "HIGH": 61,
+        "MEDIUM": 100,
+        "CRITICAL": 2,
+        "UNKNOWN": 1
+      },
+      "high_critical_with_listed_fix": 0,
+      "secret_findings": 0,
+      "scanner_artifact_id": "sha256:4450390dd5e71d2d3a182dbf1803c9b3d65997244822cb66a9b5ff40ff975094",
+      "image_config_id": "sha256:14f77f1f7078a0c38386d65596e33c761874e42aaa8ae0a7f2f42e9545735c2a",
+      "docker_local_id": "sha256:66275d2b525f620e6b006d5a2be948c9597a63c6863814b7196ccc935de1326d",
+      "scanned_layers_match_local_image": true
+    },
+    "proxy": {
+      "created_at": "2026-10-19T17:26:22.641450012Z",
+      "vulnerability_findings_by_severity": {
+        "MEDIUM": 14,
+        "UNKNOWN": 1,
+        "HIGH": 4,
+        "LOW": 1
+      },
+      "high_critical_with_listed_fix": 4,
+      "secret_findings": 0,
+      "scanner_artifact_id": "sha256:4848c7a1237073e1eea8cb2c610263dafed825ef14f3d20cdf0ed8d7002cc078",
+      "image_config_id": "sha256:5a7e72db98498d75039bbbeaea8b3641f3bab9b2fd34b552a819131586e2879d",
+      "docker_local_id": "sha256:ea44c3245ebcba9b7beb44bcf365f893c1fc726a5430129be45d1d632c664f98",
+      "scanned_layers_match_local_image": true
+    }
+  },
+  "python_audit": {
+    "tool": "pip-audit 2.10.1",
+    "requirement_count": 44,
+    "finding_count": 0
+  },
+  "npm-all": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 5,
+    "critical": 0,
+    "total": 5
+  },
+  "npm-runtime": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "release_gate_verified_exit_code": 1
+}

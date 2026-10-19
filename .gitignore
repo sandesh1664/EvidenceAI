@@ -22,3 +22,8 @@ storage/
 apps/api/evaluation/reports/
 infra/monitoring/secrets/
 infra/monitoring/runtime/
+
+# Deployment-only configuration and encrypted recovery artifacts
+infra/runtime/
+infra/secrets/
+*.tar.age

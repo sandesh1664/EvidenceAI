@@ -1,0 +1,60 @@
+name: Approved host rollout
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [staging, production]
+        required: true
+      release_sha:
+        description: Full accepted commit SHA already installed in /opt/evidenceai/releases
+        required: true
+permissions:
+  contents: read
+  actions: read
+  deployments: read
+concurrency:
+  group: deploy-${{ inputs.environment }}
+  cancel-in-progress: false
+jobs:
+  rollout:
+    # Configure required reviewers, no self-approval and main-only restrictions in GitHub.
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      RELEASE_SHA: ${{ inputs.release_sha }}
+      TARGET_ENV: ${{ inputs.environment }}
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+      SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+    steps:
+      - name: Require environment reviewers and approved branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          REF: ${{ github.ref }}
+        run: |
+          set -euo pipefail
+          test "$REF" = refs/heads/main
+          gh api "repos/$REPOSITORY/environments/$TARGET_ENV" > /tmp/environment-policy.json
+          python3 -c 'import json; p=json.load(open("/tmp/environment-policy.json")); assert any(r.get("type")=="required_reviewers" and r.get("reviewers") and r.get("prevent_self_review") for r in p.get("protection_rules",[])), "Required reviewer and no self-approval protection must be configured"'
+      - name: Verify release input and pinned SSH identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9.-]+$ ]]
+          [[ "$DEPLOY_USER" =~ ^[a-z_][a-z0-9_-]*$ ]]
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy_key ~/.ssh/known_hosts
+          # Environment files/digest promotion and prior release reference are prepared
+          # by the release operator after all CI/scans/recovery evidence is accepted.
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" \
+            "cd /opt/evidenceai/releases/$RELEASE_SHA && test \$(git rev-parse HEAD) = $RELEASE_SHA && test -r /etc/evidenceai/accepted/$RELEASE_SHA.json && python3 infra/scripts/deploy.py --environment $TARGET_ENV --ack-production --env-file /etc/evidenceai/$TARGET_ENV.env --previous-env /etc/evidenceai/$TARGET_ENV.previous.env rollout"
+      - name: Remove runner SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

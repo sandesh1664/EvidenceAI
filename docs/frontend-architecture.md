@@ -385,3 +385,11 @@ private tracing payload or new persistent browser storage is added. A client uni
 and all registration E2E flows check the correlation contract. In this constrained build
 environment Turbopack's internal loader socket fails with EPERM; the supported Webpack
 production build and Chromium flows were verified. See the Milestone 10 verification log.
+
+## Milestone 11 runtime
+
+`npm run build` selects supported Webpack, and Next emits standalone output for the non-root
+container. Production images set `NEXT_PUBLIC_API_BASE_URL=same-origin`; browser requests
+and downloads then use relative `/api/v1/*` paths. The CSP uses self for that API mode.
+Local development retains the configured localhost API origin. The frontend receives no
+runtime secret and shares HTTPS cookie/origin/CSRF behavior through the reverse proxy.

@@ -10,17 +10,20 @@ import type {
   Workspace,
 } from "@/types/api";
 
-export const API_ORIGIN = (
+const configuredOrigin = (
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"
 ).replace(/\/$/, "");
-const origin = new URL(API_ORIGIN);
+export const API_ORIGIN =
+  configuredOrigin === "same-origin" ? "" : configuredOrigin;
+const origin = new URL(API_ORIGIN || "https://same-origin.invalid");
 if (
-  origin.origin !== API_ORIGIN ||
-  !["http:", "https:"].includes(origin.protocol) ||
-  origin.username ||
-  origin.password ||
-  (origin.protocol === "http:" &&
-    !["localhost", "127.0.0.1", "[::1]"].includes(origin.hostname))
+  API_ORIGIN &&
+  (origin.origin !== API_ORIGIN ||
+    !["http:", "https:"].includes(origin.protocol) ||
+    origin.username ||
+    origin.password ||
+    (origin.protocol === "http:" &&
+      !["localhost", "127.0.0.1", "[::1]"].includes(origin.hostname)))
 )
   throw new Error(
     "API URL must be an HTTPS origin (HTTP loopback is allowed for development).",
