@@ -1,0 +1,24 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: evidenceai
+      POSTGRES_USER: evidenceai
+      POSTGRES_PASSWORD: local_dev_password
+
+    ports:
+      - "127.0.0.1:5433:5432"
+
+    volumes:
+      - evidenceai_pgdata:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evidenceai -d evidenceai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  evidenceai_pgdata:

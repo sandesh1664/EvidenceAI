@@ -1,0 +1,19 @@
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node.js
+node_modules/
+.next/
+
+# Local storage
+storage/
+.DS_Store
