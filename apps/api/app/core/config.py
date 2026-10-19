@@ -35,6 +35,35 @@ class Settings(BaseSettings):
     document_max_attempts: int = Field(default=3, ge=1, le=10)
     document_job_lease_seconds: int = Field(default=120, ge=30, le=3600)
 
+    embedding_provider: Literal["disabled", "fake", "openai"] = "disabled"
+    embedding_model: str = Field(default="fake-hash-v1", min_length=1, max_length=120, pattern=r"^[a-zA-Z0-9._-]+$")
+    embedding_revision: str = Field(default="1", min_length=1, max_length=80, pattern=r"^[a-zA-Z0-9._-]+$")
+    embedding_dimensions: int = Field(default=128, ge=8, le=3072)
+    embedding_hosted_allowed: bool = False
+    openai_api_key: SecretStr | None = None
+    embedding_batch_size: int = Field(default=16, ge=1, le=32)
+    embedding_input_max_bytes: int = Field(default=8000, ge=1, le=8000)
+    embedding_http_timeout_seconds: float = Field(default=10, ge=0.1, le=60)
+    embedding_request_budget_seconds: float = Field(default=30, ge=1, le=120)
+    embedding_provider_attempts: int = Field(default=3, ge=1, le=5)
+    embedding_job_max_attempts: int = Field(default=3, ge=1, le=10)
+    embedding_job_lease_seconds: int = Field(default=120, ge=30, le=600)
+    search_min_similarity: float = Field(default=0.25, ge=0, le=1)
+
+    @model_validator(mode="after")
+    def validate_embeddings(self):
+        if self.embedding_job_lease_seconds < self.embedding_request_budget_seconds * 2 + 15:
+            raise ValueError("Embedding lease must exceed twice the request budget plus 15 seconds")
+        if self.embedding_provider == "fake" and self.embedding_model != "fake-hash-v1":
+            raise ValueError("Fake provider requires fake-hash-v1")
+        if self.embedding_provider == "openai":
+            if not self.embedding_hosted_allowed or not self.openai_api_key or not self.openai_api_key.get_secret_value().strip():
+                raise ValueError("Hosted embeddings require explicit privacy opt-in and a server-side API key")
+            limits = {"text-embedding-3-small": 1536, "text-embedding-3-large": 3072}
+            if self.embedding_model not in limits or self.embedding_dimensions > limits[self.embedding_model]:
+                raise ValueError("Unsupported hosted model or dimension")
+        return self
+
     @model_validator(mode="after")
     def validate_document_limits(self):
         if self.document_chunk_overlap >= self.document_chunk_size:

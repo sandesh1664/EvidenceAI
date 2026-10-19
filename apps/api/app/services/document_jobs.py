@@ -80,6 +80,11 @@ def finish_job(db, claim: Claim, settings, *, chunks=None, error=None, transient
         db.add_all([DocumentChunk(**asdict(chunk)) for chunk in chunks])
         document.processing_status, document.processing_error = 'completed', None
         job.state = 'done'
+        if settings.embedding_provider != 'disabled':
+            # Persist chunks, index job and extraction completion in one transaction.
+            db.flush()
+            from app.services.embedding_jobs import enqueue
+            enqueue(db,document,settings,force=True)
     else:
         document.processing_error = error
         if transient and document.processing_attempts < settings.document_max_attempts:
@@ -147,4 +152,6 @@ def run_once(db, settings, storage):
     claim = claim_job(db,settings)
     if claim is not None:
         process_claim(db,claim,settings,storage)
-    return cleaned or claim is not None
+    from app.services.embedding_jobs import run_once as index_once
+    indexed = index_once(db,settings)
+    return cleaned or claim is not None or indexed

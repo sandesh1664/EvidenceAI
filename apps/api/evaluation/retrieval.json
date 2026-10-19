@@ -1,0 +1,26 @@
+{
+  "name": "evidenceai-synthetic-retrieval-v1",
+  "k": 2,
+  "documents": [
+    {"id":"solar-a","text":"Solar panels capture sunlight and generate renewable electricity for homes."},
+    {"id":"solar-b","text":"Photovoltaic solar cells turn sunlight into electricity and renewable energy."},
+    {"id":"battery-a","text":"Lithium batteries store electrical energy. Battery storage supplies power when demand rises."},
+    {"id":"battery-b","text":"Battery charging and discharging manage stored electricity. Lithium cells provide energy storage."},
+    {"id":"water-a","text":"Water filtration removes sediment and contaminants. Filters improve drinking water quality."},
+    {"id":"water-b","text":"Drinking water treatment uses filtration to remove contaminants and protect water quality."},
+    {"id":"bread-a","text":"Bread dough rises through yeast fermentation. Baking bread requires flour water and yeast."},
+    {"id":"bread-b","text":"Yeast fermentation produces gas in bread dough. Flour and kneading develop bread structure."},
+    {"id":"distractor-a","text":"Astronomers study distant galaxies with telescopes and measure cosmic radiation."},
+    {"id":"distractor-b","text":"A violin orchestra performs classical music with strings and a conductor."}
+  ],
+  "queries": [
+    {"id":"solar-1","query":"solar panels sunlight renewable electricity","relevant":["solar-a","solar-b"]},
+    {"id":"solar-2","query":"photovoltaic solar electricity energy","relevant":["solar-a","solar-b"]},
+    {"id":"battery-1","query":"lithium battery energy storage","relevant":["battery-a","battery-b"]},
+    {"id":"battery-2","query":"battery charging stored electricity","relevant":["battery-a","battery-b"]},
+    {"id":"water-1","query":"drinking water filtration contaminants","relevant":["water-a","water-b"]},
+    {"id":"water-2","query":"water quality sediment filtration","relevant":["water-a","water-b"]},
+    {"id":"bread-1","query":"bread dough yeast fermentation","relevant":["bread-a","bread-b"]},
+    {"id":"bread-2","query":"flour kneading bread structure","relevant":["bread-a","bread-b"]}
+  ]
+}

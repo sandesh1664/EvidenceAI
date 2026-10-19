@@ -166,7 +166,7 @@ python -m pip check
 git diff --check
 ```
 
-Current migration is `c52d8e7a901b`; Milestone 05 adds ingestion metadata without changing
+Current migration is `d64a9f2b830c`; ingestion and embeddings are added without changing
 previously applied migrations. Tests authenticate real session cookies and use isolated PostgreSQL data.
 Concurrency tests require CREATE SCHEMA permission and use only uniquely named,
 disposable test schemas; they verify actual row-lock contention via pg_blocking_pids.
@@ -238,3 +238,68 @@ Disk cleanup is eventual and persistent; subsequent metadata/downloads return 40
 while storage is unavailable. In-flight authorized streams may finish. No user records
 are removed. See [document processing](document-processing.md) for worker operations,
 parser/source limits, crash recovery and storage consistency details.
+
+## Semantic search and index management (Milestone 06)
+
+All routes require the existing session cookie and workspace membership. Every POST,
+including search, requires trusted Origin and X-CSRF-Protection: 1. Embeddings are disabled
+by default (503 until configured). Missing/inaccessible workspaces use the same 404.
+
+| Method/path | Request | Success | Permission / errors |
+| --- | --- | --- | --- |
+| POST /api/v1/workspaces/{workspace_id}/search | query, optional limit and document_ids | 200 result array | Any member; 422 invalid payload; 404 invalid/foreign document filter; 503 provider unavailable/disabled |
+| GET /api/v1/workspaces/{workspace_id}/documents/{document_id}/index | None | 200 active-profile status | Any member; 404 missing/inaccessible document |
+| POST /api/v1/workspaces/{workspace_id}/documents/{document_id}/index | `{}` or `{"force":true}` | 202 active-profile status | Owner/admin; 409 extraction incomplete, no chunks, or conflicting forced rebuild |
+| POST /api/v1/workspaces/{workspace_id}/documents/{document_id}/index/retry | No body | 202 status, same generation | Owner/admin; 409 not failed or attempt budget exhausted |
+
+Search example:
+
+```json
+{"query":"solar renewable electricity","limit":5,"document_ids":null}
+```
+
+Query is trimmed/nonblank, maximum 2000 characters and 6000 UTF-8 bytes, without NUL.
+Limit is a strict integer 1–50, default 10. document_ids is null/omitted for all eligible
+documents, or up to 50 distinct UUIDs. [] explicitly matches none. Every supplied UUID
+must belong to the workspace; missing and foreign IDs return the same Document filter
+not found error. Unknown request fields are rejected. Empty/unindexed/no-above-threshold
+matches return [], without invoking a provider when no indexed candidates exist.
+
+```json
+[
+  {
+    "chunk_id":"1ed0b483-0c54-4c3e-9336-079c78fdf9b6",
+    "document_id":"f61f6a5b-ec19-4d4d-a451-6c8e716b5bb3",
+    "filename":"research.pdf",
+    "excerpt":"Solar panels generate renewable electricity...",
+    "page_number":1,
+    "section":null,
+    "source_ref":"document:f61f6a5b-ec19-4d4d-a451-6c8e716b5bb3/page:1",
+    "similarity":0.83,
+    "embedding_model":"fake:fake-hash-v1@1/128"
+  }
+]
+```
+
+The response is source text, not a generated answer. Excerpts contain at most 1000
+characters. Similarity is 1 minus cosine distance, clamped to [-1,1], not confidence.
+Only scores >= SEARCH_MIN_SIMILARITY (default 0.25) qualify. Ordering is distance ascending,
+then document UUID, chunk index, chunk UUID. Only the active profile/dimension is searched;
+there is no cross-model fallback. Hosted failures return a generic safe 503. Reauthorization
+after provider calls can return 404 if membership or filters became invalid meanwhile.
+
+Index status fields: document_id, embedding_model (provider:model@revision/dimension),
+dimensions, state (not_indexed/queued/running/done/failed), generation UUID/null, attempts,
+total_chunks, indexed_chunks, current_generation_chunks, safe error/null, last_attempt_at/null.
+indexed_chunks includes usable older same-profile vectors retained during a rebuild;
+current_generation_chunks counts only the current job's completed generation. Extraction
+status and indexing status are separate: a completed document can still be unindexed.
+
+Index POST requires a JSON object (use {}). Without force it enqueues an unindexed eligible
+document; repeated queued/running/done/failed requests do not duplicate/reset jobs. Use
+/index/retry for failed jobs below the lifetime-per-generation attempt limit (default 3).
+force=true starts a new generation for done/failed jobs, resets that generation's attempts
+and recomputes vectors, preserving old usable ones until replacement. It returns 409 if
+already queued/running; it never cancels live work. Changing model/revision/dimension creates
+a new active profile; POST index each completed document to build it, without modifying
+old profile embeddings. New successful extractions auto-enqueue only when enabled.

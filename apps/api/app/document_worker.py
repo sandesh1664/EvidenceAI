@@ -7,7 +7,7 @@ import threading
 from sqlalchemy import func, select
 from app.core.config import get_settings
 from app.db.session import get_session_factory
-from app.models import DocumentJob, StorageCleanup
+from app.models import DocumentJob, StorageCleanup, EmbeddingJob
 from app.services.document_jobs import run_once
 from app.services.document_storage import get_document_storage
 
@@ -21,6 +21,7 @@ def main():
     if args.status:
         with factory() as db:
             print(dict(db.execute(select(DocumentJob.state,func.count()).group_by(DocumentJob.state)).all()))
+            print('embedding_jobs:',dict(db.execute(select(EmbeddingJob.state,func.count()).group_by(EmbeddingJob.state)).all()))
             print('cleanup_pending:',db.scalar(select(func.count()).select_from(StorageCleanup)))
         return
     storage, stop = get_document_storage(), threading.Event()

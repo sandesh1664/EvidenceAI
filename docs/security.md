@@ -201,7 +201,8 @@ and download only. Non-member: no document access. Every endpoint reuses authent
 current-user resolution. Central document helpers check membership and scope lookups by
 both document and workspace UUID. Upload role is checked before reading the form and
 again under the workspace lock before publication. Missing/inaccessible workspaces have
-identical 404 responses. No API exposes raw storage keys/paths or extracted chunk text. Arbitrary legacy processing
+identical 404 responses. No API exposes raw storage keys/paths. Document metadata excludes extracted text; authorized
+search exposes bounded excerpts. Arbitrary legacy processing
 error strings are redacted in responses without rewriting their stored values.
 
 Raw request bodies are capped before multipart spooling, even without Content-Length.
@@ -235,7 +236,7 @@ Extracted text, headings, source references and originals are private untrusted 
 Future retrieval/AI/UI code must treat instructions within documents as data and escape
 rendered text. Do not log request bodies, extracted text, filenames, paths or parser
 exceptions. Workers log only fixed operational messages and return fixed failure strings.
-This milestone performs no embeddings, prompt execution or AI generation.
+Milestone 06 adds embeddings; no document prompt execution or AI answer generation occurs.
 
 PostgreSQL queue claims use row locks, bounded total attempts and expiring unique leases.
 Finalization is fenced and atomic, preventing stale/duplicate jobs from publishing chunks.
@@ -244,3 +245,46 @@ A DB/storage dual-write cannot be fully atomic; cleanup intents, idempotent dele
 live-reference checks handle partial failures. Physical deletion requires the worker and
 working storage. Monitoring must alert on pending cleanup, old queued/running jobs and
 terminal failures. No independent production security audit has been performed.
+
+## Embedding and retrieval privacy (Milestone 06)
+
+Embeddings default to disabled. Fake mode is offline deterministic lexical hashing, used
+by all automated tests/evaluation. Hosted mode requires provider=openai, explicit
+EMBEDDING_HOSTED_ALLOWED=true and a server-side OPENAI_API_KEY. This configuration is an
+operator privacy opt-in, not a substitute for organizational/legal review or end-user
+consent requirements. Hosted providers receive private chunk text and search queries.
+Review provider retention, residency, access controls and contractual requirements before
+production use. No live hosted request was made as part of local verification.
+
+OpenAI calls use a fixed official HTTPS endpoint, normal certificate verification,
+no redirects, no environment proxies, bounded response/input sizes and finite/dimension
+validation. API keys are SecretStr, not returned or committed. Do not enable HTTP body/header
+logging or APM capture for embedding requests: it can expose keys and private source/query
+text. Error strings use a safe vocabulary; raw provider bodies/exceptions never reach API
+responses or worker logs. Per-input UTF-8 byte and batch bounds conservatively constrain
+provider token limits, without silently truncating source chunks.
+
+All workspace members may POST search and view index status. Only owners/admins enqueue,
+force-reindex or retry; role checks reuse existing workspace/document authorization. All
+POSTs require session authentication, trusted Origin and the custom CSRF header, including
+read-only search because it uses cookie-authenticated POST and may incur provider cost.
+Foreign/missing workspace IDs and foreign/missing document filters receive consistent
+404s. Membership is rechecked after provider I/O and joined again in the final SQL.
+Queries are parameterized. Search returns only completed, compatible vectors for completed
+documents in that workspace; no raw storage paths or unrestricted chunk dump is exposed.
+
+Profile identity includes provider/model/revision/dimension, and provider responses must
+identify the configured model. Changing configuration never falls back to incompatible
+old vectors. Hosted model aliases can change upstream without a new returned name; operators
+must bump EMBEDDING_REVISION and reindex for known backend/preprocessing changes. The system
+cannot detect undisclosed upstream alias changes. Stale jobs are fenced by generation,
+lease and document existence checks. Deletion cascades only derived vectors/jobs, preserving
+original source-data restrictions. Retained embeddings are sensitive derived data and need
+the same database access/backup protections as document text.
+
+Similarity is not evidence confidence, factual verification or answer generation. Fake
+mode has lexical collisions and lacks trained semantic understanding. A threshold reduces
+unrelated matches but does not guarantee relevance. Search/index quotas, abuse controls,
+production semantic evaluation, database RLS and a full independent audit are not added.
+Existing authorization is application-enforced. Monitor hosted cost, retries, backlog and
+failed indexing; bounded automatic retries do not prevent repeated authorized force rebuilds.

@@ -2,9 +2,9 @@
 
 The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
-17 and Alembic. pgvector is installed but unused. Workspace management and membership-based tenant
+17 and Alembic. pgvector now supports versioned embeddings and exact cosine retrieval. Workspace management and membership-based tenant
 access are implemented. Document upload, private storage, extraction and chunks are implemented in Milestone 05.
-Embeddings, conversations, citations and evaluations remain planned.
+Conversations, answer generation and production retrieval evaluation remain planned.
 
 ## Configuration and connections
 
@@ -53,7 +53,7 @@ httpx2>=2.0.0 and emit a deprecation warning for the current httpx transport. Th
 test passes with that warning visible. Dependencies were preserved; validate a transport
 upgrade separately. No warnings are filtered.
 
-Future work: embeddings and retrieval using authorized document chunks.
+Future work: evidence-grounded answer generation on top of authorized retrieval.
 
 ## Milestone 03 authentication
 
@@ -179,7 +179,7 @@ Chunking is deterministic over normalized per-page/plain text with Markdown head
 boundaries. Chunks carry document/workspace identity, sequential index, source reference,
 page/section and exact character offsets into normalized source text. UUID5 IDs plus
 unique document/index and a composite document/workspace FK prevent duplicates and
-misattribution. No embeddings or chunk-content API are added.
+misattribution. Milestone 06 adds derived embeddings and authorized search excerpts.
 
 Deleting a document atomically removes chunks, job and metadata and records a storage
 cleanup intent. It immediately invalidates future metadata/download access. File deletion
@@ -187,3 +187,43 @@ is eventual, idempotent and retried with capped backoff until storage is availab
 In-flight authorized streams can finish. Cleanup does not depend on the workspace FK,
 so an otherwise empty workspace can subsequently be deleted. See
 [document processing](document-processing.md) for limits and operational details.
+
+## Milestone 06 versioned embeddings and retrieval
+
+`embedding_providers.py` defines a provider protocol, immutable profile identity, deterministic
+fake provider, hosted OpenAI implementation, validation and bounded retry engine. Provider,
+model, operator-managed revision and dimension hash to an immutable profile ID. The hosted
+provider uses the fixed official HTTPS endpoint, verifies response model/index ordering,
+bounds response size, disables redirects/environment proxies, and never exposes raw HTTP
+errors. All vectors must have expected shape, finite values and nonzero norm; they are
+normalized before persistence. Credentials remain backend SecretStr settings.
+
+New embedding_profiles, chunk_embeddings and embedding_jobs tables store derived data.
+Source chunks/references remain unchanged. Generic pgvector VECTOR supports multiple
+profile dimensions; DB checks and a composite profile/dimension FK prevent mismatches.
+Search restricts exact profile and dimension and uses a guarded vector cast before <=>.
+This avoids comparing different-dimensional profiles even if query predicates are rearranged.
+
+On successful extraction, enabled-provider indexing is enqueued in the same transaction
+as chunks and completed status. Existing `document_worker` ticks then process indexing.
+The embedding queue reuses Document-first locks, SKIP LOCKED claims, expiring leases,
+bounded attempts and stale-result fences, with a unique document/profile job. Provider
+calls hold no DB transaction; each validated batch commits independently. Successful
+batches survive later failures; retries skip chunks completed in the target generation.
+Forced same-profile rebuilds retain old usable vectors until replacement. A profile change
+creates independent embeddings and never changes old profile rows.
+
+Search routes authenticate and authorize the workspace before any provider call, validate
+all document filters, release the transaction during remote query embedding, and then
+recheck membership/filter context. The final parameterized SQL joins current membership
+and scopes both Document and DocumentChunk to the authorized workspace, completed document
+state, profile/dimension and completed embedding state. Results are ordered by cosine
+distance then document ID/chunk index/chunk ID, and include bounded excerpts/provenance.
+A minimum similarity threshold returns [] when nothing qualifies; scores are not confidence.
+
+Exact search is the initial choice for predictable workspace-filtered ranking and an
+unambiguous correctness baseline. Profile/status B-trees and existing workspace/chunk
+indexes narrow candidates. No HNSW index is created on the mixed-dimension vector column.
+Large-scale deployment needs corpus-specific benchmarks before a dimension/profile-specific
+cosine ANN index and post-filter recall tuning. No Redis, frontend changes or LLM generation
+are introduced. See [retrieval engine](retrieval-engine.md) for operations and evaluation.

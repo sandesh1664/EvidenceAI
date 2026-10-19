@@ -11,9 +11,12 @@
 | document_chunks | Extracted source text and references | UUID PK; composite document/workspace FK; workspace FK; unique document/index; offset/page/text checks |
 | document_jobs | Durable processing queue, one row per document | Document FK/PK; queued/running/done/failed state; availability and expiring lease |
 | storage_cleanup | Upload reservations and eventual file cleanup | Opaque storage key PK; availability index; attempt count and safe error |
+| embedding_profiles | Provider/model/revision/dimension identity | SHA-256 profile PK; unique id/dimension; dimension bounds |
+| chunk_embeddings | Derived pgvector vectors and batch progress | Composite chunk/profile PK; profile/dimension FK; vector/status/norm checks; profile/status index |
+| embedding_jobs | Durable per-document/profile indexing | Composite document/profile PK; generation/lease UUIDs; availability index; attempt checks |
 
 Users have owned workspaces, memberships, and uploaded documents. Workspaces have
-memberships and documents. Existing ORM relationships are explicitly paired. All foreign keys
+memberships and documents. Existing ORM relationships are explicitly paired. Original application foreign keys
 use ON DELETE RESTRICT. Accounts with referencing records and workspaces with members
 or documents cannot be deleted directly. The workspace deletion service explicitly
 removes only the mandatory owner membership before deleting an otherwise empty workspace,
@@ -59,7 +62,7 @@ clear a description with null and leaves omitted fields unchanged.
 Documents store metadata only. Content resides in external private storage. States are
 pending (default), processing, completed, failed. Optional size cannot be negative;
 SHA-256 must contain 64 lowercase hexadecimal characters. Workflow transitions, chunks,
-vector columns and AI processing are not implemented.
+Vector columns are now stored in derived chunk_embeddings; AI answer generation is not implemented.
 
 Names follow the common metadata constraint/index convention. Initial migration revision
 is 6cc0ce3f2778. pgvector is untouched.
@@ -74,7 +77,7 @@ SELECT version_num FROM alembic_version;
 SELECT extname, extversion FROM pg_extension;
 ```
 
-Expect nine application tables plus alembic_version. From apps/api, run
+Expect twelve application tables plus alembic_version. From apps/api, run
 `python -m alembic current`, `python -m alembic heads`, and `python -m alembic check`.
 See the root README for migration and test commands.
 
@@ -159,3 +162,41 @@ those remain until authorized document deletion.
 Review migration/SQL before upgrade. Downgrade destroys ingestion metadata/chunks and
 must not be run on a populated deployment. No original fields or records are deleted
 by upgrade, and pgvector and the PostgreSQL Docker volume/port remain unchanged.
+
+## Embedding migration (Milestone 06)
+
+Revision d64a9f2b830c follows c52d8e7a901b and only adds embedding_profiles,
+chunk_embeddings and embedding_jobs plus their constraints/indexes. It ensures the
+already-installed vector extension exists without updating/dropping it. No source text,
+references, original metadata, or applied migrations change. Downgrade removes only the
+new derived tables and must not be run casually on a populated deployment.
+
+Profiles identify provider/model/operator-managed revision/dimensions immutably, with
+SHA-256 of their canonical tuple. Embedding rows carry chunk UUID, profile ID, dimension,
+VECTOR value, status (pending/completed/failed), generation UUID, generated_at and safe
+error. A profile/dimension composite FK and vector_dims/norm checks prevent incompatible
+or zero vectors. Completed requires a vector and generation timestamp. pgvector rejects
+nonfinite float elements; application validation adds shape/norm checks before writes.
+
+Embeddings intentionally use a dimension-unconstrained VECTOR column to retain multiple
+model versions/dimensions. No incompatible vectors share a retrieval profile: queries
+always filter profile/dimensions and guard the dimension cast. No ANN index exists on the
+mixed-dimension column. Exact cosine uses <=> plus a B-tree (profile_id,status) filter and
+the existing workspace/document indexes. A future ANN design must create separate typed
+profile/dimension cosine indexes and re-evaluate filtering recall; it cannot blindly index
+this mixed-dimension column with one typmod/opclass.
+
+An indexing job is unique on document/profile, with queued/running/done/failed states,
+generation, bounded attempts, availability, lease UUID/deadline, last attempt time and
+safe error. Claims/finalization lock Document before EmbeddingJob, consistent with API
+mutation ordering. Generations separate explicit rebuilds; leases fence competing attempts.
+Per-batch commits preserve completed chunks during partial failures. Old completed vectors
+remain available during a same-profile rebuild; current-generation counts distinguish
+those retained vectors from rebuilt ones.
+
+Only the NEW derived child FKs use CASCADE: source chunk deletion removes its embedding
+rows and document deletion removes its indexing jobs. The original source-data RESTRICT
+constraints are unchanged. Thus deletion and chunk replacement cannot leave derivative
+vectors/jobs orphaned, and late provider results cannot recreate them. Profiles and old
+model-version embeddings are retained until their source is deleted; no automatic profile
+retention or cleanup of old versions is implemented.

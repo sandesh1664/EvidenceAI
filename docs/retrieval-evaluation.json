@@ -1,0 +1,85 @@
+{
+  "dataset": "evidenceai-synthetic-retrieval-v1",
+  "provider": "fake",
+  "embedding_model": "fake:fake-hash-v1@1/128",
+  "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+  "k": 2,
+  "workspace_documents": 10,
+  "foreign_workspace_documents": 10,
+  "query_count": 8,
+  "recall_at_k": 0.9375,
+  "precision_at_k": 0.9375,
+  "mean_reciprocal_rank": 1.0,
+  "latency_mean_ms": 3.3549,
+  "latency_median_ms": 2.9477,
+  "latency_p95_ms": 6.1754,
+  "workspace_isolation_checks": 10,
+  "workspace_isolation_passed": 10,
+  "workspace_isolation_correctness": 1.0,
+  "created_at": "2026-10-19T01:15:33.847956+00:00",
+  "queries": [
+    {
+      "query_id": "solar-1",
+      "returned_document_ids": [
+        "solar-a",
+        "solar-b"
+      ],
+      "latency_ms": 6.1754
+    },
+    {
+      "query_id": "solar-2",
+      "returned_document_ids": [
+        "solar-b",
+        "solar-a"
+      ],
+      "latency_ms": 3.1135
+    },
+    {
+      "query_id": "battery-1",
+      "returned_document_ids": [
+        "battery-b",
+        "battery-a"
+      ],
+      "latency_ms": 2.9251
+    },
+    {
+      "query_id": "battery-2",
+      "returned_document_ids": [
+        "battery-b"
+      ],
+      "latency_ms": 3.0036
+    },
+    {
+      "query_id": "water-1",
+      "returned_document_ids": [
+        "water-b",
+        "water-a"
+      ],
+      "latency_ms": 2.8325
+    },
+    {
+      "query_id": "water-2",
+      "returned_document_ids": [
+        "water-a",
+        "water-b"
+      ],
+      "latency_ms": 2.9665
+    },
+    {
+      "query_id": "bread-1",
+      "returned_document_ids": [
+        "bread-a",
+        "bread-b"
+      ],
+      "latency_ms": 2.929
+    },
+    {
+      "query_id": "bread-2",
+      "returned_document_ids": [
+        "bread-b",
+        "bread-a"
+      ],
+      "latency_ms": 2.8936
+    }
+  ]
+}

@@ -1,9 +1,8 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 05 adds secure
-PDF, UTF-8 text and Markdown ingestion, private storage, background extraction and
-source-aware chunks to the existing authentication and workspace system. Embeddings
-and AI answer generation remain planned.
+EvidenceAI is a document intelligence and research platform. Milestone 06 adds versioned
+embeddings, pgvector cosine retrieval, durable indexing and authorized workspace search
+to the existing secure document-ingestion system. LLM answer generation remains planned.
 
 ## Development
 
@@ -85,7 +84,7 @@ Creation and transfer preserve exactly one matching owner membership in a transa
 An empty workspace can be deleted with its mandatory owner membership; other members
 or any documents cause 409. No users or documents are cascade-deleted.
 
-Milestone 04 needed no schema migration; Milestone 05 advances the head to `c52d8e7a901b`.
+Milestone 04 needed no schema migration; the current head is `d64a9f2b830c` (Milestone 06).
 Run `python -m pytest -q`, `python -m alembic current`, `python -m alembic check`,
 `python -m pip check`, and `git diff --check` to verify. Authenticated TestClient tests
 cover tenant isolation, roles, CSRF, rollback, and actual PostgreSQL lock contention.
@@ -103,7 +102,7 @@ POST/DELETE still require trusted Origin and `X-CSRF-Protection: 1`.
 cd apps/api
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-# Review c52d8e7a901b before applying it:
+# Review the new migrations before applying them:
 python -m alembic upgrade head
 python -m app.document_worker          # separate long-running worker
 # Other operational commands:
@@ -125,3 +124,39 @@ Verification uses `python -m pytest -q`, `python -m alembic current`,
 `python -m alembic check`, `python -m pip check`, and `git diff --check`.
 Tests isolate storage and queues; real concurrency uses disposable database schemas.
 No existing records, frontend files, applied migrations, or Docker volumes are reset.
+
+## Embeddings and retrieval
+
+See [retrieval engine](docs/retrieval-engine.md) for configuration, lifecycle, API contracts,
+privacy, reindexing and measured evaluation. Embeddings are disabled by default. For
+explicit offline development set EMBEDDING_PROVIDER=fake, EMBEDDING_MODEL=fake-hash-v1,
+EMBEDDING_REVISION=1 and EMBEDDING_DIMENSIONS=128. The fake provider is deterministic
+lexical hashing for tests, not a trained semantic model. For real semantic embeddings,
+configure the hosted OpenAI provider after reviewing outbound data/privacy requirements.
+No paid API is called by tests or the synthetic evaluation.
+
+With a provider enabled, the existing `python -m app.document_worker` indexes successful
+extractions automatically. Existing completed documents need an authorized POST to their
+`/index` endpoint. Model/revision/dimension changes create separate profiles; reindex each
+eligible document for the new configuration. No source chunks are modified by indexing.
+
+`POST /api/v1/workspaces/{workspace_id}/search` accepts query, bounded limit and optional
+document_ids, and returns authorized source excerpts/references with cosine scores.
+Every workspace member may search; owners/admins enqueue, force reindex or retry indexing.
+Session cookies and existing CSRF/trusted-Origin controls apply to all POSTs.
+
+```sh
+cd apps/api
+source .venv/bin/activate
+python -m alembic upgrade head
+python -m app.document_worker
+# From a separate shell:
+python -m app.document_worker --status
+python -m app.evaluate_retrieval --output ../../docs/retrieval-evaluation.json
+```
+
+Migration `d64a9f2b830c` adds embedding_profiles, chunk_embeddings and embedding_jobs.
+It preserves source tables and pgvector. Search is exact filtered cosine, with B-tree
+profile/status indexes and no HNSW approximation. The checked-in synthetic benchmark
+reports Recall@2/Precision@2 0.9375, MRR@2 1.0 and isolation 10/10; it measures only the
+fake lexical provider on a tiny synthetic corpus, not hosted semantic quality or scale.

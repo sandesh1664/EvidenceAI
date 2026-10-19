@@ -3,7 +3,8 @@
 Milestone 05 supports PDF, UTF-8 TXT and Markdown in authenticated workspaces. Owners
 and admins upload/retry/delete; all members list/view/download; non-members have no
 access. The API contract is in [api-specification](api-specification.md). No uploads are
-publicly served, and no embeddings, AI answers, OCR, invitations or frontend are added.
+publicly served. Milestone 06 adds optional embeddings/retrieval; AI answers, OCR,
+invitations and frontend changes remain outside scope.
 
 ## Request and storage lifecycle
 
@@ -150,7 +151,8 @@ references are document:<UUID>/page:<N> for PDF and document:<UUID> for text. Ch
 offsets are zero-based/end-exclusive within normalized page text or the normalized whole
 TXT/Markdown source, not original byte offsets. They reproduce exact source substrings.
 A composite FK prevents document/workspace misattribution; unique document/index prevents
-repeated chunks. There is no public chunk-content endpoint or embedding generation.
+repeated chunks. Milestone 06 exposes source excerpts only through authorized search;
+there is no unrestricted chunk dump endpoint.
 
 ## Storage/DB failure recovery and deletion
 
@@ -198,7 +200,7 @@ constraints prevent invalid overlap or leases shorter than processing timeout + 
 
 The file byte limit differs from extracted-text/page/chunk limits: an accepted upload
 can later fail processing. Per-user/workspace quotas, antivirus, OCR, S3, text-search,
-embeddings, metrics export and automatic retention of completed/failed jobs are not
+metrics export and automatic retention of completed/failed jobs are not
 implemented. Configure ingress connection/rate/body/time budgets as appropriate; the
 application byte cap does not by itself prevent slow clients or aggregate upload abuse.
 
@@ -213,3 +215,33 @@ or Docker volumes are destroyed. CREATE SCHEMA privilege is needed only for thes
 
 References: [pypdf resource configuration](https://pypdf.readthedocs.io/en/stable/modules/configuration.html),
 [PostgreSQL queue locking](https://www.postgresql.org/docs/17/sql-select.html).
+
+## Embedding stage (Milestone 06)
+
+See [retrieval engine](retrieval-engine.md) for provider/privacy configuration, profile
+identity, indexing APIs and evaluation. Migration d64a9f2b830c extends the current head.
+Embeddings default to disabled, preserving extraction-only behavior. With fake/openai
+explicitly enabled, successful chunk extraction atomically enqueues an active-profile
+embedding job. The same document_worker tick handles cleanup, extraction and indexing;
+no Redis or second mandatory worker service is introduced.
+
+Embedding jobs are separate from extraction jobs and have independent state/attempts.
+Completed extraction remains completed if indexing fails. Workers claim one eligible
+active-profile indexing job, process bounded batches outside transactions, and persist
+validated vectors per batch. Lease renewal occurs between batches; lease expiry/recovery
+and generation fences reject stale responses. A late/deleted document cannot recreate
+vectors. Retries preserve successful target-generation batches. A forced rebuild retains
+old usable same-profile vectors until new batches commit.
+
+Existing completed documents are not automatically backfilled by the migration; use the
+authorized index API. A provider/model/revision/dimension change makes a new profile; queue
+those documents for the new profile explicitly. Old profiles remain stored and are never
+mixed in search. Workers process only their configured active profile. Multiple worker
+configurations can process independent profiles, but operators must coordinate configuration
+and avoid unintended hosted data transfer. --status now also prints embedding job counts.
+
+Deletion removes derived vectors with source chunks and indexing jobs with documents,
+using only new derivative CASCADE FKs; all original RESTRICT constraints remain. Successful
+chunk replacement removes old derived vectors. Physical original cleanup is unchanged.
+The active embedding job's generation and lease are checked before every batch publication,
+so a deleted source or newer rebuild prevents stale results from overwriting current data.
