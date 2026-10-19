@@ -1,8 +1,8 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 06 adds versioned
-embeddings, pgvector cosine retrieval, durable indexing and authorized workspace search
-to the existing secure document-ingestion system. LLM answer generation remains planned.
+EvidenceAI is a document intelligence and research platform. Milestone 07 adds stateless,
+evidence-grounded question answering with validated extractive claims and citations,
+on top of authenticated workspace search, versioned embeddings and secure document ingestion.
 
 ## Development
 
@@ -160,3 +160,21 @@ It preserves source tables and pgvector. Search is exact filtered cosine, with B
 profile/status indexes and no HNSW approximation. The checked-in synthetic benchmark
 reports Recall@2/Precision@2 0.9375, MRR@2 1.0 and isolation 10/10; it measures only the
 fake lexical provider on a tiny synthetic corpus, not hosted semantic quality or scale.
+
+## Grounded answers (Milestone 07)
+
+POST `/api/v1/workspaces/{workspace_id}/ask` accepts a question, optional document UUIDs
+and retrieval limit. Members receive source quotations with validated claim-level citations,
+or explicit insufficient_evidence/retrieval_unavailable/provider_error states. Existing session
+authentication and CSRF apply. Answers are stateless; conversation history remains future work.
+
+Generation defaults to disabled. For offline development use `LLM_PROVIDER=mock`,
+`LLM_MODEL=mock-extractive-v1`, and the existing indexed fake embedding profile. Hosted
+OpenAI generation requires its own explicit privacy opt-in and backend model/key configuration.
+The hosted provider uses Responses strict structured outputs with bounded retries/timeouts.
+
+See [RAG answer engine](docs/rag-answer-engine.md) for configuration, API examples, safeguards,
+limits and the 13-case [synthetic report](docs/rag-evaluation.json). Current answers are exact
+source extracts; this small mock-provider evaluation does not establish production accuracy.
+Streaming is deferred until draft content can be validated safely. No new schema migration
+or frontend changes are introduced; database head remains `d64a9f2b830c`.

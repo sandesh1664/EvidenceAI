@@ -236,7 +236,7 @@ Extracted text, headings, source references and originals are private untrusted 
 Future retrieval/AI/UI code must treat instructions within documents as data and escape
 rendered text. Do not log request bodies, extracted text, filenames, paths or parser
 exceptions. Workers log only fixed operational messages and return fixed failure strings.
-Milestone 06 adds embeddings; no document prompt execution or AI answer generation occurs.
+Milestone 06 adds embeddings. Milestone 07 adds answer generation with untrusted source text and validation; no document instructions are executed.
 
 PostgreSQL queue claims use row locks, bounded total attempts and expiring unique leases.
 Finalization is fenced and atomic, preventing stale/duplicate jobs from publishing chunks.
@@ -288,3 +288,36 @@ unrelated matches but does not guarantee relevance. Search/index quotas, abuse c
 production semantic evaluation, database RLS and a full independent audit are not added.
 Existing authorization is application-enforced. Monitor hosted cost, retries, backlog and
 failed indexing; bounded automatic retries do not prevent repeated authorized force rebuilds.
+
+## Grounded generation security (Milestone 07)
+
+The ask API preserves cookie authentication, Origin/CSRF enforcement and membership checks.
+All document UUID filters are authorized before early returns; retrieval and source loading
+join the authorized workspace, compatible embeddings, completed documents and current
+membership. Membership/active-user/source eligibility are checked again after generation;
+external source replacement and membership removal are tested. Authorization stays in server
+code and parameterized SQL; generated IDs never determine database queries or permissions.
+
+Evidence is serialized separately from system instructions and explicitly marked untrusted.
+No tool runner, URL fetcher or code executor is available. Keys/settings/storage paths never
+enter the prompt; literal configured-key source matches are excluded. Injection/credential
+patterns are rejected in emitted claims. Every claim must be an exact quotation of sent
+evidence with validated server IDs and lexical question support. Invented IDs, fabricated
+claims with real IDs, malformed schema and missing references reject the entire output.
+Canonical document UUID/page references replace raw source paths. Future clients must render
+all answer/source metadata as plain untrusted text. These are defense-in-depth controls,
+not an absolute prompt-injection guarantee or proof of semantic entailment/source truth.
+
+Hosted answering is separately disabled by default and requires explicit opt-in and a server
+secret. Questions/excerpts are transmitted externally when enabled. Responses store=false
+is set, but provider retention/processing terms still apply. Fixed endpoint, no redirects, no
+proxy inheritance, bounded body/attempt/token limits and hosted wall timeouts constrain I/O.
+Only fixed failure codes are logged/returned; no raw response bodies, prompts or keys.
+Tests block live sync/async HTTP and use offline MockTransport. No paid evaluation was run.
+
+Generation capacity is bounded across workers using PostgreSQL session advisory locks;
+transaction-pooling proxies are incompatible. Capacity is not a per-user cost/abuse quota.
+Retrieval/DB pool work still requires operational statement/lock/pool timeouts; the scheduling
+deadline cannot forcibly cancel synchronous retrieval. No streaming tokens or conversation
+history are retained. Small synthetic tests do not constitute independent security review.
+See [RAG security, limits and evaluation](rag-answer-engine.md).

@@ -156,7 +156,8 @@ def test_session_rejections(client, db, payload, kind):
     user = register(client, payload)
     login(client, payload)
     session = db.scalar(select(AuthSession))
-    if kind == 'expired': session.expires_at = datetime.now(timezone.utc) - timedelta(seconds=1)
+    # Authentication uses PostgreSQL time; Docker/host clocks can drift.
+    if kind == 'expired': session.expires_at = db.scalar(select(func.clock_timestamp())) - timedelta(seconds=1)
     elif kind == 'revoked': session.revoked_at = datetime.now(timezone.utc)
     else: db.get(User, uuid.UUID(user['id'])).is_active = False
     db.commit()

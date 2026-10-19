@@ -303,3 +303,38 @@ and recomputes vectors, preserving old usable ones until replacement. It returns
 already queued/running; it never cancels live work. Changing model/revision/dimension creates
 a new active profile; POST index each completed document to build it, without modifying
 old profile embeddings. New successful extractions auto-enqueue only when enabled.
+
+## Grounded answer API (Milestone 07)
+
+`POST /api/v1/workspaces/{workspace_id}/ask` requires a current session, Origin and
+X-CSRF-Protection: 1, and workspace owner/admin/member access. Body fields:
+
+| Field | Contract |
+| --- | --- |
+| question | Required trimmed string, 1–2000 characters, <=6000 UTF-8 bytes |
+| document_ids | Optional null or <=50 unique UUIDs; [] selects nothing |
+| retrieval_limit | Optional strict integer 1–12, capped by server RAG_RETRIEVAL_LIMIT |
+
+Unknown fields, duplicate filters, control characters and invalid UUIDs return 422.
+Inaccessible workspace or document filters return 404, including before abstention. Session
+and CSRF failures retain 401/403. Each generation revalidates authorization and sources.
+
+Response fields: answer, status, reason, claims, citations, retrieved_evidence_count,
+model_identifier, usage (null or input_tokens/output_tokens/total_tokens), request_id.
+Claims contain claim_id, text, citation_ids. Citations contain citation_id, document_id,
+chunk_id, filename, page_number, section, source_ref, supporting_excerpt, char_start,
+char_end and claim_ids. Metadata is server-derived; storage keys/paths are excluded.
+`X-Request-ID` matches the body UUID, and Cache-Control remains no-store.
+
+| HTTP / status | Behavior |
+| --- | --- |
+| 200 / answered | Validated source quotation claims with server-added [C1] markers |
+| 200 / insufficient_evidence | Explicit abstention; empty claims/citations |
+| 503 or 504 / retrieval_unavailable | Retrieval/revalidation failed or retrieval scheduling deadline expired |
+| 503 or 504 / provider_error | Disabled/failed provider, invalid output/budget, or hosted timeout |
+| 429 / provider_error | Shared generation capacity busy; Retry-After: 1 |
+
+All failure/abstention envelopes contain an explicit safe message and empty claim/citation
+lists. Raw provider errors are suppressed. The endpoint is stateless; no streaming endpoint
+or conversation history is implemented. For examples, specific reason codes, limits and
+provider configuration see [RAG answer engine](rag-answer-engine.md).

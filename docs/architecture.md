@@ -4,7 +4,7 @@ The existing Next.js frontend and FastAPI health endpoint remain unchanged. The
 backend foundation uses synchronous SQLAlchemy typed models, Psycopg 3, PostgreSQL
 17 and Alembic. pgvector now supports versioned embeddings and exact cosine retrieval. Workspace management and membership-based tenant
 access are implemented. Document upload, private storage, extraction and chunks are implemented in Milestone 05.
-Conversations, answer generation and production retrieval evaluation remain planned.
+Stateless grounded answer generation is implemented in Milestone 07; conversations and production retrieval evaluation remain planned.
 
 ## Configuration and connections
 
@@ -53,7 +53,7 @@ httpx2>=2.0.0 and emit a deprecation warning for the current httpx transport. Th
 test passes with that warning visible. Dependencies were preserved; validate a transport
 upgrade separately. No warnings are filtered.
 
-Future work: evidence-grounded answer generation on top of authorized retrieval.
+Milestone 07 adds validated extractive answers on top of authorized retrieval.
 
 ## Milestone 03 authentication
 
@@ -225,5 +225,25 @@ Exact search is the initial choice for predictable workspace-filtered ranking an
 unambiguous correctness baseline. Profile/status B-trees and existing workspace/chunk
 indexes narrow candidates. No HNSW index is created on the mixed-dimension vector column.
 Large-scale deployment needs corpus-specific benchmarks before a dimension/profile-specific
-cosine ANN index and post-filter recall tuning. No Redis, frontend changes or LLM generation
-are introduced. See [retrieval engine](retrieval-engine.md) for operations and evaluation.
+cosine ANN index and post-filter recall tuning. Milestone 06 introduced no Redis or frontend changes. See [retrieval engine](retrieval-engine.md) for operations and evaluation.
+
+## Milestone 07 stateless grounded answers
+
+The ask route composes existing session/CSRF and workspace authorization, semantic search,
+bounded context assembly, configurable generation, source revalidation and citation validation.
+Search ranking and profile compatibility remain in the existing search service. Context IDs
+are assigned on the server; only question, evidence ID and evidence text reach generation.
+The model cannot make authorization decisions or request tools/database queries.
+
+Providers implement the LLMProvider generate contract: deterministic mock and opt-in OpenAI
+Responses, with strict JSON, usage validation, bounded attempts, input/output budgets and
+wall timeouts for hosted calls. Exact quote claims are checked against admitted source prefixes,
+then rendered with server metadata and claim associations. Unvalidated output is never emitted.
+Membership, active user and evidence eligibility are checked again after provider I/O.
+
+A separate autocommit connection holds a session PostgreSQL advisory lock for generation
+capacity, shared across workers without adding tables. Source transactions do not span hosted
+I/O. All workers need consistent capacity settings and connection-pool headroom. The endpoint
+persists no conversations or answers, introduces no migration and keeps head `d64a9f2b830c`.
+Metrics/logs contain fixed outcomes, request IDs, counts and durations only. SSE is deferred
+to preserve validation before delivery. See [RAG answer engine](rag-answer-engine.md).

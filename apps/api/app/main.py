@@ -20,12 +20,14 @@ from app.api.routes.auth import router as auth_router
 from app.core.browser_security import BrowserSecurityMiddleware
 from app.api.routes.documents import router as documents_router
 from app.api.routes.search import router as search_router
+from app.api.routes.ask import router as ask_router
 from app.api.routes.workspaces import router as workspaces_router
 from app.api.routes.workspace_members import router as workspace_members_router
 
 app.include_router(auth_router)
 app.include_router(documents_router)
 app.include_router(search_router)
+app.include_router(ask_router)
 app.include_router(workspaces_router)
 app.include_router(workspace_members_router)
 app.add_middleware(BrowserSecurityMiddleware)

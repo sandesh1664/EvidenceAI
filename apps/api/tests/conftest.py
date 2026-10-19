@@ -4,6 +4,8 @@ import os
 # Test processes must never inherit a paid provider/key from the developer's .env.
 # Explicit Settings(...) kwargs in hosted MockTransport tests still take precedence.
 for setting, value in {
+    "LLM_PROVIDER": "disabled", "LLM_MODEL": "mock-extractive-v1", "LLM_REVISION": "1",
+    "LLM_HOSTED_ALLOWED": "false",
     "EMBEDDING_PROVIDER": "disabled", "EMBEDDING_MODEL": "fake-hash-v1",
     "EMBEDDING_REVISION": "1", "EMBEDDING_DIMENSIONS": "128",
     "EMBEDDING_HOSTED_ALLOWED": "false", "OPENAI_API_KEY": "offline-test-placeholder",
@@ -41,3 +43,6 @@ def offline_http_only(monkeypatch):
     def reject_network(self, request):
         raise AssertionError("Tests require TestClient or explicit MockTransport; live HTTP is disabled")
     monkeypatch.setattr(httpx.HTTPTransport, "handle_request", reject_network)
+    async def reject_async_network(self, request):
+        raise AssertionError("Tests require explicit MockTransport; live HTTP is disabled")
+    monkeypatch.setattr(httpx.AsyncHTTPTransport, "handle_async_request", reject_async_network)

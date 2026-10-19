@@ -1,0 +1,126 @@
+{
+  "dataset": "EvidenceAI synthetic extractive grounding v1",
+  "created_at": "2026-10-19T11:13:42.324472+00:00",
+  "method": "Real PostgreSQL fake-hash retrieval + mock extractive generation; hand-authored exact claim/source gold labels; two adversarial generation cases",
+  "limitations": "13 English synthetic cases; lexical providers and exact quotes; no hosted, semantic entailment, representative corpus, load or independent security evaluation",
+  "case_count": 13,
+  "correct_cases": 12,
+  "answer_correctness": 0.9230769230769231,
+  "emitted_claim_count": 4,
+  "citation_count": 4,
+  "citation_reference_validity": 1.0,
+  "citation_gold_support_quality": 1.0,
+  "unsupported_claim_frequency": 0.0,
+  "expected_insufficient_count": 6,
+  "detected_insufficient_count": 6,
+  "insufficient_evidence_recall": 1.0,
+  "latency_mean_ms": 6.5118,
+  "latency_median_ms": 5.3762,
+  "latency_p95_ms": 17.1991,
+  "cases": [
+    {
+      "id": "solar-answer",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "reason": "validated_extracts",
+      "correct": true,
+      "latency_ms": 17.1991
+    },
+    {
+      "id": "warranty-answer",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "reason": "validated_extracts",
+      "correct": true,
+      "latency_ms": 8.1045
+    },
+    {
+      "id": "retention-answer",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "reason": "validated_extracts",
+      "correct": true,
+      "latency_ms": 8.2304
+    },
+    {
+      "id": "backup-answer",
+      "expected_status": "answered",
+      "actual_status": "insufficient_evidence",
+      "reason": "no_evidence",
+      "correct": false,
+      "latency_ms": 5.3762
+    },
+    {
+      "id": "injected-source",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "reason": "validated_extracts",
+      "correct": true,
+      "latency_ms": 8.0434
+    },
+    {
+      "id": "missing-qualifier",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "unsupported_question",
+      "correct": true,
+      "latency_ms": 5.0842
+    },
+    {
+      "id": "empty-evidence",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "no_evidence",
+      "correct": true,
+      "latency_ms": 2.3267
+    },
+    {
+      "id": "conflicting-warranty",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "contradictory_evidence",
+      "correct": true,
+      "latency_ms": 4.7828
+    },
+    {
+      "id": "ambiguous-question",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "ambiguous_question",
+      "correct": true,
+      "latency_ms": 1.1042
+    },
+    {
+      "id": "unsupported-topic",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "no_evidence",
+      "correct": true,
+      "latency_ms": 3.86
+    },
+    {
+      "id": "missing-numeric-qualifier",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "reason": "unsupported_question",
+      "correct": true,
+      "latency_ms": 4.9979
+    },
+    {
+      "id": "invented-reference",
+      "expected_status": "provider_error",
+      "actual_status": "provider_error",
+      "reason": "invalid_generation",
+      "correct": true,
+      "latency_ms": 7.7658
+    },
+    {
+      "id": "unsupported-claim-with-valid-reference",
+      "expected_status": "provider_error",
+      "actual_status": "provider_error",
+      "reason": "invalid_generation",
+      "correct": true,
+      "latency_ms": 7.7788
+    }
+  ]
+}

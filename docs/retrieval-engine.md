@@ -1,7 +1,7 @@
 # Retrieval engine and operations
 
 Milestone 06 adds versioned chunk embeddings and authenticated exact cosine retrieval.
-It does not generate LLM answers. Source chunks, page/section references and originals
+The retrieval service does not generate answers; Milestone 07 composes it in a separate RAG pipeline. Source chunks, page/section references and originals
 remain unchanged by indexing. Search returns only source excerpts from authorized workspaces.
 
 ## Providers and explicit configuration
@@ -245,8 +245,24 @@ chunk size before ingestion or explicitly plan a future split/indexing strategy.
 normalization handles scale but not incompatible model spaces. Fake token collisions,
 application-level authorization (no DB RLS), absent search/index quotas, exact-search scale,
 old-profile retention and nondeterministic upstream aliases are current limitations.
-No independent security audit or LLM answer generation is claimed.
+No independent security audit is claimed. Milestone 07 adds answer generation in a separate service.
 
 References: [official OpenAI embedding request contract](https://developers.openai.com/api/reference/resources/embeddings/methods/create),
 [pgvector cosine/exact and approximate search](https://github.com/pgvector/pgvector),
 [pgvector SQLAlchemy support](https://github.com/pgvector/pgvector-python).
+
+## Use by grounded answers (Milestone 07)
+
+The ask pipeline reuses search with its own RAG_MIN_SIMILARITY (default 0.35), bounded
+retrieval count (default 6, maximum 12), optional authorized filters and active profile.
+The existing search API/worker/index contracts are unchanged. Source text, embeddings,
+profiles and applied migrations are preserved. Only indexed completed evidence is admitted.
+
+The RAG service deduplicates returned chunks/text, assigns deterministic citation IDs and
+truncates 1,000-character search excerpts further to its context budget. Empty/unusable
+evidence avoids generation. Model output cannot broaden the retrieval query. A second
+authorized source lookup after generation invalidates changed/deleted sources. Exact source
+quotations and lexical support checks are intentionally conservative and can over-abstain;
+retrieval score is not answer confidence. A conflicting source outside the retrieved context
+cannot be detected. See [RAG answer engine](rag-answer-engine.md) and its separate
+[13-case synthetic evaluation](rag-evaluation.json), which reports one retrieval false abstention.

@@ -50,6 +50,38 @@ class Settings(BaseSettings):
     embedding_job_lease_seconds: int = Field(default=120, ge=30, le=600)
     search_min_similarity: float = Field(default=0.25, ge=0, le=1)
 
+    llm_provider: Literal["disabled", "mock", "openai"] = "disabled"
+    llm_model: str = Field(default="mock-extractive-v1",min_length=1,max_length=120,pattern=r"^[a-zA-Z0-9._-]+$")
+    llm_revision: str = Field(default="1",min_length=1,max_length=80,pattern=r"^[a-zA-Z0-9._-]+$")
+    llm_hosted_allowed: bool = False
+    llm_temperature: float | None = Field(default=None,ge=0,le=2,allow_inf_nan=False)
+    llm_temperature_supported: bool = False
+    llm_max_output_tokens: int = Field(default=1000,ge=128,le=4096)
+    llm_timeout_seconds: float = Field(default=15,ge=0.1,le=60,allow_inf_nan=False)
+    llm_max_attempts: int = Field(default=2,ge=1,le=4)
+    rag_request_timeout_seconds: float = Field(default=45,ge=1,le=120,allow_inf_nan=False)
+    rag_retrieval_limit: int = Field(default=6,ge=1,le=12)
+    rag_min_similarity: float = Field(default=0.35,ge=0,le=1,allow_inf_nan=False)
+    rag_context_token_budget: int = Field(default=4096,ge=128,le=16000)
+    rag_input_token_budget: int = Field(default=12000,ge=2048,le=32000)
+    rag_max_claims: int = Field(default=4,ge=1,le=6)
+    rag_concurrent_generations: int = Field(default=4,ge=1,le=8)
+
+    @model_validator(mode="after")
+    def validate_rag(self):
+        if self.rag_context_token_budget + 3000 > self.rag_input_token_budget:
+            raise ValueError("RAG input budget must reserve at least 3000 tokens beyond evidence")
+        if self.llm_provider == "mock" and self.llm_model != "mock-extractive-v1":
+            raise ValueError("Mock LLM requires mock-extractive-v1")
+        if self.llm_temperature is not None and not self.llm_temperature_supported:
+            raise ValueError("Temperature support must be explicitly enabled for the configured model")
+        if self.llm_provider == "openai":
+            if not self.llm_hosted_allowed or not self.openai_api_key or not self.openai_api_key.get_secret_value().strip():
+                raise ValueError("Hosted LLM requires privacy opt-in and a backend API key")
+            if self.llm_model == "mock-extractive-v1":
+                raise ValueError("Configure an explicit hosted LLM model")
+        return self
+
     @model_validator(mode="after")
     def validate_embeddings(self):
         if self.embedding_job_lease_seconds < self.embedding_request_budget_seconds * 2 + 15:
