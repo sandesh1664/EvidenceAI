@@ -1,4 +1,5 @@
 """Provider implementations contain no DB access and never expose raw provider errors."""
+from app.core.telemetry import measured, provider_call
 from dataclasses import dataclass
 import hashlib
 import json
@@ -146,6 +147,7 @@ class EmbeddingEngine:
         self.provider = provider if provider is not None else provider_for(settings)
         self.sleep = sleep
 
+    @measured("embedding", provider=True)
     def embed(self,texts):
         settings = self.settings
         if not isinstance(texts,list) or not texts or len(texts)>settings.embedding_batch_size:
@@ -158,7 +160,7 @@ class EmbeddingEngine:
                 remaining = deadline-time.monotonic()
                 if remaining <= 0:
                     raise EmbeddingError('Embedding provider timed out',transient=True)
-                result = self.provider.embed(texts,timeout=min(settings.embedding_http_timeout_seconds,remaining))
+                result = provider_call('embedding',settings.embedding_provider,self.provider.embed,texts,timeout=min(settings.embedding_http_timeout_seconds,remaining))
                 return validated_vectors(result,len(texts),settings.embedding_dimensions)
             except EmbeddingError as error:
                 if not error.transient or attempt+1 >= settings.embedding_provider_attempts:

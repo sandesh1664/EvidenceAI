@@ -129,7 +129,7 @@ def test_login_failures_generic(client, db, payload, kind):
     assert response.status_code == 401
     assert response.json() == {'detail':'Invalid email or password'}
     assert 'set-cookie' not in response.headers
-    assert db.scalar(select(func.count()).select_from(AuthSession)) == 0
+    assert db.scalar(select(func.count()).select_from(AuthSession).where(AuthSession.user_id == uuid.UUID(user["id"]))) == 0
 
 
 def test_unauthenticated_me(client):
@@ -155,7 +155,7 @@ def test_logout_revokes_and_clears_cookie(client, db, payload):
 def test_session_rejections(client, db, payload, kind):
     user = register(client, payload)
     login(client, payload)
-    session = db.scalar(select(AuthSession))
+    session = db.scalar(select(AuthSession).where(AuthSession.user_id.in_(select(User.id).where(User.email == payload["email"].strip().lower()))))
     # Authentication uses PostgreSQL time; Docker/host clocks can drift.
     if kind == 'expired': session.expires_at = db.scalar(select(func.clock_timestamp())) - timedelta(seconds=1)
     elif kind == 'revoked': session.revoked_at = datetime.now(timezone.utc)
@@ -185,7 +185,7 @@ def test_csrf_rejection_preserves_session(client, db, payload):
     login(client, payload)
     client.headers.pop('X-CSRF-Protection')
     assert client.post('/api/v1/auth/logout').status_code == 403
-    assert db.scalar(select(AuthSession)).revoked_at is None
+    assert db.scalar(select(AuthSession).where(AuthSession.user_id.in_(select(User.id).where(User.email == payload["email"].strip().lower())))).revoked_at is None
     assert client.get('/api/v1/auth/me').status_code == 200
 
 
@@ -244,7 +244,7 @@ def test_shared_rate_limit_and_proxy_headers(client, db, settings, payload, path
         assert client.post('/api/v1/auth/'+path, json={}, headers={'X-Forwarded-For':str(uuid.uuid4())}).status_code == 422
     response = client.post('/api/v1/auth/'+path, json=payload)
     assert response.status_code == 429 and int(response.headers['retry-after']) > 0
-    assert db.scalar(select(AuthRateLimit.attempts)) == 3
+    assert db.scalar(select(AuthRateLimit.attempts).where(AuthRateLimit.key.in_([hash_token("/api/v1/auth/login:testclient"),hash_token("/api/v1/auth/register:testclient")]))) == 3
 
 
 def test_case_insensitive_database_constraint(db, payload):
@@ -253,7 +253,7 @@ def test_case_insensitive_database_constraint(db, payload):
     db.add(User(email=' '+payload['email']+' ', display_name='Conflicting'))
     with pytest.raises(IntegrityError): db.commit()
     db.rollback()
-    assert db.scalar(select(func.count()).select_from(User)) == 1
+    assert db.scalar(select(func.count()).select_from(User).where(func.lower(func.btrim(User.email)) == payload["email"].lower())) == 1
 
 
 def test_existing_legacy_identity_login(client, db, payload):
@@ -268,7 +268,7 @@ def test_session_expiration_configuration(client, db, settings, payload):
     settings.session_ttl_seconds = 120
     register(client, payload)
     login(client, payload)
-    session = db.scalar(select(AuthSession))
+    session = db.scalar(select(AuthSession).where(AuthSession.user_id.in_(select(User.id).where(User.email == payload["email"].strip().lower()))))
     assert 119 <= (session.expires_at - session.created_at).total_seconds() <= 122
 
 
@@ -278,7 +278,7 @@ def test_login_rotates_session_tokens(client, db, payload):
     first = client.cookies['evidenceai_session']
     login(client, payload)
     assert client.cookies['evidenceai_session'] != first
-    assert len(db.scalars(select(AuthSession)).all()) == 2
+    assert len(db.scalars(select(AuthSession).where(AuthSession.user_id.in_(select(User.id).where(User.email == payload["email"].strip().lower())))).all()) == 2
 
 
 def test_migration_conflicting_identities_preflight(db, payload):
@@ -340,17 +340,17 @@ def test_failed_login_consumes_rate_budget(client, db, settings, payload):
     settings.auth_rate_limit = 1
     assert login(client, payload).status_code == 401
     assert login(client, payload).status_code == 429
-    assert db.scalar(select(AuthRateLimit.attempts)) == 2
+    assert db.scalar(select(AuthRateLimit.attempts).where(AuthRateLimit.key.in_([hash_token("/api/v1/auth/login:testclient"),hash_token("/api/v1/auth/register:testclient")]))) == 2
 
 
 def test_limiter_new_window(client, db, settings, payload):
     settings.auth_rate_limit = 1
     assert login(client, payload).status_code == 401
-    counter = db.scalar(select(AuthRateLimit))
+    counter = db.scalar(select(AuthRateLimit).where(AuthRateLimit.key.in_([hash_token("/api/v1/auth/login:testclient"),hash_token("/api/v1/auth/register:testclient")])))
     counter.window_start -= timedelta(seconds=settings.auth_rate_window_seconds)
     db.commit()
     assert login(client, payload).status_code == 401
-    assert len(db.scalars(select(AuthRateLimit)).all()) == 2
+    assert len(db.scalars(select(AuthRateLimit).where(AuthRateLimit.key.in_([hash_token("/api/v1/auth/login:testclient"),hash_token("/api/v1/auth/register:testclient")]))).all()) == 2
 
 
 def test_legacy_null_password_uses_generic_failure(client, db, payload):

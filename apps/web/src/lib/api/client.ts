@@ -41,10 +41,20 @@ export class ApiError extends Error {
     message: string,
     public payload?: unknown,
     public retryAfter?: string | null,
+    public requestId?: string,
   ) {
     super(message);
     this.name = "ApiError";
   }
+}
+function safeRequestId(response: Response): string | undefined {
+  const value = response.headers.get("X-Request-ID");
+  return value &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+      value,
+    )
+    ? value
+    : undefined;
 }
 export function invalidate() {
   if (typeof window !== "undefined")
@@ -63,6 +73,7 @@ export async function request<T>(
     throw new Error("Invalid API path");
   const method = options.method || "GET";
   const headers = new Headers(options.headers);
+  headers.set("X-Request-ID", crypto.randomUUID());
   if (method !== "GET" && method !== "HEAD")
     headers.set("X-CSRF-Protection", "1");
   if (options.body && !(options.body instanceof FormData))
@@ -102,6 +113,7 @@ export async function request<T>(
       message,
       payload,
       response.headers.get("Retry-After"),
+      safeRequestId(response),
     );
   }
   if (method !== "GET" && method !== "HEAD") invalidate();
@@ -216,7 +228,12 @@ export async function downloadDocument(
 ) {
   const response = await fetch(
     API_ORIGIN + wsPath(workspace) + "/documents/" + id + "/download",
-    { credentials: "include", cache: "no-store", redirect: "error" },
+    {
+      credentials: "include",
+      cache: "no-store",
+      redirect: "error",
+      headers: { "X-Request-ID": crypto.randomUUID() },
+    },
   );
   if (!response.ok) {
     if (response.status === 401)
@@ -224,6 +241,9 @@ export async function downloadDocument(
     throw new ApiError(
       response.status,
       names[response.status] || "Download unavailable.",
+      undefined,
+      undefined,
+      safeRequestId(response),
     );
   }
   const blob = await response.blob();

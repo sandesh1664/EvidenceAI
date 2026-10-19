@@ -215,3 +215,18 @@ private server cache is introduced. Playwright uses a separate disposable local 
 production frontend. The full npm audit retains five high development-lint-chain findings
 with no upstream braces patch; production-only audit currently reports zero. No forced
 framework downgrade is used. Backend migration stays at `6f22cc4c46ad`.
+
+## Evaluation and operations (Milestone 10)
+
+The API and worker now emit content-free JSON telemetry and validated request IDs.
+Public `/api/v1/ready` separates dependency readiness from the unchanged liveness route;
+operator readiness/Prometheus metrics require a backend-only `OPERATIONS_TOKEN`.
+Run `python -m app.operations`, `python -m app.document_worker --status`, or the offline
+versioned regression command `python -m app.evaluate --repeat 3` from apps/api.
+No database migration or monitoring deployment is required by this change.
+
+See [observability](docs/observability.md), [evaluation](docs/evaluation-framework.md),
+[operator runbook](docs/operational-runbook.md), and
+[observed verification](docs/milestone-10-verification.md). Prometheus/Grafana configuration
+is in `infra/monitoring`. Backend tests now confine default worker/database queries to
+an owned disposable schema, allowing safe tests alongside development records.

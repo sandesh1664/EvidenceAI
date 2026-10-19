@@ -1,4 +1,5 @@
 """Durable PostgreSQL queue, expiring leases and fenced/idempotent publication."""
+from app.core.telemetry import measured
 from dataclasses import asdict, dataclass
 from datetime import timedelta
 from uuid import UUID, uuid4
@@ -51,6 +52,9 @@ def claim_job(db: Session, settings: Settings):
         return None
     from pathlib import Path
     lease = uuid4()
+    from app.core.telemetry import registry, emit
+    registry.observe('queue_wait_seconds', (('queue','document'),), max(0,(now-job.available_at).total_seconds()))
+    emit('document_claimed', workspace_id=document.workspace_id, job_id=document.id)
     job.state, job.lease_id = 'running', lease
     job.lease_expires_at = now + timedelta(seconds=settings.document_job_lease_seconds)
     document.processing_status, document.processing_error = 'processing', None
@@ -94,9 +98,13 @@ def finish_job(db, claim: Claim, settings, *, chunks=None, error=None, transient
             document.processing_status, job.state = 'failed', 'failed'
     job.lease_id, job.lease_expires_at = None, None
     db.commit()
+    from app.core.telemetry import registry, emit
+    registry.count('jobs_total', (('queue','document'),('outcome',job.state)))
+    emit('document_finished',workspace_id=claim.workspace_id,job_id=claim.document_id,outcome=job.state)
     return True
 
 
+@measured("document_job")
 def process_claim(db: Session, claim: Claim, settings: Settings, storage: DocumentStorage):
     import hashlib
     try:
@@ -124,6 +132,7 @@ def process_claim(db: Session, claim: Claim, settings: Settings, storage: Docume
     return finish_job(db,claim,settings,chunks=chunks)
 
 
+@measured("cleanup")
 def cleanup_one(db: Session, storage: DocumentStorage):
     now = db.scalar(select(func.clock_timestamp()))
     intent = db.scalar(select(StorageCleanup).where(StorageCleanup.available_at <= now)

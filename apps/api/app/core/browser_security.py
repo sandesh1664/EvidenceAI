@@ -16,7 +16,8 @@ class BrowserSecurityMiddleware:
         if self.cors is None:
             self.cors = CORSMiddleware(self.protected, allow_origins=settings.trusted_frontend_origins,
                 allow_credentials=True, allow_methods=["GET", "POST", "PATCH", "DELETE"],
-                allow_headers=["Content-Type", "X-CSRF-Protection"])
+                allow_headers=["Content-Type", "X-CSRF-Protection", "X-Request-ID"],
+                expose_headers=["X-Request-ID", "Retry-After"])
         await self.cors(scope, receive, send)
 
     async def protected(self, scope, receive, send):

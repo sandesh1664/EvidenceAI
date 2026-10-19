@@ -266,3 +266,12 @@ quotations and lexical support checks are intentionally conservative and can ove
 retrieval score is not answer confidence. A conflicting source outside the retrieved context
 cannot be detected. See [RAG answer engine](rag-answer-engine.md) and its separate
 [13-case synthetic evaluation](rag-evaluation.json), which reports one retrieval false abstention.
+
+## Milestone 10 evaluation and telemetry
+
+Retrieval and embedding stages now record safe durations, result totals and adapter
+attempt/failure counts under the HTTP request correlation context. The versioned offline
+runner compares 128/256-dimensional fake profiles, adds nDCG/empty-result/filter metrics,
+protects report history and enforces configurable CI thresholds. See
+[evaluation framework](evaluation-framework.md); fake lexical scores do not establish
+hosted semantic quality. Existing exact authorized vector search behavior is unchanged.

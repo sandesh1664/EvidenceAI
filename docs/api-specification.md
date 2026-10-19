@@ -396,3 +396,14 @@ Conversation retries reuse the exact idempotency UUID/body; HTTP 201 can represe
 failure, so the UI reads assistant state fields. Quick /ask retains failure envelopes on
 503/504. Status polling uses only real GET responses and no invented progress. Source quotes
 are plain text and snapshots are explicitly historical. See [frontend architecture and tests](frontend-architecture.md).
+
+## Milestone 10 diagnostics
+
+All API responses now carry validated/generated `X-Request-ID` and no-store caching;
+CORS permits this request header and exposes it plus Retry-After. Generic unhandled server
+errors return a safe detail and request_id (503 for DB/pool failures, otherwise 500).
+Existing typed route errors retain their contracts and include the support ID header.
+`GET /api/v1/ready` returns only status ready/not_ready (200/503).
+`GET /api/v1/ops/readiness` and `/api/v1/ops/metrics` require the configured operator bearer,
+return 404 when disabled and 401 for invalid operator credentials. Application cookies
+and workspace roles do not grant access. See [observability](observability.md).

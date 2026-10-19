@@ -405,8 +405,8 @@ def test_failed_owner_membership_insert_rolls_back_workspace(client,db,people):
             raise RuntimeError('Injected owner membership failure')
     event.listen(db,'before_flush',fail_owner)
     try:
-        with pytest.raises(RuntimeError,match='Injected owner membership failure'):
-            client.post(BASE+'/',json={'name':'Must roll back'})
+        response = client.post(BASE+'/',json={'name':'Must roll back'})
+        assert response.status_code == 500 and 'Injected' not in response.text
     finally:
         event.remove(db,'before_flush',fail_owner)
     assert db.scalar(select(func.count()).select_from(Workspace)) == before
@@ -425,9 +425,9 @@ def test_failed_transfer_rolls_back_all_three_changes(client,db,people,workspace
         return original(*args,**kwargs)
     from unittest.mock import patch
     with patch.object(members,'transfer_ownership',transfer_with_failure):
-        with pytest.raises(RuntimeError,match='Injected transfer failure'):
-            client.post(endpoint(workspace)+'/transfer-ownership',
+        response = client.post(endpoint(workspace)+'/transfer-ownership',
                         json={'new_owner_id':str(identity(people,'member'))})
+        assert response.status_code == 500 and 'Injected' not in response.text
     event.remove(db,'after_flush',fail_after_writes)
     assert_owner_invariant(db,workspace_id,owner_id)
     assert client.get(endpoint(workspace)).status_code == 200

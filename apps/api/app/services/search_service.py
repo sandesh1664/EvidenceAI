@@ -1,3 +1,4 @@
+from app.core.telemetry import measured
 from fastapi import HTTPException
 from pgvector.sqlalchemy import VECTOR
 from sqlalchemy import and_, case, cast, select
@@ -16,6 +17,7 @@ def validate_filters(db,workspace_id,ids):
         raise HTTPException(404,'Document filter not found')
 
 
+@measured("retrieval")
 def search(db,workspace_id,actor_id,data,settings,engine=None):
     document_workspace_access(db,workspace_id,actor_id)
     enabled(settings)

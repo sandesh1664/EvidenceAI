@@ -378,3 +378,14 @@ audit reports five high findings along the development braces/glob/ESLint chain;
 patch is listed and no force downgrade/suppression is applied. Production-only audit reports
 zero findings, which is not a security guarantee. See [frontend risks/tests](frontend-architecture.md)
 and [the advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm). No independent audit is claimed.
+
+## Milestone 10 operational access and privacy
+
+Metrics and detailed readiness require a separate backend-only operator bearer token;
+ordinary authenticated users and workspace administrators have no diagnostic privilege.
+Public readiness reveals only aggregate ready/not_ready. JSON logs discard raw messages,
+exceptions, SQL, query strings and payloads; metric labels exclude record IDs. Request
+UUIDs are correlation hints and never authorization. See [observability](observability.md)
+for process/exporter limits and [runbook](operational-runbook.md) for retention and deletion
+limitations. Citation snapshots still survive source deletion until conversation deletion;
+no new private-content retention or automatic historical purge was introduced.

@@ -1,5 +1,6 @@
 """Stateless LLM providers: deterministic offline selection and bounded hosted JSON."""
 
+from app.core.telemetry import measured, provider_call
 import asyncio
 import json
 import time
@@ -234,6 +235,7 @@ class LLMEngine:
         self.provider = provider if provider is not None else provider_for(settings)
         self.sleep = sleep
 
+    @measured("generation", provider=True)
     def generate(self, prompt, *, deadline):
         settings = self.settings
         schema = json.dumps(GroundedOutput.model_json_schema(), ensure_ascii=False)
@@ -255,8 +257,8 @@ class LLMEngine:
             if remaining <= 0:
                 raise LLMError("timeout")
             try:
-                reply = self.provider.generate(
-                    prompt, timeout=min(settings.llm_timeout_seconds, remaining)
+                reply = provider_call(
+                    'generation',settings.llm_provider,self.provider.generate,prompt, timeout=min(settings.llm_timeout_seconds, remaining)
                 )
                 if time.monotonic() > deadline:
                     raise LLMError("timeout")

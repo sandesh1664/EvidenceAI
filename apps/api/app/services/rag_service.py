@@ -141,7 +141,9 @@ def revalidate_context(db, workspace_id, actor_id, context, filters, settings):
 def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
     started = time.monotonic()
     deadline = started + settings.rag_request_timeout_seconds
-    request_id = uuid4()
+    from app.core.telemetry import request_id as correlated_id, emit, registry
+    from uuid import UUID
+    request_id = UUID(correlated_id.get()) if correlated_id.get() else uuid4()
     context = []
     usage = None
     support_question = evidence_question(data.question, history)
@@ -149,6 +151,14 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
     def finish(status, reason, *, http=200, claims=None, citations=None, answer=None):
         elapsed = (time.monotonic() - started) * 1000
         metrics.record(status, elapsed)
+        registry.count('answers_total', (('outcome', status),))
+        registry.observe('operation_seconds', (('operation','rag'),('outcome',status),('provider',settings.llm_provider)),elapsed/1000)
+        emit('rag',workspace_id=workspace_id,request_id=request_id,provider=settings.llm_provider,outcome=status,duration_ms=round(elapsed,3))
+        if reason in {'invalid_citations','citation_validation_failed','invalid_generation'}:
+            registry.count('citation_rejections_total')
+        if usage:
+            for kind in ('input_tokens','output_tokens'):
+                registry.count('tokens_total', (('kind',kind),('provider',settings.llm_provider)),getattr(usage,kind,0))
         logger.info(
             "rag_completed request_id=%s status=%s reason=%s elapsed_ms=%d evidence_count=%d provider=%s",
             request_id,

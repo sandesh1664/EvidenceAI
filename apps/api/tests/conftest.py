@@ -46,3 +46,50 @@ def offline_http_only(monkeypatch):
     async def reject_async_network(self, request):
         raise AssertionError("Tests require explicit MockTransport; live HTTP is disabled")
     monkeypatch.setattr(httpx.AsyncHTTPTransport, "handle_async_request", reject_async_network)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def isolated_test_database():
+    """Never let unscoped test workers/queries see development records.
+
+    Existing function references use the cached engine factory, so replacing its
+    constructor preserves every imported get_engine reference during this session.
+    """
+    import uuid
+    from sqlalchemy import create_engine, text
+    from sqlalchemy.engine import make_url
+    from sqlalchemy.schema import CreateSchema, DropSchema
+    from app.core.config import get_settings
+    from app.db import session as sessions
+    from app.db.base import Base
+    import app.models  # register every table before creating the isolated schema
+    settings=get_settings()
+    url=settings.database_url.get_secret_value()
+    if make_url(url).host not in {'localhost','127.0.0.1'} or settings.app_env not in {'test','development'}:
+        raise RuntimeError('Tests require a loopback development/test database')
+    schema='test_suite_'+uuid.uuid4().hex
+    control=create_engine(url,hide_parameters=True)
+    scratch=None
+    original_constructor=sessions.create_engine
+    try:
+        with control.begin() as connection:
+            connection.execute(CreateSchema(schema))
+            revision=connection.scalar(text('SELECT version_num FROM public.alembic_version'))
+            connection.execute(text(f'CREATE TABLE {schema}.alembic_version (version_num varchar(32) NOT NULL PRIMARY KEY)'))
+            connection.execute(text(f'INSERT INTO {schema}.alembic_version VALUES (:revision)'),{'revision':revision})
+        scratch=create_engine(url,hide_parameters=True,
+            connect_args={'options':f'-c search_path={schema},public -c statement_timeout=15000 -c lock_timeout=5000', 'connect_timeout':5},
+            execution_options={'schema_translate_map':{None:schema}})
+        Base.metadata.create_all(scratch)
+        sessions.get_engine.cache_clear()
+        sessions.get_session_factory.cache_clear()
+        sessions.create_engine=lambda *args,**kwargs:scratch
+        yield scratch
+    finally:
+        sessions.create_engine=original_constructor
+        sessions.get_engine.cache_clear()
+        sessions.get_session_factory.cache_clear()
+        if scratch is not None: scratch.dispose()
+        assert schema.startswith('test_suite_') and len(schema)==43
+        with control.begin() as connection: connection.execute(DropSchema(schema,cascade=True))
+        control.dispose()

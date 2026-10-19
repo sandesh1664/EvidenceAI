@@ -416,7 +416,8 @@ def test_disabled_embeddings_do_not_send_or_index(doc_client,workspace,document,
 def test_evaluation_metric_definitions():
     from app.evaluate_retrieval import metrics
     result=metrics([['bad','yes'],['a']],[['yes'],['a','b']],2)
-    assert result=={'recall_at_k':0.75,'precision_at_k':0.5,'mean_reciprocal_rank':0.75}
+    assert result=={'recall_at_k':0.75,'precision_at_k':0.5,'mean_reciprocal_rank':0.75,
+                    'ndcg_at_k':pytest.approx(0.622038473168458)}
 
 
 @pytest.mark.parametrize('role,status', [('owner',202),('admin',202),('member',403),('outsider',404)])

@@ -59,6 +59,8 @@ def upload_document(db: Session, workspace_id: UUID, actor_id: UUID, file, setti
             db.add(DocumentJob(document_id=document.id))
             db.delete(intent)
             db.flush()
+        from app.core.telemetry import emit
+        emit('document_enqueued', workspace_id=workspace_id, job_id=document.id)
         return document
     except BaseException as error:
         db.rollback()

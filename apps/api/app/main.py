@@ -1,3 +1,7 @@
+from app.core.telemetry import configure_logging, RequestTelemetryMiddleware
+
+configure_logging()
+
 from fastapi import FastAPI
 
 app = FastAPI(
@@ -32,7 +36,10 @@ app.include_router(ask_router)
 app.include_router(conversations_router)
 app.include_router(workspaces_router)
 app.include_router(workspace_members_router)
+from app.operations import router as operations_router
+app.include_router(operations_router)
 app.add_middleware(BrowserSecurityMiddleware)
+app.add_middleware(RequestTelemetryMiddleware)
 
 
 @app.exception_handler(RequestValidationError)

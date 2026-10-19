@@ -1,0 +1,14 @@
+{
+  "retrieval_128_recall_at_k": {"min": 0.9, "max_drop": 0.02},
+  "retrieval_128_ndcg_at_k": {"min": 0.9, "max_drop": 0.02},
+  "retrieval_128_workspace_isolation_correctness": {"min": 1},
+  "retrieval_256_workspace_isolation_correctness": {"min": 1},
+  "retrieval_128_document_filter_correctness": {"min": 1},
+  "retrieval_256_document_filter_correctness": {"min": 1},
+  "rag_answer_correctness": {"min": 0.9, "max_drop": 0.02},
+  "rag_citation_reference_validity": {"min": 1},
+  "rag_citation_gold_support_quality": {"min": 1},
+  "rag_unsupported_claim_frequency": {"max": 0},
+  "rag_insufficient_evidence_recall": {"min": 1},
+  "rag_guard_correctness": {"min": 1}
+}

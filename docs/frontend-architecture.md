@@ -375,3 +375,13 @@ The final normal build was restored to the usual local API origin after E2E. Syn
 desktop/mobile screenshots were visually inspected; browser artifacts stay outside tracked
 source. There was no paid AI, production TLS/cookie, Firefox/WebKit, manual screen-reader or
 independent security verification. See the manual checklist and deployment requirements above.
+
+## Milestone 10 request correlation
+
+The existing client attaches a fresh UUIDv4 X-Request-ID to every API request/download.
+ApiError retains only a validated response support ID for ErrorBox presentation. Backend
+CORS explicitly allows/exposes the header. No operator credentials, metrics dashboard,
+private tracing payload or new persistent browser storage is added. A client unit test
+and all registration E2E flows check the correlation contract. In this constrained build
+environment Turbopack's internal loader socket fails with EPERM; the supported Webpack
+production build and Chromium flows were verified. See the Milestone 10 verification log.

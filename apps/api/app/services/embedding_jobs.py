@@ -1,4 +1,5 @@
 """Embedding jobs reuse document-first locks, expiring leases and generation fences."""
+from app.core.telemetry import measured
 from dataclasses import asdict, dataclass
 from datetime import timedelta
 from uuid import UUID, uuid4
@@ -75,6 +76,8 @@ def enqueue(db: Session,document: Document,settings,*,force=False):
                      generation=generation,status='pending') for chunk_id in ids[start:start+500]]
         db.execute(insert(ChunkEmbedding).values(rows).on_conflict_do_nothing(index_elements=['chunk_id','profile_id']))
     db.flush()
+    from app.core.telemetry import emit
+    emit('embedding_enqueued',workspace_id=document.workspace_id,job_id=document.id)
     return job
 
 
@@ -151,6 +154,9 @@ def claim_job(db,settings):
         db.commit()
         return None
     lease_id = uuid4()
+    from app.core.telemetry import emit, registry
+    registry.observe('queue_wait_seconds', (('queue','embedding'),),max(0,(now-job.available_at).total_seconds()))
+    emit('embedding_claimed',workspace_id=document.workspace_id,job_id=document.id)
     job.state,job.lease_id = 'running',lease_id
     job.lease_expires_at = now+timedelta(seconds=settings.embedding_job_lease_seconds)
     job.attempts += 1
@@ -173,6 +179,7 @@ def locked_job(db,claim):
     return job
 
 
+@measured("embedding_job")
 def process_claim(db,claim,settings,engine=None):
     if profile_for(settings).id != claim.profile_id:
         return False
@@ -195,6 +202,9 @@ def process_claim(db,claim,settings,engine=None):
         if not rows:
             job.state,job.error,job.lease_id,job.lease_expires_at = 'done',None,None,None
             db.commit()
+            from app.core.telemetry import emit, registry
+            registry.count('jobs_total',(('queue','embedding'),('outcome','done')))
+            emit('embedding_finished',workspace_id=claim.workspace_id,job_id=claim.document_id,outcome='done')
             return True
         job.lease_expires_at = db.scalar(select(func.clock_timestamp()))+timedelta(seconds=settings.embedding_job_lease_seconds)
         db.commit()  # No DB transaction or row locks span a hosted provider request.
@@ -238,6 +248,9 @@ def fail_claim(db,claim,settings,error,*,chunk_ids=()):
             if embedding.status != 'completed':
                 embedding.status = 'failed'
     db.commit()
+    from app.core.telemetry import emit, registry
+    registry.count('jobs_total',(('queue','embedding'),('outcome',job.state)))
+    emit('embedding_finished',workspace_id=claim.workspace_id,job_id=claim.document_id,outcome=job.state)
     return True
 
 

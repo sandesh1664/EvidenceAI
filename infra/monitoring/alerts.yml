@@ -1,0 +1,33 @@
+groups:
+  - name: evidenceai
+    rules:
+      - alert: EvidenceAIAPIDown
+        expr: up{job="evidenceai-api"} == 0
+        for: 2m
+        labels: {severity: critical}
+        annotations: {summary: "EvidenceAI API scrape unavailable"}
+      - alert: EvidenceAIDatabaseUnavailable
+        expr: evidenceai_database_up == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "EvidenceAI diagnostic database query failed"}
+      - alert: EvidenceAIExpiredLeases
+        expr: sum(evidenceai_queue_expired) > 0
+        for: 3m
+        labels: {severity: warning}
+        annotations: {summary: "Worker leases are expired; inspect recovery"}
+      - alert: EvidenceAIQueueOld
+        expr: max(evidenceai_queue_oldest_seconds{state="queued"}) > 300
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "EvidenceAI queued work is aging"}
+      - alert: EvidenceAIWorkerStale
+        expr: time() - evidenceai_worker_last_tick_timestamp_seconds > 180 or absent(evidenceai_worker_last_tick_timestamp_seconds)
+        for: 3m
+        labels: {severity: critical}
+        annotations: {summary: "Worker heartbeat is stale or absent"}
+      - alert: EvidenceAIHTTPErrors
+        expr: sum(rate(evidenceai_http_requests_total{status=~"5.."}[5m])) / clamp_min(sum(rate(evidenceai_http_requests_total[5m])), 0.001) > 0.05
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "EvidenceAI HTTP server error rate exceeds five percent"}

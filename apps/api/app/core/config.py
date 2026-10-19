@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     app_env: Literal["development", "test", "staging", "production"] = "development"
     database_url: SecretStr
 
+    operations_token: SecretStr | None = Field(default=None, min_length=32)
+    database_connect_timeout_seconds: int = Field(default=5, ge=1, le=30)
+    database_statement_timeout_ms: int = Field(default=15000, ge=1000, le=60000)
+    database_pool_timeout_seconds: int = Field(default=5, ge=1, le=30)
+
     session_ttl_seconds: int = Field(default=86400, ge=60, le=2592000)
     auth_allow_insecure_http: bool = False
     trusted_frontend_origins: list[str] = Field(default_factory=lambda: ["http://localhost:3000"])

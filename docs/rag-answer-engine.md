@@ -320,3 +320,13 @@ the current question/history/evidence stay separate and no tools/storage are req
 Persistence, idempotency, ordered pair reservations, owner privacy, failure/recovery, archive
 and snapshot retention are specified in [conversation engine](conversation-engine.md).
 The current migration is `6f22cc4c46ad`; Milestone 07's verification above is historical.
+
+## Milestone 10 evaluation and telemetry
+
+Stateless ask request_id now matches the validated HTTP support ID. Safe answer-outcome,
+RAG/generation duration, adapter attempt/failure, validated usage and citation rejection
+metrics complement existing bounds/validators. Saved replay keeps its historical result
+ID. The extended offline benchmark covers provider/retrieval outages and numeric,
+misleading, cross-workspace and deleted-source guards; semantic judgments remain
+unverified. See [evaluation framework](evaluation-framework.md) and
+[observability](observability.md). No hosted requests are required.

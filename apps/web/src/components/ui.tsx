@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useId, useRef, useState } from "react";
-import { errorMessage } from "@/lib/api/client";
+import { ApiError, errorMessage } from "@/lib/api/client";
 export function ErrorBox({
   error,
   retry,
@@ -12,6 +12,11 @@ export function ErrorBox({
     <div className="notice danger" role="alert">
       <strong>Something needs attention</strong>
       <p>{errorMessage(error)}</p>
+      {error instanceof ApiError && error.requestId && (
+        <p>
+          Support ID: <code>{error.requestId}</code>
+        </p>
+      )}
       {retry && (
         <button className="button small" onClick={retry}>
           Try again

@@ -245,3 +245,13 @@ using only new derivative CASCADE FKs; all original RESTRICT constraints remain.
 chunk replacement removes old derived vectors. Physical original cleanup is unchanged.
 The active embedding job's generation and lease are checked before every batch publication,
 so a deleted source or newer rebuild prevents stale results from overwriting current data.
+
+## Milestone 10 worker operations
+
+Safe enqueue/claim/completion log events join HTTP uploads and durable jobs by UUID.
+Worker/parser/chunk/index durations, queue wait and published job outcomes are measured;
+operator-only read-only aggregates expose states, expired leases, retained retries, age
+and cleanup backlog. `python -m app.document_worker --status` prints bounded JSON;
+`--metrics-file /private/operator/worker.prom` writes an optional atomic heartbeat/textfile.
+Existing lease fencing/backoff/idempotency remain intact. See
+[operational runbook](operational-runbook.md) for recovery and exporter setup.

@@ -1,3 +1,4 @@
+from app.core.telemetry import measured
 from dataclasses import dataclass
 import re
 from uuid import UUID, uuid5
@@ -17,6 +18,7 @@ class Chunk:
     char_end: int
 
 
+@measured("chunking")
 def chunk_sources(sources, document_id: UUID, workspace_id: UUID, *, size=1600, overlap=200, max_chunks=10000):
     if size < 1 or overlap < 0 or overlap >= size:
         raise ValueError('Invalid chunk limits')

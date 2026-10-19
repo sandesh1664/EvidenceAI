@@ -1,3 +1,4 @@
+from app.core.telemetry import measured
 import codecs
 import json
 import os
@@ -40,6 +41,7 @@ def validate_text(stream):
         raise ParsingError('encoding') from None
 
 
+@measured("extraction")
 def run_parser(stream, extension: str, settings: Settings, *, validate_only=False):
     timeout = settings.document_validation_timeout if validate_only else settings.document_processing_timeout
     options = dict(pages=settings.document_max_pages, chars=settings.document_max_text_chars,

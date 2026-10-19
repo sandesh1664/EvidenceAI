@@ -857,6 +857,7 @@ def test_log_and_metrics_exclude_private_questions(
         )
     assert "PRIVATE-QUESTION-SENTINEL" not in caplog.text and TEXT not in caplog.text
     assert response.json()["request_id"] in caplog.text
+    assert response.headers["x-request-id"] == response.json()["request_id"]
     assert rag_service.metrics.snapshot()["outcomes"]["insufficient_evidence"] > 0
 
 

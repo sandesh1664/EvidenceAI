@@ -1,0 +1,375 @@
+{
+  "uid": "evidenceai-operations",
+  "title": "EvidenceAI Operations",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "refresh": "30s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "tags": [
+    "evidenceai",
+    "operations"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "API scrape availability",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "up{job=\"evidenceai-api\"}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "HTTP requests per second",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by (route) (rate(evidenceai_http_requests_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "HTTP p50 latency (20+ observations)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50,sum by(le) (rate(evidenceai_http_request_seconds_bucket[5m]))) and on() sum(increase(evidenceai_http_request_seconds_count[5m])) >= 20",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "HTTP p95 latency (20+ observations)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95,sum by(le) (rate(evidenceai_http_request_seconds_bucket[5m]))) and on() sum(increase(evidenceai_http_request_seconds_count[5m])) >= 20",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "HTTP p99 latency (100+ observations)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99,sum by(le) (rate(evidenceai_http_request_seconds_bucket[5m]))) and on() sum(increase(evidenceai_http_request_seconds_count[5m])) >= 100",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "HTTP errors",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(category) (rate(evidenceai_http_errors_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Worker seconds since last tick",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "time()-evidenceai_worker_last_tick_timestamp_seconds",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Jobs by state / document and embedding failures",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(queue,state) (evidenceai_queue_jobs)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Queue oldest age",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "max by(queue) (evidenceai_queue_oldest_seconds{state=\"queued\"})",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Expired leases",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(queue) (evidenceai_queue_expired)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Cleanup backlog",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "evidenceai_cleanup_pending",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "RAG answer outcomes and failures",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 40,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(outcome) (rate(evidenceai_answers_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Citation validator rejections",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum(rate(evidenceai_citation_rejections_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Database availability",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "evidenceai_database_up",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Provider attempts and failures",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(provider,operation,outcome) (rate(evidenceai_provider_calls_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Operation latency p50",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.5,sum by(le,operation) (rate(evidenceai_operation_seconds_bucket[5m])))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "HTTP latency sample counts",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "evidenceai-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 64,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "expr": "sum(increase(evidenceai_http_request_seconds_count[5m]))",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

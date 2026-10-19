@@ -7,9 +7,18 @@ async function register(page: Page, label = "Researcher") {
   await page.getByLabel("Full name").fill(label);
   await page.getByLabel("Email address").fill(email);
   await page.getByLabel("Password", { exact: true }).fill(secret);
+  const registered = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/v1/auth/register") &&
+      response.request().method() === "POST",
+  );
   await page
     .getByRole("button", { name: "Create account", exact: true })
     .click();
+  const response = await registered;
+  const sentId = response.request().headers()["x-request-id"];
+  expect(sentId).toMatch(/^[0-9a-f-]{36}$/);
+  expect(response.headers()["x-request-id"]).toBe(sentId);
   await expect(
     page.getByRole("heading", { name: "Your workspaces" }),
   ).toBeVisible();

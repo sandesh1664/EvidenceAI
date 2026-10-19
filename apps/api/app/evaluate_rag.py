@@ -10,6 +10,9 @@ import json
 import statistics
 import time
 import uuid
+from contextlib import nullcontext
+from unittest.mock import patch
+from fastapi import HTTPException
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,7 +26,7 @@ from app.db.session import get_engine
 from app.models import Document, DocumentChunk, User, Workspace, WorkspaceMember
 from app.schemas.ask import AskRequest
 from app.services import embedding_jobs, rag_service
-from app.services.llm_providers import LLMReply
+from app.services.llm_providers import LLMReply, LLMError
 
 DATASET = Path(__file__).resolve().parents[1] / "evaluation" / "grounded_answers.json"
 
@@ -35,6 +38,11 @@ class AdversarialEngine:
         self.settings, self.attack = settings, attack
 
     def generate(self, prompt, *, deadline):
+        if self.attack in {'outage','timeout'}:
+            raise LLMError('timeout' if self.attack == 'timeout' else 'unavailable')
+        if self.attack == 'numerical':
+            return LLMReply({'outcome':'answered','claims':[{'text':'Solar panel warranty lasts 90 years.',
+                'supports':[{'citation_id':'C1','quote':'Solar panel warranty lasts 10 years.'}]}]},self.settings.llm_model)
         text = "Solar panels convert sunlight into renewable electricity."
         if self.attack == "claim":
             text = "Solar panels convert moonlight into renewable electricity."
@@ -53,8 +61,17 @@ class AdversarialEngine:
         )
 
 
-def evaluate(dataset_path=DATASET):
+def evaluate(dataset_path=DATASET, *, extended=False):
     dataset = json.loads(Path(dataset_path).read_text())
+    if extended:
+        dataset['documents'].append({'id':'misleading','text':'The proposed audit retention period is 90 days. Approved audit retention period is 30 days.'})
+        dataset['cases'].extend([
+            {'id':'misleading-planned-versus-approved','question':'Approved audit retention period','documents':['misleading'],'status':'answered','expected_claim':'Approved audit retention period is 30 days.','support_document':'misleading'},
+            {'id':'provider-outage','question':'What do solar panels convert?','documents':['solar'],'attack':'outage','status':'provider_error'},
+            {'id':'provider-timeout','question':'What do solar panels convert?','documents':['solar'],'attack':'timeout','status':'provider_error'},
+            {'id':'retrieval-outage','question':'What do solar panels convert?','documents':['solar'],'attack':'retrieval','status':'retrieval_unavailable'},
+            {'id':'unsupported-numerical-claim','question':'Solar panel warranty','documents':['warranty'],'attack':'numerical','status':'provider_error'},
+        ])
     # Explicitly isolate provider configuration from any developer .env choices.
     settings = Settings(
         app_env="test",
@@ -159,19 +176,21 @@ def evaluate(dataset_path=DATASET):
             expected_insufficient = detected_insufficient = 0
             for case in dataset["cases"]:
                 started = time.perf_counter()
-                body = rag_service.ask(
-                    db,
-                    workspace.id,
-                    owner.id,
-                    AskRequest(
-                        question=case["question"],
-                        document_ids=[mapping[key] for key in case["documents"]],
-                    ),
-                    settings,
-                    engine=AdversarialEngine(settings, case["attack"])
-                    if "attack" in case
-                    else None,
-                ).body
+                failure = patch('app.services.search_service.search',side_effect=HTTPException(503,'Synthetic retrieval outage')) if case.get('attack') == 'retrieval' else nullcontext()
+                with failure:
+                    body = rag_service.ask(
+                        db,
+                        workspace.id,
+                        owner.id,
+                        AskRequest(
+                            question=case["question"],
+                            document_ids=[mapping[key] for key in case["documents"]],
+                        ),
+                        settings,
+                        engine=AdversarialEngine(settings, case["attack"])
+                        if "attack" in case and case["attack"] != "retrieval"
+                        else None,
+                    ).body
                 latency = (time.perf_counter() - started) * 1000
                 latencies.append(latency)
                 exact = body.status == case["status"]
@@ -221,11 +240,29 @@ def evaluate(dataset_path=DATASET):
                         "latency_ms": round(latency, 4),
                     }
                 )
+            guards=[]
+            if extended:
+                foreign_user=User(email=f'{uuid.uuid4()}@example.com',display_name='Synthetic outsider')
+                db.add(foreign_user);db.flush()
+                foreign=Workspace(name='Synthetic foreign',owner_id=foreign_user.id)
+                db.add(foreign);db.flush();db.commit()
+                for name, target, filters in [('cross-workspace',foreign.id,None),('deleted-reference',workspace.id,[mapping['backup']])]:
+                    if name == 'deleted-reference':
+                        from app.services.document_service import delete_document
+                        db.rollback()
+                        delete_document(db,workspace.id,mapping['backup'],owner.id)
+                    try:
+                        rag_service.ask(db,target,owner.id,AskRequest(question='backup storage region',document_ids=filters),settings)
+                        passed=False
+                    except HTTPException as error:
+                        passed=error.status_code==404
+                    guards.append({'id':name,'correct':passed,'expected_status':404})
             return {
+                'guards':guards,
                 "dataset": dataset["name"],
                 "created_at": datetime.now(timezone.utc).isoformat(),
-                "method": "Real PostgreSQL fake-hash retrieval + mock extractive generation; hand-authored exact claim/source gold labels; two adversarial generation cases",
-                "limitations": "13 English synthetic cases; lexical providers and exact quotes; no hosted, semantic entailment, representative corpus, load or independent security evaluation",
+                "method": "Real PostgreSQL fake-hash retrieval + mock extractive generation; hand-authored exact claim/source gold labels; deliberate adversarial validation and failure cases",
+                "limitations": f"{len(details)} English synthetic cases; lexical providers and exact quotes; no hosted, semantic entailment, representative corpus, load or independent security evaluation",
                 "case_count": len(details),
                 "correct_cases": correct,
                 "answer_correctness": correct / len(details),

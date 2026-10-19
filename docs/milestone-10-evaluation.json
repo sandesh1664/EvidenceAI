@@ -1,0 +1,997 @@
+{
+  "evaluation_version": "2.0",
+  "dataset_id": "evidenceai-offline-v2",
+  "dataset_sha256": {
+    "retrieval.json": "baadc41ea1ca0db9baf0c71a25173adb256d4ed7ff86b6280ca3aa88fa4cd99c",
+    "grounded_answers.json": "e2d8375a8e88f84dd04abb1aa583f2eea970f167384d5c75855f883a0e814c78",
+    "evaluate_retrieval.py": "8dce023cbf0a78dd2cd5c337ea14bbc82bc00e1494f3acfb0a5cc069af44dbfe",
+    "evaluate_rag.py": "e9e01ee8d801e51904cf49668527b246b7e340038134c676525c67bc7d97a870"
+  },
+  "executed_at": "2026-10-19T16:29:20.559602+00:00",
+  "providers": [
+    "fake-hash-v1/128",
+    "fake-hash-v1/256",
+    "mock-extractive-v1"
+  ],
+  "sample_count": 68,
+  "semantic_judgment": "unverified",
+  "method": "Exact gold labels, quoted-source membership and authorization guards; no semantic entailment judge",
+  "metrics": {
+    "retrieval_128_recall_at_k": 0.9375,
+    "retrieval_128_precision_at_k": 0.9375,
+    "retrieval_128_mean_reciprocal_rank": 1.0,
+    "retrieval_128_ndcg_at_k": 0.9516433990956823,
+    "retrieval_128_empty_result_rate": 0.0,
+    "retrieval_128_workspace_isolation_correctness": 1.0,
+    "retrieval_128_document_filter_correctness": 1.0,
+    "retrieval_256_recall_at_k": 0.9375,
+    "retrieval_256_precision_at_k": 0.9375,
+    "retrieval_256_mean_reciprocal_rank": 1.0,
+    "retrieval_256_ndcg_at_k": 0.9516433990956823,
+    "retrieval_256_empty_result_rate": 0.0,
+    "retrieval_256_workspace_isolation_correctness": 1.0,
+    "retrieval_256_document_filter_correctness": 1.0,
+    "rag_answer_correctness": 0.9444444444444444,
+    "rag_citation_reference_validity": 1.0,
+    "rag_citation_gold_support_quality": 1.0,
+    "rag_unsupported_claim_frequency": 0.0,
+    "rag_insufficient_evidence_recall": 1.0,
+    "rag_guard_correctness": 1.0
+  },
+  "latency": {
+    "retrieval_128": {
+      "sample_count": 24,
+      "p50_ms": 3.0205,
+      "p95_ms": 5.7988,
+      "p99_ms": null,
+      "scope": "local synthetic sequential benchmark; not production/load performance"
+    },
+    "retrieval_256": {
+      "sample_count": 24,
+      "p50_ms": 3.021,
+      "p95_ms": 5.7688,
+      "p99_ms": null,
+      "scope": "local synthetic sequential benchmark; not production/load performance"
+    },
+    "rag": {
+      "sample_count": 18,
+      "p50_ms": 7.5661000000000005,
+      "p95_ms": null,
+      "p99_ms": null,
+      "scope": "local synthetic sequential benchmark; not production/load performance"
+    }
+  },
+  "retrieval_profiles": {
+    "128": [
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 128,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/128",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.4706,
+        "latency_median_ms": 3.03,
+        "latency_p95_ms": 6.409,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:18.274748+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 6.409
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.338
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 3.1309
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 3.0043
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 3.0558
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 2.9043
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 2.9948
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.9275
+          }
+        ]
+      },
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 128,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/128",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.268,
+        "latency_median_ms": 2.913,
+        "latency_p95_ms": 5.6927,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:18.655003+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 5.6927
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.1328
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 3.0367
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 2.9202
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 2.8016
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 2.9058
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 2.7965
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.8579
+          }
+        ]
+      },
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 128,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/128",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.3901,
+        "latency_median_ms": 3.0848,
+        "latency_p95_ms": 5.7988,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:19.080626+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 5.7988
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.1094
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 2.9448
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 2.9547
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 3.1652
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 3.1713
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 3.0602
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.9161
+          }
+        ]
+      }
+    ],
+    "256": [
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 256,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/256",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.3137,
+        "latency_median_ms": 2.9483,
+        "latency_p95_ms": 5.7688,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:19.467451+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 5.7688
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.2482
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 3.057
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 2.9368
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 2.8564
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 2.9495
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 2.7456
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.9472
+          }
+        ]
+      },
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 256,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/256",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.3515,
+        "latency_median_ms": 3.022,
+        "latency_p95_ms": 5.7052,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:19.849691+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 5.7052
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.2668
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 2.985
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 3.059
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 2.9599
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 3.0961
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 2.8987
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.8416
+          }
+        ]
+      },
+      {
+        "document_filter_checks": 10,
+        "document_filter_passed": 10,
+        "document_filter_correctness": 1.0,
+        "empty_result_rate": 0.0,
+        "embedding_dimensions": 256,
+        "dataset": "evidenceai-synthetic-retrieval-v1",
+        "provider": "fake",
+        "embedding_model": "fake:fake-hash-v1@1/256",
+        "quality_scope": "Synthetic lexical test-double evaluation; not hosted semantic-model accuracy",
+        "k": 2,
+        "workspace_documents": 10,
+        "foreign_workspace_documents": 10,
+        "query_count": 8,
+        "recall_at_k": 0.9375,
+        "precision_at_k": 0.9375,
+        "mean_reciprocal_rank": 1.0,
+        "ndcg_at_k": 0.9516433990956823,
+        "latency_mean_ms": 3.3559,
+        "latency_median_ms": 3.0734,
+        "latency_p95_ms": 5.8309,
+        "workspace_isolation_checks": 10,
+        "workspace_isolation_passed": 10,
+        "workspace_isolation_correctness": 1.0,
+        "created_at": "2026-10-19T16:29:20.230813+00:00",
+        "queries": [
+          {
+            "query_id": "solar-1",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "latency_ms": 5.8309
+          },
+          {
+            "query_id": "solar-2",
+            "expected_document_ids": [
+              "solar-a",
+              "solar-b"
+            ],
+            "returned_document_ids": [
+              "solar-b",
+              "solar-a"
+            ],
+            "latency_ms": 3.135
+          },
+          {
+            "query_id": "battery-1",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b",
+              "battery-a"
+            ],
+            "latency_ms": 3.0662
+          },
+          {
+            "query_id": "battery-2",
+            "expected_document_ids": [
+              "battery-a",
+              "battery-b"
+            ],
+            "returned_document_ids": [
+              "battery-b"
+            ],
+            "latency_ms": 3.129
+          },
+          {
+            "query_id": "water-1",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-b",
+              "water-a"
+            ],
+            "latency_ms": 2.8687
+          },
+          {
+            "query_id": "water-2",
+            "expected_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "returned_document_ids": [
+              "water-a",
+              "water-b"
+            ],
+            "latency_ms": 3.0806
+          },
+          {
+            "query_id": "bread-1",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "latency_ms": 2.8954
+          },
+          {
+            "query_id": "bread-2",
+            "expected_document_ids": [
+              "bread-a",
+              "bread-b"
+            ],
+            "returned_document_ids": [
+              "bread-b",
+              "bread-a"
+            ],
+            "latency_ms": 2.8417
+          }
+        ]
+      }
+    ]
+  },
+  "rag": {
+    "guards": [
+      {
+        "id": "cross-workspace",
+        "correct": true,
+        "expected_status": 404
+      },
+      {
+        "id": "deleted-reference",
+        "correct": true,
+        "expected_status": 404
+      }
+    ],
+    "dataset": "EvidenceAI synthetic extractive grounding v1",
+    "created_at": "2026-10-19T16:29:20.553154+00:00",
+    "method": "Real PostgreSQL fake-hash retrieval + mock extractive generation; hand-authored exact claim/source gold labels; deliberate adversarial validation and failure cases",
+    "limitations": "18 English synthetic cases; lexical providers and exact quotes; no hosted, semantic entailment, representative corpus, load or independent security evaluation",
+    "case_count": 18,
+    "correct_cases": 17,
+    "answer_correctness": 0.9444444444444444,
+    "emitted_claim_count": 5,
+    "citation_count": 5,
+    "citation_reference_validity": 1.0,
+    "citation_gold_support_quality": 1.0,
+    "unsupported_claim_frequency": 0.0,
+    "expected_insufficient_count": 6,
+    "detected_insufficient_count": 6,
+    "insufficient_evidence_recall": 1.0,
+    "latency_mean_ms": 7.8087,
+    "latency_median_ms": 7.5661,
+    "latency_p95_ms": 16.7485,
+    "cases": [
+      {
+        "id": "solar-answer",
+        "expected_status": "answered",
+        "actual_status": "answered",
+        "reason": "validated_extracts",
+        "correct": true,
+        "latency_ms": 16.7485
+      },
+      {
+        "id": "warranty-answer",
+        "expected_status": "answered",
+        "actual_status": "answered",
+        "reason": "validated_extracts",
+        "correct": true,
+        "latency_ms": 10.9565
+      },
+      {
+        "id": "retention-answer",
+        "expected_status": "answered",
+        "actual_status": "answered",
+        "reason": "validated_extracts",
+        "correct": true,
+        "latency_ms": 11.1104
+      },
+      {
+        "id": "backup-answer",
+        "expected_status": "answered",
+        "actual_status": "insufficient_evidence",
+        "reason": "no_evidence",
+        "correct": false,
+        "latency_ms": 6.5081
+      },
+      {
+        "id": "injected-source",
+        "expected_status": "answered",
+        "actual_status": "answered",
+        "reason": "validated_extracts",
+        "correct": true,
+        "latency_ms": 10.2873
+      },
+      {
+        "id": "missing-qualifier",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "unsupported_question",
+        "correct": true,
+        "latency_ms": 6.4741
+      },
+      {
+        "id": "empty-evidence",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "no_evidence",
+        "correct": true,
+        "latency_ms": 2.8542
+      },
+      {
+        "id": "conflicting-warranty",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "contradictory_evidence",
+        "correct": true,
+        "latency_ms": 6.4957
+      },
+      {
+        "id": "ambiguous-question",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "ambiguous_question",
+        "correct": true,
+        "latency_ms": 1.3963
+      },
+      {
+        "id": "unsupported-topic",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "no_evidence",
+        "correct": true,
+        "latency_ms": 5.754
+      },
+      {
+        "id": "missing-numeric-qualifier",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "reason": "unsupported_question",
+        "correct": true,
+        "latency_ms": 6.0292
+      },
+      {
+        "id": "invented-reference",
+        "expected_status": "provider_error",
+        "actual_status": "provider_error",
+        "reason": "invalid_generation",
+        "correct": true,
+        "latency_ms": 7.9557
+      },
+      {
+        "id": "unsupported-claim-with-valid-reference",
+        "expected_status": "provider_error",
+        "actual_status": "provider_error",
+        "reason": "invalid_generation",
+        "correct": true,
+        "latency_ms": 8.4628
+      },
+      {
+        "id": "misleading-planned-versus-approved",
+        "expected_status": "answered",
+        "actual_status": "answered",
+        "reason": "validated_extracts",
+        "correct": true,
+        "latency_ms": 10.841
+      },
+      {
+        "id": "provider-outage",
+        "expected_status": "provider_error",
+        "actual_status": "provider_error",
+        "reason": "provider_unavailable",
+        "correct": true,
+        "latency_ms": 7.1765
+      },
+      {
+        "id": "provider-timeout",
+        "expected_status": "provider_error",
+        "actual_status": "provider_error",
+        "reason": "provider_timeout",
+        "correct": true,
+        "latency_ms": 8.4738
+      },
+      {
+        "id": "retrieval-outage",
+        "expected_status": "retrieval_unavailable",
+        "actual_status": "retrieval_unavailable",
+        "reason": "retrieval_unavailable",
+        "correct": true,
+        "latency_ms": 2.7789
+      },
+      {
+        "id": "unsupported-numerical-claim",
+        "expected_status": "provider_error",
+        "actual_status": "provider_error",
+        "reason": "invalid_generation",
+        "correct": true,
+        "latency_ms": 10.2539
+      }
+    ]
+  },
+  "failures": [
+    {
+      "id": "backup-answer",
+      "expected_status": "answered",
+      "actual_status": "insufficient_evidence",
+      "reason": "no_evidence",
+      "correct": false,
+      "latency_ms": 6.5081
+    }
+  ],
+  "threshold_failures": []
+}
