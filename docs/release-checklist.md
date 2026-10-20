@@ -1,43 +1,46 @@
-# Release checklist — Security Remediation 12.5
+# Release checklist — Security Remediation 12.6
 
-Date: 2026-10-20 Asia/Dubai. Baseline `932f75f`.
-**FAIL / production BLOCKED.** Remediation changes remain uncommitted.
+2026-10-20 Asia/Dubai; inspected HEAD `cc22799`. **FAIL / production BLOCKED.**
+No candidate promoted; new work uncommitted. Completed isolation fix/checkpoint
+accepted; no repeated remediation or gate relaxation.
 
 | Requirement | Result | Next action / owner |
 | --- | --- | --- |
-|Source baseline, immutable digests and fresh inventory |PASS |Retain exact final source/artifact IDs and evidence / release engineer |
-|Selected Grafana passes security policy |FAIL |61 HIGH remain; obtain accepted clean supported image / vendor + security |
-|Experimental candidate passes policy |FAIL |2 Tempo HIGH remain; keep candidate unpromoted / security |
-|Tempo supported module/advisory resolution |NOT VERIFIED |Vendor/scanner-endorsed fix or mapping correction; no local ignore/VEX/exception / vendor + security |
-|Custom compiled reachability analysis |PASS, limited scope |Affected server packages absent; preserve graph without treating it as policy waiver / application security |
-|Monitoring, plugins, auth, queries and network isolation |PASS locally |13 native IDs and all transition checks pass; verify intended hosted configuration / SRE |
-|Restart, same-version upgrade and rollback |PASS locally |Owned synthetic data only; no13→12 production downgrade / SRE |
-|Backend/frontend/build/migration regressions |PASS |662 backend,53 frontend; types/lint/build/head/check / QA |
-|Browsers |PASS on rerun |18 final cases; retain initial API-connection failure and trace; root cause NV / QA |
-|Runtime Python/npm audits |PASS |Repeat audits for final accepted artifact / security |
-|Development lint-chain nodes |FAIL |Five HIGH nodes; obtain compatible maintained fix / frontend maintainer |
-|Fail-closed DB fixture guards and cleanup |PASS locally |Owned tmpfs DB, nine isolation tests, no public fixture leaks; CI service wiring updated / QA + DBA |
-|Current original rows/storage preserved |PASS |All 12 pre-existing limiter rows, other 15 whole tables/revision and private-storage bytes/metadata preserved / DBA |
-|Final 12.5 whole-database equality |FAIL |One new limiter row12→13; writer NOT VERIFIED. Preserve it and retain earlier PASS plus final FAIL / DBA + maintainer |
-|Historical eleven additions attributed |NOT VERIFIED |Preserve rows; seek authorized existing audit evidence; do not infer actor / DBA + maintainer |
-|Historical DB equality12.4 |FAIL |A new successful comparison cannot undo historical observed additions / release authority |
-|Original historical manifest retained |PASS |69 entries unchanged; four normalized hashes match disclosed audit / evidence custodian |
-|Original bytes for four normalized logs |PASS for recovery |All four recovered streams match the original manifest; append-only gzip archives under m125. Full custody timestamps remain NV / evidence custodian |
-|Local bounded load and encrypted recovery |PASS |341 requests / 0 failures;24 originals/documents;45.985s app recovery; corruption/nonempty rejection / SRE |
-|Security/release/deployment safeguards retained |PASS |Strict scans/formal gate still reject; CI changes only test DB configuration / release engineer |
-|Real SMTP/provider and inbox |NOT VERIFIED |Approved provider/recipient procedure and real delivery receipts / identity + mail owner |
-|Hosted DNS/public TLS/ingress/staging |NOT VERIFIED |Separate infrastructure authorization, approved host and actual acceptance receipts / infrastructure |
-|Hosted exact-SHA CI/protections/reviewer/SSH |NOT VERIFIED |Observe actual workflow and repository/host controls / repository administrator |
-|Offsite restore/key escrow/production RTO-RPO |NOT VERIFIED |Independent-host rehearsal and measured loss/duration / SRE + key custodian |
-|Production rollback to accepted predecessor |NOT VERIFIED |Accepted previous artifact and schema compatibility review / release authority |
-|Publisher signature/vendor parity/AMD64 |NOT VERIFIED |Independent identity validation and final-platform tests / supply-chain owner |
-|External providers/hosted AI/soak |NOT VERIFIED |Approved services and intended-host acceptance / AI + SRE |
-|Production release approval |FAIL |BLOCKED; no security exception approved / release authority |
+| Current baseline and new immutable inventory |PASS for recorded scope |All eight selected runtime images freshly scanned; retain final SHA/platform/artifact IDs and rescan rebuilt final artifacts / release engineer |
+| Selected Grafana image gate |FAIL |61 HIGH remain; obtain accepted clean supported whole image / vendor + security |
+| Maintained upstream / custom experiment |FAIL |5 /2 HIGH respectively; keep unselected / security |
+| Both Tempo advisories identified |PASS |21728 query-limit allocation and28377 SSE-C config exposure; exact IDs/versions in12.6 / security |
+| Supported accepted module/advisory resolution |NOT VERIFIED |Vendor canonical module/backport or authoritative scanner correction; no ignores/VEX/version rewriting / vendor + scanner maintainers |
+| New speculative rebuild |Not required |No changed supported input; reopen only upon verifiable new vendor fix/artifact / security |
+| Managed replacement |NOT VERIFIED |Evaluate vendor Cloud migration/PDC, identity/residency/private access/plugins/security assurance; no purchase or account connection / architecture + procurement |
+| Monitoring/plugins/auth/queries/private network |PASS locally |13 trusted plugin identities,2-target query and denial checks; intended host remains pending / SRE |
+| Restart/same-version rollback |PASS locally |Retain synthetic dashboard checks; no13→12 production downgrade / SRE |
+| Backend/frontend/build/migrations |PASS |662 backend,53 frontend, types/lint/build/head/check / QA |
+| Browser acceptance |PASS final |18/18; retain initial missing-browser failure and installation receipt / QA |
+| Runtime Python/npm audits / pip consistency |PASS |44 Python dependencies/0 vulnerabilities, runtime npm clean; final artifact audits still required / security |
+| Development npm audit |FAIL |Five HIGH lint-chain nodes; supported compatible remediation / frontend maintainer |
+| Test guards/imports/owned cleanup |PASS locally |15 refusal cases,3 runner tests, isolated public/scratch checks and container absence / QA + DBA |
+| Current controlled DB/storage preservation |PASS |Committed checkpoint plus12.6 all16 table/revision/storage equality; retain private snapshots outside Git / DBA |
+| Historical equality/attribution |FAIL historically / NOT VERIFIED attribution |Preserve all historical additions and failed comparisons; no inferred actor / DBA + maintainer |
+| Historical evidence retention |PASS |Old tracked evidence unchanged; append-onlym126 receipts/raw archives / evidence custodian |
+| Full historical custody |NOT VERIFIED |Retain original-byte recovery proof without claiming acquisition timestamps / evidence custodian |
+| Local recovery/load |PASS in recorded scopes |12.6 small restore;12.5 load/full-app recovery retained, not production certification / SRE |
+| Hosted overlay configuration |PASS only for config |Seven checks; never started, no default deployment behavior changed / infrastructure |
+| Hosting/domain/firewall/public TLS/renewal |NOT VERIFIED |Approved isolated host and authorized DNS/ACME receipts / infrastructure + domain owner |
+| Reverse proxy/workers/private storage on host |NOT VERIFIED |Execute actual hosted HTTPS flows and access controls / SRE + QA |
+| Real SMTP/provider/inbox |NOT VERIFIED |Approved465 service/mailboxes, provider AND inbox receipts, sender DNS checks / mail + identity owner |
+| Exact-SHA CI/protections/environment approval |NOT VERIFIED |Final committed SHA, successful hosted checks, reviewers/SSH identity/concurrency / repository administrator |
+| Hosted monitoring/alerts |NOT VERIFIED |Private access, dashboard/query parity and delivered operator alert / SRE |
+| Encrypted offsite backup/key escrow/restore |NOT VERIFIED |Independent host/account, fresh target, actual app/worker validation and measured RTO/RPO / SRE + key custodian |
+| Accepted predecessor/schema-compatible rollback |NOT VERIFIED |Reviewed accepted artifacts and guarded host drill; no DB downgrade / release authority |
+| Publisher signature/vendor parity/intended platform |NOT VERIFIED |Independent identity validation and complete final-platform acceptance / supply-chain owner |
+| Hosted AI/external providers/soak |NOT VERIFIED |Separately authorized services/budget and real semantic/soak receipts / AI + SRE |
+| Strict release gate and packaging refusal |PASS for protection |Gate exit1/BLOCKED; dirty-tree packaging exit1 / release engineer |
+| Production approval |FAIL |Withhold until every applicable criterion passes / release authority |
 
-[Assessment](security-remediation-12-5.md),
-[exact verification and hosted procedures](security-remediation-12-5-verification.md),
-[database investigation](database-integrity-investigation.md), and
-[standing hosted runbook](hosted-staging-acceptance.md) define evidence scope.
-No row/volume reset, commit/push, DNS change, server purchase, live provider mail
-or public deployment is authorized by this checklist. Never use local functional
-passes to override failing scans or unexecuted hosted requirements.
+Use [12.6 verification](security-remediation-12-6-verification.md),
+[database acceptance](database-isolation-acceptance.md), and the
+[hosted execution plan](hosted-staging-execution-plan.md). Hosted actions require
+separate authorization and passing gates. Nothing here authorizes purchases,
+DNS mutations, secrets in chat, commits/pushes, public deployment, volume resets,
+development record edits or vulnerability suppression.

@@ -1,0 +1,320 @@
+{
+  "scanner": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-21T13:14:22.737606156Z",
+    "UpdatedAt": "2026-10-20T13:14:22.737606427Z",
+    "DownloadedAt": "2026-10-20T13:34:41.153238753Z"
+  },
+  "images": {
+    "api": {
+      "reference": "evidenceai-api:m121",
+      "docker_id": "sha256:ee9a67947f6c8f1a1c67eaa20db8cda7676a3b5e3bece3ab890656608e7ecba5",
+      "repo_digests": [
+        "evidenceai-api@sha256:ee9a67947f6c8f1a1c67eaa20db8cda7676a3b5e3bece3ab890656608e7ecba5"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+        "sha256:15fc7fbc6cefcfb3047537e9358cbb953dc6e664040062c5192972e6393f4662",
+        "sha256:e65178efb902c981db1458214da2df47179e0ecc435084fa169543c1283b11f6",
+        "sha256:4c6347b5384b9a4ca034bfa626e5cb9de279b81ead0b7d793a7e032542943428",
+        "sha256:dec6df00f71d81817245adc343c29411ec7301a3be0561ef3092a5330fb79bff",
+        "sha256:93f6200b019c327ae6cb24716b7e063c55d2efe3b31864773e87d6fca5ec9d46",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:99764a140ac21577b5663f177e67f25be3debfae645f426d05f937de55a88396",
+        "sha256:76fe2b08839674eacc628e80f86b30f94574ecd77a0066d94fb9b8a99763c27d",
+        "sha256:00bff159ca4a4729cb8bb1bd66387053b7c7647708406519c8d30f3b811fc963",
+        "sha256:328f53bc6b38027b9a2ad3e3889d9c3bec40805e750e4e049ead0ecf5b60668c",
+        "sha256:1c767ae2da82697f0e4e743a2a7e61b7889c39a668ea032c6300306038b1e8e7"
+      ],
+      "archive_sha256": "c14cb392c392ac82758ab52dcf35c6f333ecfea8bfd4bd209217794fe03b1fce",
+      "report_sha256": "1365fe6f5ad7cda8f7c649a59324ca9a2f76c1756e338c3a1ac7ccbb60716a61",
+      "scan_created_at": "2026-10-20T13:45:09.765256336Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 2,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": [
+        {
+          "target": "Python",
+          "VulnerabilityID": "CVE-2026-13346",
+          "PkgName": "pip",
+          "InstalledVersion": "26.1.2",
+          "FixedVersion": "26.2.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-13346"
+        },
+        {
+          "target": "Python",
+          "VulnerabilityID": "CVE-2026-13346",
+          "PkgName": "pip",
+          "InstalledVersion": "26.1.2",
+          "FixedVersion": "26.2.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-13346"
+        }
+      ]
+    },
+    "web": {
+      "reference": "evidenceai-web:m121",
+      "docker_id": "sha256:5e1a23557de38f4c3fd829f0321ddb6be74afce81c6c4ce1774deda14fe8f155",
+      "repo_digests": [
+        "evidenceai-web@sha256:5e1a23557de38f4c3fd829f0321ddb6be74afce81c6c4ce1774deda14fe8f155"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+        "sha256:0406feeee254fc7943c9fe14bf7da32a4fdc6d69b72a842a43c77988ef050385",
+        "sha256:2c823c75c45e380ecb48e0a0f1fe801794ee08d94dcf0d5119b00dfe9ee5e437",
+        "sha256:002b5df6b3313b3e55f08b7a0fdd26f5b5559065e6a805f097b49d18a067d4fb",
+        "sha256:f2f517ffc963420ee2566187375256e5b4a3a615184ce4d05601a2c6003413c2",
+        "sha256:efce4ff70600af05198b01e20e4f5e6a08060b9c74fa9d5e7ec8eff58cbb7f40",
+        "sha256:1dcd9cbeebe68a47b89401f754cff813b045206f1b7ec852087e9e0d83cf2716",
+        "sha256:b5fc113e87d180784a76f50dfe560b95a67121092d70c5c7f5f1fc4efb529ec6",
+        "sha256:51ef91917742268e953bf06a762c2b2389d9d31b98d78d813c82ff77a3c4760e",
+        "sha256:cd1816ff8c90ceef8509684ae5ce52e39c219c1d1019971d7145ee1b3a245a6a"
+      ],
+      "archive_sha256": "75f1e9789ce8eb111f689e0b7f15eb67fa4372af189a89d448599fd08e9f7c15",
+      "report_sha256": "5b191f4c62787f65e40c194716079c808f8dc38b24e5b5efb092c00140377314",
+      "scan_created_at": "2026-10-20T13:45:11.53961567Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": []
+    },
+    "backup": {
+      "reference": "evidenceai-backup:m121",
+      "docker_id": "sha256:e75132cc6c630893f1cdd979e75dcc2ecc8dc81adb1f7a89600d4de4447ae241",
+      "repo_digests": [
+        "evidenceai-backup@sha256:e75132cc6c630893f1cdd979e75dcc2ecc8dc81adb1f7a89600d4de4447ae241"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+        "sha256:15fc7fbc6cefcfb3047537e9358cbb953dc6e664040062c5192972e6393f4662",
+        "sha256:e65178efb902c981db1458214da2df47179e0ecc435084fa169543c1283b11f6",
+        "sha256:4c6347b5384b9a4ca034bfa626e5cb9de279b81ead0b7d793a7e032542943428",
+        "sha256:8d26fa6c36459c9567789ff544aee97bf47824caf16fad22df060535d76fac83",
+        "sha256:0c933a80685be5647a487d347479961f5b2136b41f175185c558fcaa32edeb25",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+      ],
+      "archive_sha256": "a944ff184325bb9e4d6a9f80fb5b07de449d922d304db39b41678f401518a7c6",
+      "report_sha256": "dc88f829a436e059c024f2f1613a9155824e870c7323d410940a2ed1e8836a66",
+      "scan_created_at": "2026-10-20T13:45:12.219195337Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": [
+        {
+          "target": "Python",
+          "VulnerabilityID": "CVE-2026-13346",
+          "PkgName": "pip",
+          "InstalledVersion": "26.1.2",
+          "FixedVersion": "26.2.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-13346"
+        }
+      ]
+    },
+    "proxy": {
+      "reference": "evidenceai-proxy:m121",
+      "docker_id": "sha256:1cfa75cd2a46236d27bcfc7e656dfb5dd770941ba6f3f796182b85c022a1e3ab",
+      "repo_digests": [
+        "evidenceai-proxy@sha256:1cfa75cd2a46236d27bcfc7e656dfb5dd770941ba6f3f796182b85c022a1e3ab"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:18932007cc273c0541920263e57c02d40013c4730d7db35437a4ffcc31422eda",
+        "sha256:2f85427f3cf10f3f5ec83a6f9348e4a5aa39a055ef865c483699137ec245fb09",
+        "sha256:a097a3e207a2e295c9028ca0dc77fa84280c648805c0d3a0c57c9dd7bde0b4e3",
+        "sha256:d46970df0570c240c6c00001288d1e2affc075b284bd1a7e2df89bc26dae144a",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:a16c3ddb65cac1a30b30d6edaf2dac092cb46cacb4832793a22dd0a6032f202c",
+        "sha256:412bb0c914f78f3a1a0b24a3ce6487089c8f62962a78110b0aa501d949d6a65d"
+      ],
+      "archive_sha256": "67425ef1dca747b9a73df43b62be24bc885b2d47af6edc82ea618699e7d92996",
+      "report_sha256": "b5227a45af055e1caf84857134d216b27c97eebf7d16f497287a5275bb7a427e",
+      "scan_created_at": "2026-10-20T13:45:13.02943067Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": [
+        {
+          "target": "/scan/image.tar (alpine 3.23.6)",
+          "VulnerabilityID": "CVE-2026-85091",
+          "PkgName": "zlib",
+          "InstalledVersion": "1.3.2-r0",
+          "FixedVersion": "1.3.2-r1",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-85091"
+        },
+        {
+          "target": "usr/bin/caddy",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        }
+      ]
+    },
+    "database": {
+      "reference": "evidenceai-database:m121",
+      "docker_id": "sha256:633cb956dc3fa6e5930312667aec5e02264c56a59556d783de19236e8df0d6b5",
+      "repo_digests": [
+        "evidenceai-database@sha256:633cb956dc3fa6e5930312667aec5e02264c56a59556d783de19236e8df0d6b5"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+        "sha256:6105053010d7234e5da3c998271cd6a06c966bf02609780cd462ffbb8ccd4af2",
+        "sha256:d973feabfe24563d84362ea8e3cf5fa8d3f15d77c741c6cbae34cc19a0c99c89",
+        "sha256:59b3db3a6e9366134d5a638faf1bd73cd7ebf5f83fb66c756a2261a3185f480e",
+        "sha256:69f72ea6f65dbab3e3bdfd07322848577dce31912d95ea38e1c1a36d5a70e462",
+        "sha256:b9896a47aeba727e79e04481a1eb6e80227a071346553689b933153440d441ba",
+        "sha256:f069d78ee120649c0cb6b9a65598638a3d6236b884e65705a6d8fdbaea79e965",
+        "sha256:075b36f84691a142a8d182af28926d791b4a4d82b6e3fd390dc03961521e4c03",
+        "sha256:f769e9f71cef9122be783a92c89fd894e0c077069d841c27335d7ba996d771f9",
+        "sha256:08c3845a93301179ecebb8b32a7d0b99c0d955b6af8d4363f92287c6e999b8fa",
+        "sha256:c0ca19b7b69013a035f39e62c5b14db82dc3cc0d963f803186ef97508d5785c6",
+        "sha256:62f2d533aef8da392157e6162dbc51283c8b39283b440bbebcaff2f3543277f4",
+        "sha256:20fbb98b91533bd8ef893e6ccf5727dc94d13d115a1ba41cf60b1d193c62b5cb",
+        "sha256:40477a8aed33ae1d993bfc221c6114519adfa8457693ff081ad13d3226586188",
+        "sha256:da0e6300b8b3690c07901c1120a45ff4216d6f7728ed74d4019d5336515af386",
+        "sha256:24a6afec847a01023b460f4339a87f339e7717d68ef779c3d07840a33fea866a"
+      ],
+      "archive_sha256": "55e1b78a66c46e146bb21aa2a3dc306acd657292b599d874b228fb55e60db0f0",
+      "report_sha256": "85c32a36e73c6368c28f8c9d9b2e876d30831610c8a8816d90657864ea55c280",
+      "scan_created_at": "2026-10-20T13:45:15.674041172Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 0
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": []
+    },
+    "prometheus": {
+      "reference": "evidenceai-prometheus:m121",
+      "docker_id": "sha256:70d7b943da6aff0fbfcbb10578ad48d0ff6e0122b4fb2e647b9706d261672dcc",
+      "repo_digests": [
+        "evidenceai-prometheus@sha256:70d7b943da6aff0fbfcbb10578ad48d0ff6e0122b4fb2e647b9706d261672dcc"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:0e45164bbb0cf92e067264c29d5024f6fc439f779f6d98bc8b8c0bcc17482066",
+        "sha256:a9a61be7b6066fe938f94fe7609263e0b01110a0af95c32c7d1faf70f62a45ce",
+        "sha256:0a1b28683737277650f5f559ecaa28b0c48ce83a99a37667eb1575fa6693c130",
+        "sha256:4128b08eed6f9cbcf9e143b9e3489936e4736799e898f4ad8b76211f0b96a5e9",
+        "sha256:9bc7fe2673d1e122be310119657331ba20853153316bb5b95a4244ed64582d47",
+        "sha256:dc2624ad1c51169e76a7014fe40143c9cbebf0337d6787f9d8d94286b33d57e1",
+        "sha256:8101d4ac980a56959436797097cae18bbf8ba000f613d3fe9de6570bb695f858",
+        "sha256:1c873c6152d733f380c180f1e08c68a7d1172f13a78c5b7f4bf7601762e8f45b",
+        "sha256:d4638067d90a9acd4f0abb7ff7bdb5a0011e4f5e1a77de89414dc987f703c10d",
+        "sha256:eb377631fda59aa912495801ef54ab879f339a0fbea547f1d6ec23dd744734aa",
+        "sha256:179808f2f601970b912dbfab7ca9774466e553971f1e3aaf7c8471071f5abf60",
+        "sha256:b8652b3d762e8f97d44d2e7069e8cf4b2c29ee5da79530a372dde32af47829ca",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+      ],
+      "archive_sha256": "0c7caa359a0a97760ed486fe746280eb21f024c53f7a0f88be1d7894c423bb1f",
+      "report_sha256": "a8f76779f85c41efc0d0012948d365391ad3eef2953053b0bf5c3b3a15f636aa",
+      "scan_created_at": "2026-10-20T13:45:17.995901256Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 2
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": [
+        {
+          "target": "bin/prometheus",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "bin/promtool",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        }
+      ]
+    },
+    "exporter": {
+      "reference": "evidenceai-exporter:m121",
+      "docker_id": "sha256:a7b403e49b2e5344e997a5ab45e9429aa9967e289d02edc2f46defbcf3e7d840",
+      "repo_digests": [
+        "evidenceai-exporter@sha256:a7b403e49b2e5344e997a5ab45e9429aa9967e289d02edc2f46defbcf3e7d840"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:488b881850fc4df4e7e5c884a74de77b66fcf2509e666cd85af73d98c50721a2",
+        "sha256:6d275db3b77636482bcdb47a0cc5589632c100a6de9cc6dbd3ba194ed7aea249",
+        "sha256:21aaedadb2e2fdea9ca5a0e2033b72da4a2e1621dbd7d9f7cb1706623a2d92a8",
+        "sha256:39e38d269453a037641e93f8ae652eba322ba6d80e56a72ffcef87af5cf45e5d"
+      ],
+      "archive_sha256": "56dde9de8c44e7b98f5c60085b0a1d8d844c950ed07f81009ad8156f422a4e10",
+      "report_sha256": "e733bd69c57c865628568e441954716d35430cd7c8ec2d93bc0f3de3b59f26b7",
+      "scan_created_at": "2026-10-20T13:45:18.577446173Z",
+      "counts": {
+        "HIGH": 0,
+        "CRITICAL": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "secrets": 0,
+      "policy": "PASS",
+      "findings": [
+        {
+          "target": "bin/node_exporter",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        }
+      ]
+    }
+  },
+  "candidate_promoted": false,
+  "scanner_version": "0.76.0"
+}

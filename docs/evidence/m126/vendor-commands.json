@@ -1,0 +1,80 @@
+[
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://api.github.com/repos/grafana/grafana/releases/latest",
+      "-o",
+      "docs/evidence/m126/grafana-latest.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://api.github.com/repos/grafana/grafana/releases/tags/v12.4.13",
+      "-o",
+      "docs/evidence/m126/grafana-124.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://api.github.com/repos/grafana/tempo/releases/latest",
+      "-o",
+      "docs/evidence/m126/tempo-latest.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://api.github.com/advisories/GHSA-p4r4-xvrq-gvmc",
+      "-o",
+      "docs/evidence/m126/21728.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://api.github.com/advisories/GHSA-ffqx-q65f-36jf",
+      "-o",
+      "docs/evidence/m126/28377.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://grafana.com/docs/grafana/latest/upgrade-guide/when-to-upgrade/",
+      "-o",
+      "docs/evidence/m126/support.html"
+    ],
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,97 @@
+{
+  "scope": "Exact new12.6 logs, newly generated archive metadata; no historical timestamp claim",
+  "archive": "local-logs.tar.gz",
+  "archive_sha256": "394d3d7b0042406aaf6047233c23b0dc47937ad2497fffdc113fd62148b907fc",
+  "logs": [
+    {
+      "path": "backend.log",
+      "sha256": "a7e3573e92d9e9da1db8356e94d4a74518e8e1611bd9228ef21175cbb9fb29ea",
+      "bytes": 1332
+    },
+    {
+      "path": "browser-final.log",
+      "sha256": "30a7aecc02461d0f70ecd43b09d5b62f809b9e4190e705d1719476c0ae2007d6",
+      "bytes": 1290176
+    },
+    {
+      "path": "browser-install.log",
+      "sha256": "b4b3c446c7b6ec692119c4374a0963d412a01f3380b5d42352df81dfb5bbf5d2",
+      "bytes": 11288
+    },
+    {
+      "path": "browser.log",
+      "sha256": "13e6a53e7c3672682b242a668f2518bbf16290ed049eac45b2446e6064306dae",
+      "bytes": 123913
+    },
+    {
+      "path": "build.log",
+      "sha256": "421126a2dc9388123d33c2e4a7345a84b153563e9e5864732395ccdaa63c89c3",
+      "bytes": 1125
+    },
+    {
+      "path": "formal-gate.log",
+      "sha256": "e991744c04be9c8a2c0126c2626ef1ad604563361c7649263fed25bd141e9905",
+      "bytes": 141
+    },
+    {
+      "path": "lint.log",
+      "sha256": "73f54382ed38c39a0d05708a84e9e421a73b82381dbfda81b6d35c0191a9ac98",
+      "bytes": 28
+    },
+    {
+      "path": "manifest.log",
+      "sha256": "3d8464d2ae710dcbf0ac55a339b65e40f4a17c3797d74faedc99f33526dd9822",
+      "bytes": 57
+    },
+    {
+      "path": "migration-check.log",
+      "sha256": "43d345b67ace77ab8c4cbf575a3baddf66e8623cf7d1e0b78e602b1d641ecf50",
+      "bytes": 36
+    },
+    {
+      "path": "migration-current.log",
+      "sha256": "7b832a436daf360ee444c2c984b11d776dbc2f8caa187a5e8e50b531ea47d8f0",
+      "bytes": 20
+    },
+    {
+      "path": "monitoring.log",
+      "sha256": "1708b3c831f4eebd393642d4cf7bc849a38fec0dcfad4e07ffffc5448c7f9439",
+      "bytes": 20906
+    },
+    {
+      "path": "npm-all.log",
+      "sha256": "ce60b1c682aef44468a19b6240fc2af0b4e692ab653fe18c90a3122821c8e197",
+      "bytes": 3024
+    },
+    {
+      "path": "npm-runtime.log",
+      "sha256": "a82356c0a35056ad900b47a8dcf03d6ebff9ba6d618c567e612c06e827a5f103",
+      "bytes": 366
+    },
+    {
+      "path": "pip-check.log",
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+      "bytes": 30
+    },
+    {
+      "path": "runner.log",
+      "sha256": "1e69696b5f64b53c857385c0d592674861f22363bc324f0335b2696982cc89bd",
+      "bytes": 613
+    },
+    {
+      "path": "scans/scanner.log",
+      "sha256": "d4cd28e58a7b605aff0b00a816189ef8c208877bdb1e9bdf40e303c12ebe16fa",
+      "bytes": 7885
+    },
+    {
+      "path": "types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "unit.log",
+      "sha256": "d7f5e8122bbbdb2d5c96bda06b1654418e67f7baf979f10580f6d381eadc597a",
+      "bytes": 243
+    }
+  ]
+}

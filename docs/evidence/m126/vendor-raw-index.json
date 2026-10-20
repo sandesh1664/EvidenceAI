@@ -1,0 +1,22 @@
+[
+  {
+    "original_capture": "docs/evidence/m126/grafana-latest.json",
+    "retained_path": "infra/runtime/m126/vendor/grafana-latest.json",
+    "sha256": "0bb139cf37bc6ea4f8714132091c9674c0b7f0a7b5aa8d4981c37a990f47b4b7"
+  },
+  {
+    "original_capture": "docs/evidence/m126/support.html",
+    "retained_path": "infra/runtime/m126/vendor/support.html",
+    "sha256": "53613241ce6fecdb2229a3a5f47c7f46b1dd1293476a9a4f412165fc9ec059d6"
+  },
+  {
+    "original_capture": "docs/evidence/m126/grafana-124.json",
+    "retained_path": "infra/runtime/m126/vendor/grafana-124.json",
+    "sha256": "1476871145d8173f3ab9172b61faebcab035be69b1299341ff67d3b4a8c8d7bd"
+  },
+  {
+    "original_capture": "docs/evidence/m126/tempo-latest.json",
+    "retained_path": "infra/runtime/m126/vendor/tempo-latest.json",
+    "sha256": "b96ed8a0915d6ef8bd7ef0d6a8451724968efce3a86326c8cb518ee96c61fb4e"
+  }
+]

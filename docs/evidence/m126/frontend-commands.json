@@ -1,0 +1,75 @@
+[
+  {
+    "name": "unit",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "started_utc": "2026-10-20T13:34:05.786276+00:00",
+    "exit_code": 0,
+    "seconds": 2.351
+  },
+  {
+    "name": "lint",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "started_utc": "2026-10-20T13:34:08.137508+00:00",
+    "exit_code": 0,
+    "seconds": 2.078
+  },
+  {
+    "name": "types",
+    "cwd": "apps/web",
+    "command": [
+      "npx",
+      "--no-install",
+      "tsc",
+      "--noEmit"
+    ],
+    "started_utc": "2026-10-20T13:34:10.216044+00:00",
+    "exit_code": 0,
+    "seconds": 1.001
+  },
+  {
+    "name": "build",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "started_utc": "2026-10-20T13:34:11.217094+00:00",
+    "exit_code": 0,
+    "seconds": 9.04
+  },
+  {
+    "name": "npm-runtime",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--omit=dev",
+      "--json"
+    ],
+    "started_utc": "2026-10-20T13:34:20.256936+00:00",
+    "exit_code": 0,
+    "seconds": 0.557
+  },
+  {
+    "name": "npm-all",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "audit",
+      "--json"
+    ],
+    "started_utc": "2026-10-20T13:34:20.814342+00:00",
+    "exit_code": 1,
+    "seconds": 2.235
+  }
+]

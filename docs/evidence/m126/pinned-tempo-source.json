@@ -1,0 +1,57 @@
+[
+  {
+    "path": "modules/frontend/config.go",
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://raw.githubusercontent.com/grafana/tempo/525d1bab07e0/modules/frontend/config.go",
+      "-o",
+      "infra/runtime/m126/vendor/pinned-frontend.go"
+    ],
+    "exit_code": 0,
+    "sha256": "5fc4fb58dc5bf4aae0b81206b597cada656370d403c29c150aabddc31a5ed02f",
+    "relevant_lines": [
+      "MaxLimit:               256 * 1024,"
+    ]
+  },
+  {
+    "path": "tempodb/backend/s3/config.go",
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://raw.githubusercontent.com/grafana/tempo/525d1bab07e0/tempodb/backend/s3/config.go",
+      "-o",
+      "infra/runtime/m126/vendor/pinned-s3-config.go"
+    ],
+    "exit_code": 0,
+    "sha256": "e189ee9c2857831814b2512b4bcdb202783aa3dcc2ad3c9ae785ad6e3a71c10a",
+    "relevant_lines": [
+      "CustomerEncryptionKey flagext.Secret `yaml:\"encryption_key\"`",
+      "f.Var(&cfg.SSE.CustomerEncryptionKey, util.PrefixConfig(prefix, \"s3.sse.encryption-key\"), \"SSE-C Encryption Key used for object encryption.\")"
+    ]
+  },
+  {
+    "path": "tempodb/backend/s3/s3.go",
+    "command": [
+      "curl",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--location",
+      "https://raw.githubusercontent.com/grafana/tempo/525d1bab07e0/tempodb/backend/s3/s3.go",
+      "-o",
+      "infra/runtime/m126/vendor/pinned-s3.go"
+    ],
+    "exit_code": 0,
+    "sha256": "b467a24b7c5bc447f4decbe58f1f71717728f7ed01d7b3d170921d2aaecc6aff",
+    "relevant_lines": [
+      "key := cfg.SSE.CustomerEncryptionKey.String()"
+    ]
+  }
+]

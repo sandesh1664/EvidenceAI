@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--entrypoint",
+      "cat",
+      "evidenceai-grafana:kin-m125",
+      "/usr/share/grafana/evidenceai-build.txt"
+    ],
+    "exit_code": 0,
+    "sha256": "d90576d588205c2bdfc1fb4084e8e4375f60c5e5c20cf2ed911bf509cad66de7",
+    "retained_archive": "docs/evidence/m126/build-provenance.txt.gz",
+    "uncompressed_sha256": "d90576d588205c2bdfc1fb4084e8e4375f60c5e5c20cf2ed911bf509cad66de7",
+    "raw_runtime_copy": "infra/runtime/m126/build-provenance.txt"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--entrypoint",
+      "cat",
+      "evidenceai-grafana:kin-m125",
+      "/usr/share/grafana/evidenceai-dependencies.txt"
+    ],
+    "exit_code": 0,
+    "sha256": "5bcddc7ac3a568a3d95509d7aebe8179da0b550b059e7c6fc6b5a61084b1f044"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--entrypoint",
+      "sha256sum",
+      "evidenceai-grafana:kin-m125",
+      "/usr/share/grafana/bin/grafana"
+    ],
+    "exit_code": 0,
+    "binary_sha256": "151b7fd5ac677a1a44c0d179767a567e2a3fb0bd1807a3ccfbca5cc483a2b20f"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "name=^/evidenceai-test-18d767c9e25d498f93153167db31a9f6$",
+        "--format",
+        "{{.Names}}"
+      ],
+      "exit_code": 0,
+      "absent": true
+    },
+    {
+      "command": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "name=^/evidenceai-test-21448d36087e4110a7a0813a01c852be$",
+        "--format",
+        "{{.Names}}"
+      ],
+      "exit_code": 0,
+      "absent": true
+    },
+    {
+      "command": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "name=^/evidenceai-test-779e89523af0451c97c09db1947c70a3$",
+        "--format",
+        "{{.Names}}"
+      ],
+      "exit_code": 0,
+      "absent": true
+    },
+    {
+      "command": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "label=com.docker.compose.project=evidenceai-staging-smokea65deb29ac",
+        "--format",
+        "{{.Names}}"
+      ],
+      "exit_code": 0,
+      "absent": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "git_diff_check_exit_code": 0,
+  "new_file_whitespace": "PASS",
+  "json_python_parse": "PASS",
+  "local_document_links": "PASS",
+  "protected_tracked_paths_unchanged": "PASS",
+  "new_log_archives_verified": "PASS",
+  "scope": "Local artifact validation; production remains FAIL/BLOCKED"
+}

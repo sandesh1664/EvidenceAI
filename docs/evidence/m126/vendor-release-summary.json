@@ -1,0 +1,26 @@
+{
+  "grafana-latest": {
+    "tag_name": "v13.2.4",
+    "published_at": "2026-10-13T11:41:03Z",
+    "html_url": "https://github.com/grafana/grafana/releases/tag/v13.2.4",
+    "target_commitish": "main",
+    "prerelease": false,
+    "draft": false
+  },
+  "tempo-latest": {
+    "tag_name": "v3.1.0",
+    "published_at": "2026-09-29T17:06:39Z",
+    "html_url": "https://github.com/grafana/tempo/releases/tag/v3.1.0",
+    "target_commitish": "main",
+    "prerelease": false,
+    "draft": false
+  },
+  "grafana-124": {
+    "tag_name": "v12.4.13",
+    "published_at": "2026-10-13T13:09:03Z",
+    "html_url": "https://github.com/grafana/grafana/releases/tag/v12.4.13",
+    "target_commitish": "main",
+    "prerelease": false,
+    "draft": false
+  }
+}

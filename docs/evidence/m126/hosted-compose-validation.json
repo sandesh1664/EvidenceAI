@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "Compose configuration only; no containers started, no DNS or TLS issuance",
+  "exit_code": 0,
+  "checks": {
+    "staging_environment": true,
+    "public_ports": true,
+    "public_tls": true,
+    "private_monitoring": true,
+    "proxy_trust_preserved": true,
+    "separate_project": true,
+    "selected_grafana_unchanged": true
+  },
+  "initial_harness_failure": "Initial ad-hoc validation omitted --profile monitoring/operations, so accessing omitted grafana raised KeyError; no application or startup failure. Corrected harness enables profiles."
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "browser",
+    "cwd": "apps/web",
+    "command": [
+      "npm",
+      "run",
+      "test:e2e"
+    ],
+    "started_utc": "2026-10-20T13:35:13.253612+00:00",
+    "exit_code": 1,
+    "seconds": 15.839
+  }
+]

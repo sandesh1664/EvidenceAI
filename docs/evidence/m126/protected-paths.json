@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "protected_paths": [
+    "docs/evidence/m12",
+    "docs/evidence/m121",
+    "docs/evidence/m122",
+    "docs/evidence/m123",
+    "docs/evidence/m124",
+    "docs/evidence/m125",
+    "docs/database-isolation-current-verification.json",
+    "docs/database-integrity-investigation.md",
+    "apps/api",
+    "apps/web",
+    "infra/compose.production.yml",
+    "infra/compose.staging.yml",
+    "infra/testing",
+    "infra/monitoring",
+    "infra/scripts",
+    ".github"
+  ],
+  "scope": "Tracked protected paths byte-identical to HEAD; new overlay and m126 evidence excluded. Existing Git historical commits/manifests untouched."
+}

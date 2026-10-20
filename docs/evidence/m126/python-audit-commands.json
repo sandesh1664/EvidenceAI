@@ -1,0 +1,39 @@
+[
+  {
+    "name": "audit-venv",
+    "command": [
+      "python3",
+      "-m",
+      "venv",
+      "/tmp/evidenceai-m126-audit"
+    ],
+    "exit_code": 0,
+    "seconds": 1.019
+  },
+  {
+    "name": "audit-install",
+    "command": [
+      "/tmp/evidenceai-m126-audit/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "pip-audit"
+    ],
+    "exit_code": 0,
+    "seconds": 6.467
+  },
+  {
+    "name": "python-audit",
+    "command": [
+      "/tmp/evidenceai-m126-audit/bin/python",
+      "-m",
+      "pip_audit",
+      "-r",
+      "/Users/redmug/EvidenceAI/apps/api/requirements.txt",
+      "--format",
+      "json"
+    ],
+    "exit_code": 0,
+    "seconds": 19.176
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "backend",
+    "cwd": ".",
+    "command": [
+      "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+      "-m",
+      "pytest",
+      "apps/api/tests",
+      "-q",
+      "--junitxml=/Users/redmug/EvidenceAI/docs/evidence/m126/backend.xml"
+    ],
+    "started_utc": "2026-10-20T13:34:05.089689+00:00",
+    "exit_code": 0,
+    "seconds": 26.81
+  },
+  {
+    "name": "migration-current",
+    "cwd": "apps/api",
+    "command": [
+      "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+      "-m",
+      "alembic",
+      "current"
+    ],
+    "started_utc": "2026-10-20T13:34:31.900198+00:00",
+    "exit_code": 0,
+    "seconds": 0.309
+  },
+  {
+    "name": "migration-check",
+    "cwd": "apps/api",
+    "command": [
+      "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+      "-m",
+      "alembic",
+      "check"
+    ],
+    "started_utc": "2026-10-20T13:34:32.209688+00:00",
+    "exit_code": 0,
+    "seconds": 0.34
+  },
+  {
+    "name": "pip-check",
+    "cwd": "apps/api",
+    "command": [
+      "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "started_utc": "2026-10-20T13:34:32.549553+00:00",
+    "exit_code": 0,
+    "seconds": 0.17
+  }
+]

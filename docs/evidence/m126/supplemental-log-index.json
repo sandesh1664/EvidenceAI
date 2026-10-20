@@ -1,0 +1,26 @@
+{
+  "archive": "supplemental-logs.tar.gz",
+  "archive_sha256": "134e522c534fab273d8774d66b5752848dbe224415ac14fc57259c14532865b7",
+  "logs": [
+    {
+      "path": "audit-install.log",
+      "sha256": "ca5f57b84e15365c38de97dbc68054b0c26455df334ddce0265524e0ca94a71c",
+      "bytes": 6480
+    },
+    {
+      "path": "audit-venv.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "python-audit.log",
+      "sha256": "1b32aaec82fd578b348aa8924145f6cd47dab73d52345ed4872aa4829d0bfb32",
+      "bytes": 2566
+    },
+    {
+      "path": "runtime-scans/scanner.log",
+      "sha256": "1fc888322eecad4334f87f7b002c724ede6dfd2330ecaa58f79fd5746cc5809c",
+      "bytes": 5199
+    }
+  ]
+}

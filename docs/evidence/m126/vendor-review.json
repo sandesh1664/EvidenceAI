@@ -1,0 +1,659 @@
+[
+  {
+    "name": "grafana-releases",
+    "url": "https://api.github.com/repos/grafana/grafana/releases?per_page=100",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/grafana-releases.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/grafana/releases?per_page=100"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/grafana-releases.raw",
+    "sha256": "7ffedd6e4a40383339ca85350dbbbef8761f8e3ede1a8c16f9834d029f79b62e",
+    "stable_releases": [
+      {
+        "tag": "v13.2.4",
+        "published_at": "2026-10-13T11:41:03Z"
+      },
+      {
+        "tag": "v13.1.8",
+        "published_at": "2026-10-13T13:01:57Z"
+      },
+      {
+        "tag": "v13.0.11",
+        "published_at": "2026-10-13T11:56:40Z"
+      },
+      {
+        "tag": "v12.4.13",
+        "published_at": "2026-10-13T13:09:03Z"
+      },
+      {
+        "tag": "v13.2.3",
+        "published_at": "2026-09-29T09:02:18Z"
+      },
+      {
+        "tag": "v13.1.7",
+        "published_at": "2026-09-29T08:57:58Z"
+      },
+      {
+        "tag": "v13.0.10",
+        "published_at": "2026-09-29T08:54:36Z"
+      },
+      {
+        "tag": "v12.4.12",
+        "published_at": "2026-09-29T08:45:03Z"
+      },
+      {
+        "tag": "v13.2.2",
+        "published_at": "2026-09-15T12:21:32Z"
+      },
+      {
+        "tag": "v13.1.6",
+        "published_at": "2026-09-15T12:25:01Z"
+      },
+      {
+        "tag": "v13.0.9",
+        "published_at": "2026-09-15T12:43:46Z"
+      },
+      {
+        "tag": "v12.4.11",
+        "published_at": "2026-09-15T12:27:34Z"
+      },
+      {
+        "tag": "v13.2.1",
+        "published_at": "2026-09-02T07:00:31Z"
+      },
+      {
+        "tag": "v13.1.5",
+        "published_at": "2026-09-02T08:12:48Z"
+      },
+      {
+        "tag": "v13.0.8",
+        "published_at": "2026-09-02T08:23:04Z"
+      },
+      {
+        "tag": "v12.4.10",
+        "published_at": "2026-09-02T08:58:25Z"
+      },
+      {
+        "tag": "v13.2.0",
+        "published_at": "2026-08-18T12:48:13Z"
+      },
+      {
+        "tag": "v13.1.4",
+        "published_at": "2026-08-18T13:02:28Z"
+      },
+      {
+        "tag": "v13.0.7",
+        "published_at": "2026-08-18T14:08:57Z"
+      },
+      {
+        "tag": "v12.4.9",
+        "published_at": "2026-08-18T14:08:48Z"
+      },
+      {
+        "tag": "v12.3.11",
+        "published_at": "2026-08-18T13:20:15Z"
+      },
+      {
+        "tag": "v13.1.3",
+        "published_at": "2026-08-07T03:03:34Z"
+      },
+      {
+        "tag": "v13.0.6",
+        "published_at": "2026-08-07T03:06:00Z"
+      },
+      {
+        "tag": "v12.4.8",
+        "published_at": "2026-08-07T02:55:02Z"
+      },
+      {
+        "tag": "v13.1.2",
+        "published_at": "2026-08-04T13:47:13Z"
+      },
+      {
+        "tag": "v13.0.5",
+        "published_at": "2026-08-04T13:46:43Z"
+      },
+      {
+        "tag": "v12.4.7",
+        "published_at": "2026-08-04T13:29:41Z"
+      },
+      {
+        "tag": "v12.3.10",
+        "published_at": "2026-08-04T12:55:16Z"
+      },
+      {
+        "tag": "v13.1.1",
+        "published_at": "2026-07-21T10:58:35Z"
+      },
+      {
+        "tag": "v13.0.4",
+        "published_at": "2026-07-21T12:25:52Z"
+      },
+      {
+        "tag": "v12.4.6",
+        "published_at": "2026-07-21T15:32:19Z"
+      },
+      {
+        "tag": "v12.3.9",
+        "published_at": "2026-07-21T12:43:24Z"
+      },
+      {
+        "tag": "v13.1.0",
+        "published_at": "2026-07-01T15:18:01Z"
+      },
+      {
+        "tag": "v13.0.3",
+        "published_at": "2026-06-23T16:22:23Z"
+      },
+      {
+        "tag": "v12.4.5",
+        "published_at": "2026-06-23T13:13:12Z"
+      },
+      {
+        "tag": "v12.3.8",
+        "published_at": "2026-06-23T14:35:28Z"
+      },
+      {
+        "tag": "v12.2.10",
+        "published_at": "2026-06-23T15:01:06Z"
+      },
+      {
+        "tag": "v11.6.16",
+        "published_at": "2026-06-23T15:49:26Z"
+      },
+      {
+        "tag": "v12.4.4",
+        "published_at": "2026-06-09T13:42:07Z"
+      },
+      {
+        "tag": "v12.3.7",
+        "published_at": "2026-06-09T14:06:34Z"
+      },
+      {
+        "tag": "v12.2.9",
+        "published_at": "2026-06-09T14:34:27Z"
+      },
+      {
+        "tag": "v11.6.15",
+        "published_at": "2026-06-09T14:43:45Z"
+      },
+      {
+        "tag": "v13.0.2",
+        "published_at": "2026-06-09T11:19:16Z"
+      },
+      {
+        "tag": "v13.0.1+security-01",
+        "published_at": "2026-05-12T13:08:35Z"
+      },
+      {
+        "tag": "v12.4.3+security-02",
+        "published_at": "2026-05-12T13:09:01Z"
+      },
+      {
+        "tag": "v12.3.6+security-04",
+        "published_at": "2026-05-12T13:09:32Z"
+      },
+      {
+        "tag": "v12.2.8+security-04",
+        "published_at": "2026-05-12T13:08:58Z"
+      },
+      {
+        "tag": "v11.6.14+security-04",
+        "published_at": "2026-05-12T13:08:51Z"
+      },
+      {
+        "tag": "v13.0.1",
+        "published_at": "2026-04-17T08:18:54Z"
+      },
+      {
+        "tag": "v12.4.3",
+        "published_at": "2026-04-14T11:56:08Z"
+      },
+      {
+        "tag": "v12.4.2",
+        "published_at": "2026-03-25T22:09:36Z"
+      },
+      {
+        "tag": "v12.3.6+security-01",
+        "published_at": "2026-03-25T23:03:20Z"
+      },
+      {
+        "tag": "v12.3.6",
+        "published_at": "2026-03-26T09:50:07Z"
+      },
+      {
+        "tag": "v12.2.8+security-01",
+        "published_at": "2026-03-25T22:08:55Z"
+      },
+      {
+        "tag": "v12.2.8",
+        "published_at": "2026-03-26T09:49:58Z"
+      },
+      {
+        "tag": "v12.1.10+security-01",
+        "published_at": "2026-03-25T22:06:04Z"
+      },
+      {
+        "tag": "v12.1.10",
+        "published_at": "2026-03-26T09:49:46Z"
+      },
+      {
+        "tag": "v11.6.14+security-01",
+        "published_at": "2026-03-25T22:05:11Z"
+      },
+      {
+        "tag": "v11.6.14",
+        "published_at": "2026-03-26T09:49:40Z"
+      },
+      {
+        "tag": "v12.4.1",
+        "published_at": "2026-03-09T18:28:09Z"
+      },
+      {
+        "tag": "v12.3.5",
+        "published_at": "2026-03-09T18:29:43Z"
+      },
+      {
+        "tag": "v12.2.7",
+        "published_at": "2026-03-09T18:30:25Z"
+      },
+      {
+        "tag": "v12.1.9",
+        "published_at": "2026-03-09T18:32:07Z"
+      },
+      {
+        "tag": "v11.6.13",
+        "published_at": "2026-03-09T18:32:15Z"
+      },
+      {
+        "tag": "v12.4.0",
+        "published_at": "2026-02-25T08:06:52Z"
+      },
+      {
+        "tag": "v12.3.4",
+        "published_at": "2026-02-24T17:55:11Z"
+      },
+      {
+        "tag": "v12.2.6",
+        "published_at": "2026-02-24T17:51:08Z"
+      },
+      {
+        "tag": "v12.1.8",
+        "published_at": "2026-02-24T12:11:37Z"
+      },
+      {
+        "tag": "v11.6.12",
+        "published_at": "2026-02-24T17:16:48Z"
+      },
+      {
+        "tag": "v12.3.3",
+        "published_at": "2026-02-12T22:30:08Z"
+      },
+      {
+        "tag": "v12.2.5",
+        "published_at": "2026-02-12T16:07:30Z"
+      },
+      {
+        "tag": "v12.1.7",
+        "published_at": "2026-02-12T16:08:03Z"
+      },
+      {
+        "tag": "v12.0.10",
+        "published_at": "2026-02-12T16:08:41Z"
+      },
+      {
+        "tag": "v11.6.11",
+        "published_at": "2026-02-12T16:09:52Z"
+      },
+      {
+        "tag": "v12.3.2+security-01",
+        "published_at": "2026-02-11T17:28:29Z"
+      },
+      {
+        "tag": "v12.2.4+security-01",
+        "published_at": "2026-02-11T16:01:49Z"
+      },
+      {
+        "tag": "v12.1.6+security-01",
+        "published_at": "2026-02-11T14:37:35Z"
+      },
+      {
+        "tag": "v11.6.10+security-01",
+        "published_at": "2026-02-11T12:00:08Z"
+      },
+      {
+        "tag": "v12.3.2",
+        "published_at": "2026-01-27T20:59:58Z"
+      },
+      {
+        "tag": "v12.2.4",
+        "published_at": "2026-01-27T20:03:40Z"
+      },
+      {
+        "tag": "v12.1.6",
+        "published_at": "2026-01-27T19:00:54Z"
+      },
+      {
+        "tag": "v12.0.9",
+        "published_at": "2026-01-27T16:58:34Z"
+      },
+      {
+        "tag": "v11.6.10",
+        "published_at": "2026-01-27T16:38:11Z"
+      },
+      {
+        "tag": "v12.3.1",
+        "published_at": "2025-12-16T21:58:21Z"
+      },
+      {
+        "tag": "v12.2.3",
+        "published_at": "2025-12-16T20:23:56Z"
+      },
+      {
+        "tag": "v12.1.5",
+        "published_at": "2025-12-16T19:17:01Z"
+      },
+      {
+        "tag": "v12.0.8",
+        "published_at": "2025-12-16T18:56:29Z"
+      },
+      {
+        "tag": "v11.6.9",
+        "published_at": "2025-12-16T18:22:28Z"
+      },
+      {
+        "tag": "v12.3.0",
+        "published_at": "2025-11-19T15:15:43Z"
+      },
+      {
+        "tag": "v12.2.2",
+        "published_at": "2025-11-19T14:47:30Z"
+      },
+      {
+        "tag": "v12.2.1+security-01",
+        "published_at": "2025-11-19T14:34:56Z"
+      },
+      {
+        "tag": "v12.1.4",
+        "published_at": "2025-11-19T14:46:24Z"
+      },
+      {
+        "tag": "v12.1.3+security-01",
+        "published_at": "2025-11-19T14:43:13Z"
+      },
+      {
+        "tag": "v12.0.7",
+        "published_at": "2025-11-19T15:00:50Z"
+      },
+      {
+        "tag": "v12.0.6+security-01",
+        "published_at": "2025-11-19T14:45:59Z"
+      },
+      {
+        "tag": "v11.6.8",
+        "published_at": "2025-11-19T15:00:44Z"
+      },
+      {
+        "tag": "v12.2.1",
+        "published_at": "2025-10-21T14:40:19Z"
+      },
+      {
+        "tag": "v12.1.3",
+        "published_at": "2025-10-21T14:17:46Z"
+      },
+      {
+        "tag": "v12.0.6",
+        "published_at": "2025-10-21T13:23:02Z"
+      },
+      {
+        "tag": "v11.6.7",
+        "published_at": "2025-10-21T13:05:06Z"
+      }
+    ]
+  },
+  {
+    "name": "grafana-133",
+    "url": "https://api.github.com/repos/grafana/grafana/releases/tags/v13.3.0",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/grafana-133.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/grafana/releases/tags/v13.3.0"
+    ],
+    "exit_code": 0,
+    "http_status": "404",
+    "raw_path": "infra/runtime/m126/vendor/grafana-133.raw",
+    "sha256": "e6fa3955395b2945df66f9729a57f8884e9388e275389539561dcb03aeb4f05b"
+  },
+  {
+    "name": "tempo-policy",
+    "url": "https://grafana.com/docs/tempo/latest/set-up-for-tracing/setup-tempo/recommended-versions/",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/tempo-policy.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://grafana.com/docs/tempo/latest/set-up-for-tracing/setup-tempo/recommended-versions/"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/tempo-policy.raw",
+    "sha256": "3cbc9613536393f2a1b70197a82db3b3a31df9775eaf6ab0b9f52b3887684623"
+  },
+  {
+    "name": "cloud-migration",
+    "url": "https://grafana.com/docs/grafana/latest/administration/migration-guide/manually-migrate-to-grafana-cloud/",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/cloud-migration.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://grafana.com/docs/grafana/latest/administration/migration-guide/manually-migrate-to-grafana-cloud/"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/cloud-migration.raw",
+    "sha256": "19025dca31acf9d98292de9ded6532158296e95910d3c6ceebcbca8353710271"
+  },
+  {
+    "name": "cloud-private",
+    "url": "https://grafana.com/docs/grafana-cloud/observe-and-act/connect-externally-hosted/private-data-source-connect/",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/cloud-private.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://grafana.com/docs/grafana-cloud/observe-and-act/connect-externally-hosted/private-data-source-connect/"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/cloud-private.raw",
+    "sha256": "5c118d13c231598e511b85a4a4022b7c85a930c6b176a671ad7843836a9391e7"
+  },
+  {
+    "name": "registry-selected",
+    "url": "https://hub.docker.com/v2/repositories/grafana/grafana/tags/13.2.4",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/registry-selected.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://hub.docker.com/v2/repositories/grafana/grafana/tags/13.2.4"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/registry-selected.raw",
+    "sha256": "4321d8ff6587543e8a29f1d3a0fc336f2562e4604107a0c50fb1d73cad5a4dc5",
+    "digest": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f"
+  },
+  {
+    "name": "registry-124",
+    "url": "https://hub.docker.com/v2/repositories/grafana/grafana/tags/12.4.13",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/registry-124.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://hub.docker.com/v2/repositories/grafana/grafana/tags/12.4.13"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/registry-124.raw",
+    "sha256": "3d7596252f9574b7e9554ca6372fecafb262963cd6cee785687aaf2b247a55d3",
+    "digest": "sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+  },
+  {
+    "name": "query-fix",
+    "url": "https://api.github.com/repos/grafana/tempo/commits/650eb1985a0776789c8564122990f588a742356f",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/query-fix.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/tempo/commits/650eb1985a0776789c8564122990f588a742356f"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/query-fix.raw",
+    "sha256": "ca457db5a4cd30a776a8d9ccd9a1dc7237e80c367dd031bb34ef9d9d6cbe23eb",
+    "changed_files": [
+      {
+        "filename": "CHANGELOG.md",
+        "patch": "@@ -1,5 +1,6 @@\n ## main / unreleased\n \n+* [CHANGE] Set default `max_result_limit` for search to 256*1024 [#6525](https://github.com/grafana/tempo/pull/6525) (@zhxiaogg)\n * [CHANGE] **BREAKING CHANGE** Remove Opencensus receiver [#6523](https://github.com/grafana/tempo/pull/6523) (@javiermolinar)\n * [CHANGE] Upgrade Tempo to Go 1.26.0 [#6443](https://github.com/grafana/tempo/pull/6443) (@stoewer)\n * [CHANGE] Allow duplicate dimensions for span metrics and service graphs. This is a valid use case if using different instrumentation libraries, with spans having \"deployment.environment\" and others \"deployment_environment\", for example. [#6288](https://github.com/grafana/tempo/pull/6288) (@carles-grafana)"
+      },
+      {
+        "filename": "docs/sources/tempo/configuration/manifest.md",
+        "patch": "@@ -397,7 +397,7 @@ query_frontend:\n         concurrent_jobs: 1000\n         target_bytes_per_job: 104857600\n         default_result_limit: 20\n-        max_result_limit: 0\n+        max_result_limit: 262144\n         max_duration: 168h0m0s\n         query_backend_after: 15m0s\n         ingester_shards: 3"
+      },
+      {
+        "filename": "modules/frontend/config.go",
+        "patch": "@@ -94,7 +94,7 @@ func (cfg *Config) RegisterFlagsAndApplyDefaults(string, *flag.FlagSet) {\n \t\tSharder: SearchSharderConfig{\n \t\t\tQueryBackendAfter:      15 * time.Minute,\n \t\t\tDefaultLimit:           20,\n-\t\t\tMaxLimit:               0,\n+\t\t\tMaxLimit:               256 * 1024,\n \t\t\tMaxDuration:            168 * time.Hour, // 1 week\n \t\t\tConcurrentRequests:     defaultConcurrentRequests,\n \t\t\tTargetBytesPerRequest:  defaultTargetBytesPerRequest,"
+      },
+      {
+        "filename": "modules/frontend/config_test.go",
+        "patch": "@@ -0,0 +1,15 @@\n+package frontend\n+\n+import (\n+\t\"flag\"\n+\t\"testing\"\n+\n+\t\"github.com/stretchr/testify/assert\"\n+)\n+\n+func TestSearchSharderConfigDefaults(t *testing.T) {\n+\tcfg := &Config{}\n+\tcfg.RegisterFlagsAndApplyDefaults(\"\", &flag.FlagSet{})\n+\n+\tassert.Equal(t, uint32(256*1024), cfg.Search.Sharder.MaxLimit)\n+}"
+      }
+    ]
+  },
+  {
+    "name": "s3-fix",
+    "url": "https://api.github.com/repos/grafana/tempo/commits/bb8ca663db34a0980c9758b40d918fda3b4dbec3",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/s3-fix.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/tempo/commits/bb8ca663db34a0980c9758b40d918fda3b4dbec3"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/s3-fix.raw",
+    "sha256": "ec7cf895850e81616507d9057f9c65137674d1f12c21911ea3a6b6caac26b6cc",
+    "changed_files": [
+      {
+        "filename": "CHANGELOG.md",
+        "patch": "@@ -1,5 +1,6 @@\n ## main / unreleased\n \n+* [BUGFIX] S3 SSE-C `encryption_key` is now treated as a secret to prevent it from being exposed in plaintext. Resolves CVE-2026-28377. [#6711](https://github.com/grafana/tempo/pull/6711) (@mattdurham)\n * [BUGFIX] Fix integer overflow in query parameters by using `strconv.ParseUint` instead of `strconv.Atoi`/`strconv.ParseInt` for unsigned integer fields. [#6612](https://github.com/grafana/tempo/pull/6612) (@bejaratommy)\n * [CHANGE] **BREAKING CHANGE** Centralize block and WAL config: `block_builder` and `live_store` now always use `storage.trace.block` settings; per-module block config fields are removed. [#6647](https://github.com/grafana/tempo/pull/6647) (@stoewer)\n * [CHANGE] **BREAKING CHANGE** Remove Opencensus receiver [#6523](https://github.com/grafana/tempo/pull/6523) (@javiermolinar)"
+      },
+      {
+        "filename": "tempodb/backend/s3/config.go",
+        "patch": "@@ -37,10 +37,10 @@ var (\n )\n \n type SSEConfig struct {\n-\tType                  string `yaml:\"type\"`\n-\tKMSKeyID              string `yaml:\"kms_key_id\"`\n-\tKMSEncryptionContext  string `yaml:\"kms_encryption_context\"`\n-\tCustomerEncryptionKey string `yaml:\"encryption_key\"`\n+\tType                  string         `yaml:\"type\"`\n+\tKMSKeyID              string         `yaml:\"kms_key_id\"`\n+\tKMSEncryptionContext  string         `yaml:\"kms_encryption_context\"`\n+\tCustomerEncryptionKey flagext.Secret `yaml:\"encryption_key\"`\n }\n \n type Config struct {\n@@ -85,7 +85,7 @@ func (cfg *Config) RegisterFlagsAndApplyDefaults(prefix string, f *flag.FlagSet)\n \tf.StringVar(&cfg.SSE.Type, util.PrefixConfig(prefix, \"s3.sse.type\"), \"\", fmt.Sprintf(\"Enable AWS Server Side Encryption. Supported values: %s.\", strings.Join(supportedSSETypes, \", \")))\n \tf.StringVar(&cfg.SSE.KMSKeyID, util.PrefixConfig(prefix, \"s3.sse.kms-key-id\"), \"\", \"KMS Key ID used to encrypt objects in S3\")\n \tf.StringVar(&cfg.SSE.KMSEncryptionContext, util.PrefixConfig(prefix, \"s3.sse.kms-encryption-context\"), \"\", \"KMS Encryption Context used for object encryption. It expects JSON formatted string.\")\n-\tf.StringVar(&cfg.SSE.CustomerEncryptionKey, util.PrefixConfig(prefix, \"s3.sse.encryption-key\"), \"\", \"SSE-C Encryption Key used for object encryption.\")\n+\tf.Var(&cfg.SSE.CustomerEncryptionKey, util.PrefixConfig(prefix, \"s3.sse.encryption-key\"), \"SSE-C Encryption Key used for object encryption.\")\n \tcfg.HedgeRequestsUpTo = 2\n }\n "
+      },
+      {
+        "filename": "tempodb/backend/s3/config_test.go",
+        "patch": "@@ -0,0 +1,28 @@\n+package s3\n+\n+import (\n+\t\"testing\"\n+\n+\t\"github.com/grafana/dskit/flagext\"\n+\t\"github.com/stretchr/testify/assert\"\n+\t\"github.com/stretchr/testify/require\"\n+\t\"gopkg.in/yaml.v3\"\n+)\n+\n+func TestSSEConfigEncryptionKeyRedacted(t *testing.T) {\n+\tconst plaintext = \"my-super-secret-key\"\n+\n+\tvar key flagext.Secret\n+\trequire.NoError(t, key.Set(plaintext))\n+\n+\tcfg := SSEConfig{\n+\t\tType:                  SSEC,\n+\t\tCustomerEncryptionKey: key,\n+\t}\n+\n+\tout, err := yaml.Marshal(cfg)\n+\trequire.NoError(t, err)\n+\n+\tassert.NotContains(t, string(out), plaintext, \"plaintext encryption key must not appear in YAML output\")\n+\tassert.Contains(t, string(out), \"********\", \"redacted marker must appear in YAML output\")\n+}"
+      },
+      {
+        "filename": "tempodb/backend/s3/s3.go",
+        "patch": "@@ -809,10 +809,11 @@ func buildSSEConfig(cfg *Config) (encrypt.ServerSide, error) {\n \tcase SSES3:\n \t\treturn encrypt.NewSSE(), nil\n \tcase SSEC:\n-\t\tif cfg.SSE.CustomerEncryptionKey == \"\" {\n+\t\tkey := cfg.SSE.CustomerEncryptionKey.String()\n+\t\tif key == \"\" {\n \t\t\treturn nil, errors.New(\"SSE-C EncryptionKey is missing\")\n \t\t}\n-\t\treturn encrypt.NewSSEC([]byte(cfg.SSE.CustomerEncryptionKey))\n+\t\treturn encrypt.NewSSEC([]byte(key))\n \tdefault:\n \t\treturn nil, errUnsupportedSSEType\n \t}"
+      }
+    ]
+  },
+  {
+    "name": "query-ancestry",
+    "url": "https://api.github.com/repos/grafana/tempo/compare/650eb1985a0776789c8564122990f588a742356f...525d1bab07e0",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/query-ancestry.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/tempo/compare/650eb1985a0776789c8564122990f588a742356f...525d1bab07e0"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/query-ancestry.raw",
+    "sha256": "cee7ff363b6afa22993a4ce669dc056ef5601d33c87bfb372eb7fb344ea3851a",
+    "status": "ahead",
+    "ahead_by": 337,
+    "behind_by": 0,
+    "total_commits": 337
+  },
+  {
+    "name": "s3-ancestry",
+    "url": "https://api.github.com/repos/grafana/tempo/compare/bb8ca663db34a0980c9758b40d918fda3b4dbec3...525d1bab07e0",
+    "command": [
+      "curl",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--output",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/vendor/s3-ancestry.raw",
+      "--write-out",
+      "%{http_code}",
+      "https://api.github.com/repos/grafana/tempo/compare/bb8ca663db34a0980c9758b40d918fda3b4dbec3...525d1bab07e0"
+    ],
+    "exit_code": 0,
+    "http_status": "200",
+    "raw_path": "infra/runtime/m126/vendor/s3-ancestry.raw",
+    "sha256": "efb38924a64d8dcedfd366f1d22ddc5e9832cf055e9f612d993dca0db482395e",
+    "status": "ahead",
+    "ahead_by": 218,
+    "behind_by": 0,
+    "total_commits": 218
+  }
+]

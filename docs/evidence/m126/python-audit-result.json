@@ -1,0 +1,7 @@
+{
+  "tool": "pip-audit 2.10.1",
+  "dependencies": 44,
+  "vulnerabilities": 0,
+  "exit_code": 0,
+  "scope": "apps/api/requirements.txt resolved in isolated /tmp tool environment; project virtualenv unchanged"
+}

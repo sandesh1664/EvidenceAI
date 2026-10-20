@@ -1,0 +1,265 @@
+[
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "--version"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:07.552082+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--download-db-only"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:07.722042+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-api:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/api/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:08.212915+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/api:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:09.849678+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-web:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/web/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:10.522564+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/web:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:11.619855+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-backup:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/backup/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:11.933360+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/backup:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:12.280766+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-proxy:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/proxy/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:12.636530+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/proxy:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:13.095617+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-database:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/database/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:13.957825+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/database:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:15.751032+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-prometheus:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/prometheus/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:16.918438+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/prometheus:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:18.097605+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "save",
+      "evidenceai-exporter:m121",
+      "-o",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/exporter/image.tar"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:18.356337+00:00"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/runtime-scans/exporter:/scan",
+      "-v",
+      "/Users/redmug/EvidenceAI/infra/runtime/m126/scans/cache:/root/.cache",
+      "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+      "image",
+      "--input",
+      "/scan/image.tar",
+      "--scanners",
+      "vuln,secret",
+      "--format",
+      "json",
+      "--output",
+      "/scan/report.json"
+    ],
+    "exit_code": 0,
+    "finished_utc": "2026-10-20T13:45:18.654795+00:00"
+  }
+]

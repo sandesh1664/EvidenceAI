@@ -1,0 +1,21 @@
+[
+  {
+    "command": [
+      "python3",
+      "infra/scripts/verify_release.py",
+      "docs/evidence/m126/release-result.json"
+    ],
+    "exit_code": 1,
+    "output": "{\n  \"release\": \"BLOCKED\",\n  \"unmet_criteria\": [\n    \"container_security\",\n    \"ai_security\",\n    \"ci_cd\",\n    \"production_environment\"\n  ]\n}"
+  },
+  {
+    "command": [
+      "python3",
+      "infra/scripts/release_manifest.py",
+      "--output",
+      "infra/runtime/m126/manifest.json"
+    ],
+    "exit_code": 1,
+    "output": "Release packaging requires a clean committed source tree"
+  }
+]

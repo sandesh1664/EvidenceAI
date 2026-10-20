@@ -1,0 +1,10 @@
+# Prepared only; never started by local verification. Public hosted staging needs
+# separate deployment authorization and passing release gates. Unlike the local
+# staging overlay, retain the base public ACME TLS, ports, and proxy network.
+services:
+  api:
+    environment: {APP_ENV: staging}
+  worker:
+    environment: {APP_ENV: staging}
+  migrate:
+    environment: {APP_ENV: staging}

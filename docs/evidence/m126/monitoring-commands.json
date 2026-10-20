@@ -1,0 +1,13 @@
+[
+  {
+    "name": "monitoring",
+    "cwd": ".",
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "infra/scripts/smoke.py"
+    ],
+    "started_utc": "2026-10-20T13:35:13.900426+00:00",
+    "exit_code": 0,
+    "seconds": 193.531
+  }
+]

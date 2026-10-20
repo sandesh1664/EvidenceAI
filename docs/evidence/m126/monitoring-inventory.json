@@ -1,0 +1,2510 @@
+{
+  "scanner": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-21T13:14:22.737606156Z",
+    "UpdatedAt": "2026-10-20T13:14:22.737606427Z",
+    "DownloadedAt": "2026-10-20T13:34:41.153238753Z"
+  },
+  "images": {
+    "selected": {
+      "reference": "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+      "docker_id": "sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f",
+      "repo_digests": [
+        "grafana/grafana@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+        "sha256:20c9f0c13d7f03ca55a6104fbc997b3ca20862fdd672a5eabd855911acc1f20a",
+        "sha256:c61f7a956bb6f1cecf890271896e0967c3f4f1de74a05ae59446a7155339a5fa",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:a6aea3bac8aefbf6e5722cd1e7e1e5dce109d883444c674600a412a974132f3a",
+        "sha256:6130abb51c165dc0f68109ec72f4fb5b9f0fa73fea3ca0dfd8f31bd8411e980e",
+        "sha256:9a7c41107f49bfd2bbce1a15c993389d2547b25a1e48e635535555f8954842f1",
+        "sha256:93b68779fa865f94c405a6c83ef26dab653fadbc997f958054616416275b4625",
+        "sha256:099824293ac421537396cd4cc1ed03f5a8753359f7729dd294d4723a93eddf7e",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:f728a00de809ca5f6a9d4a428c4d8269a8a367654f6c8f5197303d66cb8e6640"
+      ],
+      "archive_sha256": "148e5f6c5d8d9ae20e99cd0588ff6c4ab3c4f096080b798ddf4a2f7a23a0701d",
+      "report_sha256": "8c3d98cbd463e38fdcccd751e5c333ba880f06b0b148386851f80ff287ab35a5",
+      "scan_created_at": "2026-10-20T13:34:47.837043839Z",
+      "counts": {
+        "HIGH": 61,
+        "CRITICAL": 0,
+        "MEDIUM": 175,
+        "LOW": 13,
+        "UNKNOWN": 5
+      },
+      "secrets": 0,
+      "policy": "FAIL",
+      "findings": [
+        {
+          "target": "/scan/image.tar (alpine 3.24.2)",
+          "VulnerabilityID": "CVE-2026-85091",
+          "PkgName": "zlib",
+          "InstalledVersion": "1.3.2-r0",
+          "FixedVersion": "1.3.2-r1",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-85091"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100349",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.146.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100349"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100351",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.147.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100351"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100352",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.148.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100352"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100353",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.149.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100353"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100354",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.149.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100354"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100347",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.145.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100347"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100348",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.144.0",
+          "FixedVersion": "0.145.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100348"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.56.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.56.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.56.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.6",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.27.1",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56855",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.55.0",
+          "FixedVersion": "0.56.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56855"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78662",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.55.0",
+          "FixedVersion": "0.56.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78662"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.55.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.58.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-84304",
+          "PkgName": "google.golang.org/grpc",
+          "InstalledVersion": "v1.83.0",
+          "FixedVersion": "1.83.1",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-84304"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-84445",
+          "PkgName": "google.golang.org/grpc",
+          "InstalledVersion": "v1.83.0",
+          "FixedVersion": "1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-84445"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-84303",
+          "PkgName": "google.golang.org/grpc",
+          "InstalledVersion": "v1.83.0",
+          "FixedVersion": "1.83.1",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-84303"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-21728",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "FixedVersion": "2.8.4, 2.9.2, 2.10.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-21728"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-28377",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260910130453-bcfe9f230c1d",
+          "FixedVersion": "2.10.3",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-28377"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78667"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78669"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97031"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56866",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56866"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78659",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78659"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78660",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78660"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-78663",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78663"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94439",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94439"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94440",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94440"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-94448",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-94448"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97030",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97030"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-97032",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-97032"
+        },
+        {
+          "target": "usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_arm64",
+          "VulnerabilityID": "CVE-2026-56857",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.7",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56857"
+        }
+      ]
+    },
+    "upstream-124": {
+      "reference": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+      "docker_id": "sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+      "repo_digests": [
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+        "sha256:5e7d96f041766955d6a0f23591e8c680ce65e6398deae330d1b3f779dba9242a",
+        "sha256:b679a1f57014dac73935f29fa203a4ae4cae4bf6cf5773069be0ef1adadce20d",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:6f02f51791d7be2c1048b3d4d6fa19b435337694b0090e69e14344b18a741b79",
+        "sha256:31407435641ffa5ceac00b26dc674a24408d27197c3703d0573e270de5b3df1e",
+        "sha256:36f254b0e7f76136ee4c714805f4c5b6eba8b3e1db18df1f613ba3de2f3b5c78",
+        "sha256:cb878938981b23859e4c219d2de4203dcdcae885faf81c394878781fd80342ad",
+        "sha256:a815f02d9157f25760712d8af69c3234a141d5be94422e476ae0e0827d5c9875",
+        "sha256:8e04037b65948e5021cd5c4f736fd75ac85254daae629f090db088cc8fc4b1be",
+        "sha256:61e1d6a3f384dbc1750885db8dade8db737adbbe0f14f6d314ca9ced63d413e2",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:5cfedc679d21cd1122957733a5a6551d592408dfeed8b6716f191b1fa20f1aca"
+      ],
+      "archive_sha256": "b7fb39ba8713395e20eb7556055ae93c80615aaf74b811c2fc6736a6e4175a39",
+      "report_sha256": "8c971d40f9ea9d4245c217707fa7ddecfc68384af3ecf94fa067b3e7c3ebdd02",
+      "scan_created_at": "2026-10-20T13:34:51.943859966Z",
+      "counts": {
+        "HIGH": 5,
+        "CRITICAL": 0,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "secrets": 0,
+      "policy": "FAIL",
+      "findings": [
+        {
+          "target": "/scan/image.tar (alpine 3.24.2)",
+          "VulnerabilityID": "CVE-2026-85091",
+          "PkgName": "zlib",
+          "InstalledVersion": "1.3.2-r0",
+          "FixedVersion": "1.3.2-r1",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-85091"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100352",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.147.0",
+          "FixedVersion": "0.148.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100352"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100353",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.147.0",
+          "FixedVersion": "0.149.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100353"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-100354",
+          "PkgName": "github.com/getkin/kin-openapi",
+          "InstalledVersion": "v0.147.0",
+          "FixedVersion": "0.149.0",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-100354"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-21728",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260427112133-525d1bab07e0",
+          "FixedVersion": "2.8.4, 2.9.2, 2.10.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-21728"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-28377",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260427112133-525d1bab07e0",
+          "FixedVersion": "2.10.3",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-28377"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        }
+      ]
+    },
+    "custom-125": {
+      "reference": "evidenceai-grafana:kin-m125",
+      "docker_id": "sha256:514e1e31662cf191943b983103d2fe74f9933ff0a358bc722d58213ead3bfb1b",
+      "repo_digests": [
+        "evidenceai-grafana@sha256:514e1e31662cf191943b983103d2fe74f9933ff0a358bc722d58213ead3bfb1b"
+      ],
+      "architecture": "arm64",
+      "rootfs_diff_ids": [
+        "sha256:1b349a3334531b575b01d409540dd8aca14ef29abddacd50f36643d7c949db4b",
+        "sha256:5e7d96f041766955d6a0f23591e8c680ce65e6398deae330d1b3f779dba9242a",
+        "sha256:b679a1f57014dac73935f29fa203a4ae4cae4bf6cf5773069be0ef1adadce20d",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:6f02f51791d7be2c1048b3d4d6fa19b435337694b0090e69e14344b18a741b79",
+        "sha256:31407435641ffa5ceac00b26dc674a24408d27197c3703d0573e270de5b3df1e",
+        "sha256:36f254b0e7f76136ee4c714805f4c5b6eba8b3e1db18df1f613ba3de2f3b5c78",
+        "sha256:cb878938981b23859e4c219d2de4203dcdcae885faf81c394878781fd80342ad",
+        "sha256:a815f02d9157f25760712d8af69c3234a141d5be94422e476ae0e0827d5c9875",
+        "sha256:8e04037b65948e5021cd5c4f736fd75ac85254daae629f090db088cc8fc4b1be",
+        "sha256:61e1d6a3f384dbc1750885db8dade8db737adbbe0f14f6d314ca9ced63d413e2",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:5cfedc679d21cd1122957733a5a6551d592408dfeed8b6716f191b1fa20f1aca",
+        "sha256:00fda695961a5d31baff6ff3068fffb40cc6b1b627f18b59fd4eaf1ef53067f3",
+        "sha256:cecdfe0bc2568afa345e29bebc0cc329f2d179d19b897625ec3c354eb44d6702",
+        "sha256:5c1baba548b19bcff00ac4440ae4478fd810ab49251b5b68808a90077923ec8c"
+      ],
+      "archive_sha256": "5f7213c05b5b0dfa9bc40589f10843551cd9c44757b6b6baafdf7e49083168b2",
+      "report_sha256": "abb96f3ad87f159ed3564071ef87254ae0868c5415a430e804469ff80cf63670",
+      "scan_created_at": "2026-10-20T13:34:56.900199802Z",
+      "counts": {
+        "HIGH": 2,
+        "CRITICAL": 0,
+        "MEDIUM": 1,
+        "LOW": 0,
+        "UNKNOWN": 1
+      },
+      "secrets": 0,
+      "policy": "FAIL",
+      "findings": [
+        {
+          "target": "/scan/image.tar (alpine 3.24.2)",
+          "VulnerabilityID": "CVE-2026-85091",
+          "PkgName": "zlib",
+          "InstalledVersion": "1.3.2-r0",
+          "FixedVersion": "1.3.2-r1",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-85091"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-21728",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260427112133-525d1bab07e0",
+          "FixedVersion": "2.8.4, 2.9.2, 2.10.2",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-21728"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "CVE-2026-28377",
+          "PkgName": "github.com/grafana/tempo",
+          "InstalledVersion": "v1.5.1-0.20260427112133-525d1bab07e0",
+          "FixedVersion": "2.10.3",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-28377"
+        },
+        {
+          "target": "usr/share/grafana/bin/grafana",
+          "VulnerabilityID": "GO-2026-5932",
+          "PkgName": "golang.org/x/crypto",
+          "InstalledVersion": "v0.57.0",
+          "FixedVersion": null,
+          "Severity": "UNKNOWN",
+          "PrimaryURL": null
+        }
+      ]
+    }
+  },
+  "candidate_promoted": false,
+  "scanner_version": "0.76.0"
+}

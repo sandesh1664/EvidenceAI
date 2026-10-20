@@ -1,0 +1,176 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "entry": "pytest",
+      "target": "missing",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "apps/api/tests/test_database_isolation.py"
+      ],
+      "exit_code": 4,
+      "guard_refusal": true
+    },
+    {
+      "entry": "browser",
+      "target": "missing",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "apps/web/e2e/server.py"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "retrieval",
+      "target": "missing",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_retrieval import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "rag",
+      "target": "missing",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_rag import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "combined",
+      "target": "missing",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "app.evaluate"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "pytest",
+      "target": "development",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "apps/api/tests/test_database_isolation.py"
+      ],
+      "exit_code": 4,
+      "guard_refusal": true
+    },
+    {
+      "entry": "browser",
+      "target": "development",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "apps/web/e2e/server.py"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "retrieval",
+      "target": "development",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_retrieval import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "rag",
+      "target": "development",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_rag import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "combined",
+      "target": "development",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "app.evaluate"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "pytest",
+      "target": "production",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "apps/api/tests/test_database_isolation.py"
+      ],
+      "exit_code": 4,
+      "guard_refusal": true
+    },
+    {
+      "entry": "browser",
+      "target": "production",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "apps/web/e2e/server.py"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "retrieval",
+      "target": "production",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_retrieval import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "rag",
+      "target": "production",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-c",
+        "from app.evaluate_rag import evaluate; evaluate()"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    },
+    {
+      "entry": "combined",
+      "target": "production",
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "app.evaluate"
+      ],
+      "exit_code": 1,
+      "guard_refusal": true
+    }
+  ]
+}

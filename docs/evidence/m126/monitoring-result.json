@@ -1,0 +1,230 @@
+{
+  "scope": "local isolated staging, private CA; not public TLS or production acceptance",
+  "project": "evidenceai-staging-smokea65deb29ac",
+  "compose_validation": "staging and production; production was not started",
+  "registration": "Uniform 202, pre-verification login refused, real TLS SMTP fixture delivery and browser-bound verification passed",
+  "embedding_rag": "fake/mock indexed retrieval and cited answer passed",
+  "https_cookie_csrf_routing_storage_worker": "passed",
+  "api_uid": "10001",
+  "worker_uid": "10001",
+  "web_uid": "10001",
+  "database_role": "non-superuser; no create database or roles",
+  "read_only_root": "enforced",
+  "prometheus_targets": "API and worker exporter up",
+  "grafana": {
+    "health": "PASS",
+    "anonymous_denied": "PASS",
+    "admin_authentication": "PASS",
+    "signup_disabled": "PASS",
+    "dashboard_provisioning": "PASS",
+    "datasource_health": "PASS",
+    "prometheus_query_targets_up": 2,
+    "grafana_version": "12.4.13",
+    "grafana_commit": "6367d911d57309d1da370872b8fd76237b5a0ffa",
+    "bundled_plugin_signatures": "PASS",
+    "native_internal_plugins": [
+      "elasticsearch",
+      "grafana-postgresql-datasource",
+      "grafana-pyroscope-datasource",
+      "influxdb",
+      "jaeger",
+      "loki",
+      "mssql",
+      "mysql",
+      "opentsdb",
+      "prometheus",
+      "stackdriver",
+      "tempo",
+      "zipkin"
+    ],
+    "bundled_plugin_versions": {
+      "elasticsearch": "12.4.12",
+      "grafana-postgresql-datasource": "12.4.12",
+      "grafana-pyroscope-datasource": "12.4.12",
+      "influxdb": "",
+      "jaeger": "12.4.12",
+      "loki": "12.4.12",
+      "mssql": "12.4.12",
+      "mysql": "12.4.12",
+      "opentsdb": "12.4.12",
+      "prometheus": "",
+      "stackdriver": "12.4.12",
+      "tempo": "12.4.12",
+      "zipkin": "12.4.12"
+    },
+    "internal_only_network": "PASS",
+    "container_health": "PASS",
+    "image": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+    "image_id": "sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+  },
+  "grafana_transitions": {
+    "graceful_stop": {
+      "exit_code": 0,
+      "oom_killed": false
+    },
+    "restart": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "12.4.13",
+        "grafana_commit": "6367d911d57309d1da370872b8fd76237b5a0ffa",
+        "bundled_plugin_signatures": "PASS",
+        "native_internal_plugins": [
+          "elasticsearch",
+          "grafana-postgresql-datasource",
+          "grafana-pyroscope-datasource",
+          "influxdb",
+          "jaeger",
+          "loki",
+          "mssql",
+          "mysql",
+          "opentsdb",
+          "prometheus",
+          "stackdriver",
+          "tempo",
+          "zipkin"
+        ],
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.4.12",
+          "grafana-postgresql-datasource": "12.4.12",
+          "grafana-pyroscope-datasource": "12.4.12",
+          "influxdb": "",
+          "jaeger": "12.4.12",
+          "loki": "12.4.12",
+          "mssql": "12.4.12",
+          "mysql": "12.4.12",
+          "opentsdb": "12.4.12",
+          "prometheus": "",
+          "stackdriver": "12.4.12",
+          "tempo": "12.4.12",
+          "zipkin": "12.4.12"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    },
+    "upgrade": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "12.4.13",
+        "grafana_commit": "bbc0a79c71a946c1fd61ee4f9e0fcba812c18bd7",
+        "bundled_plugin_signatures": "PASS",
+        "native_internal_plugins": [
+          "elasticsearch",
+          "grafana-postgresql-datasource",
+          "grafana-pyroscope-datasource",
+          "influxdb",
+          "jaeger",
+          "loki",
+          "mssql",
+          "mysql",
+          "opentsdb",
+          "prometheus",
+          "stackdriver",
+          "tempo",
+          "zipkin"
+        ],
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.4.12",
+          "grafana-postgresql-datasource": "12.4.12",
+          "grafana-pyroscope-datasource": "12.4.12",
+          "influxdb": "",
+          "jaeger": "12.4.12",
+          "loki": "12.4.12",
+          "mssql": "12.4.12",
+          "mysql": "12.4.12",
+          "opentsdb": "12.4.12",
+          "prometheus": "",
+          "stackdriver": "12.4.12",
+          "tempo": "12.4.12",
+          "zipkin": "12.4.12"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    },
+    "rollback": {
+      "monitoring": {
+        "health": "PASS",
+        "anonymous_denied": "PASS",
+        "admin_authentication": "PASS",
+        "signup_disabled": "PASS",
+        "dashboard_provisioning": "PASS",
+        "datasource_health": "PASS",
+        "prometheus_query_targets_up": 2,
+        "grafana_version": "12.4.13",
+        "grafana_commit": "6367d911d57309d1da370872b8fd76237b5a0ffa",
+        "bundled_plugin_signatures": "PASS",
+        "native_internal_plugins": [
+          "elasticsearch",
+          "grafana-postgresql-datasource",
+          "grafana-pyroscope-datasource",
+          "influxdb",
+          "jaeger",
+          "loki",
+          "mssql",
+          "mysql",
+          "opentsdb",
+          "prometheus",
+          "stackdriver",
+          "tempo",
+          "zipkin"
+        ],
+        "bundled_plugin_versions": {
+          "elasticsearch": "12.4.12",
+          "grafana-postgresql-datasource": "12.4.12",
+          "grafana-pyroscope-datasource": "12.4.12",
+          "influxdb": "",
+          "jaeger": "12.4.12",
+          "loki": "12.4.12",
+          "mssql": "12.4.12",
+          "mysql": "12.4.12",
+          "opentsdb": "12.4.12",
+          "prometheus": "",
+          "stackdriver": "12.4.12",
+          "tempo": "12.4.12",
+          "zipkin": "12.4.12"
+        }
+      },
+      "state": {
+        "persistent_synthetic_dashboard": "PASS",
+        "version": 1
+      }
+    }
+  },
+  "public_monitoring_routes": "denied through loopback TLS proxy",
+  "backup": {
+    "status": "encrypted_backup_complete",
+    "file": "evidenceai-20261020T133810141025Z-611372ab368c408aac28453e60cbe2fc.tar.age",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.065
+  },
+  "restore": {
+    "status": "restore_verified",
+    "schema_revision": "91e2b6d8c410",
+    "pgvector_version": "0.8.7",
+    "document_count": 1,
+    "storage_file_count": 1,
+    "elapsed_seconds": 0.075,
+    "scope": "isolated disposable recovery drill"
+  },
+  "nonempty_restore_target_rejected": true,
+  "tampered_ciphertext_rejected": true,
+  "graceful_shutdown": "compose stop completed for proxy/API/worker"
+}
