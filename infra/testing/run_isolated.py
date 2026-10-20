@@ -18,6 +18,17 @@ ROOT=Path(__file__).resolve().parents[2]
 IMAGE='evidenceai-database:m121'
 
 
+def command_environment(environ=None):
+    """Make project imports independent of the caller and child working directories."""
+    env = dict(os.environ if environ is None else environ)
+    paths = [str(ROOT/'apps/api'), str(ROOT/'infra/testing')]
+    # Resolve inherited relative entries before migration/command cwd changes.
+    if 'PYTHONPATH' in env:
+        paths.extend(str(Path(path).resolve()) for path in env['PYTHONPATH'].split(os.pathsep))
+    env['PYTHONPATH'] = os.pathsep.join(paths)
+    return env
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--evidence-directory',type=Path,default=ROOT/'infra/runtime/isolated-tests')
@@ -28,7 +39,7 @@ def main():
     output=args.evidence_directory.resolve();output.mkdir(parents=True,exist_ok=True)
     suffix=uuid.uuid4().hex;name='evidenceai-test-'+suffix;database='evidenceai_test_'+suffix
     image_id=subprocess.check_output(['docker','image','inspect','--format','{{.Id}}',IMAGE],text=True).strip()
-    password=secrets.token_urlsafe(32);env=os.environ.copy()
+    password=secrets.token_urlsafe(32);env=command_environment()
     created=False;record={'container':name,'database':database,'storage':'owned tmpfs; no host development mounts','command':command,'image':IMAGE,'immutable_local_image':image_id}
     with tempfile.TemporaryDirectory(prefix='evidenceai-test-db-') as temporary:
         envfile=Path(temporary)/'database.env'

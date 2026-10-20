@@ -13,6 +13,16 @@ apps/api/.venv/bin/python infra/testing/run_isolated.py -- apps/api/.venv/bin/py
 apps/api/.venv/bin/python infra/testing/run_isolated.py -- npm --prefix apps/web run test:e2e
 ```
 
+No manual `PYTHONPATH` is required. The runner prepends absolute `apps/api` and
+`infra/testing` import paths for migrations and child commands, preserving inherited
+paths (relative entries are resolved from the invoking directory). Child commands
+always run from the repository root, so their relative paths use that root.
+For example, from `apps/api`:
+
+```sh
+.venv/bin/python ../../infra/testing/run_isolated.py -- apps/api/.venv/bin/python -m pytest apps/api/tests -q
+```
+
 Playwright additionally requires its installed browser binaries; set
 `PLAYWRIGHT_BROWSERS_PATH` to their installation directory when necessary.
 Generated database names must match `evidenceai_test_` plus32 hexadecimal digits,
