@@ -1,0 +1,14 @@
+{
+  "check": "controlled_development_data_preservation",
+  "status": "PASS",
+  "public_tables_compared": 16,
+  "row_hashes_and_counts_equal": true,
+  "revision_equal": true,
+  "private_storage_equal": true,
+  "table_count_changes": {},
+  "limitations": [
+    "Only the verified controlled test window",
+    "Historical database write attribution remains unverified",
+    "Production release remains blocked"
+  ]
+}
