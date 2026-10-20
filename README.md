@@ -24,6 +24,9 @@ python -m uvicorn app.main:app --reload --no-proxy-headers
 The existing `/api/v1/health` endpoint is a lightweight liveness check, independent
 of database configuration and connectivity. It is not database readiness.
 
+For real local signup email delivery, use the [local TLS mail workflow](docs/local-signup-email.md).
+It preserves browser-bound verification and needs no `.env` changes.
+
 ## Database commands
 
 Run from `apps/api` with its virtual environment activated:
@@ -36,17 +39,14 @@ python -m alembic revision --autogenerate -m "Describe schema change"
 python -m alembic upgrade head --sql
 # Review the generated migration and SQL before applying:
 python -m alembic upgrade head
-python -m pytest -q
+.venv/bin/python ../../infra/testing/run_isolated.py -- apps/api/.venv/bin/python -m pytest apps/api/tests -q
 ```
 
-Tests require a migrated PostgreSQL database. Ordinary tests roll back an outer
-transaction; session commits use savepoints. Concurrency tests create independently
-committed data only in uniquely named `test_workspace_<UUID>` schemas, then remove
-those disposable schemas. Public application tables are never reset or truncated.
-The test DB role needs CREATE SCHEMA permission for concurrency tests. Use an isolated database for CI; set `DATABASE_URL`
-to its PostgreSQL URL, migrate it, then run pytest. Database connection failures
-fail tests rather than silently skipping coverage. Do not execute tests concurrently
-with schema migrations. Test configuration can use `Settings(_env_file=None, ...)`.
+Tests require the [disposable database runner](infra/testing/README.md), which migrates
+an owned temporary PostgreSQL database and fails closed if a development URL is
+supplied. It never inherits the development database from `.env`. Use this runner
+for backend and browser tests; do not run tests directly against the application
+database. Do not execute application schema migrations concurrently with other work.
 
 [Architecture](docs/architecture.md) and [database design](docs/database-design.md)
 cover settings, relationships, deletion policy, security, and current limitations.

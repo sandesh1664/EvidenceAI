@@ -43,7 +43,9 @@ class Settings(BaseSettings):
     def validate_registration_delivery(self):
         from urllib.parse import urlsplit
         origin=urlsplit(self.registration_public_origin)
-        if origin.scheme!='https' or not origin.hostname or origin.username or origin.password or origin.path or origin.query or origin.fragment:
+        local_http = (self.app_env == 'development' and self.auth_allow_insecure_http
+                      and self.registration_public_origin == 'http://localhost:3000')
+        if (origin.scheme != 'https' and not local_http) or not origin.hostname or origin.username or origin.password or origin.path or origin.query or origin.fragment:
             raise ValueError('Registration requires a matching HTTPS frontend origin')
         if self.registration_email_enabled:
             if self.registration_public_origin not in self.trusted_frontend_origins or not self.smtp_host or not self.smtp_sender or '@' not in self.smtp_sender:

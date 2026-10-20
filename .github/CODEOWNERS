@@ -1,0 +1,9 @@
+# Enforcement requires separately approved branch/ruleset settings and eligible plan.
+/.github/ @sandesh1664
+/infra/security/ @sandesh1664
+/infra/scripts/deploy.py @sandesh1664
+/infra/scripts/verify_release.py @sandesh1664
+/infra/scripts/scan_images.py @sandesh1664
+/infra/testing/ @sandesh1664
+/apps/api/app/db/disposable_database.py @sandesh1664
+/apps/api/tests/conftest.py @sandesh1664

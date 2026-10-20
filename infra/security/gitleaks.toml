@@ -1,0 +1,3 @@
+# Built-in rules remain enabled; adjudication happens separately on exact findings.
+[extend]
+useDefault = true

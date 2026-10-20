@@ -27,8 +27,6 @@ jobs:
       TARGET_ENV: ${{ inputs.environment }}
       DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
       DEPLOY_USER: ${{ vars.DEPLOY_USER }}
-      SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-      SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
     steps:
       - name: Require environment reviewers and approved branch
         env:
@@ -38,6 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$REF" = refs/heads/main
+          [[ "$TARGET_ENV" == staging || "$TARGET_ENV" == production ]]
           gh api "repos/$REPOSITORY/environments/$TARGET_ENV" > /tmp/environment-policy.json
           python3 -c 'import json; p=json.load(open("/tmp/environment-policy.json")); assert any(r.get("type")=="required_reviewers" and r.get("reviewers") and r.get("prevent_self_review") for r in p.get("protection_rules",[])), "Required reviewer and no self-approval protection must be configured"'
       - name: Require passing main-branch verification for the exact release
@@ -52,6 +51,9 @@ jobs:
           gh api "repos/$REPOSITORY/compare/$RELEASE_SHA...main" > /tmp/release-ancestry.json
           python3 -c 'import json; assert json.load(open("/tmp/release-ancestry.json"))["status"] in ("ahead","identical"), "Release must belong to main history"'
       - name: Verify release input and pinned SSH identity
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         shell: bash
         run: |
           set -euo pipefail
@@ -65,7 +67,7 @@ jobs:
           # Environment files/digest promotion and prior release reference are prepared
           # by the release operator after all CI/scans/recovery evidence is accepted.
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" \
-            "cd /opt/evidenceai/releases/$RELEASE_SHA && test \$(git rev-parse HEAD) = $RELEASE_SHA && test -r /etc/evidenceai/accepted/$RELEASE_SHA.json && python3 infra/scripts/deploy.py --environment $TARGET_ENV --ack-production --env-file /etc/evidenceai/$TARGET_ENV.env --previous-env /etc/evidenceai/$TARGET_ENV.previous.env rollout"
+            "cd /opt/evidenceai/releases/$RELEASE_SHA && test \$(git rev-parse HEAD) = $RELEASE_SHA && test -r /etc/evidenceai/accepted/$RELEASE_SHA.json && python3 infra/scripts/verify_release.py /etc/evidenceai/accepted/$RELEASE_SHA.json && python3 infra/scripts/deploy.py --environment $TARGET_ENV --ack-production --env-file /etc/evidenceai/$TARGET_ENV.env --previous-env /etc/evidenceai/$TARGET_ENV.previous.env rollout"
       - name: Remove runner SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key
