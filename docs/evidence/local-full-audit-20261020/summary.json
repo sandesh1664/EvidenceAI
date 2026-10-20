@@ -1,0 +1,43 @@
+{
+  "audit_date_local": "2026-10-20",
+  "timezone": "Asia/Dubai",
+  "head": "a12b93d5a6802572a21089abb99de154d9056313",
+  "branch": "main",
+  "backend": {
+    "passed": 676,
+    "failed": 0,
+    "warnings": 1,
+    "seconds": 34.18
+  },
+  "frontend": {
+    "passed": 55,
+    "failed": 0,
+    "files": 5,
+    "seconds": 1.69
+  },
+  "browser": {
+    "passed": 21,
+    "failed": 0,
+    "reported_duration": "1.2m",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "real_tls_smtp": true
+  },
+  "security_regression_tests": 11,
+  "offline_evaluation_samples": 68,
+  "local_functionality": "PARTIAL",
+  "integrated_e2e": "PASS",
+  "data_preservation": "FAIL",
+  "production_readiness": "BLOCKED",
+  "preservation_failure": {
+    "table": "auth_sessions",
+    "row_count_delta": 0,
+    "table_hash_changed": true,
+    "column_or_writer_attribution": "NOT VERIFIED"
+  },
+  "starting_head": "c0103321e041f31605a0ffd4c43e065bc0116381",
+  "head_advanced_during_audit": true
+}

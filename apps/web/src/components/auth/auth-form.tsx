@@ -72,7 +72,7 @@ export function AuthForm({ register = false }: { register?: boolean }) {
             <p>Registration request accepted. Complete email verification before signing in. If delivery is unavailable, contact the administrator.</p>
             <p>Use the verification link in the same browser that submitted this request.</p>
             <Link href="/verify-email">Enter verification token</Link>
-          </div> : <form onSubmit={submit}>
+          </div> : <form method="post" onSubmit={submit}>
             {register && (
               <label>
                 Full name

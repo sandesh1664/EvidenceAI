@@ -1,0 +1,245 @@
+{
+  "versions": {
+    "python": "3.14.6",
+    "node": "v26.0.0",
+    "os": "macOS-26.5.1-arm64-arm-64bit-Mach-O"
+  },
+  "development_database": {
+    "server_version": "17.11 (Debian 17.11-1.pgdg12+2)",
+    "vector_version": "0.8.7",
+    "revision": "91e2b6d8c410",
+    "read_only": "on"
+  },
+  "routes": [
+    {
+      "path": "/api/v1/health",
+      "method": "GET",
+      "operation_id": "health_check_api_v1_health_get"
+    },
+    {
+      "path": "/api/v1/auth/register",
+      "method": "POST",
+      "operation_id": "register_api_v1_auth_register_post"
+    },
+    {
+      "path": "/api/v1/auth/verify-registration",
+      "method": "POST",
+      "operation_id": "verify_registration_api_v1_auth_verify_registration_post"
+    },
+    {
+      "path": "/api/v1/auth/login",
+      "method": "POST",
+      "operation_id": "login_api_v1_auth_login_post"
+    },
+    {
+      "path": "/api/v1/auth/logout",
+      "method": "POST",
+      "operation_id": "logout_api_v1_auth_logout_post"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET",
+      "operation_id": "me_api_v1_auth_me_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/",
+      "method": "POST",
+      "operation_id": "upload_api_v1_workspaces__workspace_id__documents__post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/",
+      "method": "GET",
+      "operation_id": "list_documents_api_v1_workspaces__workspace_id__documents__get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}",
+      "method": "GET",
+      "operation_id": "read_document_api_v1_workspaces__workspace_id__documents__document_id__get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}",
+      "method": "DELETE",
+      "operation_id": "delete_document_api_v1_workspaces__workspace_id__documents__document_id__delete"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}/download",
+      "method": "GET",
+      "operation_id": "download_api_v1_workspaces__workspace_id__documents__document_id__download_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}/retry",
+      "method": "POST",
+      "operation_id": "retry_document_api_v1_workspaces__workspace_id__documents__document_id__retry_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/search",
+      "method": "POST",
+      "operation_id": "search_api_v1_workspaces__workspace_id__search_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}/index",
+      "method": "GET",
+      "operation_id": "index_status_api_v1_workspaces__workspace_id__documents__document_id__index_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}/index",
+      "method": "POST",
+      "operation_id": "index_document_api_v1_workspaces__workspace_id__documents__document_id__index_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/documents/{document_id}/index/retry",
+      "method": "POST",
+      "operation_id": "retry_index_api_v1_workspaces__workspace_id__documents__document_id__index_retry_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/ask",
+      "method": "POST",
+      "operation_id": "ask_question_api_v1_workspaces__workspace_id__ask_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations",
+      "method": "POST",
+      "operation_id": "create_api_v1_workspaces__workspace_id__conversations_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations",
+      "method": "GET",
+      "operation_id": "listing_api_v1_workspaces__workspace_id__conversations_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations/{conversation_id}",
+      "method": "GET",
+      "operation_id": "read_api_v1_workspaces__workspace_id__conversations__conversation_id__get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations/{conversation_id}",
+      "method": "PATCH",
+      "operation_id": "update_api_v1_workspaces__workspace_id__conversations__conversation_id__patch"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations/{conversation_id}",
+      "method": "DELETE",
+      "operation_id": "remove_api_v1_workspaces__workspace_id__conversations__conversation_id__delete"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations/{conversation_id}/messages",
+      "method": "GET",
+      "operation_id": "messages_api_v1_workspaces__workspace_id__conversations__conversation_id__messages_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/conversations/{conversation_id}/messages",
+      "method": "POST",
+      "operation_id": "submit_api_v1_workspaces__workspace_id__conversations__conversation_id__messages_post"
+    },
+    {
+      "path": "/api/v1/workspaces/",
+      "method": "POST",
+      "operation_id": "create_workspace_api_v1_workspaces__post"
+    },
+    {
+      "path": "/api/v1/workspaces/",
+      "method": "GET",
+      "operation_id": "list_workspaces_api_v1_workspaces__get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}",
+      "method": "GET",
+      "operation_id": "read_workspace_api_v1_workspaces__workspace_id__get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}",
+      "method": "PATCH",
+      "operation_id": "update_workspace_api_v1_workspaces__workspace_id__patch"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}",
+      "method": "DELETE",
+      "operation_id": "delete_workspace_api_v1_workspaces__workspace_id__delete"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/members",
+      "method": "GET",
+      "operation_id": "list_members_api_v1_workspaces__workspace_id__members_get"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/members",
+      "method": "POST",
+      "operation_id": "add_member_api_v1_workspaces__workspace_id__members_post"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/members/{user_id}",
+      "method": "PATCH",
+      "operation_id": "update_member_api_v1_workspaces__workspace_id__members__user_id__patch"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/members/{user_id}",
+      "method": "DELETE",
+      "operation_id": "remove_member_api_v1_workspaces__workspace_id__members__user_id__delete"
+    },
+    {
+      "path": "/api/v1/workspaces/{workspace_id}/transfer-ownership",
+      "method": "POST",
+      "operation_id": "transfer_ownership_api_v1_workspaces__workspace_id__transfer_ownership_post"
+    },
+    {
+      "path": "/api/v1/ready",
+      "method": "GET",
+      "operation_id": "ready_api_v1_ready_get"
+    },
+    {
+      "path": "/api/v1/ops/readiness",
+      "method": "GET",
+      "operation_id": "detailed_ready_api_v1_ops_readiness_get"
+    },
+    {
+      "path": "/api/v1/ops/metrics",
+      "method": "GET",
+      "operation_id": "metrics_api_v1_ops_metrics_get"
+    }
+  ],
+  "frontend_routes": [
+    "page.tsx",
+    "verify-email/page.tsx",
+    "register/page.tsx",
+    "login/page.tsx",
+    "(private)/settings/page.tsx",
+    "(private)/workspaces/page.tsx",
+    "(private)/workspaces/[workspaceId]/page.tsx",
+    "(private)/workspaces/[workspaceId]/research/page.tsx",
+    "(private)/workspaces/[workspaceId]/search/page.tsx",
+    "(private)/workspaces/[workspaceId]/conversations/page.tsx",
+    "(private)/workspaces/[workspaceId]/members/page.tsx",
+    "(private)/workspaces/[workspaceId]/documents/page.tsx",
+    "(private)/workspaces/[workspaceId]/conversations/[conversationId]/page.tsx"
+  ],
+  "live_http": [
+    {
+      "url": "http://127.0.0.1:8000/api/v1/health",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8000/api/v1/ready",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8000/api/v1/auth/me",
+      "status": 401
+    },
+    {
+      "url": "http://localhost:3000/",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/login",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/register",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/verify-email",
+      "status": 200
+    }
+  ]
+}

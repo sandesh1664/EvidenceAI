@@ -1,0 +1,26 @@
+{
+  "original_files_checked": 20,
+  "original_sha256_unchanged": true,
+  "changed_original_files": [],
+  "derivative_scan": {
+    "scanner": "Gitleaks 8.30.1",
+    "exit_code": 0,
+    "findings": 0,
+    "suppressions_applied": false
+  },
+  "derivative_checks": [
+    {
+      "file": "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+      "documented_transformation_only": true,
+      "source_hash_matches_review": true,
+      "derivative_hash_matches_review": true
+    },
+    {
+      "file": "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+      "documented_transformation_only": true,
+      "source_hash_matches_review": true,
+      "derivative_hash_matches_review": true
+    }
+  ],
+  "publication_verdict": "SAFE JSON originals; review report metadata or use SAFE derivatives; original release decisions unchanged"
+}

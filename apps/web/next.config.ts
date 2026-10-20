@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Never let acceptance builds invalidate an operator's running dev server.
+  distDir: process.env.EVIDENCEAI_E2E === "1" ? ".next-e2e" : ".next",
   output: "standalone",
   async headers() {
     return [

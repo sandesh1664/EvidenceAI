@@ -1,0 +1,21 @@
+{
+  "container": "evidenceai-test-7e9e60e47b174262bc1d6666a1184041",
+  "database": "evidenceai_test_7e9e60e47b174262bc1d6666a1184041",
+  "storage": "owned tmpfs; no host development mounts",
+  "command": [
+    "npm",
+    "--prefix",
+    "apps/web",
+    "run",
+    "test:e2e"
+  ],
+  "image": "evidenceai-database:m121",
+  "immutable_local_image": "sha256:633cb956dc3fa6e5930312667aec5e02264c56a59556d783de19236e8df0d6b5",
+  "exit_code": 0,
+  "remaining_test_schemas": 0,
+  "public_users": 0,
+  "public_registration_intents": 0,
+  "public_limiter_rows": 0,
+  "isolation_clean": true,
+  "owned_container_removed": true
+}

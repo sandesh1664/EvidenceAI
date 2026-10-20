@@ -1,0 +1,12 @@
+[
+  {
+    "fixture": "original-default",
+    "method": "GET",
+    "password_in_query": true
+  },
+  {
+    "fixture": "explicit-post",
+    "method": "POST",
+    "password_in_query": false
+  }
+]

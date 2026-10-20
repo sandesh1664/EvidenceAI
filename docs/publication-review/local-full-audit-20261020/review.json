@@ -1,0 +1,166 @@
+{
+  "review_date": "2026-10-20",
+  "timezone": "Asia/Dubai",
+  "audience": "Authorized readers of the specified private GitHub repository; not public disclosure clearance",
+  "scope": {
+    "json_files": 15,
+    "audit_reports": 5,
+    "full_git_history_reviewed": false,
+    "referenced_private_archives_or_snapshots_reviewed": false
+  },
+  "original_classifications": {
+    "SAFE": 18,
+    "UNSAFE": 0,
+    "NEEDS REVIEW": 2
+  },
+  "scanner": {
+    "scanner": "Gitleaks",
+    "version": "8.30.1",
+    "scope_files": 20,
+    "exit_code": 0,
+    "findings": 0,
+    "rules_suppressed": false,
+    "rule_ids": []
+  },
+  "files": [
+    {
+      "file": "docs/evidence/local-full-audit-20261020/backend-isolation.json",
+      "classification": "SAFE",
+      "reason": "Disposable database/container identifiers, test command, immutable image digest and cleanup counters only; no database URL or credential.",
+      "original_sha256": "af8baf2d5fbbb73707632e0b48da7cac0536d53fb3b2672778025b460559aad2"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/browser-initial-isolation.json",
+      "classification": "SAFE",
+      "reason": "Initial failed test exit and successful cleanup are preserved; generated disposable identifiers and public image digest only.",
+      "original_sha256": "c59bfd8943873a24b4d9126909d3753ac209c88e95d03671a5f55ede1d0e670e"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/browser-intermediate-isolation.json",
+      "classification": "SAFE",
+      "reason": "Intermediate failed test exit and cleanup counters; no browser state, cookie jar, request body or raw error trace.",
+      "original_sha256": "3f0d0f8cae8e33dd2b2b64848b4f2fc0c4a026fc2b314dabbaa0136a100ae821"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/browser-isolation.json",
+      "classification": "SAFE",
+      "reason": "Final test result, owned disposable resource identifiers and cleanup counters; no authentication material.",
+      "original_sha256": "05bf2d573efbb95290b5b0e846c90aeea8f6c987a0a1b456850913c1d1d69252"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/checks.json",
+      "classification": "SAFE",
+      "reason": "Tool commands, timings and exit codes only; no environment dump or command arguments containing secrets.",
+      "original_sha256": "cca9a2a31b00c8b04336495781934ff601845a99621b5bf8676468b299e76063"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/delivery-checks.json",
+      "classification": "SAFE",
+      "reason": "Static-check and test commands, timings and exit codes only.",
+      "original_sha256": "05372783a88da9aff6ce8d154d60f3b6b1207ae2bf31a87b5ae759d1cee066a5"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/environment.json",
+      "classification": "SAFE",
+      "reason": "Software versions, migration revision, route templates and loopback HTTP status probes; no actual record IDs, user data, database URL or private filesystem inventory.",
+      "original_sha256": "5329334b1126cef77f7418bd6b35d36a52cbefa6bde231d6dc6c248d616b0194"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/evaluation-summary.json",
+      "classification": "SAFE",
+      "reason": "Offline provider names, aggregate benchmark metrics and timestamp; no corpus passages, questions, answers or private document text.",
+      "original_sha256": "dd256fc495326aa77f1fb814de1dd7a76147f5815f1f338466735a912f1b8a97"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/final-integrity.json",
+      "classification": "SAFE",
+      "reason": "Repository-relative filenames, Git commit identifiers, check results and aggregate integrity claims; no private snapshots, key values or credential hashes.",
+      "original_sha256": "c6271d167d49c4ff19fb0a85409459a06558ad9b216f6d7369d6c82fb15bf2d1"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/monitoring-summary.json",
+      "classification": "SAFE",
+      "reason": "Acceptance flags, public vendor/image digests and plugin versions, disposable project name and target count; no SMTP/Grafana password, mail message or provider credential.",
+      "original_sha256": "315595f30e0dfaf2ec24db38c10c05c29130374ebb91a00874ca6b62d565fd78"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/native-form-proof.json",
+      "classification": "SAFE",
+      "reason": "HTTP methods and boolean password-query presence only; no captured password, request URL query, body or cookie.",
+      "original_sha256": "0de9ea90d71a2ea01ae8c992c6902fb4d223375939e5ce99e2d831f53de5d079"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/preservation.json",
+      "classification": "SAFE",
+      "reason": "Aggregate comparison flags and one zero row-count delta; no row images, user identifiers, session hashes or storage filenames.",
+      "original_sha256": "42906faa60e173f7435b229c0679f589ce5e3103fa161ac0615407f2c3946b3c"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/runtime-isolation.json",
+      "classification": "SAFE",
+      "reason": "Disposable identifiers, public image digest and generic temporary helper path; no connection string, credentials or private documents.",
+      "original_sha256": "c500d1f665e2c79198d1d0f45ac4d543ed1a3571ea134befe368a7ea9fcbf98a"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/runtime-result.json",
+      "classification": "SAFE",
+      "reason": "Database versions, CLI exit codes, timing/resource sample and operation count; no raw diagnostics, SQL parameters or user data.",
+      "original_sha256": "1529584234776494c208b20898464f0ee83a7780ed2fb0344f3d1193c406fabe"
+    },
+    {
+      "file": "docs/evidence/local-full-audit-20261020/summary.json",
+      "classification": "SAFE",
+      "reason": "Aggregate test counts and explicit historical FAIL/BLOCKED/NOT VERIFIED decisions; Git metadata only, no row-level findings.",
+      "original_sha256": "8a88944753e908b1d220a74a4876fb3652f32042d33334c0812917790f20361c"
+    },
+    {
+      "file": "docs/local-full-system-audit.md",
+      "classification": "SAFE",
+      "reason": "Internal engineering findings, aggregate outcomes and transient process/loopback metadata; no credentials, private document text or email addresses. Suitable for the specified private-repository audience.",
+      "original_sha256": "c6909fe49cc9d7cd80aac9a9223c354c59b799e0eeb09bde3197ba9004df5254"
+    },
+    {
+      "file": "docs/local-full-system-audit-verification.md",
+      "classification": "NEEDS REVIEW",
+      "reason": "No credential or private-content finding; workstation-specific absolute paths unnecessarily identify the local account. Prefer the separate anonymized derivative.",
+      "original_sha256": "335b3a0bd938aa69883c2cae6182bef2a31649493f17cd50470edae104a47501",
+      "derivative": {
+        "file": "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+        "classification": "SAFE",
+        "sha256": "abe66f69d27ff9af8ba96ffbb67cf6e469dc0ed167ed3c5f6e6b67a5f23fb0f0",
+        "transform": "Anonymize local account paths with quoted PROJECT_ROOT references; add derivative notice"
+      }
+    },
+    {
+      "file": "docs/local-functional-test-matrix.md",
+      "classification": "SAFE",
+      "reason": "Feature classifications, test names and route placeholders; no actual user/document records, credentials or email addresses.",
+      "original_sha256": "88b5e721b1ef0d36e1063b6f9de5b3665a0baf9bc12182f4a877ca6639ec2c54"
+    },
+    {
+      "file": "docs/local-audit-preservation-investigation.md",
+      "classification": "SAFE",
+      "reason": "Session-write mechanism, aggregate findings, limitations and generic custody filenames only; no raw row IDs, fingerprint values, secret key or session material.",
+      "original_sha256": "6a0f132b509c42198cd2a02ecb147fd88c292f22d2648065191ad8cd536a3db3"
+    },
+    {
+      "file": "docs/local-audit-preservation-verification.md",
+      "classification": "NEEDS REVIEW",
+      "reason": "No credential or private-content finding; a workstation-specific absolute project path identifies the local account. Prefer the separate anonymized derivative.",
+      "original_sha256": "4748d205f3c9377996773086267e6b21a3d6f98b26781e9b93d9f481809a775d",
+      "derivative": {
+        "file": "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+        "classification": "SAFE",
+        "sha256": "2b19464c0705930154eedea896a24cfa16c80190d87a947a70e1be09ba2ffc59",
+        "transform": "Anonymize local account paths with quoted PROJECT_ROOT references; add derivative notice"
+      }
+    }
+  ],
+  "notes": [
+    "No credential, raw verification token, session cookie/value, credential hash, email address or private document text was identified in the reviewed contents.",
+    "Public Git/vendor/image digests are integrity identifiers, not credentials. Disposable names, route templates, loopback addresses and aggregate runtime data are intentional internal evidence.",
+    "Private-repository access still includes authorized collaborators, integrations and repository copies. These files do not authorize publication of referenced private logs, mailbox files, keys, snapshots or archives.",
+    "Original historical FAIL/BLOCKED/NOT VERIFIED decisions are unchanged; publication safety is separate from test correctness and release readiness.",
+    "Use the two SAFE derivatives instead of publishing their NEEDS REVIEW originals unless the owner deliberately accepts workstation-path disclosure. Originals remain untouched locally."
+  ]
+}

@@ -4,13 +4,14 @@ Only invoked by Playwright with EVIDENCEAI_E2E=1. Hard-coded loopback binding,
 loopback DB validation, generated schema and temporary storage prevent destructive
 tests from targeting the normal API or existing application records.
 """
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 from pathlib import Path
 import os
 import hashlib
 import json
 import shutil
 import signal
+import stat
 import sys
 import tempfile
 from threading import Event, Thread
@@ -60,7 +61,7 @@ def environment():
             connect_args={'options':f'-c search_path={schema},public -c statement_timeout=15000 -c lock_timeout=5000'})
         Base.metadata.create_all(scratch)
         factory=sessionmaker(scratch,expire_on_commit=False)
-        with tempfile.TemporaryDirectory(prefix='evidenceai-e2e-') as temporary:
+        with tempfile.TemporaryDirectory(prefix='evidenceai-e2e-') as temporary, ExitStack() as fixtures:
             settings=Settings(_env_file=None,database_url=configured.database_url,app_env='test',auth_allow_insecure_http=True,
                 trusted_frontend_origins=['http://localhost:3100'],auth_rate_limit=10000,
                 document_storage_root=Path(temporary).resolve(),embedding_provider='fake',embedding_model='fake-hash-v1',
@@ -69,12 +70,19 @@ def environment():
             mail=Path(os.environ['EVIDENCEAI_E2E_MAIL_DIR'])
             if mail.parent.resolve()!=Path('/tmp').resolve() or not mail.name.startswith('evidenceai-e2e-mail-'):
                 raise RuntimeError('Owned temporary mail fixture required')
+            info = mail.lstat()
+            if not stat.S_ISDIR(info.st_mode) or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700:
+                raise RuntimeError('Private owned mail fixture required')
             from app.services import registration_service
             def fixture_deliver(settings,email,token):
                 target=mail/(hashlib.sha256(email.encode()).hexdigest()+'.json')
                 target.write_text(json.dumps({'token':token})); target.chmod(0o600)
                 return True
-            registration_service.deliver=fixture_deliver
+            if os.environ.get('EVIDENCEAI_E2E_TLS_MAIL') == '1':
+                from tls_mail import delivery
+                fixtures.enter_context(delivery(settings, mail))
+            else:
+                registration_service.deliver=fixture_deliver
             storage=LocalDocumentStorage(Path(temporary).resolve())
             def isolated_db():
                 with factory() as db:

@@ -1,0 +1,36 @@
+{
+  "evaluation_version": "2.0",
+  "dataset_id": "evidenceai-offline-v2",
+  "executed_at": "2026-10-20T15:39:34.436571+00:00",
+  "providers": [
+    "fake-hash-v1/128",
+    "fake-hash-v1/256",
+    "mock-extractive-v1"
+  ],
+  "sample_count": 68,
+  "semantic_judgment": "unverified",
+  "method": "Exact gold labels, quoted-source membership and authorization guards; no semantic entailment judge",
+  "metrics": {
+    "retrieval_128_recall_at_k": 0.9375,
+    "retrieval_128_precision_at_k": 0.9375,
+    "retrieval_128_mean_reciprocal_rank": 1.0,
+    "retrieval_128_ndcg_at_k": 0.9516433990956823,
+    "retrieval_128_empty_result_rate": 0.0,
+    "retrieval_128_workspace_isolation_correctness": 1.0,
+    "retrieval_128_document_filter_correctness": 1.0,
+    "retrieval_256_recall_at_k": 0.9375,
+    "retrieval_256_precision_at_k": 0.9375,
+    "retrieval_256_mean_reciprocal_rank": 1.0,
+    "retrieval_256_ndcg_at_k": 0.9516433990956823,
+    "retrieval_256_empty_result_rate": 0.0,
+    "retrieval_256_workspace_isolation_correctness": 1.0,
+    "retrieval_256_document_filter_correctness": 1.0,
+    "rag_answer_correctness": 0.9444444444444444,
+    "rag_citation_reference_validity": 1.0,
+    "rag_citation_gold_support_quality": 1.0,
+    "rag_unsupported_claim_frequency": 0.0,
+    "rag_insufficient_evidence_recall": 1.0,
+    "rag_guard_correctness": 1.0
+  },
+  "threshold_failures": []
+}

@@ -170,10 +170,6 @@ test("real authenticated research, workers, citations, persistence and retention
   await expect(
     page.getByRole("heading", { name: "Solar evidence", level: 1 }),
   ).toBeVisible();
-  await page.screenshot({
-    path: "/tmp/evidenceai-dashboard.png",
-    fullPage: true,
-  });
   const accessibility = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
@@ -252,7 +248,6 @@ test("mobile layout, keyboard navigation, themes and ownership boundaries", asyn
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  await page.screenshot({ path: "/tmp/evidenceai-mobile.png", fullPage: true });
   const issues = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
@@ -397,4 +392,30 @@ test("registration and login work through native keyboard form navigation", asyn
   await page.keyboard.type(secret);
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
+});
+
+test("auth forms never put credentials in URLs when JavaScript is unavailable", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  try {
+    for (const route of ["/register", "/login", "/verify-email"]) {
+      await page.goto(`http://localhost:3100${route}`);
+      if (route !== "/verify-email") {
+        if (route === "/register") await page.getByLabel("Full name").fill("No script fixture");
+        await page.getByLabel("Email address").fill(`noscript-${crypto.randomUUID()}@example.com`);
+        await page.getByLabel("Password", { exact: true }).fill(secret);
+      }
+      const [response] = await Promise.all([
+        page.waitForResponse((response) => response.request().isNavigationRequest() && response.request().method() === "POST"),
+        page.locator("form button").click(),
+      ]);
+      expect(response.status()).toBe(200);
+      expect((await response.text()).includes(secret)).toBe(false);
+      expect(new URL(response.url()).search === "").toBe(true);
+      await page.waitForLoadState();
+      expect(new URL(page.url()).search === "").toBe(true);
+    }
+  } finally {
+    await context.close();
+  }
 });
