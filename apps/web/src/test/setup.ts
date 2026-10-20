@@ -15,6 +15,10 @@ HTMLDialogElement.prototype.close = function () {
   this.open = false;
 };
 beforeEach(() => {
+  // Component tests must explicitly mock fetch; never fall back to a live API.
+  vi.stubGlobal("fetch", vi.fn(async () => {
+    throw new Error("Offline frontend tests require an explicit fetch mock");
+  }));
   clearResources();
   localStorage.clear();
   Object.defineProperty(document, "visibilityState", {
