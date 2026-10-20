@@ -1,50 +1,49 @@
-# Production release acceptance — Security Remediation 12.4
+# Production release acceptance — Security Remediation 12.5
 
-**FAIL / NO-GO — production release BLOCKED.** Date: **2026-10-20, Asia/Dubai**.
-Baseline `1ffa5ea18ca4eb73d72263efc7ac6978376f1080`, initially clean. Changes are
-uncommitted; no experimental image was selected or promoted.
+**FAIL / NO-GO — production release BLOCKED.** Date: 2026-10-20 Asia/Dubai.
+Baseline `932f75f`, initially clean; this remediation remains uncommitted.
+No Grafana candidate was selected or promoted.
 
-| Criterion | Result | Evidence / scope |
+| Criterion | Result | Evidence / precise scope |
 | --- | --- | --- |
-| Selected Grafana security policy | FAIL | Unchanged 13.2.4 digest retains 61 HIGH/0 CRITICAL; seven other runtime images freshly scan clean at high/critical/secret policy. |
-| Maintained upstream five-CVE candidate | FAIL | Official 12.4.13 digest `sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185` still5 HIGH/0 CRITICAL. |
-| Three kin-openapi CVEs remediated locally | PASS | Patched12.4.13 candidate removes CVE-2026-100352/100353/100354; no new high/critical finding. |
-| Patched candidate passes complete security policy | FAIL | Two Tempo HIGH findings remain; candidate unapproved/unselected. |
-| Official origin and maintained release | PASS, limited scope | Official registry tag/release and immutable digest match;12.4 supported through 2027-05-24. Independent publisher-signature verification NOT VERIFIED. |
-| Custom build compatibility/provenance | PASS, limited scope | Correct source workspace builds; zero-fuzz patch, locked module checksums, pinned compiler, binary provenance and retained frontend/native assets. Full vendor patched-source parity NOT VERIFIED. |
-| Tempo runtime applicability / supported scanner-endorsed resolution | NOT VERIFIED | Source commit descends from both vendor fix commits; direct fixed-tag Go resolution fails major-version path validation. No false-positive exemption; scanner policy still FAIL. |
-| Native plugin/dashboard/auth/Prometheus operations | PASS locally | All 13 expected native core IDs/trust, provisioning, admin auth, anonymous denial, real two-target query, internal network/no published port and private-CA ingress checks. |
-| Local same-version restart/upgrade/rollback | PASS | Original synthetic dashboard state/version and auth/provisioning/queries preserved across12.4 upstream -> patched -> upstream on owned data. No 13.x downgrade attempted. |
-| Backend/frontend/types/lint/build/browsers | PASS | 653 backend,53 frontend,26 deployment guards; types/lint/build;18 browser cases, six per engine. |
-| Runtime dependency audits | PASS | Python44 dependencies and runtime npm clean. |
-| Development npm audit | FAIL | Five high lint-chain nodes unresolved. |
-| Local bounded performance / encrypted recovery | PASS |352 requests, zero failures, p95 33ms/p99 91ms;20 documents/originals restored; session/login/download/pending work;45.961s restored-app recovery. |
-| Original development records and private storage | PASS | All original rows preserved;14 whole tables/revision identical; original4 limiter rows separately hash-matched; recursive storage bytes/metadata unchanged. |
-| Entire development database unchanged | FAIL |8 limiter rows and3 registration intents added; attribution NOT VERIFIED, no matches to owned staging/browser UUID identities. Preserved, not erased to force a pass. |
-| Local release-gate preservation | PASS | Scanner/gate/workflow/production pin unchanged; strict scans and formal gate still reject. Packaging refuses dirty source. |
-| Hosted SMTP/TLS/ingress/staging/CI/CD | NOT VERIFIED | No real internet delivery, public host, exact-SHA workflow or repository/approval/SSH execution. |
-| Hosted offsite recovery/production RTO-RPO/accepted rollback | NOT VERIFIED | Same-host synthetic recovery only; no independent host/key-escrow or accepted predecessor receipt. |
-| Vendor-build equivalence/AMD64/whole-image reproducibility | NOT VERIFIED | Vendor binary commit6367d911... unavailable through official API; custom public tag sourcebbc0a79...; local ARM64 only. |
-| External datasource semantics/hosted AI/long soak | NOT VERIFIED | Native identity and Prometheus operations exercised; external provider behavior not verified. |
+|Selected Grafana security policy |FAIL |Unchanged 13.2.4 digest retains 61 HIGH/0 CRITICAL; seven other selected runtime images freshly pass HIGH/CRITICAL/secret scans. |
+|Maintained upstream candidate |FAIL |Official 12.4.13 remains 5 HIGH/0 CRITICAL. |
+|New custom candidate |FAIL |Rebuilt local `evidenceai-grafana:kin-m125`, OCI index `sha256:514e1e31662cf191943b983103d2fe74f9933ff0a358bc722d58213ead3bfb1b`, remains 2 HIGH/0 CRITICAL/0 secrets. Unselected. |
+|Tempo source reachability assessment |PASS, limited scope |Actual custom OSS compile graph includes four protobuf packages; neither affected frontend nor S3 backend package is compiled. This does not waive scanner results or prove vendor-binary parity. |
+|Supported, scanner-accepted Tempo remediation |NOT VERIFIED |Vendor Tempo product fixes exist; v2 historical and v3 fresh module-tag probes fail canonical path validation. No authoritative mapping correction or supported clean Grafana artifact. |
+|Publisher signature/vendor patched-source parity/AMD64 |NOT VERIFIED |Registry digest/source checksum verified; independent publisher signature, full patched-source parity and AMD64 acceptance unavailable. |
+|Monitoring/plugin/auth/Prometheus/isolation |PASS locally |13 native plugin trust checks, provisioning, admin auth, anonymous denial, real two-target query, no published Grafana port and monitoring-route denials. |
+|Same-version restart/upgrade/rollback |PASS locally |Synthetic dashboard state/version retained through upstream 12.4→custom→upstream transitions. Production rollback remains NOT VERIFIED. |
+|Backend/frontend/types/lint/build |PASS |662 backend,53 frontend; TypeScript/lint/production build; existing deployment tests retained. |
+|Browser E2E |PASS on complete rerun |18 final cases, six per engine; initial17/18 and connection failure retained, cause NOT VERIFIED. Assertions/timeouts unchanged. |
+|Migration/package consistency/runtime audits |PASS |Disposable DB head91e2b6d8c410, check/no drift, pip check,44-dependency Python audit and runtime npm clean. |
+|Development npm dependency audit |FAIL |Five HIGH lint-chain nodes retained. |
+|Final 12.5 whole-database equality |FAIL |Earlier PASS superseded by a new limiter row12→13. Loopback-login bucket/action matches; writer NOT VERIFIED. All 12 original limiter rows, other 15 whole tables, revision/storage and historical additions preserved; no deletions. |
+|Historical12.4 additions attributed |NOT VERIFIED |Eight limiter and three intent rows remain in evidenceai.public; route/loopback correlations and timestamps do not identify the writer. Historical DB equality remains FAIL. |
+|Test DB isolation/cleanup |PASS locally |Dedicated owned tmpfs DB; explicit fail-closed URL guards; scoped raw SQL/ORM; negative guards and nine new tests; zero leaked schemas/public fixture rows; owned containers removed. |
+|Historical evidence preservation |PASS for retention/review |Original69-entry manifest and whole m124 directory unchanged from 932f75f; four normalized hashes match disclosed audit. Three intentionally updated current documents differ separately; all 69 original contents are recoverable from the new verified archive. |
+|Original historical byte recovery |PASS |All four raw streams recovered from retained runtime files/old immutable image; append-only gzip archives match original manifest SHA256. Normalized historical paths still differ; complete custody timestamps remain NOT VERIFIED. |
+|Local load/encrypted recovery |PASS |341 requests/zero failures, p95 26 ms/p99 56 ms;24 documents/originals restored;45.985s restored-app operation; tamper/nonempty-target rejection. |
+|Security/release/deployment gate preservation |PASS |Scanner/gate/production pin unchanged; expected scans and formal gate reject; dirty-tree packaging refuses. CI changes only disposable DB wiring; actionlint passes. |
+|Real SMTP/public TLS/ingress/hosted staging |NOT VERIFIED |Only local private-CA transport/staging executed; no real provider/inbox or public-host evidence. |
+|Hosted exact-SHA CI/CD/protections/SSH |NOT VERIFIED |No hosted final-SHA workflow or deployment executed. |
+|Offsite key escrow/restore, production RTO-RPO/rollback |NOT VERIFIED |Same-host synthetic drill only; no accepted production predecessor or independent-host receipt. |
+|Hosted AI/external datasource semantics/soak |NOT VERIFIED |Mock/fake providers and Prometheus locally; external/provider and long-duration acceptance unexecuted. |
 
-The unchanged formal gate returns **exit 1/BLOCKED**. The unexplained development
-DB additions are a separate failed assessment condition requiring attribution and
-review. Do not represent original-row preservation as whole-database equality.
-No advisory suppression, severity reduction, unsigned-plugin allowance, version
-metadata forgery or security exception was used. No older/custom image was put
-into production Compose.
+The unchanged formal gate returns **exit 1 / BLOCKED**. Original-row/storage preservation PASS does not erase either whole-database
+equality FAIL or identify a writer. The earlier passing comparison is retained
+alongside the final one-row delta. The manifest and normalized paths are retained; recovered originals are separately
+archived and verified, without rewriting historical hashes. Functional monitoring
+success does not clear image policy. No exception was approved.
 
-[Complete report](security-remediation-12-4.md) ·
-[Five-CVE/full inventory](security-remediation-12-4-inventory.json) ·
-[Exact executed verification](security-remediation-12-4-verification.md) ·
-[Source manifest](evidence/m124/source-manifest.json) ·
-[Evidence checksums](evidence/m124/evidence-sha256.json) ·
-[Release checklist](release-checklist.md) ·
-[Pending hosted procedures](hosted-staging-acceptance.md).
+[Complete assessment](security-remediation-12-5.md) ·
+[Full inventory](security-remediation-12-5-inventory.json) ·
+[Executed commands and hosted procedures](security-remediation-12-5-verification.md) ·
+[Database investigation](database-integrity-investigation.md) ·
+[Evidence checksums](evidence/m125/evidence-sha256.json) ·
+[Checklist](release-checklist.md).
 
-Recommendation: withhold production approval until Tempo findings receive an
-accepted supported resolution, final artifacts pass policy, observed development
-state changes are reviewed and hosted acceptance is completed. Source/artifact
-review and any commit or promotion require separate deliberate authorization.
-No commit, push, DNS change, purchase, public deployment, production credential
-access, development reset or volume deletion occurred.
+Withhold production approval until accepted clean artifacts, historical data and
+evidence review, and required hosted acceptance are complete. No commit, push,
+DNS change, purchase, public deployment, development reset or record deletion was
+performed. Nothing in this assessment grants those authorizations.

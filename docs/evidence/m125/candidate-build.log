@@ -1,0 +1,101 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from 125.Dockerfile
+#1 transferring dockerfile: 2.82kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185
+#3 ...
+
+#4 [auth] grafana/grafana:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185
+#3 DONE 1.5s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [source 3/7] ADD --checksum=sha256:53fb4872e64de5a9a626ef9acd60b4b84c59a54394587f488dba6bff76299924 https://codeload.github.com/grafana/grafana/tar.gz/refs/tags/v12.4.13 /tmp/source.tar.gz
+#6 DONE 0.0s
+
+#7 [source 1/7] FROM docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d
+#7 resolve docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d 0.0s done
+#7 DONE 0.0s
+
+#8 [candidate 1/4] FROM docker.io/grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185
+#8 resolve docker.io/grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 44B done
+#9 DONE 0.0s
+
+#10 [source 5/7] WORKDIR /src
+#10 CACHED
+
+#11 [source 2/7] RUN apk add --no-cache build-base patch
+#11 CACHED
+
+#12 [source 3/7] ADD --checksum=sha256:53fb4872e64de5a9a626ef9acd60b4b84c59a54394587f488dba6bff76299924 https://codeload.github.com/grafana/grafana/tar.gz/refs/tags/v12.4.13 /tmp/source.tar.gz
+#12 CACHED
+
+#13 [source 6/7] COPY dependencies-124.patch /tmp/dependencies.patch
+#13 CACHED
+
+#14 [source 4/7] RUN mkdir /src && tar -xzf /tmp/source.tar.gz --strip-components=1 -C /src
+#14 CACHED
+
+#15 [source 7/7] RUN patch --batch --fuzz=0 --dry-run -p1 < /tmp/dependencies.patch     && patch --batch --fuzz=0 -p1 < /tmp/dependencies.patch
+#15 CACHED
+
+#16 [build 1/1] RUN --mount=type=cache,id=evidenceai-grafana-mod,target=/go/pkg/mod     --mount=type=cache,id=evidenceai-grafana-build,target=/root/.cache/go-build     test "$(go list -mod=readonly -m -f '{{.Version}}' github.com/getkin/kin-openapi)" = v0.149.0     && CGO_ENABLED=1 go build -mod=readonly -p=2 -tags=oss -trimpath -buildvcs=false     -ldflags="-s -w -buildid= -X main.version=12.4.13 -X main.commit=bbc0a79c71a946c1fd61ee4f9e0fcba812c18bd7 -X main.buildBranch=evidenceai-security-experiment"     -o /out/grafana ./pkg/cmd/grafana     && go list -mod=readonly -deps -tags=oss ./pkg/cmd/grafana > /out/dependencies.txt     && printf '%s\n' 'UNAPPROVED EXPERIMENT; vendor patched-source parity not established'        'source_tag=v12.4.13' 'source_commit=bbc0a79c71a946c1fd61ee4f9e0fcba812c18bd7' > /out/evidenceai-build.txt     && go version >> /out/evidenceai-build.txt     && go version -m /out/grafana >> /out/evidenceai-build.txt     && sha256sum /tmp/source.tar.gz /tmp/dependencies.patch go.mod go.sum /out/grafana >> /out/evidenceai-build.txt
+#16 4.071 go: downloading github.com/golang-jwt/jwt v3.2.1+incompatible
+#16 4.072 go: downloading github.com/google/go-github v17.0.0+incompatible
+#16 4.338 go: downloading sigs.k8s.io/structured-merge-diff v0.0.0-20190525122527-15d366b2352e
+#16 4.346 go: downloading github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633
+#16 4.366 go: downloading k8s.io/klog v1.0.0
+#16 4.430 go: downloading github.com/grpc-ecosystem/grpc-gateway v1.16.0
+#16 4.506 go: downloading github.com/jackc/pgx v3.2.0+incompatible
+#16 4.585 go: downloading go.opentelemetry.io/collector v0.150.0
+#16 4.632 go: downloading github.com/cespare/xxhash v1.1.0
+#16 4.656 go: downloading github.com/russross/blackfriday v1.6.0
+#16 5.106 go: downloading github.com/grafana/cue v0.0.0-20230926092038-971951014e3f
+#16 6.493 go: downloading github.com/hashicorp/go-msgpack v0.5.5
+#16 6.513 go: downloading github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
+#16 6.566 go: downloading cloud.google.com/go/compute v1.54.0
+#16 6.587 go: downloading github.com/pierrec/lz4 v2.0.5+incompatible
+#16 6.817 go: downloading github.com/cockroachdb/apd/v2 v2.0.2
+#16 6.852 go: downloading github.com/cockroachdb/apd v1.1.0
+#16 6.883 go: downloading github.com/mpvl/unique v0.0.0-20150818121801-cbe035fff7de
+#16 6.982 go: downloading github.com/klauspost/cpuid v1.3.1
+#16 7.005 go: downloading github.com/envoyproxy/go-control-plane v0.14.0
+#16 7.732 go: downloading github.com/pelletier/go-toml v1.9.5
+#16 7.739 go: downloading github.com/sony/gobreaker v1.0.0
+#16 DONE 40.3s
+
+#17 [candidate 2/4] COPY --from=build /out/grafana /usr/share/grafana/bin/grafana
+#17 CACHED
+
+#18 [candidate 3/4] COPY --from=build /out/evidenceai-build.txt /usr/share/grafana/evidenceai-build.txt
+#18 CACHED
+
+#19 [candidate 4/4] COPY --from=build /out/dependencies.txt /usr/share/grafana/evidenceai-dependencies.txt
+#19 DONE 0.0s
+
+#20 exporting to image
+#20 exporting layers 0.1s done
+#20 exporting manifest sha256:7f615145a7c7f3f9aa2b572f87ce6aa4d78cf82d8ab4c60a0110f9d50996ead5 done
+#20 exporting config sha256:fe3661d5da809ca9e27c1811d8fae7686538e3197b850715aaf944bf4ccd4188
+#20 exporting config sha256:fe3661d5da809ca9e27c1811d8fae7686538e3197b850715aaf944bf4ccd4188 done
+#20 exporting attestation manifest sha256:f221833198512719beb23dad830d4e7ae452e25f3ad1ff4dd6cd1ce725a270e9 done
+#20 exporting manifest list sha256:514e1e31662cf191943b983103d2fe74f9933ff0a358bc722d58213ead3bfb1b done
+#20 naming to docker.io/library/evidenceai-grafana:kin-m125 done
+#20 unpacking to docker.io/library/evidenceai-grafana:kin-m125 0.0s done
+#20 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/46zd4gsvq40bi5f6mij55yfjt

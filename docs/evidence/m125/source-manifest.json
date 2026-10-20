@@ -1,0 +1,20 @@
+{
+  "baseline": "932f75f2bb4f1b30013f186aff58b95faefb1589",
+  "source_files": {
+    ".github/workflows/ci.yml": "e676099baa4d71d8f39a21c21da842bcf5c519a0651c734322af936fcf0c811c",
+    "apps/api/app/db/disposable_database.py": "21cc3205692e09ce5321d604cc3efb2b88662985f0bbde7730ef65526bf3cf5e",
+    "apps/api/app/evaluate_retrieval.py": "c48008a27da318cfe2ad6cbc07692fe0712faa3f93c533056278a20647d30f53",
+    "apps/api/app/evaluate_rag.py": "cbb9d679f23a28c161abecdaf89f97d1f16bf2aec005e57ed6481f385a982cac",
+    "apps/api/tests/conftest.py": "821f82e013ca9462d1bee8288b0ec0a0ca0c9df1bc50046fa9cb6f75f6dfeb20",
+    "apps/api/tests/test_database_isolation.py": "22249b7e57cb53c65422f8e77283f568cf0f5df56c77b1edac6794c484481534",
+    "apps/api/tests/test_workspace_concurrency.py": "226c1ddb862924047d4a98343a194e9f77b713e77b3a506548af7279d6017f04",
+    "apps/web/e2e/server.py": "262ba612c47ce7ddc8763ccdfe22099f37ad10a562fe596d59bbc1a058d99c13",
+    "infra/testing/database_guard.py": "63591a313463f241b7b46cadd958a73ed527c294a81b0f618905d8e1afbe962b",
+    "infra/testing/run_isolated.py": "08c005b0439448f398c06680a3a69e24b808336eac84cea5ea4432267c77bd42",
+    "infra/testing/preservation.py": "3a4ec16888a14887dd1ae365611fef3ea3803cfcc6141a1dfa21a89d987487ec",
+    "infra/monitoring/grafana-rebuild/125.Dockerfile": "cfdc779ec46b20670a65d9b4d81ff76111ac399482b9c24990ab3c8accf7661f",
+    "infra/monitoring/grafana-rebuild/dependencies-124.patch": "f13f4a3c85e340a4d3610233176e9b3a7c0903b4cae3ff8fc293319c0d2a516d"
+  },
+  "fingerprint": "4bdcb23d7341ad0d6fc508f17a2bfdd34d062bb0b9674671a1e95cef715d3ad9",
+  "committed": false
+}

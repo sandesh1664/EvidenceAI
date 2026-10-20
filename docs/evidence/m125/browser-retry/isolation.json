@@ -1,0 +1,17 @@
+{
+  "container": "evidenceai-test-ce78e4806a4f4ab4bf0d6fb76ba88574",
+  "database": "evidenceai_test_ce78e4806a4f4ab4bf0d6fb76ba88574",
+  "storage": "owned tmpfs; no host development mounts",
+  "command": [
+    "python3",
+    "docs/evidence/m125/run_browser.py"
+  ],
+  "image": "evidenceai-database:m121",
+  "immutable_local_image": "sha256:633cb956dc3fa6e5930312667aec5e02264c56a59556d783de19236e8df0d6b5",
+  "exit_code": 0,
+  "remaining_test_schemas": 0,
+  "public_users": 0,
+  "public_registration_intents": 0,
+  "public_limiter_rows": 0,
+  "owned_container_removed": true
+}

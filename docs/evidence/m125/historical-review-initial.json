@@ -1,0 +1,15 @@
+{
+  "review": "PASS",
+  "original_byte_integrity": "FAIL for four disclosed files; originals not recovered",
+  "historical_manifest_preserved": true,
+  "manifest_sha256": "27f19c621d4a6e983d42b6aca6b8c41c5786db386f6e17a1d5d8780ba21b4326",
+  "files_checked": 69,
+  "mismatches": [
+    "docs/evidence/m124/build-provenance.txt",
+    "docs/evidence/m124/build.log",
+    "docs/evidence/m124/lint.log",
+    "docs/evidence/m124/unit.log"
+  ],
+  "all_four_match_disclosed_normalized_hashes": true,
+  "historical_directory_unchanged_since_baseline": true
+}

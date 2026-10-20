@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "archive": "docs/evidence/m125/m124-original-evidence.tar.gz",
+  "archive_sha256": "741abb747feb5ab5370bf302ab065572bd1caf10d301de20794e94a40ec40be3",
+  "original_manifest": "docs/evidence/m124/evidence-sha256.json",
+  "original_file_contents_verified": 69,
+  "method": "Original four raw streams plus unchanged Git932f75f versions for remaining files. Every reconstructed file matches its original manifest SHA256. New archive metadata is deterministic, not claimed historical file metadata.",
+  "historical_files_or_manifest_modified": false,
+  "mutable_current_documentation": "Three original manifest targets intentionally updated in12.5; their original bytes are retained in Git and this archive.",
+  "custody_timestamps": "NOT VERIFIED; original content hashes do not independently authenticate all acquisition timestamps"
+}

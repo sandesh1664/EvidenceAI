@@ -1,0 +1,15 @@
+{
+  "source_graph_command": "go list -mod=readonly -deps -tags=oss ./pkg/cmd/grafana",
+  "binary_build_flags": "CGO_ENABLED=1 -tags=oss -trimpath -mod=readonly",
+  "packages": 4269,
+  "tempo_packages": [
+    "github.com/grafana/tempo/pkg/tempopb/common/v1",
+    "github.com/grafana/tempo/pkg/tempopb/resource/v1",
+    "github.com/grafana/tempo/pkg/tempopb/trace/v1",
+    "github.com/grafana/tempo/pkg/tempopb"
+  ],
+  "tempo_frontend_compiled": false,
+  "tempo_s3_backend_compiled": false,
+  "scope": "Actual custom candidate source/OSS build graph. This does not waive module-version scanner findings or prove vendor binary equivalence. Dynamic/external Tempo services are outside this experiment.",
+  "independent_publisher_signature": "NOT VERIFIED; custom local image is not a signed upstream release"
+}

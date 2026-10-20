@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "public_tables_compared": 16,
+  "all_row_hashes_and_counts_equal": true,
+  "revision_equal": true,
+  "private_storage_content_and_metadata_equal": true,
+  "table_count_changes": {},
+  "scope": "Current run only; does not resolve historical attribution or original evidence byte recovery."
+}

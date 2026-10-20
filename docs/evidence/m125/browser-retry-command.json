@@ -1,0 +1,10 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test:e2e"
+  ],
+  "cwd": "apps/web",
+  "exit_code": 0,
+  "seconds": 72.428
+}

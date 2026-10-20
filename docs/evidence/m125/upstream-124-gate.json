@@ -1,0 +1,57 @@
+{
+  "reference": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+  "name": "upstream-124",
+  "policy": {
+    "high_critical_occurrences": 5,
+    "secrets": 0,
+    "status": "FAIL"
+  },
+  "policy_exit_code": 1,
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "pull",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185"
+      ],
+      "exit_code": 0,
+      "seconds": 1.476
+    },
+    {
+      "command": [
+        "docker",
+        "save",
+        "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "-o",
+        "/Users/redmug/EvidenceAI/infra/runtime/m125/upstream-124/archives/grafana.tar"
+      ],
+      "exit_code": 0,
+      "seconds": 3.654
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m125/upstream-124/archives:/scan:ro",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m125/upstream-124:/reports",
+        "-v",
+        "/Users/redmug/EvidenceAI/infra/runtime/m125/support/trivy-cache:/root/.cache",
+        "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+        "image",
+        "--input",
+        "/scan/grafana.tar",
+        "--scanners",
+        "vuln,secret",
+        "--format",
+        "json",
+        "--output",
+        "/reports/grafana.json"
+      ],
+      "exit_code": 0,
+      "seconds": 1.274
+    }
+  ]
+}

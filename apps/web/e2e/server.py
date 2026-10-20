@@ -17,6 +17,9 @@ from threading import Event, Thread
 import uuid
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'api'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'infra/testing'))
+from database_guard import activate
+activate()  # Never inherit the development DATABASE_URL, including indirect engines.
 
 from sqlalchemy import create_engine
 from sqlalchemy.engine import make_url
@@ -53,7 +56,8 @@ def environment():
     try:
         with control.begin() as connection:connection.execute(CreateSchema(schema))
         scratch=create_engine(configured.database_url.get_secret_value(),hide_parameters=True,
-            execution_options={'schema_translate_map':{None:schema}})
+            execution_options={'schema_translate_map':{None:schema}},
+            connect_args={'options':f'-c search_path={schema},public -c statement_timeout=15000 -c lock_timeout=5000'})
         Base.metadata.create_all(scratch)
         factory=sessionmaker(scratch,expire_on_commit=False)
         with tempfile.TemporaryDirectory(prefix='evidenceai-e2e-') as temporary:

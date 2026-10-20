@@ -1,0 +1,10 @@
+{
+  "scope": "Local developer configuration only; production secret values not read or printed",
+  "registration_email_enabled": false,
+  "smtp_host_configured": false,
+  "smtp_port": 465,
+  "smtp_credential_configured": false,
+  "real_provider_delivery": "NOT VERIFIED",
+  "production_template": "SMTP settings explicitly configured, password supplied by file-backed Compose secret; SSL certificate verification remains enabled",
+  "local_fixture": "See m125/staging.json for actual private-CA TLS SMTP verification; this is not real-provider evidence"
+}

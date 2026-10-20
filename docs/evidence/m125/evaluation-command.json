@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+    "-m",
+    "app.evaluate",
+    "--repeat",
+    "3",
+    "--output-dir",
+    "/Users/redmug/EvidenceAI/infra/runtime/m125/evaluation"
+  ],
+  "cwd": "apps/api",
+  "exit_code": 0,
+  "observed": {
+    "report": "/Users/redmug/EvidenceAI/infra/runtime/m125/evaluation/20261019T222223790817Z-a02dc1acc1524f7fb55ee19eedfed4ac.json",
+    "sample_count": 68,
+    "metrics": {
+      "retrieval_128_recall_at_k": 0.9375,
+      "retrieval_128_precision_at_k": 0.9375,
+      "retrieval_128_mean_reciprocal_rank": 1.0,
+      "retrieval_128_ndcg_at_k": 0.9516433990956823,
+      "retrieval_128_empty_result_rate": 0.0,
+      "retrieval_128_workspace_isolation_correctness": 1.0,
+      "retrieval_128_document_filter_correctness": 1.0,
+      "retrieval_256_recall_at_k": 0.9375,
+      "retrieval_256_precision_at_k": 0.9375,
+      "retrieval_256_mean_reciprocal_rank": 1.0,
+      "retrieval_256_ndcg_at_k": 0.9516433990956823,
+      "retrieval_256_empty_result_rate": 0.0,
+      "retrieval_256_workspace_isolation_correctness": 1.0,
+      "retrieval_256_document_filter_correctness": 1.0,
+      "rag_answer_correctness": 0.9444444444444444,
+      "rag_citation_reference_validity": 1.0,
+      "rag_citation_gold_support_quality": 1.0,
+      "rag_unsupported_claim_frequency": 0.0,
+      "rag_insufficient_evidence_recall": 1.0,
+      "rag_guard_correctness": 1.0
+    },
+    "threshold_failures": []
+  }
+}

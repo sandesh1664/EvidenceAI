@@ -1,0 +1,15 @@
+{
+  "cross_checks": "PASS",
+  "backend": 662,
+  "frontend": 53,
+  "browsers": 18,
+  "isolation_cases": 9,
+  "selected_high": 61,
+  "candidate_high": 2,
+  "original_historical_contents_verified": 69,
+  "final_development_equality": "FAIL",
+  "original_rows_and_storage": "PASS",
+  "writer_attribution": "NOT VERIFIED",
+  "production": "BLOCKED",
+  "scope": "Consistency of recorded local observations; not a hosted acceptance or missing-writer attribution."
+}

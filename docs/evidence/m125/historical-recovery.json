@@ -1,0 +1,46 @@
+{
+  "original_content_recovery": "PASS",
+  "files": [
+    {
+      "historical_file": "docs/evidence/m124/build-provenance.txt",
+      "original_manifest_sha256": "d90576d588205c2bdfc1fb4084e8e4375f60c5e5c20cf2ed911bf509cad66de7",
+      "source": "infra/runtime/m125/recovered-build-provenance.txt",
+      "recovered_archive": "docs/evidence/m125/m124-original-build-provenance.txt.gz",
+      "archive_sha256": "4eca554a27015ea62b25cc733227d364f2358eac436f2a184984f2c7705552e8",
+      "original_content_hash_verified": true,
+      "historical_normalized_file_unchanged": true
+    },
+    {
+      "historical_file": "docs/evidence/m124/build.log",
+      "original_manifest_sha256": "d52979718b12655dd9acdb5423d4675048e5b96c6c482e2c35047dec8b93f525",
+      "source": "infra/runtime/m124/build.log",
+      "recovered_archive": "docs/evidence/m125/m124-original-build.log.gz",
+      "archive_sha256": "137660a0651adfeeafe07fd7f664e7eefc46e7bfb27feb730ad34d8a5ccc4d93",
+      "original_content_hash_verified": true,
+      "historical_normalized_file_unchanged": true
+    },
+    {
+      "historical_file": "docs/evidence/m124/lint.log",
+      "original_manifest_sha256": "73f54382ed38c39a0d05708a84e9e421a73b82381dbfda81b6d35c0191a9ac98",
+      "source": "infra/runtime/m124/lint.log",
+      "recovered_archive": "docs/evidence/m125/m124-original-lint.log.gz",
+      "archive_sha256": "d0fa51261d4d475db675fb616aeccb8867040dab3175d82fe36722787c142ba9",
+      "original_content_hash_verified": true,
+      "historical_normalized_file_unchanged": true
+    },
+    {
+      "historical_file": "docs/evidence/m124/unit.log",
+      "original_manifest_sha256": "977f3b30f6a9d1faad71923a3cb916ae823ea764d6af80fa497cd46086acd32f",
+      "source": "infra/runtime/m124/unit.log",
+      "recovered_archive": "docs/evidence/m125/m124-original-unit.log.gz",
+      "archive_sha256": "06ca8e111c357b311db9b611df867c2026ece0c65eb2bc2d5d9da631b92d724a",
+      "original_content_hash_verified": true,
+      "historical_normalized_file_unchanged": true
+    }
+  ],
+  "old_image_reference": "evidenceai-grafana:kin-m124",
+  "old_image_local_oci_index": "sha256:b148dae4dd05367a98a51097e1976b3bdb0dcfe0646aa6f42ef4b8a3c2ac3a3a",
+  "historical_manifest_modified": false,
+  "historical_directory_modified": false,
+  "custody_limit": "Content matches the preexisting original SHA256 exactly; this does not independently authenticate every historical acquisition timestamp or undo the normalization event. Existing normalized files remain in place; recovery is append-only under m125."
+}

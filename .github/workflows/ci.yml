@@ -17,13 +17,14 @@ jobs:
       postgres:
         image: pgvector/pgvector@sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84
         env:
-          POSTGRES_DB: evidenceai
+          POSTGRES_DB: evidenceai_test_00000000000000000000000000000000
           POSTGRES_USER: evidenceai
           POSTGRES_PASSWORD: synthetic-ci-only-password
         ports: [5432:5432]
-        options: --health-cmd "pg_isready -U evidenceai -d evidenceai" --health-interval 5s --health-timeout 5s --health-retries 20
+        options: --health-cmd "pg_isready -U evidenceai -d evidenceai_test_00000000000000000000000000000000" --health-interval 5s --health-timeout 5s --health-retries 20
     env:
-      DATABASE_URL: postgresql+psycopg://evidenceai:synthetic-ci-only-password@127.0.0.1:5432/evidenceai
+      DATABASE_URL: postgresql+psycopg://evidenceai:synthetic-ci-only-password@127.0.0.1:5432/evidenceai_test_00000000000000000000000000000000
+      EVIDENCEAI_TEST_DATABASE_URL: postgresql+psycopg://evidenceai:synthetic-ci-only-password@127.0.0.1:5432/evidenceai_test_00000000000000000000000000000000
       APP_ENV: test
       EMBEDDING_PROVIDER: disabled
       LLM_PROVIDER: disabled

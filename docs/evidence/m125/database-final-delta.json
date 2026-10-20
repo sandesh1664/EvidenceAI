@@ -1,0 +1,25 @@
+{
+  "whole_development_database_equal": "FAIL",
+  "added_record_attribution": "NOT VERIFIED",
+  "scope": "Final12.5 observed delta; no rows deleted or reset",
+  "original_limiter_rows_preserved": true,
+  "limiter_count_before": 12,
+  "limiter_count_after": 13,
+  "new_rows": [
+    {
+      "window_start_utc": "2026-10-19T22:15:00+00:00",
+      "attempts": 1,
+      "source_action_matches": [
+        "/api/v1/auth/login"
+      ]
+    }
+  ],
+  "current_active_connections": [
+    {
+      "application_name": "(unset)",
+      "state": "active",
+      "count": 1
+    }
+  ],
+  "interpretation": "All preexisting limiter rows hash-match; an additional limiter record was observed late in the session. Loopback/action classification, if matched, does not identify an actor/process. No historical statement/connection audit is available. Owned test containers use separate databases and show zero public fixture rows, but these checks alone do not prove the writer of this development record."
+}

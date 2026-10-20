@@ -1,0 +1,43 @@
+{
+  "baseline": "932f75f",
+  "source_fingerprint": "4bdcb23d7341ad0d6fc508f17a2bfdd34d062bb0b9674671a1e95cef715d3ad9",
+  "release": "BLOCKED",
+  "criteria": {
+    "container_security": "FAIL",
+    "application_security": "PASS",
+    "ai_security": "NOT VERIFIED",
+    "performance": "PASS",
+    "recovery": "PASS",
+    "browser_acceptance": "PASS",
+    "ci_cd": "NOT VERIFIED",
+    "production_environment": "NOT VERIFIED"
+  },
+  "criteria_scope": "Application and operational passes are local synthetic checks, not hosted production certification.",
+  "selected_high": 61,
+  "selected_critical": 0,
+  "candidate_high": 2,
+  "candidate_critical": 0,
+  "selected_image_changed": false,
+  "candidate_promoted": false,
+  "development_original_rows_preserved": "PASS",
+  "private_storage_preserved": "PASS",
+  "final_whole_database_equality": "FAIL",
+  "added_limiter_rows_current_run": 1,
+  "historical_added_limiter_rows": 8,
+  "historical_added_registration_intents": 3,
+  "record_attribution": "NOT VERIFIED",
+  "historical_original_content_recovery": "PASS; all69 content hashes verified; complete historical custody timestamps NOT VERIFIED",
+  "additional_failed_assessment_conditions": [
+    "Final development whole-DB equality failed: one limiter row added, writer NOT VERIFIED; all preexisting rows/storage preserved",
+    "Historical12.4 DB equality failed with8 limiter/3intent additions, writer NOT VERIFIED",
+    "Five HIGH development lint-chain dependency nodes remain"
+  ],
+  "backend_tests": 662,
+  "frontend_tests": 53,
+  "browser_tests": 18,
+  "hosted_acceptance": "NOT VERIFIED",
+  "approved_exceptions": [],
+  "committed": false,
+  "pushed": false,
+  "public_deployment": false
+}

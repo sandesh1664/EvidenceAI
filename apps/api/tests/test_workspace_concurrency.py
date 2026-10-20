@@ -36,7 +36,8 @@ def scratch_database():
     with engine.begin() as connection:
         connection.execute(CreateSchema(schema))
     scratch = create_engine(get_settings().database_url.get_secret_value(), hide_parameters=True,
-                            execution_options={'schema_translate_map': {None: schema}})
+                            execution_options={'schema_translate_map': {None: schema}},
+                            connect_args={'options': f'-c search_path={schema},public -c statement_timeout=15000 -c lock_timeout=5000'})
     try:
         Base.metadata.create_all(scratch)
         yield scratch

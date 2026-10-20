@@ -1,5 +1,10 @@
 """Each database test owns an outer transaction; session commits use savepoints."""
 import os
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "infra/testing"))
+from database_guard import activate
+activate()  # Before importing application modules or constructing any engine.
 
 # Test processes must never inherit a paid provider/key from the developer's .env.
 # Explicit Settings(...) kwargs in hosted MockTransport tests still take precedence.

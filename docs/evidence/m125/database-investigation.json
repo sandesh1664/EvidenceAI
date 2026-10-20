@@ -1,0 +1,98 @@
+{
+  "attribution": "NOT VERIFIED",
+  "method": "Read-only catalog/statistics and timestamps; values, email, key hashes and SQL text withheld",
+  "historical_before_counts": {
+    "auth_rate_limits": 4,
+    "registration_intents": 0
+  },
+  "historical_after_counts": {
+    "auth_rate_limits": 12,
+    "registration_intents": 3
+  },
+  "database": "evidenceai",
+  "schemas_with_target_tables": [
+    [
+      "public",
+      "auth_rate_limits"
+    ],
+    [
+      "public",
+      "registration_intents"
+    ]
+  ],
+  "connection_summary": [
+    {
+      "application": "(unset)",
+      "state": "active",
+      "count": 1
+    }
+  ],
+  "logging_settings": {
+    "log_statement": "none",
+    "log_connections": "off",
+    "log_disconnections": "off",
+    "track_commit_timestamp": "off"
+  },
+  "registration_metadata": [
+    {
+      "ordinal": 1,
+      "created_at_utc": "2026-10-19T21:20:24.045362+00:00",
+      "expires_at_utc": "2026-10-19T21:50:24.045793+00:00",
+      "ttl_seconds": 1800.000431
+    },
+    {
+      "ordinal": 2,
+      "created_at_utc": "2026-10-19T21:22:41.538767+00:00",
+      "expires_at_utc": "2026-10-19T21:52:41.539616+00:00",
+      "ttl_seconds": 1800.000849
+    },
+    {
+      "ordinal": 3,
+      "created_at_utc": "2026-10-19T21:25:36.407172+00:00",
+      "expires_at_utc": "2026-10-19T21:55:36.407872+00:00",
+      "ttl_seconds": 1800.0007
+    }
+  ],
+  "limiter_windows": [
+    {
+      "window_start_utc": "2026-10-19T14:50:00+00:00",
+      "rows": 2,
+      "attempts_total": 12
+    },
+    {
+      "window_start_utc": "2026-10-19T16:25:00+00:00",
+      "rows": 1,
+      "attempts_total": 1
+    },
+    {
+      "window_start_utc": "2026-10-19T19:35:00+00:00",
+      "rows": 1,
+      "attempts_total": 1
+    },
+    {
+      "window_start_utc": "2026-10-19T21:20:00+00:00",
+      "rows": 5,
+      "attempts_total": 8
+    },
+    {
+      "window_start_utc": "2026-10-19T21:25:00+00:00",
+      "rows": 3,
+      "attempts_total": 4
+    }
+  ],
+  "auth_rate_limits": {
+    "current_count": 12,
+    "matches_m124_after": true
+  },
+  "original_limiter_rows_preserved": true,
+  "registration_intents": {
+    "current_count": 3,
+    "matches_m124_after": true
+  },
+  "limitations": [
+    "Limiter windows are time buckets, not creation timestamps.",
+    "No historical request/statement audit or actor ID captured by these tables; current pg_stat_activity cannot establish historical writers.",
+    "A registration intent proves persisted enrollment activity, not the originating process or person.",
+    "Timestamp coincidence or matching rate-limit hash cannot alone prove writer attribution."
+  ]
+}

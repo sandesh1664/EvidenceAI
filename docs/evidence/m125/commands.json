@@ -1,0 +1,339 @@
+{
+  "baseline": "932f75f",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "infra/scripts/release_manifest.py",
+        "--output",
+        "infra/runtime/m125/manifest.json"
+      ],
+      "cwd": "/Users/redmug/EvidenceAI",
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/verify_release.py",
+        "docs/evidence/m125/release-result.json"
+      ],
+      "cwd": "/Users/redmug/EvidenceAI",
+      "exit_code": 1
+    },
+    {
+      "name": "pytest",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=/Users/redmug/EvidenceAI/docs/evidence/m125/backend.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 25.125
+    },
+    {
+      "name": "alembic-current",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "current"
+      ],
+      "exit_code": 0,
+      "seconds": 0.334
+    },
+    {
+      "name": "alembic-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "alembic",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.322
+    },
+    {
+      "name": "pip-check",
+      "cwd": "apps/api",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.146
+    },
+    {
+      "name": "unit",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "seconds": 2.526
+    },
+    {
+      "name": "lint",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "seconds": 2.035
+    },
+    {
+      "name": "types",
+      "cwd": "apps/web",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "seconds": 0.963
+    },
+    {
+      "name": "build",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 11.703
+    },
+    {
+      "name": "browser",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "run",
+        "test:e2e"
+      ],
+      "exit_code": 1,
+      "seconds": 86.836
+    },
+    {
+      "name": "python-audit",
+      "cwd": "apps/api",
+      "command": [
+        "/tmp/evidenceai-m11-audit-venv/bin/python",
+        "-m",
+        "pip_audit",
+        "-r",
+        "requirements.txt",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "seconds": 21.639
+    },
+    {
+      "name": "npm-runtime",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.766
+    },
+    {
+      "name": "npm-all",
+      "cwd": "apps/web",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exit_code": 1,
+      "seconds": 1.402
+    },
+    {
+      "name": "actionlint",
+      "cwd": ".",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "-v",
+        "/Users/redmug/EvidenceAI/.github/workflows:/work:ro",
+        "-w",
+        "/work",
+        "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+        "-color",
+        "ci.yml",
+        "deploy.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.428
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "candidate",
+        "-f",
+        "infra/monitoring/grafana-rebuild/125.Dockerfile",
+        "-t",
+        "evidenceai-grafana:kin-m125",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 0,
+      "seconds": 42.715
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--progress=plain",
+        "--target",
+        "tempo-v3-probe",
+        "-f",
+        "infra/monitoring/grafana-rebuild/125.Dockerfile",
+        "infra/monitoring/grafana-rebuild"
+      ],
+      "exit_code": 1,
+      "seconds": 15.056
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:e2e"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "seconds": 72.428
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:e2e"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "seconds": 71.728
+    },
+    {
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_database_isolation.py"
+      ],
+      "cwd": "apps/api",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/redmug/EvidenceAI/apps/api/.venv/bin/python",
+        "-m",
+        "app.evaluate",
+        "--repeat",
+        "3",
+        "--output-dir",
+        "/Users/redmug/EvidenceAI/infra/runtime/m125/evaluation"
+      ],
+      "cwd": "apps/api",
+      "exit_code": 0,
+      "observed": {
+        "report": "/Users/redmug/EvidenceAI/infra/runtime/m125/evaluation/20261019T222223790817Z-a02dc1acc1524f7fb55ee19eedfed4ac.json",
+        "sample_count": 68,
+        "metrics": {
+          "retrieval_128_recall_at_k": 0.9375,
+          "retrieval_128_precision_at_k": 0.9375,
+          "retrieval_128_mean_reciprocal_rank": 1.0,
+          "retrieval_128_ndcg_at_k": 0.9516433990956823,
+          "retrieval_128_empty_result_rate": 0.0,
+          "retrieval_128_workspace_isolation_correctness": 1.0,
+          "retrieval_128_document_filter_correctness": 1.0,
+          "retrieval_256_recall_at_k": 0.9375,
+          "retrieval_256_precision_at_k": 0.9375,
+          "retrieval_256_mean_reciprocal_rank": 1.0,
+          "retrieval_256_ndcg_at_k": 0.9516433990956823,
+          "retrieval_256_empty_result_rate": 0.0,
+          "retrieval_256_workspace_isolation_correctness": 1.0,
+          "retrieval_256_document_filter_correctness": 1.0,
+          "rag_answer_correctness": 0.9444444444444444,
+          "rag_citation_reference_validity": 1.0,
+          "rag_citation_gold_support_quality": 1.0,
+          "rag_unsupported_claim_frequency": 0.0,
+          "rag_insufficient_evidence_recall": 1.0,
+          "rag_guard_correctness": 1.0
+        },
+        "threshold_failures": []
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--support-only",
+        "--directory",
+        "infra/runtime/m125/support"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/scan_images.py",
+        "--tag",
+        "m121",
+        "--directory",
+        "infra/runtime/m125/application"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "infra/scripts/smoke.py"
+      ],
+      "environment": {
+        "EVIDENCEAI_ACCEPTANCE": "1",
+        "EVIDENCEAI_EVIDENCE_TAG": "m125",
+        "EVIDENCEAI_GRAFANA_IMAGE": "grafana/grafana@sha256:41bbc1b5e04416f81891806076db2a2ff60a5d4da5f78d36a88b033a8c199185",
+        "EVIDENCEAI_GRAFANA_TRANSITION_IMAGE": "evidenceai-grafana:kin-m125"
+      },
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "apps/api/.venv/bin/python",
+        "infra/testing/preservation.py",
+        "--compare",
+        "/tmp/evidenceai-m125-before.json",
+        "--report",
+        "docs/evidence/m125/data-preservation-final.json"
+      ],
+      "environment": {
+        "PYTHONPATH": "apps/api"
+      },
+      "exit_code": 1,
+      "scope": "Observed one new limiter row; all originals/storage preserved"
+    }
+  ],
+  "initial_attempts": "Initial test failures/wrapper limitations retained in initial-failures.json, backend-commands-initial.json and frontend-initial-commands.json; final browser command supersedes initial browser failure."
+}

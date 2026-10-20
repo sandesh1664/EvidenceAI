@@ -1,0 +1,8 @@
+{
+  "source": "ignored retained infra/runtime/m124/browser.log",
+  "recorded_event_timestamp_min": "2026-10-19T21:14:14.356008+00:00",
+  "recorded_event_timestamp_max": "2026-10-19T21:15:32.678103+00:00",
+  "auth_event_timestamp_min": "2026-10-19T21:14:29.651391+00:00",
+  "auth_event_timestamp_max": "2026-10-19T21:15:32.397320+00:00",
+  "scope": "Observed log event bounds, not complete process lifetime or independently authenticated actor attribution. No request bodies or recipients emitted."
+}

@@ -23,6 +23,7 @@ from sqlalchemy.schema import CreateSchema, DropSchema
 from app.core.config import Settings, get_settings
 from app.db.base import Base
 from app.db.session import get_engine
+from app.db.disposable_database import require_disposable_database
 from app.models import Document, DocumentChunk, User, Workspace, WorkspaceMember
 from app.schemas.ask import AskRequest
 from app.services import embedding_jobs, rag_service
@@ -62,6 +63,7 @@ class AdversarialEngine:
 
 
 def evaluate(dataset_path=DATASET, *, extended=False):
+    require_disposable_database()
     dataset = json.loads(Path(dataset_path).read_text())
     if extended:
         dataset['documents'].append({'id':'misleading','text':'The proposed audit retention period is 90 days. Approved audit retention period is 30 days.'})

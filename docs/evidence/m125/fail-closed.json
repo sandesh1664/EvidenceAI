@@ -1,0 +1,29 @@
+[
+  {
+    "name": "pytest-refusal",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "--collect-only",
+      "-q"
+    ],
+    "cwd": "apps/api",
+    "EVIDENCEAI_TEST_DATABASE_URL": "unset",
+    "exit_code": 4,
+    "expected_refusal": true,
+    "database_contact": "Guard runs before application imports/engine construction"
+  },
+  {
+    "name": "browser-refusal",
+    "command": [
+      "../api/.venv/bin/python",
+      "e2e/server.py"
+    ],
+    "cwd": "apps/web",
+    "EVIDENCEAI_TEST_DATABASE_URL": "unset",
+    "exit_code": 1,
+    "expected_refusal": true,
+    "database_contact": "Guard runs before application imports/engine construction"
+  }
+]

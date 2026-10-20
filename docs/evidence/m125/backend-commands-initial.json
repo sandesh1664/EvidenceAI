@@ -1,0 +1,51 @@
+[
+  {
+    "name": "pytest",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=/Users/redmug/EvidenceAI/docs/evidence/m125/backend.xml"
+    ],
+    "exit_code": 1,
+    "seconds": 38.46
+  },
+  {
+    "name": "alembic-current",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "alembic",
+      "current"
+    ],
+    "exit_code": 0,
+    "seconds": 0.36
+  },
+  {
+    "name": "alembic-check",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "alembic",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.326
+  },
+  {
+    "name": "pip-check",
+    "cwd": "apps/api",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.146
+  }
+]

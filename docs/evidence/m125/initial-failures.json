@@ -1,0 +1,21 @@
+{
+  "disposable_database_startup": "Initial tmpfs ownership incompatible with UID999; readiness timed out. Owned container removed. Corrected uid/gid/mode.",
+  "initial_backend": {
+    "passed": 658,
+    "failed": 1,
+    "errors": 1,
+    "causes": [
+      "New assertion used incorrect generated database name length; corrected47to48",
+      "New test omitted scratch_database fixture import; added"
+    ]
+  },
+  "initial_browser": {
+    "passed": 17,
+    "failed": 1,
+    "engine": "chromium",
+    "case": "real CSRF, untrusted origin, safe private HTML and expired session",
+    "observation": "Login page showed Cannot reach API; heading assertion timed out. Root cause NOT VERIFIED; no product or timeout/assertion change made."
+  },
+  "initial_wrapper_limitation": "Inherited regression helper returned zero despite failed children. Corrected new m125 helper to propagate unexpected exits; initial isolation.json exit_code is wrapper exit, not a test pass.",
+  "final_discovery_correction": "Full pytest initially reported663 with a ReturnNotNone warning: the new helper named test_safety.py was accidentally discovered as one extra test. Renamed to disposable_database.py and renamed the URL helper; final meaningful suite is rerun. Original663 XML/command receipts retained, not counted as an extra regression case."
+}

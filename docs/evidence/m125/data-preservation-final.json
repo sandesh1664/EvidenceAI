@@ -1,0 +1,11 @@
+{
+  "status": "FAIL",
+  "public_tables_compared": 16,
+  "all_row_hashes_and_counts_equal": false,
+  "revision_equal": true,
+  "private_storage_content_and_metadata_equal": true,
+  "table_count_changes": {
+    "auth_rate_limits": 1
+  },
+  "scope": "Current run only; does not resolve historical attribution or original evidence byte recovery."
+}

@@ -1,0 +1,48 @@
+{
+  "baseline": "932f75f",
+  "manifest_sha256": "27f19c621d4a6e983d42b6aca6b8c41c5786db386f6e17a1d5d8780ba21b4326",
+  "files_checked": 69,
+  "original_manifest_mismatches": [
+    "docs/evidence/m124/build-provenance.txt",
+    "docs/evidence/m124/build.log",
+    "docs/evidence/m124/lint.log",
+    "docs/evidence/m124/unit.log"
+  ],
+  "normalization_audit": {
+    "created_at": "2026-10-19T21:41:52.165122+00:00",
+    "reason": "Git whitespace cleanup of recorded build evidence",
+    "original_manifest": "docs/evidence/m124/evidence-sha256.json",
+    "note": "The original manifest is preserved. Original raw bytes have not been independently recovered.",
+    "files": [
+      {
+        "file": "docs/evidence/m124/build-provenance.txt",
+        "original_sha256": "d90576d588205c2bdfc1fb4084e8e4375f60c5e5c20cf2ed911bf509cad66de7",
+        "normalized_sha256": "44b7aa06c34065069aec320374d222c9f60233effa3e00551141fc6cd307c037",
+        "original_bytes_available": false,
+        "transformation": "Line-ending and trailing-whitespace normalization"
+      },
+      {
+        "file": "docs/evidence/m124/build.log",
+        "original_sha256": "d52979718b12655dd9acdb5423d4675048e5b96c6c482e2c35047dec8b93f525",
+        "normalized_sha256": "3c41c39c34ead52d2630793f4b63dea38e65f0b8272d530852bf11db7e2ed624",
+        "original_bytes_available": false,
+        "transformation": "Line-ending and trailing-whitespace normalization"
+      },
+      {
+        "file": "docs/evidence/m124/lint.log",
+        "original_sha256": "73f54382ed38c39a0d05708a84e9e421a73b82381dbfda81b6d35c0191a9ac98",
+        "normalized_sha256": "f9a21ecb409cdea1f61b7e813acc2fe2b2231e6d75fde4df7ab8eb89fc078bd7",
+        "original_bytes_available": false,
+        "transformation": "Line-ending and trailing-whitespace normalization"
+      },
+      {
+        "file": "docs/evidence/m124/unit.log",
+        "original_sha256": "977f3b30f6a9d1faad71923a3cb916ae823ea764d6af80fa497cd46086acd32f",
+        "normalized_sha256": "b901e0f286e44160e091751c34b28683274a63dfe17e2bb6a8912697636e4bd6",
+        "original_bytes_available": false,
+        "transformation": "Line-ending and trailing-whitespace normalization"
+      }
+    ]
+  },
+  "historical_bytes_restored": false
+}

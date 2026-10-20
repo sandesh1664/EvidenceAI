@@ -1,0 +1,29 @@
+[
+  {
+    "advisory": "CVE-2026-21728",
+    "url": "https://grafana.com/security/security-advisories/cve-2026-21728/",
+    "exit_code": 0,
+    "record": {
+      "severity": "high",
+      "fixed_versions": [
+        "2.8.4",
+        "2.9.2",
+        "2.10.2"
+      ],
+      "description": "Tempo search query limits permit unbounded memory allocation."
+    }
+  },
+  {
+    "advisory": "CVE-2026-28377",
+    "url": "https://grafana.com/security/security-advisories/cve-2026-28377/",
+    "exit_code": 0,
+    "record": {
+      "severity": "high",
+      "ghsa_id": "GHSA-ffqx-q65f-36jf",
+      "fixed_versions": [
+        "2.10.3"
+      ],
+      "description": "Tempo /status/config can expose the S3 SSE-C key."
+    }
+  }
+]

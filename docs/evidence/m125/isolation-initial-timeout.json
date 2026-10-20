@@ -1,0 +1,11 @@
+{
+  "container": "evidenceai-test-dd02a8c2e7b647fab8ceac6bc5123aab",
+  "database": "evidenceai_test_dd02a8c2e7b647fab8ceac6bc5123aab",
+  "storage": "owned tmpfs; no host development mounts",
+  "command": [
+    "python3",
+    "docs/evidence/m125/run_suite.py"
+  ],
+  "image": "evidenceai-database:m121",
+  "owned_container_removed": true
+}

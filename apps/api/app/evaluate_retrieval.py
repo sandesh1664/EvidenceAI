@@ -17,6 +17,7 @@ from sqlalchemy.schema import CreateSchema, DropSchema
 from app.core.config import Settings, get_settings
 from app.db.base import Base
 from app.db.session import get_engine
+from app.db.disposable_database import require_disposable_database
 from app.models import User, Workspace, WorkspaceMember, Document, DocumentChunk
 from app.schemas.search import SearchRequest
 from app.services import embedding_jobs, search_service
@@ -41,6 +42,7 @@ def metrics(rankings,relevant,k):
 
 
 def evaluate(dataset_path=DATASET, *, dimensions=128):
+    require_disposable_database()
     dataset=json.loads(Path(dataset_path).read_text())
     settings=Settings(app_env='test',auth_allow_insecure_http=True,embedding_provider='fake',
         embedding_model='fake-hash-v1',embedding_revision='1',embedding_dimensions=dimensions,

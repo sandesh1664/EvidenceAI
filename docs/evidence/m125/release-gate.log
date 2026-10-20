@@ -1,0 +1,9 @@
+{
+  "release": "BLOCKED",
+  "unmet_criteria": [
+    "container_security",
+    "ai_security",
+    "ci_cd",
+    "production_environment"
+  ]
+}

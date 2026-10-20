@@ -1,0 +1,41 @@
+
+> web@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.4.2 (webpack)
+✓ Running next.config.ts took 39ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1724ms
+  Running TypeScript ...
+  Finished TypeScript in 658ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/9) ...
+  Generating static pages using 9 workers (2/9) 
+  Generating static pages using 9 workers (4/9) 
+  Generating static pages using 9 workers (6/9) 
+✓ Generating static pages using 9 workers (9/9) in 92ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /login
+├ ƒ /register
+├ ƒ /settings
+├ ƒ /verify-email
+├ ƒ /workspaces
+├ ƒ /workspaces/[workspaceId]
+├ ƒ /workspaces/[workspaceId]/conversations
+├ ƒ /workspaces/[workspaceId]/conversations/[conversationId]
+├ ƒ /workspaces/[workspaceId]/documents
+├ ƒ /workspaces/[workspaceId]/members
+├ ƒ /workspaces/[workspaceId]/research
+└ ƒ /workspaces/[workspaceId]/search
+
+
+ƒ Proxy (Middleware)
+
+ƒ  (Dynamic)  server-rendered on demand
+

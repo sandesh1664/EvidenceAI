@@ -1,0 +1,42 @@
+{
+  "baseline": "932f75f",
+  "preserved": {
+    "infra/scripts/scan_images.py": {
+      "unchanged": true,
+      "sha256": "9980f137461d0f5004f1d42daac17ca0b8522954c2cc36b2e0231b197550495a"
+    },
+    "infra/scripts/verify_release.py": {
+      "unchanged": true,
+      "sha256": "c732d8da99f7d1a43367cec15f4970cef996afaec195b6fa15c98e8f29097127"
+    },
+    "infra/scripts/deploy.py": {
+      "unchanged": true,
+      "sha256": "f9fa9f9049e2ce5e4188d5a31dd61ded1a0431838e86578a22e0305a896ad589"
+    },
+    "infra/scripts/acceptance.py": {
+      "unchanged": true,
+      "sha256": "437cf2e27036cf9d3ddf4686aec926982240c7461f270392f83c8f7c90ddcf52"
+    },
+    "infra/compose.production.yml": {
+      "unchanged": true,
+      "sha256": "8bcd82a1ecc05773395768c93d3fca1cc2f73713e502bfd84291c700317c5cac"
+    },
+    "infra/docker-compose.yml": {
+      "unchanged": true,
+      "sha256": "a4a25fbc616ae0aabd3a33bfe82fa7a744a9e58acc76f3c0655790ede9876c1d"
+    },
+    ".github/workflows/deploy.yml": {
+      "unchanged": true,
+      "sha256": "99b002affe5b75dd99beafe486a8b3518ab28a2ec80700f9ecac95a02e483de8"
+    }
+  },
+  "ci_workflow_change": "Only job-owned test DB name, health DB name, DATABASE_URL and explicit EVIDENCEAI_TEST_DATABASE_URL; scanner/release requirements unchanged",
+  "m124_evidence_unchanged": true,
+  "customer_services_routes_frontend_and_migrations_unchanged": true,
+  "application_tooling_changes": [
+    "apps/api/app/db/disposable_database.py",
+    "apps/api/app/evaluate_retrieval.py",
+    "apps/api/app/evaluate_rag.py"
+  ],
+  "scope": "Only offline evaluation safety tooling, test fixtures/runner, experimental Grafana recipe, CI test database wiring and documentation/evidence changed. No customer-facing feature or security gate modified."
+}

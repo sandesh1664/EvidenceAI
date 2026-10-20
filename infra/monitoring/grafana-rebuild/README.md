@@ -86,3 +86,15 @@ but this is not a security exception or proof of all runtime applicability; thos
 scanner findings still block policy. The build metadata is local evidence, not an
 independent publisher signature or full reproducible-build attestation. Neither
 12.4 image is selected or approved. See [12.4 report](../../../docs/security-remediation-12-4.md).
+
+### Milestone 12.5 dependency reachability experiment
+
+`125.Dockerfile` reuses the pinned12.4.13 source and kin-openapi patch, records the
+actual OSS package graph inside the image, and preserves all datasource assets.
+Build with `docker build --target candidate -f infra/monitoring/grafana-rebuild/125.Dockerfile -t evidenceai-grafana:kin-m125 infra/monitoring/grafana-rebuild`.
+The separate `tempo-v3-probe` target tests the published v3.1.0 module path and is
+expected to fail; it is not part of the runtime candidate. Two Tempo HIGH findings
+remain in the complete scan. The affected server packages are absent from this
+custom build graph; this observation does not override policy or authenticate the
+vendor binary. No production promotion is approved. See
+[12.5 assessment](../../../docs/security-remediation-12-5.md).

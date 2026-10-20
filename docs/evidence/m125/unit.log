@@ -1,0 +1,13 @@
+
+> web@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/redmug/EvidenceAI/apps/web
+
+
+ Test Files  4 passed (4)
+      Tests  53 passed (53)
+   Start at  02:10:33
+   Duration  2.00s (environment 41%, tests 41%, setup 13%, transform 4%, import 1%)
+

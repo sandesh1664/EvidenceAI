@@ -1,0 +1,139 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from 125.Dockerfile
+#1 transferring dockerfile: 2.82kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [source 3/7] ADD --checksum=sha256:53fb4872e64de5a9a626ef9acd60b4b84c59a54394587f488dba6bff76299924 https://codeload.github.com/grafana/grafana/tar.gz/refs/tags/v12.4.13 /tmp/source.tar.gz
+#4 DONE 0.0s
+
+#5 [source 1/7] FROM docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d
+#5 resolve docker.io/library/golang:1.27.2-alpine@sha256:f92b6ef800e499660581efdabdf25d9d817a9d124eaf900924f0504e7e27e12d done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 44B done
+#6 DONE 0.0s
+
+#7 [source 2/7] RUN apk add --no-cache build-base patch
+#7 CACHED
+
+#8 [source 4/7] RUN mkdir /src && tar -xzf /tmp/source.tar.gz --strip-components=1 -C /src
+#8 CACHED
+
+#9 [source 6/7] COPY dependencies-124.patch /tmp/dependencies.patch
+#9 CACHED
+
+#10 [source 3/7] ADD --checksum=sha256:53fb4872e64de5a9a626ef9acd60b4b84c59a54394587f488dba6bff76299924 https://codeload.github.com/grafana/grafana/tar.gz/refs/tags/v12.4.13 /tmp/source.tar.gz
+#10 CACHED
+
+#11 [source 5/7] WORKDIR /src
+#11 CACHED
+
+#12 [source 7/7] RUN patch --batch --fuzz=0 --dry-run -p1 < /tmp/dependencies.patch     && patch --batch --fuzz=0 -p1 < /tmp/dependencies.patch
+#12 CACHED
+
+#13 [tempo-v3-probe 1/1] RUN --mount=type=cache,id=evidenceai-grafana-mod,target=/go/pkg/mod     GOWORK=off GOPROXY=https://proxy.golang.org go get github.com/grafana/tempo@v3.1.0
+#13 1013.6 go: github.com/grafana/tempo@v3.1.0: reading https://proxy.golang.org/github.com/grafana/tempo/@v/v3.1.0.info: 404 Not Found
+#13 1013.6 	server response: not found: github.com/grafana/tempo@v3.1.0: invalid version: module contains a go.mod file, so module path must match major version ("github.com/grafana/tempo/v3")
+#13 ERROR: process "/bin/sh -c GOWORK=off GOPROXY=https://proxy.golang.org go get github.com/grafana/tempo@v3.1.0" did not complete successfully: exit code: 1
+------
+ > [tempo-v3-probe 1/1] RUN --mount=type=cache,id=evidenceai-grafana-mod,target=/go/pkg/mod     GOWORK=off GOPROXY=https://proxy.golang.org go get github.com/grafana/tempo@v3.1.0:
+1013.6 go: github.com/grafana/tempo@v3.1.0: reading https://proxy.golang.org/github.com/grafana/tempo/@v/v3.1.0.info: 404 Not Found
+1013.6 	server response: not found: github.com/grafana/tempo@v3.1.0: invalid version: module contains a go.mod file, so module path must match major version ("github.com/grafana/tempo/v3")
+------
+125.Dockerfile:15
+--------------------
+  14 |     FROM source AS tempo-v3-probe
+  15 | >>> RUN --mount=type=cache,id=evidenceai-grafana-mod,target=/go/pkg/mod \
+  16 | >>>     GOWORK=off GOPROXY=https://proxy.golang.org go get github.com/grafana/tempo@v3.1.0
+  17 |     FROM source AS build
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c GOWORK=off GOPROXY=https://proxy.golang.org go get github.com/grafana/tempo@v3.1.0" did not complete successfully: exit code: 1
+77175 v0.38.0 /Users/redmug/.docker/cli-plugins/docker-buildx buildx build --progress=plain --target tempo-v3-probe -f infra/monitoring/grafana-rebuild/125.Dockerfile infra/monitoring/grafana-rebuild
+github.com/docker/buildx/commands.runBuildWithOptions
+	github.com/docker/buildx/commands/build.go:506
+github.com/docker/buildx/commands.runBuild
+	github.com/docker/buildx/commands/build.go:421
+github.com/docker/buildx/commands.buildCmd.func1
+	github.com/docker/buildx/commands/build.go:542
+github.com/docker/cli/cli-plugins/plugin.RunPlugin.func1.1.2
+	github.com/docker/cli@v29.8.2+incompatible/cli-plugins/plugin/plugin.go:68
+github.com/spf13/cobra.(*Command).execute
+	github.com/spf13/cobra@v1.10.2/command.go:1015
+github.com/spf13/cobra.(*Command).ExecuteC
+	github.com/spf13/cobra@v1.10.2/command.go:1148
+github.com/spf13/cobra.(*Command).Execute
+	github.com/spf13/cobra@v1.10.2/command.go:1071
+github.com/docker/cli/cli-plugins/plugin.RunPlugin
+	github.com/docker/cli@v29.8.2+incompatible/cli-plugins/plugin/plugin.go:83
+main.runPlugin
+	github.com/docker/buildx/cmd/buildx/main.go:66
+main.run
+	github.com/docker/buildx/cmd/buildx/main.go:80
+main.main
+	github.com/docker/buildx/cmd/buildx/main.go:90
+runtime.main
+	runtime/proc.go:290
+runtime.goexit
+	runtime/asm_arm64.s:1447
+
+295  /usr/local/bin/dockerd --config-file /run/config/docker/daemon.json
+github.com/moby/buildkit/executor/runcexecutor.exitError
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/executor/runcexecutor/executor.go:457
+github.com/moby/buildkit/executor/runcexecutor.(*runcExecutor).Run
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/executor/runcexecutor/executor.go:405
+github.com/moby/buildkit/solver/llbsolver/ops.(*ExecOp).Exec
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/llbsolver/ops/exec.go:521
+github.com/moby/buildkit/solver.(*sharedOp).Exec.func2
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/jobs.go:1272
+github.com/moby/buildkit/util/flightcontrol.(*call[...]).run
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/util/flightcontrol/flightcontrol.go:122
+sync.(*Once).doSlow
+	/usr/local/go/src/sync/once.go:78
+sync.(*Once).Do
+	/usr/local/go/src/sync/once.go:69
+runtime.goexit
+	/usr/local/go/src/runtime/asm_arm64.s:1447
+
+77175 v0.38.0 /Users/redmug/.docker/cli-plugins/docker-buildx buildx build --progress=plain --target tempo-v3-probe -f infra/monitoring/grafana-rebuild/125.Dockerfile infra/monitoring/grafana-rebuild
+google.golang.org/grpc.(*ClientConn).Invoke
+	google.golang.org/grpc@v1.84.0/call.go:39
+github.com/moby/buildkit/api/services/control.(*controlClient).Solve
+	github.com/moby/buildkit@v0.34.0/api/services/control/control_grpc.pb.go:88
+github.com/moby/buildkit/client.(*Client).solve.func2
+	github.com/moby/buildkit@v0.34.0/client/solve.go:356
+golang.org/x/sync/errgroup.(*Group).Go.func1
+	golang.org/x/sync@v0.23.0/errgroup/errgroup.go:93
+runtime.goexit
+	runtime/asm_arm64.s:1447
+
+295  /usr/local/bin/dockerd --config-file /run/config/docker/daemon.json
+github.com/moby/buildkit/solver.(*edge).execOp
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/edge.go:979
+github.com/moby/buildkit/solver/internal/pipe.NewWithFunction[...].func2
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/internal/pipe/pipe.go:78
+runtime.goexit
+	/usr/local/go/src/runtime/asm_arm64.s:1447
+
+77175 v0.38.0 /Users/redmug/.docker/cli-plugins/docker-buildx buildx build --progress=plain --target tempo-v3-probe -f infra/monitoring/grafana-rebuild/125.Dockerfile infra/monitoring/grafana-rebuild
+github.com/moby/buildkit/client.(*Client).solve.func2
+	github.com/moby/buildkit@v0.34.0/client/solve.go:358
+golang.org/x/sync/errgroup.(*Group).Go.func1
+	golang.org/x/sync@v0.23.0/errgroup/errgroup.go:93
+
+295  /usr/local/bin/dockerd --config-file /run/config/docker/daemon.json
+github.com/moby/buildkit/solver/llbsolver/ops.(*ExecOp).Exec
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/llbsolver/ops/exec.go:552
+github.com/moby/buildkit/solver.(*sharedOp).Exec.func2
+	/root/build-deb/engine/vendor/github.com/moby/buildkit/solver/jobs.go:1272
+
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/8v45jkgtc29ive5w5y5093rn6
