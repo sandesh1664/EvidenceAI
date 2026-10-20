@@ -1,0 +1,38 @@
+[
+  {
+    "name": "lint-delivery",
+    "command": [
+      "npm",
+      "--prefix",
+      "apps/web",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 1.785
+  },
+  {
+    "name": "types-delivery",
+    "command": [
+      "apps/web/node_modules/.bin/tsc",
+      "--noEmit",
+      "--project",
+      "apps/web/tsconfig.json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.697
+  },
+  {
+    "name": "frontend-delivery",
+    "command": [
+      "npm",
+      "--prefix",
+      "apps/web",
+      "test",
+      "--",
+      "--run"
+    ],
+    "exit_code": 0,
+    "seconds": 1.976
+  }
+]

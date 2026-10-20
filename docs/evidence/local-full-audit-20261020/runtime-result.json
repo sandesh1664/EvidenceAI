@@ -1,0 +1,49 @@
+{
+  "database": {
+    "version": "17.11",
+    "vector": "0.8.7",
+    "revision": "91e2b6d8c410"
+  },
+  "connection_pool_reconnect": "PASS",
+  "migration-current": {
+    "exit_code": 0,
+    "seconds": 0.582
+  },
+  "migration-heads": {
+    "exit_code": 0,
+    "seconds": 0.164
+  },
+  "migration-check": {
+    "exit_code": 0,
+    "seconds": 0.351
+  },
+  "pip-check": {
+    "exit_code": 0,
+    "seconds": 0.147
+  },
+  "worker-status": {
+    "exit_code": 0,
+    "seconds": 0.395
+  },
+  "worker-once": {
+    "exit_code": 0,
+    "seconds": 0.397
+  },
+  "bounded_http": {
+    "requests": 30,
+    "concurrency": 3,
+    "failures": 0,
+    "median_ms": 0.578,
+    "max_ms": 1.876,
+    "scope": "health only; not application or production capacity"
+  },
+  "resource_sample": "111872  56.7",
+  "openapi_operations": 37,
+  "api_restart": "PASS",
+  "worker_process_and_sigterm": "PASS",
+  "evaluation": {
+    "exit_code": 0,
+    "seconds": 4.495
+  },
+  "status": "PASS"
+}

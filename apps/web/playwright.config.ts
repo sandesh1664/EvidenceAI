@@ -12,8 +12,8 @@ export default defineConfig({
   reporter: "list",
   use: {
     baseURL: "http://localhost:3100",
-    trace: "retain-on-failure",
-    screenshot: "only-on-failure",
+    trace: "off", // Authenticated traces can retain proof tokens and session cookies.
+    screenshot: "off", // Keep authentication proof out of failure artifacts.
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
@@ -30,7 +30,7 @@ export default defineConfig({
     },
     {
       command:
-        "NEXT_PUBLIC_API_BASE_URL=http://localhost:18000 npm run build && NEXT_PUBLIC_API_BASE_URL=http://localhost:18000 npm run start -- --hostname 127.0.0.1 --port 3100",
+        "EVIDENCEAI_E2E=1 NEXT_PUBLIC_API_BASE_URL=http://localhost:18000 npm run build && EVIDENCEAI_E2E=1 NEXT_PUBLIC_API_BASE_URL=http://localhost:18000 npm run start -- --hostname 127.0.0.1 --port 3100",
       url: "http://localhost:3100/login",
       reuseExistingServer: false,
       gracefulShutdown: { signal: "SIGTERM", timeout: 15000 },

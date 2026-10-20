@@ -24,7 +24,7 @@ export default function VerifyEmail() {
     <h1>Verify your email</h1>
     {verified ? <div role="status"><p>Registration verified. You can now sign in with your credentials.</p><Link href="/login">Sign in</Link></div> : <>
       <p>Open your verification link in the same browser that requested registration, or paste its token below. Existing account passwords are never changed.</p>
-      <form onSubmit={submit}>
+      <form method="post" onSubmit={submit}>
         <label>Verification token<input name="token" type="password" autoComplete="off" maxLength={43} /></label>
         {!!error && <ErrorBox error={error} />}
         <button className="button primary" disabled={busy}>{busy ? "Verifying…" : "Verify email"}</button>

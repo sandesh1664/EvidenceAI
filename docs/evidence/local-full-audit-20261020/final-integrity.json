@@ -1,0 +1,135 @@
+{
+  "head_unchanged": false,
+  "branch_unchanged": true,
+  "preexisting_files_changed_by_audit": [
+    ".gitignore",
+    "apps/web/e2e/research.spec.ts",
+    "apps/web/e2e/server.py",
+    "apps/web/eslint.config.mjs",
+    "apps/web/next.config.ts",
+    "apps/web/playwright.config.ts",
+    "apps/web/src/app/verify-email/page.tsx",
+    "apps/web/src/components/auth/auth-form.tsx",
+    "apps/web/tsconfig.json"
+  ],
+  "missing_baseline_files": [],
+  "historical_evidence_files_compared": 361,
+  "historical_evidence_bytes_unchanged": true,
+  "preexisting_workflow_and_security_policy_bytes_unchanged": true,
+  "no_post_failure_application_tests": true,
+  "starting_head": "c0103321e041f31605a0ffd4c43e065bc0116381",
+  "final_head": "a12b93d5a6802572a21089abb99de154d9056313",
+  "head_change_initiated_by_this_audit": false,
+  "head_change_actor": "NOT VERIFIED",
+  "static_checks": [
+    {
+      "name": "diff",
+      "exit_code": 0
+    },
+    {
+      "name": "git-fsck",
+      "exit_code": 0
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "apps/web/e2e/tls_mail.py",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "apps/web/src/test/build-isolation.test.ts",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/backend-isolation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/browser-initial-isolation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/browser-intermediate-isolation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/browser-isolation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/checks.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/delivery-checks.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/environment.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/evaluation-summary.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/final-integrity.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/monitoring-summary.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/native-form-proof.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/preservation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/runtime-isolation.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/runtime-result.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/evidence/local-full-audit-20261020/summary.json",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/local-full-system-audit-verification.md",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/local-full-system-audit.md",
+      "passed": true
+    },
+    {
+      "name": "new-file-whitespace",
+      "file": "docs/local-functional-test-matrix.md",
+      "passed": true
+    }
+  ],
+  "all_static_checks_pass": true
+}

@@ -1,0 +1,294 @@
+{
+  "publication_branch": "publication/local-audit-20261020",
+  "published_base_commit": "a12b93d5a6802572a21089abb99de154d9056313",
+  "excluded_local_commit": "ef91f507146e02b15eb81f50f2aa9043f350cbad",
+  "no_commit_or_push_performed": true,
+  "source_main_and_index_preserved": true,
+  "historical_evidence_unchanged": true,
+  "files_included": [
+    ".gitignore",
+    "apps/api/tests/test_session_preservation.py",
+    "apps/web/e2e/research.spec.ts",
+    "apps/web/e2e/server.py",
+    "apps/web/e2e/tls_mail.py",
+    "apps/web/eslint.config.mjs",
+    "apps/web/next.config.ts",
+    "apps/web/playwright.config.ts",
+    "apps/web/src/app/verify-email/page.tsx",
+    "apps/web/src/components/auth/auth-form.tsx",
+    "apps/web/src/test/build-isolation.test.ts",
+    "apps/web/src/test/network-isolation.test.ts",
+    "apps/web/src/test/setup.ts",
+    "apps/web/tsconfig.json",
+    "docs/evidence/local-full-audit-20261020/backend-isolation.json",
+    "docs/evidence/local-full-audit-20261020/browser-initial-isolation.json",
+    "docs/evidence/local-full-audit-20261020/browser-intermediate-isolation.json",
+    "docs/evidence/local-full-audit-20261020/browser-isolation.json",
+    "docs/evidence/local-full-audit-20261020/checks.json",
+    "docs/evidence/local-full-audit-20261020/delivery-checks.json",
+    "docs/evidence/local-full-audit-20261020/environment.json",
+    "docs/evidence/local-full-audit-20261020/evaluation-summary.json",
+    "docs/evidence/local-full-audit-20261020/final-integrity.json",
+    "docs/evidence/local-full-audit-20261020/monitoring-summary.json",
+    "docs/evidence/local-full-audit-20261020/native-form-proof.json",
+    "docs/evidence/local-full-audit-20261020/preservation.json",
+    "docs/evidence/local-full-audit-20261020/runtime-isolation.json",
+    "docs/evidence/local-full-audit-20261020/runtime-result.json",
+    "docs/evidence/local-full-audit-20261020/summary.json",
+    "docs/local-audit-preservation-investigation.md",
+    "docs/local-audit-preservation-verification.md",
+    "docs/local-full-system-audit-verification.md",
+    "docs/local-full-system-audit.md",
+    "docs/local-functional-test-matrix.md",
+    "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+    "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+    "docs/publication-review/local-full-audit-20261020/publication-plan.json",
+    "docs/publication-review/local-full-audit-20261020/publication-preparation.md",
+    "docs/publication-review/local-full-audit-20261020/review.json",
+    "docs/publication-review/local-full-audit-20261020/review.md",
+    "docs/publication-review/local-full-audit-20261020/verification.json",
+    "infra/testing/session_preservation.py"
+  ],
+  "payload_provenance": [
+    {
+      "path": ".gitignore",
+      "source": "original index",
+      "sha256": "21864163d21df473667627bf5da4f94ae55c3ce0f5a713a0deeae44ab1728afb"
+    },
+    {
+      "path": "apps/api/tests/test_session_preservation.py",
+      "source": "unpublished HEAD",
+      "sha256": "006134eae0c40ca49ea747128d58ef0a32bf5b44a2dde8fb9b664c47ae1e315d"
+    },
+    {
+      "path": "apps/web/e2e/research.spec.ts",
+      "source": "original index",
+      "sha256": "ea1dbd19e9f96b56dd68792d73bd4a52c3156d0a1ca1c0d6b1fcf4487f86a773"
+    },
+    {
+      "path": "apps/web/e2e/server.py",
+      "source": "original index",
+      "sha256": "961d235bce5352ff7228409cdea62a086913d39604a0431f9d7a856112ad04cc"
+    },
+    {
+      "path": "apps/web/e2e/tls_mail.py",
+      "source": "original index",
+      "sha256": "3265603e89ca65dad11c6c189fbfa8ed80b7a7d15ae703b940d2257592468aea"
+    },
+    {
+      "path": "apps/web/eslint.config.mjs",
+      "source": "original index",
+      "sha256": "3b554d7ff77348844dec0ae8bd60ec5a6109b8dbe308f1433759f170c6f8f593"
+    },
+    {
+      "path": "apps/web/next.config.ts",
+      "source": "original index",
+      "sha256": "2188634f17898cd0697805dce95b419429ea63fac174626909b1f29e3a5d0558"
+    },
+    {
+      "path": "apps/web/playwright.config.ts",
+      "source": "original index",
+      "sha256": "00f31bd12cd4c2e7405c7998f8b952cce76d1ebf4a5f5497367f7b4a7a01fe17"
+    },
+    {
+      "path": "apps/web/src/app/verify-email/page.tsx",
+      "source": "original index",
+      "sha256": "5639b27ccd494778a0de608f36da7c39c0f4dc48dbc9e156fe12ace6ec7075ea"
+    },
+    {
+      "path": "apps/web/src/components/auth/auth-form.tsx",
+      "source": "original index",
+      "sha256": "b69bc2bdab09327e8119951724c22ecdb1b3e659c87f967b224e79856408b606"
+    },
+    {
+      "path": "apps/web/src/test/build-isolation.test.ts",
+      "source": "original index",
+      "sha256": "8c4f6b65ea0c263dc367a0071d269afa8ff839f61babb6ad65503e81704809d3"
+    },
+    {
+      "path": "apps/web/src/test/network-isolation.test.ts",
+      "source": "unpublished HEAD",
+      "sha256": "d1777ddd408cccf521738858d2a05a0cfc25222df0c2d9d4601f455e7f62444f"
+    },
+    {
+      "path": "apps/web/src/test/setup.ts",
+      "source": "unpublished HEAD",
+      "sha256": "f53674de8a6c12a6732af400f1dcdabcc925b9a5a3e65fd8c32a6f385154a15b"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "source": "original index",
+      "sha256": "829b4ab8d07a7db80a497d690ac2d2f0f4a67ff103270b7470081dd592d7a34d"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/backend-isolation.json",
+      "source": "original index",
+      "sha256": "af8baf2d5fbbb73707632e0b48da7cac0536d53fb3b2672778025b460559aad2"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/browser-initial-isolation.json",
+      "source": "original index",
+      "sha256": "c59bfd8943873a24b4d9126909d3753ac209c88e95d03671a5f55ede1d0e670e"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/browser-intermediate-isolation.json",
+      "source": "original index",
+      "sha256": "3f0d0f8cae8e33dd2b2b64848b4f2fc0c4a026fc2b314dabbaa0136a100ae821"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/browser-isolation.json",
+      "source": "original index",
+      "sha256": "05bf2d573efbb95290b5b0e846c90aeea8f6c987a0a1b456850913c1d1d69252"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/checks.json",
+      "source": "original index",
+      "sha256": "cca9a2a31b00c8b04336495781934ff601845a99621b5bf8676468b299e76063"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/delivery-checks.json",
+      "source": "original index",
+      "sha256": "05372783a88da9aff6ce8d154d60f3b6b1207ae2bf31a87b5ae759d1cee066a5"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/environment.json",
+      "source": "original index",
+      "sha256": "5329334b1126cef77f7418bd6b35d36a52cbefa6bde231d6dc6c248d616b0194"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/evaluation-summary.json",
+      "source": "original index",
+      "sha256": "dd256fc495326aa77f1fb814de1dd7a76147f5815f1f338466735a912f1b8a97"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/final-integrity.json",
+      "source": "original index",
+      "sha256": "c6271d167d49c4ff19fb0a85409459a06558ad9b216f6d7369d6c82fb15bf2d1"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/monitoring-summary.json",
+      "source": "original index",
+      "sha256": "315595f30e0dfaf2ec24db38c10c05c29130374ebb91a00874ca6b62d565fd78"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/native-form-proof.json",
+      "source": "original index",
+      "sha256": "0de9ea90d71a2ea01ae8c992c6902fb4d223375939e5ce99e2d831f53de5d079"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/preservation.json",
+      "source": "original index",
+      "sha256": "42906faa60e173f7435b229c0679f589ce5e3103fa161ac0615407f2c3946b3c"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/runtime-isolation.json",
+      "source": "original index",
+      "sha256": "c500d1f665e2c79198d1d0f45ac4d543ed1a3571ea134befe368a7ea9fcbf98a"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/runtime-result.json",
+      "source": "original index",
+      "sha256": "1529584234776494c208b20898464f0ee83a7780ed2fb0344f3d1193c406fabe"
+    },
+    {
+      "path": "docs/evidence/local-full-audit-20261020/summary.json",
+      "source": "original index",
+      "sha256": "8a88944753e908b1d220a74a4876fb3652f32042d33334c0812917790f20361c"
+    },
+    {
+      "path": "docs/local-audit-preservation-investigation.md",
+      "source": "unpublished HEAD",
+      "sha256": "6a0f132b509c42198cd2a02ecb147fd88c292f22d2648065191ad8cd536a3db3"
+    },
+    {
+      "path": "docs/local-full-system-audit.md",
+      "source": "original index",
+      "sha256": "c6909fe49cc9d7cd80aac9a9223c354c59b799e0eeb09bde3197ba9004df5254"
+    },
+    {
+      "path": "docs/local-functional-test-matrix.md",
+      "source": "original index",
+      "sha256": "88b5e721b1ef0d36e1063b6f9de5b3665a0baf9bc12182f4a877ca6639ec2c54"
+    },
+    {
+      "path": "infra/testing/session_preservation.py",
+      "source": "unpublished HEAD",
+      "sha256": "eabd174cd5ffc1509b9054c661d982a5f149ad330a4223bc5e9887c47f46d264"
+    },
+    {
+      "path": "docs/local-full-system-audit-verification.md",
+      "source": "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+      "sha256": "abe66f69d27ff9af8ba96ffbb67cf6e469dc0ed167ed3c5f6e6b67a5f23fb0f0"
+    },
+    {
+      "path": "docs/local-audit-preservation-verification.md",
+      "source": "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+      "sha256": "2b19464c0705930154eedea896a24cfa16c80190d87a947a70e1be09ba2ffc59"
+    },
+    {
+      "path": "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+      "source": "reviewed publication metadata/derivative",
+      "sha256": "2b19464c0705930154eedea896a24cfa16c80190d87a947a70e1be09ba2ffc59"
+    },
+    {
+      "path": "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+      "source": "reviewed publication metadata/derivative",
+      "sha256": "abe66f69d27ff9af8ba96ffbb67cf6e469dc0ed167ed3c5f6e6b67a5f23fb0f0"
+    },
+    {
+      "path": "docs/publication-review/local-full-audit-20261020/review.json",
+      "source": "reviewed publication metadata/derivative",
+      "sha256": "1295ef21fe79cebf73d231d491f33b67ed652c2b69ed9c3a48d7134372e7f5e1"
+    },
+    {
+      "path": "docs/publication-review/local-full-audit-20261020/review.md",
+      "source": "reviewed publication metadata/derivative",
+      "sha256": "86a4ee40e3889c202b9fa43a1496c609bc635ac6a6904095781dc2ca944790c4"
+    },
+    {
+      "path": "docs/publication-review/local-full-audit-20261020/verification.json",
+      "source": "reviewed publication metadata/derivative",
+      "sha256": "5cbe633e178ebb40654f325f7aba358d6b8c05c1fce0e036b7edd9423365c95e"
+    }
+  ],
+  "restricted_originals_excluded": [
+    {
+      "path": "docs/local-full-system-audit-verification.md",
+      "reason": "Original workstation-account path; retained in restricted local custody only",
+      "published_substitute": "Exact previously SAFE anonymized derivative at the canonical path",
+      "original_blob_reachability_required": false
+    },
+    {
+      "path": "docs/local-audit-preservation-verification.md",
+      "reason": "Original workstation-account path; retained in restricted local custody only",
+      "published_substitute": "Exact previously SAFE anonymized derivative at the canonical path",
+      "original_blob_reachability_required": false
+    }
+  ],
+  "derivative_mapping": [
+    {
+      "canonical_path": "docs/local-full-system-audit-verification.md",
+      "source_derivative": "docs/publication-review/local-full-audit-20261020/local-full-system-audit-verification.sanitized.md",
+      "published_sha256": "abe66f69d27ff9af8ba96ffbb67cf6e469dc0ed167ed3c5f6e6b67a5f23fb0f0"
+    },
+    {
+      "canonical_path": "docs/local-audit-preservation-verification.md",
+      "source_derivative": "docs/publication-review/local-full-audit-20261020/local-audit-preservation-verification.sanitized.md",
+      "published_sha256": "2b19464c0705930154eedea896a24cfa16c80190d87a947a70e1be09ba2ffc59"
+    }
+  ],
+  "publication_metadata_review": {
+    "copied_review_documents": "Retain their original review scope and original-source digests; canonical published report paths now contain the mapped SAFE derivatives, not those originals",
+    "credential_values_found": false,
+    "raw_private_snapshots_included": false,
+    "personal_paths_in_new_payload": false,
+    "production_release_status": "BLOCKED"
+  },
+  "validation_scope": "History contains only the published base ancestors until the owner makes a new commit; staged content is reviewed separately. Re-run exact gate/history checks after that commit.",
+  "remaining_requirements": [
+    "Owner review of staged patch",
+    "User-created commit, then post-commit secret gate/history inspection",
+    "Explicit branch-only push if separately authorized; no push occurred during preparation",
+    "Existing production release gates and hosted acceptance remain unchanged"
+  ]
+}

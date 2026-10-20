@@ -1,0 +1,52 @@
+[
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "--prefix",
+      "apps/web",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 1.941
+  },
+  {
+    "name": "types",
+    "command": [
+      "apps/web/node_modules/.bin/tsc",
+      "--noEmit",
+      "--project",
+      "apps/web/tsconfig.json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.777
+  },
+  {
+    "name": "frontend",
+    "command": [
+      "npm",
+      "--prefix",
+      "apps/web",
+      "test",
+      "--",
+      "--run"
+    ],
+    "exit_code": 0,
+    "seconds": 2.194
+  },
+  {
+    "name": "security",
+    "command": [
+      "apps/api/.venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "infra/security/tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 9.234
+  }
+]
