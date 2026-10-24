@@ -8,6 +8,8 @@ import {
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ReactNode } from "react";
+import { researchReport } from "@/lib/research-report";
+import { ProviderStatus } from "@/components/chat/provider-status";
 import { SessionProvider, useSession } from "@/lib/auth/session";
 import { api, ApiError, request } from "@/lib/api/client";
 import VerifyEmail from "@/app/verify-email/page";
@@ -313,15 +315,23 @@ describe("authentication", () => {
       if (register) {
         await screen.findByRole("status");
         expect(navigation.replace).not.toHaveBeenCalled();
-        expect(fetcher.mock.calls.filter(([url]) => url.endsWith("/login"))).toHaveLength(0);
+        expect(
+          fetcher.mock.calls.filter(([url]) => url.endsWith("/login")),
+        ).toHaveLength(0);
       } else {
-        await waitFor(() => expect(navigation.replace).toHaveBeenCalledWith("/workspaces"));
+        await waitFor(() =>
+          expect(navigation.replace).toHaveBeenCalledWith("/workspaces"),
+        );
       }
       const calls = fetcher.mock.calls.filter(([url]) =>
         url.endsWith(register ? "/register" : "/login"),
       );
       expect(calls).toHaveLength(1);
-      if (!register) expect(screen.getByLabelText("Password")).toHaveAttribute("autocomplete", "current-password");
+      if (!register)
+        expect(screen.getByLabelText("Password")).toHaveAttribute(
+          "autocomplete",
+          "current-password",
+        );
     },
   );
   it("shows safe credential errors", async () => {
@@ -446,6 +456,34 @@ describe("documents", () => {
     );
     expect(indexingLabel(index)).toBe("Indexed");
   });
+  it.each(["queued", "not_indexed"] as const)(
+    "explains blocked Gemini indexing while the job is %s",
+    async (state) => {
+      handler = (url, init) =>
+        url.endsWith("/index")
+          ? response({
+              ...index,
+              state,
+              embedding_model: "gemini:gemini-embedding-001@retrieval-v1/768",
+              indexed_chunks: 0,
+              total_chunks: 5,
+              indexing_complete: false,
+              indexing_blocker: "live_requests_blocked",
+              research_blocker: "active_profile_not_indexed",
+            })
+          : defaults(url, init);
+      mount(<Library />);
+      expect(await screen.findByText("Indexing blocked")).toBeInTheDocument();
+      expect(
+        screen.getByText(/Gemini requests are disabled/),
+      ).toBeInTheDocument();
+      expect(screen.queryByText("Pending indexing")).not.toBeInTheDocument();
+      if (state === "not_indexed")
+        expect(
+          screen.getByRole("button", { name: "Index document" }),
+        ).toBeDisabled();
+    },
+  );
   it("uploads via the real file control and displays worker states", async () => {
     mount(<Library />);
     const input = await screen.findByLabelText("Upload documents");
@@ -489,6 +527,32 @@ describe("documents", () => {
   });
 });
 describe("research, citations and search", () => {
+  it("labels Gemini source extracts only after an answered turn has claims", () => {
+    const props = {
+      content: "Live Gemini requests are blocked pending explicit approval.",
+      status: "retrieval_unavailable" as const,
+      reason: "embedding_live_requests_blocked",
+      model: "gemini:gemini-2.5-flash@1",
+      claims: [],
+      citations: [],
+      workspace: "w1",
+    };
+    const view = render(<AnswerView {...props} />);
+    expect(
+      screen.queryByText("Gemini · validated source extracts"),
+    ).not.toBeInTheDocument();
+    view.rerender(
+      <AnswerView
+        {...props}
+        status="answered"
+        claims={[claim]}
+        citations={[citation]}
+      />,
+    );
+    expect(
+      screen.getByText("Gemini · validated source extracts"),
+    ).toBeInTheDocument();
+  });
   it("renders grounded claims and clickable sources safely", async () => {
     render(
       <AnswerView
@@ -795,25 +859,196 @@ it("ignores a late initial session response after a new login", async () => {
   );
 });
 
-
 describe("email verification", () => {
   it("posts the fragment token and clears it without creating a session", async () => {
-    window.history.replaceState(null, "", "/verify-email#token=" + "a".repeat(43));
+    window.history.replaceState(
+      null,
+      "",
+      "/verify-email#token=" + "a".repeat(43),
+    );
     render(<VerifyEmail />);
     await userEvent.click(screen.getByRole("button", { name: "Verify email" }));
     await screen.findByRole("status");
     expect(window.location.hash).toBe("");
-    const calls = fetcher.mock.calls.filter(([url]) => url.endsWith("/verify-registration"));
+    const calls = fetcher.mock.calls.filter(([url]) =>
+      url.endsWith("/verify-registration"),
+    );
     expect(calls).toHaveLength(1);
     expect(JSON.parse(calls[0][1].body)).toEqual({ token: "a".repeat(43) });
-    expect(fetcher.mock.calls.filter(([url]) => url.endsWith("/login"))).toHaveLength(0);
+    expect(
+      fetcher.mock.calls.filter(([url]) => url.endsWith("/login")),
+    ).toHaveLength(0);
   });
   it("supports a manually pasted token when a link is unavailable", async () => {
     window.history.replaceState(null, "", "/verify-email");
     render(<VerifyEmail />);
-    await userEvent.type(screen.getByLabelText("Verification token"), "b".repeat(43));
+    await userEvent.type(
+      screen.getByLabelText("Verification token"),
+      "b".repeat(43),
+    );
     await userEvent.click(screen.getByRole("button", { name: "Verify email" }));
     await screen.findByRole("status");
     expect(screen.getByRole("link", { name: "Sign in" })).toBeVisible();
   });
+});
+
+describe("2.0 document and research experience", () => {
+  it("does not equate extraction/index completion with research readiness", async () => {
+    handler = (url, init) =>
+      url.endsWith("/index")
+        ? response({
+            ...index,
+            ready_for_research: false,
+            research_blocker: "provider_disabled",
+          })
+        : defaults(url, init);
+    mount(<Library />);
+    expect(
+      await screen.findByText("Indexed", { exact: true }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("Ready for research", { exact: true }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "This provider is disabled in the server configuration.",
+      ),
+    ).toBeInTheDocument();
+  });
+  it("previews extracted text as inert content and exposes source location", async () => {
+    handler = (url, init) =>
+      url.includes("/chunks?")
+        ? response({
+            items: [
+              {
+                chunk_id: "c1",
+                chunk_index: 0,
+                excerpt: "<script>inert</script> Solar panels",
+                page_number: 2,
+                section: "Energy",
+                source_ref: "synthetic",
+                char_start: 5,
+                char_end: 43,
+                truncated: false,
+              },
+            ],
+            next_offset: null,
+          })
+        : defaults(url, init);
+    mount(<Library />);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Preview extracted text" }),
+    );
+    expect(
+      await screen.findByText("<script>inert</script> Solar panels"),
+    ).toBeInTheDocument();
+    expect(document.querySelector(".chunk-preview script")).toBeNull();
+    expect(screen.getByText("Page 2")).toBeInTheDocument();
+  });
+  it("shows external transfer blockers without exposing configuration secrets", async () => {
+    handler = (url, init) =>
+      url.endsWith("/research-status")
+        ? response({
+            documents: 1,
+            processing_complete: 1,
+            indexing_complete: 1,
+            ready_for_research: 0,
+            providers: {
+              embedding: {
+                provider: "gemini",
+                model: "gemini-embedding-001",
+                configured: false,
+                offline: false,
+                blocker: "private_document_transfer_not_authorized",
+              },
+              llm: {
+                provider: "gemini",
+                model: "gemini-2.5-flash",
+                configured: false,
+                offline: false,
+                blocker: "external_requests_not_authorized",
+              },
+            },
+          })
+        : defaults(url, init);
+    mount(<ProviderStatus />);
+    expect(
+      await screen.findByText(
+        /Sending private document text to Gemini has not been authorized/,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("0 ready for research")).toBeInTheDocument();
+  });
+  it("requires two selected sources before submitting a comparison", async () => {
+    mount(<Research />);
+    await userEvent.selectOptions(
+      await screen.findByLabelText("Research format"),
+      "comparison",
+    );
+    await userEvent.type(
+      screen.getByLabelText("Your research question"),
+      "Solar panels",
+    );
+    expect(
+      screen.getByRole("button", { name: "Compare sources" }),
+    ).toBeDisabled();
+    expect(
+      screen.getByText(/Comparison needs exactly two/),
+    ).toBeInTheDocument();
+  });
+  it("submits an extractive topic brief without changing the question", async () => {
+    mount(<Research />);
+    await userEvent.selectOptions(
+      await screen.findByLabelText("Research format"),
+      "summary",
+    );
+    await userEvent.type(
+      screen.getByLabelText("Your research question"),
+      "Solar panels",
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: "Build cited brief" }),
+    );
+    expect(
+      await screen.findByRole("button", {
+        name: "Export cited evidence (.txt)",
+      }),
+    ).toBeInTheDocument();
+    const call = fetcher.mock.calls.find(([url]) => url.endsWith("/ask"));
+    expect(JSON.parse(call![1].body)).toMatchObject({
+      mode: "summary",
+      question: "Solar panels",
+    });
+  });
+  it("exports plain text source provenance and labels offline identity", () => {
+    const report = researchReport("Solar panels", {
+      ...answer,
+      status: "answered",
+    });
+    expect(report).toContain("mock:mock-extractive-v1@1");
+    expect(report).toContain("solar.txt · page 2");
+    expect(report).toContain("Characters: 0–46");
+    expect(report).toContain(
+      "Source credibility and semantic truth are not assessed.",
+    );
+  });
+});
+
+it("shows allowlisted provider quota errors without displaying raw diagnostics", async () => {
+  handler = () =>
+    response(
+      { detail: { code: "embedding_quota", message: "PRIVATE DIAGNOSTIC" } },
+      503,
+    );
+  await expect(api.search("w1", "vacation", null, 5)).rejects.toThrow(
+    "Automatic retries stopped",
+  );
+  handler = () =>
+    response(
+      { detail: { code: "unreviewed_code", message: "PRIVATE DIAGNOSTIC" } },
+      503,
+    );
+  await expect(api.search("w1", "vacation", null, 5)).rejects.not.toThrow(
+    "PRIVATE DIAGNOSTIC",
+  );
 });

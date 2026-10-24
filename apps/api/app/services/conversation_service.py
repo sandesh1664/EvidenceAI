@@ -179,6 +179,9 @@ def messages(db, workspace_id, conversation_id, actor_id, limit, after_sequence)
 
 def fingerprint(data):
     value = data.model_dump(mode="json", exclude={"idempotency_key"})
+    # Preserve fingerprints for pre-2.0 question requests (no mode field).
+    if value.get("mode") == "question":
+        value.pop("mode", None)
     if value["document_ids"] is not None:
         value["document_ids"].sort()
     return hashlib.sha256(

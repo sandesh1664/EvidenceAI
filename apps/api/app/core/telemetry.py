@@ -53,7 +53,7 @@ class SafeJSONFormatter(logging.Formatter):
             'operation': OPERATIONS | {'http_request','document_enqueued','document_claimed','document_finished',
                 'embedding_enqueued','embedding_claimed','embedding_finished','worker_started','worker_stopped','worker_metrics_failed'},
             'error_category': {'none','database','timeout','cancelled','internal','rate_limit','access','unavailable','request','provider','storage','parser','citation'},
-            'provider': {'none','disabled','fake','mock','openai'},
+            'provider': {'none','disabled','fake','mock','openai','gemini'},
             'outcome': {'success','failure','answered','insufficient_evidence','retrieval_unavailable','provider_error','queued','running','done','failed'},
         }
         for key, values in allowed.items():
@@ -140,7 +140,7 @@ def measured(operation, provider=False):
             kind = 'none'
             if provider:
                 kind = getattr(args[0].settings, 'embedding_provider' if operation == 'embedding' else 'llm_provider')
-                if kind not in {'disabled', 'fake', 'mock', 'openai'}: kind = 'none'
+                if kind not in {'disabled', 'fake', 'mock', 'openai', 'gemini'}: kind = 'none'
             with trace.get_tracer('evidenceai').start_as_current_span(operation, record_exception=False, set_status_on_exception=False):
                 try:
                     result = fn(*args, **kwargs)
@@ -223,7 +223,7 @@ def query_failed(context):
 
 def provider_call(operation, provider, function, *args, **kwargs):
     """One actual adapter attempt, distinct from engine-level calls/retries."""
-    if operation not in {'embedding','generation'} or provider not in {'fake','mock','openai','disabled'}:
+    if operation not in {'embedding','generation'} or provider not in {'fake','mock','openai','gemini','disabled'}:
         raise ValueError('Unknown provider telemetry label')
     outcome='success'
     try:

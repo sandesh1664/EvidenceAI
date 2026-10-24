@@ -6,6 +6,18 @@ export function proxy(request: NextRequest) {
     process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
   const apiOrigin =
     configuredOrigin === "same-origin" ? "" : new URL(configuredOrigin).origin;
+  if (
+    development &&
+    apiOrigin === "http://localhost:8000" &&
+    request.headers.get("host") === "127.0.0.1:3000" &&
+    (request.method === "GET" || request.method === "HEAD")
+  ) {
+    const target = request.nextUrl.clone();
+    target.hostname = "localhost";
+    const response = NextResponse.redirect(target, 307);
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    return response;
+  }
   const policy = [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ""}`,

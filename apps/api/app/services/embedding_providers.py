@@ -136,6 +136,9 @@ class OpenAIEmbeddingProvider:
 def provider_for(settings):
     if settings.embedding_provider == 'fake':
         return FakeEmbeddingProvider(settings.embedding_dimensions)
+    if settings.embedding_provider == 'gemini':
+        from app.services.gemini_providers import GeminiEmbeddingProvider
+        return GeminiEmbeddingProvider(settings)
     if settings.embedding_provider == 'openai':
         return OpenAIEmbeddingProvider(settings)
     raise EmbeddingError('Embedding provider is disabled')
@@ -147,8 +150,11 @@ class EmbeddingEngine:
         self.provider = provider if provider is not None else provider_for(settings)
         self.sleep = sleep
 
+    def embed_query(self, text):
+        return self.embed([text], _query=True)[0]
+
     @measured("embedding", provider=True)
-    def embed(self,texts):
+    def embed(self,texts, *, _query=False):
         settings = self.settings
         if not isinstance(texts,list) or not texts or len(texts)>settings.embedding_batch_size:
             raise EmbeddingError('Invalid embedding batch')
@@ -160,7 +166,8 @@ class EmbeddingEngine:
                 remaining = deadline-time.monotonic()
                 if remaining <= 0:
                     raise EmbeddingError('Embedding provider timed out',transient=True)
-                result = provider_call('embedding',settings.embedding_provider,self.provider.embed,texts,timeout=min(settings.embedding_http_timeout_seconds,remaining))
+                method = self.provider.embed_query if _query and settings.embedding_provider == 'gemini' else self.provider.embed
+                result = provider_call('embedding',settings.embedding_provider,method,texts,timeout=min(settings.embedding_http_timeout_seconds,remaining))
                 return validated_vectors(result,len(texts),settings.embedding_dimensions)
             except EmbeddingError as error:
                 if not error.transient or attempt+1 >= settings.embedding_provider_attempts:

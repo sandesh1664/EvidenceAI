@@ -12,7 +12,7 @@ from app.api.routes.auth import get_current_user
 from app.core.config import Settings, get_settings
 from app.db.session import get_db
 from app.models import User
-from app.schemas.document import DocumentResponse
+from app.schemas.document import DocumentResponse, ChunkPage
 from app.services import document_service
 from app.services.document_storage import DocumentStorage, get_document_storage
 
@@ -72,3 +72,12 @@ def delete_document(workspace_id: UUID,document_id: UUID,user: User = Depends(ge
 def retry_document(workspace_id: UUID,document_id: UUID,user: User = Depends(get_current_user),db: Session = Depends(get_db),
                    settings: Settings = Depends(get_settings)):
     return document_service.retry_document(db,workspace_id,document_id,user.id,settings)
+
+
+@router.get('/{document_id}/chunks', response_model=ChunkPage)
+def preview_chunks(workspace_id: UUID, document_id: UUID,
+                   limit: int = Query(default=10, ge=1, le=40),
+                   offset: int = Query(default=0, ge=0, le=10000),
+                   query: str = Query(default='', max_length=200),
+                   user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    return document_service.chunk_previews(db, workspace_id, document_id, user.id, limit, offset, query)

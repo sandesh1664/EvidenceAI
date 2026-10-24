@@ -1,4 +1,5 @@
 "use client";
+import { ProviderStatus } from "@/components/chat/provider-status";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -65,6 +66,7 @@ export function Dashboard() {
         }
         action={<Badge tone="green">{role || "Checking access"}</Badge>}
       />
+      <ProviderStatus />
       <section className="research-hero">
         <div>
           <div className="eyebrow">A CLEARER PATH THROUGH YOUR EVIDENCE</div>

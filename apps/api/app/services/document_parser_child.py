@@ -51,7 +51,7 @@ def main():
         for number, page in enumerate(reader.pages, 1):
             if mode == 'validate':
                 continue
-            text = (page.extract_text() or '').replace('\r\n','\n').replace('\r','\n')
+            text = (page.extract_text(extraction_mode='layout' if options.get('layout') else 'plain') or '').replace('\r\n','\n').replace('\r','\n')
             if '\x00' in text:
                 fail('malformed')
             text.encode('utf-8', errors='strict')

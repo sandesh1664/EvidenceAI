@@ -1,5 +1,8 @@
 "use client";
+import { DocumentPreview } from "@/components/documents/preview";
+import { ProviderStatus } from "@/components/chat/provider-status";
 import { useState } from "react";
+import { readinessMessage } from "@/lib/research-readiness";
 import { useResource } from "@/hooks/use-resource";
 import {
   api,
@@ -39,6 +42,8 @@ export function extractionLabel(document: Pick<Document, "processing_status">) {
   }[document.processing_status];
 }
 export function indexingLabel(index: IndexStatus) {
+  if (index.indexing_blocker && !index.indexing_complete)
+    return "Indexing blocked";
   if (index.state === "done")
     return index.total_chunks === index.indexed_chunks
       ? "Indexed"
@@ -54,6 +59,7 @@ export function Upload({ onDone }: { onDone: () => void }) {
   const [error, setError] = useState<unknown>();
   const [status, setStatus] = useState("");
   const [drag, setDrag] = useState(false);
+  const [progress, setProgress] = useState({ complete: 0, total: 0 });
   async function upload(files: FileList | File[] | null) {
     if (!files || busy) return;
     const list = Array.from(files);
@@ -67,10 +73,12 @@ export function Upload({ onDone }: { onDone: () => void }) {
       }
     }
     setBusy(true);
+    setProgress({ complete: 0, total: list.length });
     try {
       for (const file of list) {
         setStatus("Uploading " + file.name + "…");
         await api.upload(workspace.id, file);
+        setProgress((value) => ({ ...value, complete: value.complete + 1 }));
       }
       setStatus(
         `${list.length} file${list.length === 1 ? "" : "s"} uploaded. Extraction is queued; the background worker must be running.`,
@@ -125,6 +133,12 @@ export function Upload({ onDone }: { onDone: () => void }) {
           validation applies
         </small>
       </div>
+      {busy && (
+        <label>
+          Files uploaded: {progress.complete} / {progress.total}
+          <progress max={progress.total || 1} value={progress.complete} />
+        </label>
+      )}
       <p className="hint" role="status">
         {status}
       </p>
@@ -143,6 +157,7 @@ function DocumentRow({ document }: { document: Document }) {
   );
   const [error, setError] = useState<unknown>();
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState(false);
   const manager = role === "owner" || role === "admin";
   const canDelete = manager;
   async function perform(action: () => Promise<unknown>) {
@@ -206,15 +221,34 @@ function DocumentRow({ document }: { document: Document }) {
               <>
                 <Badge
                   tone={
-                    index.data.state === "done"
-                      ? "green"
-                      : index.data.state === "failed"
-                        ? "red"
-                        : ""
+                    index.data.indexing_blocker && !index.data.indexing_complete
+                      ? "red"
+                      : index.data.state === "done"
+                        ? "green"
+                        : index.data.state === "failed"
+                          ? "red"
+                          : ""
                   }
                 >
                   {indexingLabel(index.data)}
                 </Badge>
+                {index.data.ready_for_research && (
+                  <Badge tone="green">Ready for research</Badge>
+                )}
+                {index.data.embedding_model.startsWith("fake:") && (
+                  <Badge>Offline index only</Badge>
+                )}
+                {(index.data.indexing_blocker ||
+                  index.data.research_blocker) && (
+                  <small
+                    role={index.data.indexing_blocker ? "status" : undefined}
+                  >
+                    {readinessMessage(
+                      index.data.indexing_blocker ||
+                        index.data.research_blocker!,
+                    )}
+                  </small>
+                )}
                 <span>
                   {index.data.indexed_chunks} / {index.data.total_chunks} chunks
                   indexed
@@ -231,6 +265,18 @@ function DocumentRow({ document }: { document: Document }) {
             )
           )}
         </div>
+      )}
+      {document.processing_status === "completed" && (
+        <>
+          <button
+            className="button small"
+            aria-expanded={preview}
+            onClick={() => setPreview(!preview)}
+          >
+            {preview ? "Hide extracted preview" : "Preview extracted text"}
+          </button>
+          {preview && <DocumentPreview documentId={document.id} />}
+        </>
       )}
       <div className="actions">
         <button
@@ -262,7 +308,7 @@ function DocumentRow({ document }: { document: Document }) {
         {manager && index.data?.state === "not_indexed" && (
           <button
             className="button small"
-            disabled={busy}
+            disabled={busy || !!index.data.indexing_blocker}
             onClick={() =>
               void perform(() => api.index(workspace.id, document.id))
             }
@@ -273,7 +319,7 @@ function DocumentRow({ document }: { document: Document }) {
         {manager && index.data?.state === "failed" && (
           <button
             className="button small"
-            disabled={busy}
+            disabled={busy || !!index.data.indexing_blocker}
             onClick={() =>
               void perform(() => api.retryIndex(workspace.id, document.id))
             }
@@ -283,6 +329,7 @@ function DocumentRow({ document }: { document: Document }) {
         )}
         {manager &&
           index.data &&
+          !index.data.indexing_blocker &&
           (index.data.state === "failed" || index.data.state === "done") && (
             <Confirm
               title="Rebuild index"
@@ -324,6 +371,7 @@ export function Library() {
         title="Document library"
         description="Original sources, extraction and indexing. A clear view of what is ready for research."
       />
+      <ProviderStatus />
       {role === "owner" || role === "admin" ? (
         <Upload
           onDone={() => {

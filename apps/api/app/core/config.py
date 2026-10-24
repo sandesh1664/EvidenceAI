@@ -59,6 +59,7 @@ class Settings(BaseSettings):
     document_chunk_size: int = Field(default=1600, ge=64, le=10000)
     document_chunk_overlap: int = Field(default=200, ge=0)
     document_max_chunks: int = Field(default=10000, ge=1, le=50000)
+    document_pdf_layout: bool = False
     document_max_pages: int = Field(default=500, ge=1, le=5000)
     document_max_text_chars: int = Field(default=2000000, ge=1, le=10000000)
     document_validation_timeout: int = Field(default=5, ge=1, le=30)
@@ -67,12 +68,17 @@ class Settings(BaseSettings):
     document_max_attempts: int = Field(default=3, ge=1, le=10)
     document_job_lease_seconds: int = Field(default=120, ge=30, le=3600)
 
-    embedding_provider: Literal["disabled", "fake", "openai"] = "disabled"
+    embedding_provider: Literal["disabled", "fake", "openai", "gemini"] = "disabled"
     embedding_model: str = Field(default="fake-hash-v1", min_length=1, max_length=120, pattern=r"^[a-zA-Z0-9._-]+$")
     embedding_revision: str = Field(default="1", min_length=1, max_length=80, pattern=r"^[a-zA-Z0-9._-]+$")
     embedding_dimensions: int = Field(default=128, ge=8, le=3072)
     embedding_hosted_allowed: bool = False
     openai_api_key: SecretStr | None = None
+    gemini_api_key: SecretStr | None = None
+    gemini_free_tier_confirmed: bool = False
+    gemini_data_transfer_allowed: bool = False
+    gemini_live_requests_allowed: bool = False
+    gemini_private_documents_allowed: bool = False
     embedding_batch_size: int = Field(default=16, ge=1, le=32)
     embedding_input_max_bytes: int = Field(default=8000, ge=1, le=8000)
     embedding_http_timeout_seconds: float = Field(default=10, ge=0.1, le=60)
@@ -82,7 +88,7 @@ class Settings(BaseSettings):
     embedding_job_lease_seconds: int = Field(default=120, ge=30, le=600)
     search_min_similarity: float = Field(default=0.25, ge=0, le=1)
 
-    llm_provider: Literal["disabled", "mock", "openai"] = "disabled"
+    llm_provider: Literal["disabled", "mock", "openai", "gemini"] = "disabled"
     llm_model: str = Field(default="mock-extractive-v1",min_length=1,max_length=120,pattern=r"^[a-zA-Z0-9._-]+$")
     llm_revision: str = Field(default="1",min_length=1,max_length=80,pattern=r"^[a-zA-Z0-9._-]+$")
     llm_hosted_allowed: bool = False
@@ -102,6 +108,31 @@ class Settings(BaseSettings):
     conversation_history_messages: int = Field(default=6, ge=0, le=20)
     conversation_history_token_budget: int = Field(default=1500, ge=0, le=6000)
     conversation_turn_lease_seconds: int = Field(default=180, ge=150, le=900)
+
+    @model_validator(mode="after")
+    def validate_gemini(self):
+        if "gemini" not in (self.embedding_provider, self.llm_provider):
+            return self
+        if self.app_env not in {"development", "test"}:
+            raise ValueError("Gemini integration is restricted to local development and tests")
+        # A blocked local provider may be configured and diagnosed without a key
+        # or consent. Enabling live requests still requires all existing opt-ins.
+        if self.gemini_live_requests_allowed and (not self.gemini_api_key or not self.gemini_api_key.get_secret_value().strip()
+                or not self.gemini_free_tier_confirmed or not self.gemini_data_transfer_allowed):
+            raise ValueError("Gemini requires a backend key, confirmed free tier and data-transfer authorization")
+        if self.embedding_provider == "gemini" and (
+                self.gemini_live_requests_allowed and not self.embedding_hosted_allowed or self.embedding_model != "gemini-embedding-001"
+                or self.embedding_dimensions not in {768, 1536, 3072}):
+            raise ValueError("Gemini embeddings require explicit opt-in, gemini-embedding-001 and supported dimensions")
+        if self.llm_provider == "gemini":
+            from app.services.gemini_configuration import GENERATION_MODELS
+            capabilities = GENERATION_MODELS.get(self.llm_model)
+            if (self.gemini_live_requests_allowed and not self.llm_hosted_allowed
+                    or capabilities is None):
+                raise ValueError("Gemini generation requires explicit opt-in and a reviewed model")
+            if self.llm_temperature is not None and not capabilities.sampling:
+                raise ValueError("This Gemini model does not support temperature overrides")
+        return self
 
     @model_validator(mode="after")
     def validate_rag(self):

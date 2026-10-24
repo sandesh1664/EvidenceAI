@@ -28,6 +28,30 @@ if (
   throw new Error(
     "API URL must be an HTTPS origin (HTTP loopback is allowed for development).",
   );
+const providerMessages: Record<string, string> = {
+  embedding_invalid_key:
+    "The Gemini API key was rejected. Check the backend key privately.",
+  embedding_model_unavailable:
+    "The embedding model is unavailable to this project. Check model access; no alternative was selected.",
+  embedding_access_denied:
+    "Gemini denied project access. Check API restrictions and model permissions.",
+  embedding_quota:
+    "The Gemini embedding quota is exhausted. Automatic retries stopped; verify free quota before retrying.",
+  embedding_api_key_missing:
+    "The backend Gemini key is missing. Ask the local operator to configure it privately.",
+  embedding_live_requests_blocked:
+    "Live Gemini requests are blocked pending explicit approval.",
+  embedding_free_tier_not_confirmed:
+    "This project's free-tier eligibility and quota have not been confirmed.",
+  embedding_data_transfer_not_authorized:
+    "Gemini data-use consent has not been approved.",
+  embedding_private_document_transfer_not_authorized:
+    "Private document transfer requires separate approval.",
+  embedding_hosted_provider_not_authorized:
+    "The hosted embedding provider has not been authorized.",
+  embedding_environment_not_allowed:
+    "This provider is not enabled in this environment.",
+};
 const names: Record<number, string> = {
   400: "The request could not be understood.",
   401: "Your session has expired. Please sign in.",
@@ -106,11 +130,19 @@ export async function request<T>(
       payload && typeof payload === "object" && "detail" in payload
         ? (payload as { detail: unknown }).detail
         : null;
+    const providerCode =
+      detail &&
+      typeof detail === "object" &&
+      "code" in detail &&
+      typeof detail.code === "string"
+        ? detail.code
+        : "";
     const message =
-      typeof detail === "string" && response.status < 500
+      providerMessages[providerCode] ||
+      (typeof detail === "string" && response.status < 500
         ? detail
         : names[response.status] ||
-          "The service could not complete this request. Please retry.";
+          "The service could not complete this request. Please retry.");
     throw new ApiError(
       response.status,
       message,
@@ -137,7 +169,11 @@ export const api = {
       "/api/v1/auth/register",
       json("POST", { email, password, display_name }),
     ),
-  verifyRegistration: (token: string) => request<{ detail: string }>("/api/v1/auth/verify-registration", json("POST", { token })),
+  verifyRegistration: (token: string) =>
+    request<{ detail: string }>(
+      "/api/v1/auth/verify-registration",
+      json("POST", { token }),
+    ),
   logout: () => request<void>("/api/v1/auth/logout", json("POST")),
   createWorkspace: (name: string, description: string) =>
     request<Workspace>(
@@ -194,9 +230,10 @@ export const api = {
     document_ids: string[] | null,
     limit: number,
     signal?: AbortSignal,
+    offset = 0,
   ) =>
     request<SearchResult[]>(wsPath(id) + "/search", {
-      ...json("POST", { query, document_ids, limit }),
+      ...json("POST", { query, document_ids, limit, offset }),
       signal,
     }),
   createConversation: (id: string, title: string) =>

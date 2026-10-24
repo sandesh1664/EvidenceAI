@@ -57,7 +57,7 @@ metrics = RagMetrics()
 logger = logging.getLogger("evidenceai.rag")
 
 
-def load_evidence(db, workspace_id, actor_id, retrieved, settings):
+def load_evidence(db, workspace_id, actor_id, retrieved, settings, *, full_chunks=False):
     if not retrieved:
         return []
     profile = profile_for(settings)
@@ -102,7 +102,7 @@ def load_evidence(db, workspace_id, actor_id, retrieved, settings):
                 chunk.document_id,
                 chunk.id,
                 filename,
-                row["excerpt"],
+                chunk.text[:10000] if full_chunks else row["excerpt"],
                 chunk.page_number,
                 chunk.section,
                 chunk.char_start,
@@ -201,27 +201,38 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
                 ),
             }
         )
-        found = search_service.search(
-            db,
-            workspace_id,
-            actor_id,
-            SearchRequest(
-                query=retrieval_question(data.question, history),
-                document_ids=data.document_ids,
-                limit=min(
-                    data.retrieval_limit or settings.rag_retrieval_limit,
-                    settings.rag_retrieval_limit,
-                ),
-            ),
-            retrieval_settings,
-        )
+        limit = min(data.retrieval_limit or settings.rag_retrieval_limit, settings.rag_retrieval_limit)
+        if data.mode == "comparison":
+            if limit < 2:
+                return finish("insufficient_evidence", "comparison_passage_budget")
+            groups = []
+            for document_id in data.document_ids:
+                remaining = deadline-time.monotonic()
+                if remaining <= 0:
+                    return finish("retrieval_unavailable", "request_timeout", http=504)
+                current_settings = retrieval_settings.model_copy(update={
+                    "embedding_request_budget_seconds": min(remaining, settings.embedding_request_budget_seconds),
+                    "embedding_http_timeout_seconds": min(remaining, settings.embedding_http_timeout_seconds)})
+                groups.append(search_service.search(db, workspace_id, actor_id,
+                    SearchRequest(query=retrieval_question(data.question, history),
+                                  document_ids=[document_id], limit=max(1, limit//2)), current_settings))
+            # Interleave so bounded context admits both sources before extra passages.
+            found = [row for pair in zip(*groups) for row in pair]
+        else:
+            found = search_service.search(db, workspace_id, actor_id,
+                SearchRequest(query=retrieval_question(data.question, history),
+                              document_ids=data.document_ids, limit=limit), retrieval_settings)
         context = assemble_context(
-            load_evidence(db, workspace_id, actor_id, found, settings), settings
+            load_evidence(db, workspace_id, actor_id, found, settings, full_chunks=True), settings
         )
     except HTTPException as error:
         if error.status_code in {401, 403, 404, 422}:
             raise
         db.rollback()
+        from app.services.provider_errors import PUBLIC_EMBEDDING_MESSAGES
+        if isinstance(error.detail, dict) and error.detail.get("code") in PUBLIC_EMBEDDING_MESSAGES:
+            code = error.detail["code"]
+            return finish("retrieval_unavailable", code, http=503, answer=PUBLIC_EMBEDDING_MESSAGES[code])
         return finish(
             "retrieval_unavailable",
             "retrieval_unavailable",
@@ -243,17 +254,22 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
             http=504,
             answer="Document retrieval exceeded the request time budget.",
         )
+    if data.mode == "comparison" and {item.document_id for item in context} != set(data.document_ids):
+        return finish("insufficient_evidence", "comparison_sources_missing")
     if not context:
-        return finish("insufficient_evidence", "no_evidence")
+        return finish("insufficient_evidence", "no_evidence", answer=(
+            "No passages matched the selected sources and active embedding profile. "
+            "Check the Documents page: extraction alone is not indexing. Index completed documents "
+            "with the active profile, check source selection, then retry your question."))
     if contradictory(context, support_question):
         return finish("insufficient_evidence", "contradictory_evidence")
-    if not any(
+    if settings.llm_provider != "gemini" and not any(
         relevant(sentence, support_question)
         for item in context
         for sentence in sentences(item.text)
     ):
         return finish("insufficient_evidence", "unsupported_question")
-    prompt = make_prompt(data.question, context, history)
+    prompt = make_prompt(data.question, context, history, mode=data.mode)
     db.rollback()  # No source transaction spans provider I/O.
     try:
         with generation_slot(db, settings):
@@ -267,8 +283,11 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
             if time.monotonic() >= deadline:
                 raise LLMError("timeout")
             claims, citations = validate_answer(
-                reply.output, context, support_question, settings
+                reply.output, context, support_question, settings,
+                relevance_verified=reply.relevance_verified
             )
+            if data.mode == "comparison" and {item.document_id for item in citations} != set(data.document_ids):
+                return finish("insufficient_evidence", "comparison_support_missing")
             if not claims:
                 return finish("insufficient_evidence", "model_abstained")
             answer = "\n".join(
@@ -292,11 +311,12 @@ def ask(db, workspace_id, actor_id, data, settings, *, engine=None, history=()):
             answer="Generation capacity is busy. Retry later.",
         )
     except LLMError as error:
+        from app.services.provider_errors import GENERATION_MESSAGES
         return finish(
             "provider_error",
             "provider_" + error.code,
             http=504 if error.code == "timeout" else 503,
-            answer="A validated document-grounded answer could not be generated. Please retry later.",
+            answer=GENERATION_MESSAGES.get(error.code, "A validated document-grounded answer could not be generated. Please retry later."),
         )
     except CitationError:
         return finish(

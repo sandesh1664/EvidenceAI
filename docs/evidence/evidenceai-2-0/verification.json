@@ -1,0 +1,116 @@
+{
+  "format_version": 1,
+  "verified_at_local": "2026-10-21T01:40:19.795199+04:00",
+  "baseline_head": "ef91f507146e02b15eb81f50f2aa9043f350cbad",
+  "production_release": "FAIL / BLOCKED",
+  "backend": {
+    "status": "PASS",
+    "tests": 746,
+    "seconds": 30.51,
+    "warning_count": 1
+  },
+  "frontend": {
+    "status": "PASS",
+    "tests": 63,
+    "files": 6,
+    "seconds": 2.22
+  },
+  "browser": {
+    "status": "PASS",
+    "tests": 24,
+    "reported_duration": "1.8m",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "real_local_tls_smtp": true,
+    "frontend_build": "isolated production-mode .next-e2e"
+  },
+  "security_regressions": {
+    "status": "PASS",
+    "tests": 11,
+    "seconds": 8.548
+  },
+  "runner_regressions": {
+    "status": "PASS",
+    "tests": 3,
+    "seconds": 0.374
+  },
+  "typescript": "PASS",
+  "eslint": "PASS",
+  "migration_drift": "PASS; no new upgrade operations",
+  "evaluation": {
+    "status": "PASS",
+    "samples": 36,
+    "providers": "fake128/fake256/mock; no real Gemini",
+    "recall_at_k": 0.9375,
+    "precision_at_k": 0.9375,
+    "mrr": 1.0,
+    "ndcg": 0.9516433990956823,
+    "citation_reference_validity": 1.0,
+    "citation_gold_support_quality": 1.0,
+    "unsupported_claim_frequency": 0.0,
+    "answer_correctness": 0.9444444444444444,
+    "threshold_failures": 0,
+    "semantic_judgment": "NOT VERIFIED"
+  },
+  "first_preservation_window": {
+    "status": "FAIL",
+    "tables_compared": 16,
+    "changed_table": "auth_sessions",
+    "changed_columns": [
+      "last_used_at"
+    ],
+    "changed_rows": 1,
+    "row_count_delta": 0,
+    "storage_equal": true,
+    "writer_attribution": "NOT VERIFIED",
+    "window_start": "2026-10-20T21:24:59.001403+00:00",
+    "window_end": "2026-10-20T21:31:25.127993+00:00"
+  },
+  "controlled_repeat": {
+    "status": "PASS",
+    "tables_compared": 16,
+    "all_table_hashes_counts_equal": true,
+    "all_session_column_fingerprints_equal": true,
+    "storage_equal": true,
+    "revision_equal": true,
+    "window_start": "2026-10-20T21:35:40.817661+00:00",
+    "window_end": "2026-10-20T21:38:03.287815+00:00",
+    "backend_test_count_in_window": 745,
+    "post_window_backend_suite_count": 746,
+    "limitation": "Post-window comparison-budget guard tested separately in disposable resources; no later development equality claimed"
+  },
+  "disposable_cleanup": "PASS; all completed runner receipts clean and owned containers removed",
+  "live_gemini": {
+    "status": "NOT AUTHORIZED / NOT VERIFIED",
+    "embedding_requests": 0,
+    "generation_requests": 0,
+    "files_transferred": 0,
+    "free_project_eligibility": "NOT VERIFIED"
+  },
+  "secret_gate": {
+    "status": "PASS",
+    "unreviewed": 0,
+    "existing_exact_adjudications": 320,
+    "unsuppressed_findings": {
+      "history": 134,
+      "current": 134,
+      "archive": 52
+    }
+  },
+  "history_and_custody": {
+    "protected_original_files_unchanged": 460,
+    "staged_patch_unchanged": true,
+    "commits": 0,
+    "pushes": 0,
+    "deployments": 0
+  },
+  "remaining_release_gates": [
+    "container_security",
+    "ai_security",
+    "ci_cd",
+    "production_environment"
+  ]
+}

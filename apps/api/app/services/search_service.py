@@ -22,6 +22,15 @@ def search(db,workspace_id,actor_id,data,settings,engine=None):
     document_workspace_access(db,workspace_id,actor_id)
     enabled(settings)
     validate_filters(db,workspace_id,data.document_ids)
+    if data.document_ids == []:
+        return []  # An explicit empty selection intentionally requests no evidence.
+    if settings.embedding_provider == 'gemini':
+        from app.services.gemini_configuration import blocker, MESSAGES
+        blocked = blocker(settings, 'embedding')
+        if blocked:
+            from app.services.provider_errors import EMBEDDING_ERRORS
+            code, message = EMBEDDING_ERRORS[MESSAGES[blocked]]
+            raise HTTPException(503, {'code': code, 'message': message})
     profile = profile_for(settings)
     base = (select(ChunkEmbedding).join(DocumentChunk).join(Document,Document.id == DocumentChunk.document_id)
         .where(Document.workspace_id == workspace_id,DocumentChunk.workspace_id == workspace_id,
@@ -36,8 +45,13 @@ def search(db,workspace_id,actor_id,data,settings,engine=None):
         engine = engine or EmbeddingEngine(settings)
         if engine.profile.id != profile.id:
             raise EmbeddingError('Embedding model identity mismatch')
-        vector = engine.embed([data.query])[0]
-    except EmbeddingError:
+        vector = (engine.embed_query(data.query) if settings.embedding_provider == 'gemini'
+                  else engine.embed([data.query])[0])
+    except EmbeddingError as error:
+        from app.services.provider_errors import EMBEDDING_ERRORS
+        if str(error) in EMBEDDING_ERRORS:
+            code, message = EMBEDDING_ERRORS[str(error)]
+            raise HTTPException(503, {'code': code, 'message': message}) from None
         raise HTTPException(503,'Semantic search temporarily unavailable') from None
     # Reauthorize AFTER remote I/O. Query also joins the actor's current membership.
     document_workspace_access(db,workspace_id,actor_id)
@@ -55,7 +69,7 @@ def search(db,workspace_id,actor_id,data,settings,engine=None):
                                   WorkspaceMember.user_id == actor_id))
         .where(DocumentChunk.workspace_id == workspace_id,Document.workspace_id == workspace_id,
                Document.processing_status == 'completed',compatible,distance <= 1-settings.search_min_similarity)
-        .order_by(distance,Document.id,DocumentChunk.chunk_index,DocumentChunk.id).limit(data.limit))
+        .order_by(distance,Document.id,DocumentChunk.chunk_index,DocumentChunk.id).limit(data.limit).offset(data.offset))
     if data.document_ids is not None:
         statement = statement.where(Document.id.in_(data.document_ids))
     return [dict(chunk_id=chunk.id,document_id=chunk.document_id,filename=filename,excerpt=chunk.text[:1000],

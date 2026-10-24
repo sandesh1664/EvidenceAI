@@ -6,9 +6,17 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 class AskRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
+    mode: Literal["question", "summary", "comparison"] = "question"
     question: str = Field(min_length=1, max_length=2000)
     document_ids: list[UUID] | None = Field(default=None, max_length=50)
     retrieval_limit: int | None = Field(default=None, ge=1, le=12, strict=True)
+
+    @model_validator(mode="after")
+    def valid_mode(self):
+        if self.mode == "comparison" and (not self.document_ids or len(self.document_ids) != 2
+                                           or self.retrieval_limit is not None and self.retrieval_limit < 2):
+            raise ValueError("Comparison requires exactly two selected documents and at least two passages")
+        return self
 
     @field_validator("question")
     @classmethod

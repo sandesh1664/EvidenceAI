@@ -36,6 +36,11 @@ class LLMError(Exception):
                 "malformed",
                 "refusal",
                 "budget",
+                "quota",
+                "invalid_key",
+                "model_unavailable",
+                "access_denied",
+                "configuration",
             }
             else "unavailable"
         )
@@ -49,6 +54,7 @@ class LLMReply:
     output: dict
     model: str
     usage: TokenUsage | None = None
+    relevance_verified: bool = False
 
 
 class LLMProvider(Protocol):
@@ -89,16 +95,18 @@ class MockLLMProvider:
         ):
             output = {"outcome": "insufficient_evidence", "claims": []}
         else:
-            _, citation_id, quote = options[0]
-            output = {
-                "outcome": "answered",
-                "claims": [
-                    {
-                        "text": quote,
-                        "supports": [{"citation_id": citation_id, "quote": quote}],
-                    }
-                ],
-            }
+            chosen, seen = [], set()
+            mode = data.get("research_mode", "question")
+            for _, citation_id, quote in options:
+                # Topic briefs/comparisons favor distinct documents, not repeated chunks.
+                group = data.get("source_groups", {}).get(citation_id, citation_id)
+                if group in seen:
+                    continue
+                seen.add(group)
+                chosen.append({"text": quote, "supports": [{"citation_id": citation_id, "quote": quote}]})
+                if len(chosen) >= (1 if mode == "question" else self.settings.rag_max_claims):
+                    break
+            output = {"outcome": "answered", "claims": chosen}
         return LLMReply(output, self.settings.llm_model)
 
 
@@ -224,6 +232,9 @@ class OpenAILLMProvider:
 def provider_for(settings):
     if settings.llm_provider == "mock":
         return MockLLMProvider(settings)
+    if settings.llm_provider == "gemini":
+        from app.services.gemini_providers import GeminiLLMProvider
+        return GeminiLLMProvider(settings)
     if settings.llm_provider == "openai":
         return OpenAILLMProvider(settings)
     raise LLMError("disabled")

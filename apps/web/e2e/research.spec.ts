@@ -5,7 +5,12 @@ import AxeBuilder from "@axe-core/playwright";
 const secret = "A sufficiently long test password!";
 async function verifyAndLogin(page: Page, email: string) {
   const filename = createHash("sha256").update(email).digest("hex") + ".json";
-  const proof = JSON.parse(await readFile(`${process.env.EVIDENCEAI_E2E_MAIL_DIR}/${filename}`, "utf8"));
+  const proof = JSON.parse(
+    await readFile(
+      `${process.env.EVIDENCEAI_E2E_MAIL_DIR}/${filename}`,
+      "utf8",
+    ),
+  );
   await page.goto(`/verify-email#token=${proof.token}`);
   await page.getByRole("button", { name: "Verify email", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("Registration verified");
@@ -33,7 +38,9 @@ async function register(page: Page, label = "Researcher") {
   expect(sentId).toMatch(/^[0-9a-f-]{36}$/);
   expect(response.headers()["x-request-id"]).toBe(sentId);
   expect(response.status()).toBe(202);
-  await expect(page.getByRole("status")).toContainText("Registration request accepted");
+  await expect(page.getByRole("status")).toContainText(
+    "Registration request accepted",
+  );
   await verifyAndLogin(page, email);
   await expect(
     page.getByRole("heading", { name: "Your workspaces" }),
@@ -170,10 +177,6 @@ test("real authenticated research, workers, citations, persistence and retention
   await expect(
     page.getByRole("heading", { name: "Solar evidence", level: 1 }),
   ).toBeVisible();
-  await page.screenshot({
-    path: "/tmp/evidenceai-dashboard.png",
-    fullPage: true,
-  });
   const accessibility = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
@@ -252,7 +255,6 @@ test("mobile layout, keyboard navigation, themes and ownership boundaries", asyn
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  await page.screenshot({ path: "/tmp/evidenceai-mobile.png", fullPage: true });
   const issues = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
@@ -347,32 +349,53 @@ test("real membership roles, ownership transfer and eligible workspace deletion"
   await colleagueContext.close();
 });
 
-test("network and provider failures remain recoverable and source text is inert", async ({ page }) => {
+test("network and provider failures remain recoverable and source text is inert", async ({
+  page,
+}) => {
   await register(page);
   await workspace(page, "<script>window.compromised=true</script>");
-  expect(await page.evaluate(() => (window as Window & { compromised?: boolean }).compromised)).toBeUndefined();
+  expect(
+    await page.evaluate(
+      () => (window as Window & { compromised?: boolean }).compromised,
+    ),
+  ).toBeUndefined();
   await nav(page, "Search");
-  await page.route("**/api/v1/workspaces/*/search", (route) => route.abort("failed"));
+  await page.route("**/api/v1/workspaces/*/search", (route) =>
+    route.abort("failed"),
+  );
   await page.getByLabel("Search query").fill("Solar evidence");
   await page.getByRole("button", { name: "Search passages" }).click();
   await expect(page.getByRole("main").getByRole("alert")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Search passages" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Search passages" }),
+  ).toBeEnabled();
   await page.unroute("**/api/v1/workspaces/*/search");
-  await page.route("**/api/v1/workspaces/*/search", (route) => route.fulfill({
-    status: 503,
-    contentType: "application/json",
-    headers: { "Access-Control-Allow-Origin": "http://localhost:3100", "Access-Control-Allow-Credentials": "true" },
-    body: JSON.stringify({ detail: "Search provider temporarily unavailable" }),
-  }));
+  await page.route("**/api/v1/workspaces/*/search", (route) =>
+    route.fulfill({
+      status: 503,
+      contentType: "application/json",
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3100",
+        "Access-Control-Allow-Credentials": "true",
+      },
+      body: JSON.stringify({
+        detail: "Search provider temporarily unavailable",
+      }),
+    }),
+  );
   await page.getByRole("button", { name: "Search passages" }).click();
   await expect(page.getByRole("main").getByRole("alert")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Search passages" })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Search passages" }),
+  ).toBeEnabled();
   await page.unroute("**/api/v1/workspaces/*/search");
   await page.getByRole("button", { name: "Search passages" }).click();
   await expect(page.getByText("No matching indexed passages")).toBeVisible();
 });
 
-test("registration and login work through native keyboard form navigation", async ({ page }) => {
+test("registration and login work through native keyboard form navigation", async ({
+  page,
+}) => {
   const email = `keyboard-${crypto.randomUUID()}@example.com`;
   await page.goto("/register");
   await page.getByLabel("Full name").focus();
@@ -384,17 +407,123 @@ test("registration and login work through native keyboard form navigation", asyn
   await expect(page.getByLabel("Password", { exact: true })).toBeFocused();
   await page.keyboard.type(secret);
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("status")).toContainText("Registration request accepted");
+  await expect(page.getByRole("status")).toContainText(
+    "Registration request accepted",
+  );
   await verifyAndLogin(page, email);
-  await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Your workspaces" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "Sign out", exact: false }).focus();
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("heading", { name: "Welcome back" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Welcome back" }),
+  ).toBeVisible();
   await page.getByLabel("Email address").focus();
   await page.keyboard.type(email);
   await page.keyboard.press("Tab");
   await expect(page.getByLabel("Password", { exact: true })).toBeFocused();
   await page.keyboard.type(secret);
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("heading", { name: "Your workspaces" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Your workspaces" }),
+  ).toBeVisible();
+});
+
+test("auth forms never put credentials in URLs when JavaScript is unavailable", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  try {
+    for (const route of ["/register", "/login", "/verify-email"]) {
+      await page.goto(`http://localhost:3100${route}`);
+      if (route !== "/verify-email") {
+        if (route === "/register")
+          await page.getByLabel("Full name").fill("No script fixture");
+        await page
+          .getByLabel("Email address")
+          .fill(`noscript-${crypto.randomUUID()}@example.com`);
+        await page.getByLabel("Password", { exact: true }).fill(secret);
+      }
+      const [response] = await Promise.all([
+        page.waitForResponse(
+          (response) =>
+            response.request().isNavigationRequest() &&
+            response.request().method() === "POST",
+        ),
+        page.locator("form button").click(),
+      ]);
+      expect(response.status()).toBe(200);
+      expect((await response.text()).includes(secret)).toBe(false);
+      expect(new URL(response.url()).search === "").toBe(true);
+      await page.waitForLoadState();
+      expect(new URL(page.url()).search === "").toBe(true);
+    }
+  } finally {
+    await context.close();
+  }
+});
+
+test("2.0 readiness, extracted previews, comparison and local export", async ({
+  page,
+}) => {
+  await register(page, "Evidence researcher");
+  await workspace(page, "Two source evidence");
+  await nav(page, "Documents");
+  await page.getByLabel("Upload documents").setInputFiles([
+    {
+      name: "solar-one.txt",
+      mimeType: "text/plain",
+      buffer: Buffer.from(
+        "Solar panels convert sunlight into renewable electricity.",
+      ),
+    },
+    {
+      name: "solar-two.md",
+      mimeType: "text/markdown",
+      buffer: Buffer.from(
+        "Solar findings\n==============\nSolar panels produce clean energy.",
+      ),
+    },
+  ]);
+  await expect(
+    page.getByText("Ready for research", { exact: true }),
+  ).toHaveCount(2, { timeout: 30000 });
+  await expect(
+    page.getByRole("region", { name: "Research readiness" }),
+  ).toContainText("2 ready for research");
+  await page
+    .getByRole("button", { name: "Preview extracted text" })
+    .first()
+    .click();
+  await expect(
+    page.getByRole("region", { name: "Extracted source preview" }),
+  ).toContainText("Solar panels");
+  await nav(page, "Research");
+  await page.getByLabel("Research format").selectOption("comparison");
+  await page.getByLabel("Your research question").fill("Solar panels");
+  await expect(
+    page.getByRole("button", { name: "Compare sources" }),
+  ).toBeDisabled();
+  await page.getByText("Sources · all workspace documents").click();
+  await page.getByLabel("Use all workspace documents").uncheck();
+  await page.getByLabel(/solar-one.txt/).check();
+  await page.getByLabel(/solar-two.md/).check();
+  await page.getByRole("button", { name: "Compare sources" }).click();
+  const comparison = page.getByRole("region", { name: "Evidence comparison" });
+  await expect(comparison).toBeVisible();
+  await expect(comparison).toContainText("solar-one.txt");
+  await expect(comparison).toContainText("solar-two.md");
+  await expect(page.getByText("Offline mock · source selection")).toBeVisible();
+  const download = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export cited evidence (.txt)" })
+    .click();
+  expect((await download).suggestedFilename()).toBe("evidenceai-research.txt");
+  await page.getByLabel("Research format").selectOption("summary");
+  await page.getByRole("button", { name: "Build cited brief" }).click();
+  await expect(
+    page.getByRole("button", { name: "Open source C1" }),
+  ).toBeVisible();
 });

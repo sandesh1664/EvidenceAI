@@ -1,14 +1,14 @@
 """Fail closed: claim text must be a relevant, exact quotation of admitted context."""
 
 from app.schemas.ask import AnswerClaim, Citation, GroundedOutput
-from app.services.rag_context import UNSAFE, relevant
+from app.services.rag_context import UNSAFE, relevant, terms
 
 
 class CitationError(Exception):
     pass
 
 
-def validate_answer(output, context, question, settings):
+def validate_answer(output, context, question, settings, *, relevance_verified=False):
     try:
         generated = GroundedOutput.model_validate(output)
     except ValueError:
@@ -21,7 +21,12 @@ def validate_answer(output, context, question, settings):
     claims, citations, by_id = [], [], {}
     for index, claim in enumerate(generated.claims, 1):
         text = claim.text.strip()
-        if not relevant(text, question) or UNSAFE.search(text):
+        # A Gemini relevance review replaces literal question-word containment,
+        # never the exact source/quote checks below. Other providers remain strict.
+        semantic_review = settings.llm_provider == "gemini" and relevance_verified is True
+        numeric_qualifiers = {w for w in terms(question) if w.isdigit()}
+        if (UNSAFE.search(text) or len(text) < 8 or not numeric_qualifiers <= terms(text)
+                or not semantic_review and not relevant(text, question)):
             raise CitationError("Unsupported claim")
         claim_id = f"A{index}"
         references = []

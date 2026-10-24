@@ -13,6 +13,7 @@ __pycache__/
 # Node.js
 node_modules/
 .next/
+.next-e2e/
 
 # Local storage
 storage/

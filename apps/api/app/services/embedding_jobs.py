@@ -14,8 +14,12 @@ from app.models import Document, DocumentChunk, EmbeddingProfile, ChunkEmbedding
 from app.services.embedding_providers import EmbeddingEngine, EmbeddingError, profile_for
 from app.services.workspace_transaction import workspace_transaction
 
+from app.services.gemini_configuration import MESSAGES as GEMINI_CONFIGURATION_MESSAGES
+
 SAFE_ERRORS = {
-    'Embedding provider unavailable','Embedding provider temporarily unavailable','Embedding provider timed out',
+    *GEMINI_CONFIGURATION_MESSAGES.values(),
+    'Gemini API key is invalid', 'Gemini embedding model is unavailable', 'Gemini project access is denied',
+    'Embedding provider quota exhausted','Embedding provider unavailable','Embedding provider temporarily unavailable','Embedding provider timed out',
     'Embedding provider rejected the request','Invalid embedding provider output','Embedding model identity mismatch',
     'Invalid embedding vector dimensions','Embedding vectors must contain finite numbers','Embedding vectors must be nonzero',
     'Embedding input exceeds limits or is empty','Embedding provider failed','Embedding attempt limit reached',
@@ -96,7 +100,13 @@ def status_for(db,document_id,settings):
         ChunkEmbedding.dimensions == profile.dimensions,ChunkEmbedding.status == 'completed')
     indexed = db.scalar(counts)
     current = db.scalar(counts.where(ChunkEmbedding.generation == job.generation)) if job else 0
-    return dict(document_id=document_id,embedding_model=profile.identifier,dimensions=profile.dimensions,
+    from app.services.research_readiness import readiness, provider_status
+    complete = bool(job and job.state == 'done' and total > 0 and current == total)
+    ready, blocker = readiness(settings, total, indexed, complete)
+    indexing_blocker = provider_status(settings, 'embedding')['blocker']
+    return dict(ready_for_research=ready, indexing_complete=complete, research_blocker=blocker,
+                indexing_blocker=indexing_blocker,
+                document_id=document_id,embedding_model=profile.identifier,dimensions=profile.dimensions,
                 state=job.state if job else 'not_indexed',generation=job.generation if job else None,
                 attempts=job.attempts if job else 0,total_chunks=total,indexed_chunks=indexed,
                 current_generation_chunks=current,error=safe_error(job.error) if job and job.error else None,
@@ -255,6 +265,12 @@ def fail_claim(db,claim,settings,error,*,chunk_ids=()):
 
 
 def run_once(db,settings):
+    # Waiting for operator configuration/consent is not a failed provider attempt.
+    # The synthetic probe uses an explicit engine inside an owned disposable schema.
+    if settings.embedding_provider == 'gemini':
+        from app.services.gemini_configuration import blocker
+        if blocker(settings, 'embedding'):
+            return False
     claim = claim_job(db,settings)
     if claim is None:
         return False

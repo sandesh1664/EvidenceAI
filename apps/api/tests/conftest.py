@@ -11,6 +11,9 @@ activate()  # Before importing application modules or constructing any engine.
 for setting, value in {
     "LLM_PROVIDER": "disabled", "LLM_MODEL": "mock-extractive-v1", "LLM_REVISION": "1",
     "LLM_HOSTED_ALLOWED": "false",
+    "GEMINI_API_KEY": "offline-test-placeholder",
+    "GEMINI_LIVE_REQUESTS_ALLOWED": "false", "GEMINI_PRIVATE_DOCUMENTS_ALLOWED": "false",
+    "GEMINI_FREE_TIER_CONFIRMED": "false", "GEMINI_DATA_TRANSFER_ALLOWED": "false",
     "EMBEDDING_PROVIDER": "disabled", "EMBEDDING_MODEL": "fake-hash-v1",
     "EMBEDDING_REVISION": "1", "EMBEDDING_DIMENSIONS": "128",
     "EMBEDDING_HOSTED_ALLOWED": "false", "OPENAI_API_KEY": "offline-test-placeholder",

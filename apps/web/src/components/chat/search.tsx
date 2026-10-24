@@ -1,4 +1,5 @@
 "use client";
+import { ProviderStatus } from "@/components/chat/provider-status";
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api/client";
 import { useWorkspace } from "@/components/workspaces/context";
@@ -21,11 +22,21 @@ export function Search() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
   const [selected, setSelected] = useState<SearchResult | null>(null);
+  const [offset, setOffset] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const last = useRef({
+    query: "",
+    filters: null as string[] | null,
+    limit: 10,
+  });
   const controller = useRef<AbortController | null>(null);
   useEffect(() => () => controller.current?.abort(), []);
-  async function submit(event: React.FormEvent) {
-    event.preventDefault();
-    if (busy || !validQuestion(query)) return;
+  async function run(start: number, reset = false) {
+    if (busy || (reset && !validQuestion(query))) return;
+    if (reset) last.current = { query: query.trim(), filters, limit };
+    const params = last.current;
+    setPageSize(params.limit);
+    setOffset(start);
     setBusy(true);
     setError(undefined);
     setResults(null);
@@ -35,10 +46,11 @@ export function Search() {
       setResults(
         await api.search(
           workspace.id,
-          query.trim(),
-          filters,
-          limit,
+          params.query,
+          params.filters,
+          params.limit,
           controller.current.signal,
+          start,
         ),
       );
     } catch (error) {
@@ -55,7 +67,14 @@ export function Search() {
         title="Find the relevant passage"
         description="Search indexed documents across this workspace. Similarity is a ranking score, not proof or confidence."
       />
-      <form className="panel" onSubmit={submit}>
+      <ProviderStatus />
+      <form
+        className="panel"
+        onSubmit={(event) => {
+          event.preventDefault();
+          void run(0, true);
+        }}
+      >
         <label>
           Search query
           <input
@@ -109,7 +128,7 @@ export function Search() {
           <article className="panel search-result" key={result.chunk_id}>
             <div className="section-heading">
               <h2>
-                <span className="rank">{index + 1}</span>
+                <span className="rank">{offset + index + 1}</span>
                 {result.filename}
               </h2>
               <Badge>Similarity {result.similarity.toFixed(3)}</Badge>
@@ -136,6 +155,30 @@ export function Search() {
             </div>
           </article>
         ))
+      )}
+      {results && (
+        <div className="actions" aria-label="Search result pages">
+          <button
+            className="button small"
+            disabled={busy || offset === 0}
+            onClick={() => void run(Math.max(0, offset - last.current.limit))}
+          >
+            Previous results
+          </button>
+          <span className="hint">
+            Results {offset + (results.length ? 1 : 0)}–
+            {offset + results.length}
+          </span>
+          <button
+            className="button small"
+            disabled={
+              busy || results.length < pageSize || offset + pageSize > 1000
+            }
+            onClick={() => void run(offset + last.current.limit)}
+          >
+            Next results
+          </button>
+        </div>
       )}
       {selected && (
         <SourcePanel

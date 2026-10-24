@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 class SearchRequest(BaseModel):
     model_config = ConfigDict(extra='forbid')
+    offset: int = Field(default=0, ge=0, le=1000, strict=True)
     query: str = Field(min_length=1,max_length=2000)
     limit: int = Field(default=10,ge=1,le=50,strict=True)
     document_ids: list[UUID] | None = Field(default=None,max_length=50)
@@ -44,6 +45,10 @@ class IndexRequest(BaseModel):
 
 
 class IndexStatus(BaseModel):
+    ready_for_research: bool = False
+    indexing_complete: bool = False
+    research_blocker: str | None = None
+    indexing_blocker: str | None = None
     document_id: UUID
     embedding_model: str
     dimensions: int

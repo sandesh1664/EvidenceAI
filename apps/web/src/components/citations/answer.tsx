@@ -123,6 +123,11 @@ export function AnswerView({
             : status?.replaceAll("_", " ") || "Pending"}
         </Badge>
         {offline && <Badge>Offline mock · source selection</Badge>}
+        {model?.startsWith("gemini:") &&
+          status === "answered" &&
+          claims.length > 0 && (
+            <Badge>Gemini · validated source extracts</Badge>
+          )}
       </div>
       {claims.length ? (
         <div className="claims">
@@ -149,6 +154,12 @@ export function AnswerView({
           {pending
             ? "This turn is still being processed. History refreshes while this page is active."
             : content}
+        </p>
+      )}
+      {reason === "provider_quota" && (
+        <p className="notice">
+          The provider quota is exhausted. Automatic retries have stopped; ask
+          the operator to verify free quota before retrying.
         </p>
       )}
       {reason?.includes("disabled") && (

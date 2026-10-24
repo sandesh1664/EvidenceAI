@@ -34,3 +34,10 @@ def index_document(workspace_id: UUID,document_id: UUID,data: IndexRequest,
 def retry_index(workspace_id: UUID,document_id: UUID,user: User = Depends(get_current_user),
                 db: Session = Depends(get_db),settings: Settings = Depends(get_settings)):
     return embedding_jobs.request_index(db,workspace_id,document_id,user.id,settings,retry=True)
+
+
+@router.get('/research-status')
+def research_status(workspace_id: UUID, user: User = Depends(get_current_user),
+                    db: Session = Depends(get_db), settings: Settings = Depends(get_settings)):
+    from app.services.research_readiness import workspace_status
+    return workspace_status(db, workspace_id, user.id, settings)

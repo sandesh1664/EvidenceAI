@@ -1882,3 +1882,15 @@ dialog .actions {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
+
+/* Evidence research extensions retain the existing design and keyboard controls. */
+.provider-status { margin-bottom: 1.25rem; }
+.provider-status > strong { display: block; margin-bottom: .65rem; }
+.provider-status small { display: block; line-height: 1.5; }
+.chunk-preview { padding: 1rem; margin: 1rem 0; border: 1px solid var(--border, #d9dfdd); border-radius: .75rem; }
+.preview-passage { margin: 1rem 0; }
+.preview-passage pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.7; }
+.comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+.comparison-grid article { padding: 1rem; border: 1px solid var(--border, #d9dfdd); border-radius: .75rem; overflow-wrap: anywhere; }
+progress { display: block; width: 100%; accent-color: #326b55; }
+@media (max-width: 720px) { .comparison-grid { grid-template-columns: 1fr; } }

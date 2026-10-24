@@ -28,3 +28,20 @@ class DocumentResponse(BaseModel):
             return value
         # Preserve legacy DB values but never expose arbitrary old exception strings.
         return 'Document processing failed'
+
+
+class ChunkPreview(BaseModel):
+    chunk_id: UUID
+    chunk_index: int
+    excerpt: str
+    page_number: int | None
+    section: str | None
+    source_ref: str
+    char_start: int
+    char_end: int
+    truncated: bool
+
+
+class ChunkPage(BaseModel):
+    items: list[ChunkPreview]
+    next_offset: int | None

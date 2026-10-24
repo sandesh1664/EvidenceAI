@@ -1,8 +1,36 @@
 # EvidenceAI
 
-EvidenceAI is a document intelligence and research platform. Milestone 09 adds a responsive
-web application for private workspaces, document research, source-grounded answers and
-persistent conversations, connected to the existing secure FastAPI backend.
+EvidenceAI is a private document research platform built with Next.js, FastAPI and
+PostgreSQL/pgvector. It connects workspace-scoped documents, semantic retrieval,
+inspectable source quotations and saved research conversations.
+
+The incremental 2.0 local upgrade adds explicit research readiness, extracted source
+previews, cited topic briefs, two-source comparisons and local evidence export.
+Gemini REST adapters are tested offline; live use requires explicit backend opt-ins
+and document-transfer authorization. See the [verified local repair](docs/local-indexing-repair-2026-10-24.md)
+for the authorized Gemini 3.5 workflow and its limits.
+**Production release remains FAIL / BLOCKED.**
+
+| Capability | Current status |
+|---|---|
+| Private PDF/TXT/Markdown lifecycle, RBAC and verified signup | Implemented and regression-tested |
+| Profile-isolated indexing, filtered/paged retrieval | Implemented; fake is an offline lexical test double |
+| Cited questions, topic briefs and two-source comparisons | Exact extractive answers; no semantic truth guarantee |
+| Saved follow-ups, source previews and local text reports | Implemented with authorized source provenance |
+| Gemini embeddings/generation | Offline contracts and an authorized local workflow pass; access and quota are project-specific |
+| English/Nepali queries | Exact-source offline examples; multilingual semantic quality NOT VERIFIED |
+| PDF tables/OCR/multimodal understanding | Optional text layout only; structured tables/OCR/multimodal remain incomplete |
+| Production acceptance | BLOCKED by existing security/hosted requirements |
+
+For the current document-question fixes, actual provider configuration and blocked live
+validation, see [document QA setup](docs/document-qa-setup.md) and
+[verification](docs/document-qa-verification.md).
+
+Start with the [2.0 architecture and feature audit](docs/evidenceai-2-0-architecture.md),
+[safe local setup](docs/local-gemini-setup.md) and
+[actual verification results](docs/evidenceai-2-0-verification.md).
+Original historical audit evidence remains unchanged; a later test pass does not
+retroactively resolve historical session-write attribution.
 
 ## Development
 
@@ -54,7 +82,7 @@ cover settings, relationships, deletion policy, security, and current limitation
 ## Authentication
 
 See [security](docs/security.md) for API contracts, environment settings, browser
-integration, deployment requirements, and session lifecycle. No frontend files changed.
+integration, deployment requirements, and session lifecycle.
 For local HTTP, explicitly set `AUTH_ALLOW_INSECURE_HTTP=true` in `apps/api/.env`
 and `TRUSTED_FRONTEND_ORIGINS=["http://localhost:3000"]`. Without the opt-in,
 cookies are Secure and writes require HTTPS even in development.

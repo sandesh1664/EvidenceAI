@@ -136,3 +136,18 @@ def delete_document(db, workspace_id, document_id, actor_id):
                               available_at=db.scalar(select(func.clock_timestamp()))))
         db.delete(document)
         db.flush()
+
+
+def chunk_previews(db, workspace_id, document_id, actor_id, limit, offset, query=''):
+    document_access(db, workspace_id, document_id, actor_id)
+    statement = select(DocumentChunk).where(DocumentChunk.document_id == document_id,
+                                            DocumentChunk.workspace_id == workspace_id)
+    if query.strip():
+        statement = statement.where(DocumentChunk.text.icontains(query.strip(), autoescape=True))
+    rows = db.scalars(statement.order_by(DocumentChunk.chunk_index, DocumentChunk.id)
+                      .offset(offset).limit(limit+1)).all()
+    return {'items': [dict(chunk_id=row.id, chunk_index=row.chunk_index,
+        excerpt=row.text[:2000], page_number=row.page_number, section=row.section,
+        source_ref=row.source_ref, char_start=row.char_start,
+        char_end=min(row.char_end, row.char_start+2000), truncated=len(row.text)>2000)
+        for row in rows[:limit]], 'next_offset': offset+limit if len(rows)>limit else None}

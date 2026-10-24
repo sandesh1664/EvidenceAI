@@ -44,7 +44,7 @@ def validate_text(stream):
 @measured("extraction")
 def run_parser(stream, extension: str, settings: Settings, *, validate_only=False):
     timeout = settings.document_validation_timeout if validate_only else settings.document_processing_timeout
-    options = dict(pages=settings.document_max_pages, chars=settings.document_max_text_chars,
+    options = dict(layout=settings.document_pdf_layout, pages=settings.document_max_pages, chars=settings.document_max_text_chars,
                    memory=settings.document_parser_memory_mb, seconds=timeout,
                    bytes=settings.document_upload_max_bytes)
     output_limit = settings.document_max_text_chars * 12 + 1024 * 1024

@@ -39,6 +39,10 @@ export interface Document {
   updated_at: string;
 }
 export interface IndexStatus {
+  ready_for_research?: boolean;
+  indexing_complete?: boolean;
+  research_blocker?: string | null;
+  indexing_blocker?: string | null;
   document_id: ID;
   embedding_model: string;
   dimensions: number;
@@ -143,6 +147,7 @@ export interface Turn {
   replayed: boolean;
 }
 export interface Question {
+  mode?: "question" | "summary" | "comparison";
   question: string;
   document_ids?: ID[] | null;
   retrieval_limit?: number;
@@ -157,4 +162,37 @@ export interface SearchResult {
   source_ref: string;
   similarity: number;
   embedding_model: string;
+}
+
+export interface ChunkPage {
+  items: {
+    chunk_id: ID;
+    chunk_index: number;
+    excerpt: string;
+    page_number: number | null;
+    section: string | null;
+    source_ref: string;
+    char_start: number;
+    char_end: number;
+    truncated: boolean;
+  }[];
+  next_offset: number | null;
+}
+export interface ResearchStatus {
+  documents: number;
+  processing_complete: number;
+  indexing_complete: number;
+  ready_for_research: number;
+  embedding_profile: string;
+  providers: Record<
+    "embedding" | "llm",
+    {
+      provider: string;
+      model: string;
+      configured: boolean;
+      offline: boolean;
+      blocker: string | null;
+      live_access: string;
+    }
+  >;
 }

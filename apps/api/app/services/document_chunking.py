@@ -27,11 +27,12 @@ def chunk_sources(sources, document_id: UUID, workspace_id: UUID, *, size=1600, 
         text, page = source['text'], source['page_number']
         boundaries = [(0, None)]
         if source.get('markdown'):
-            for match in re.finditer(r'^#{1,6} +(.+)$', text, flags=re.MULTILINE):
+            # Explicit Markdown ATX and Setext headings only; do not guess TXT headings.
+            for match in re.finditer(r'^(?:#{1,6} +(.+)|([^\n]+)\n[=-]{3,} *$)', text, flags=re.MULTILINE):
                 if match.start() == 0:
-                    boundaries[0] = (0, match.group(1).strip()[:200])
+                    boundaries[0] = (0, (match.group(1) or match.group(2)).strip()[:200])
                 else:
-                    boundaries.append((match.start(), match.group(1).strip()[:200]))
+                    boundaries.append((match.start(), (match.group(1) or match.group(2)).strip()[:200]))
         for part, (start, section) in enumerate(boundaries):
             end = boundaries[part+1][0] if part+1 < len(boundaries) else len(text)
             position = start
